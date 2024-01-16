@@ -1,0 +1,597 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */; };
+		F659563E2B56BF10004896C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659563D2B56BF10004896C3 /* ContentView.swift */; };
+		F65956402B56BF10004896C3 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659563F2B56BF10004896C3 /* Item.swift */; };
+		F65956422B56BF11004896C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65956412B56BF11004896C3 /* Assets.xcassets */; };
+		F65956452B56BF11004896C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65956442B56BF11004896C3 /* Preview Assets.xcassets */; };
+		F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */; };
+		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
+		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F659564B2B56BF11004896C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F65956302B56BF10004896C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F65956372B56BF10004896C3;
+			remoteInfo = DementiaChecker;
+		};
+		F65956552B56BF11004896C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F65956302B56BF10004896C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F65956372B56BF10004896C3;
+			remoteInfo = DementiaChecker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F65956382B56BF10004896C3 /* DementiaChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DementiaChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerApp.swift; sourceTree = "<group>"; };
+		F659563D2B56BF10004896C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F659563F2B56BF10004896C3 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		F65956412B56BF11004896C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F65956442B56BF11004896C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F659564A2B56BF11004896C3 /* DementiaCheckerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerTests.swift; sourceTree = "<group>"; };
+		F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
+		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F65956352B56BF10004896C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956472B56BF11004896C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956512B56BF11004896C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F659562F2B56BF10004896C3 = {
+			isa = PBXGroup;
+			children = (
+				F659563A2B56BF10004896C3 /* DementiaChecker */,
+				F659564D2B56BF11004896C3 /* DementiaCheckerTests */,
+				F65956572B56BF11004896C3 /* DementiaCheckerUITests */,
+				F65956392B56BF10004896C3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F65956392B56BF10004896C3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F65956382B56BF10004896C3 /* DementiaChecker.app */,
+				F659564A2B56BF11004896C3 /* DementiaCheckerTests.xctest */,
+				F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
+			isa = PBXGroup;
+			children = (
+				F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */,
+				F659563D2B56BF10004896C3 /* ContentView.swift */,
+				F659563F2B56BF10004896C3 /* Item.swift */,
+				F65956412B56BF11004896C3 /* Assets.xcassets */,
+				F65956432B56BF11004896C3 /* Preview Content */,
+			);
+			path = DementiaChecker;
+			sourceTree = "<group>";
+		};
+		F65956432B56BF11004896C3 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F65956442B56BF11004896C3 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F659564D2B56BF11004896C3 /* DementiaCheckerTests */ = {
+			isa = PBXGroup;
+			children = (
+				F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */,
+			);
+			path = DementiaCheckerTests;
+			sourceTree = "<group>";
+		};
+		F65956572B56BF11004896C3 /* DementiaCheckerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */,
+				F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */,
+			);
+			path = DementiaCheckerUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F65956372B56BF10004896C3 /* DementiaChecker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F659565E2B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaChecker" */;
+			buildPhases = (
+				F65956342B56BF10004896C3 /* Sources */,
+				F65956352B56BF10004896C3 /* Frameworks */,
+				F65956362B56BF10004896C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DementiaChecker;
+			productName = DementiaChecker;
+			productReference = F65956382B56BF10004896C3 /* DementiaChecker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F65956492B56BF11004896C3 /* DementiaCheckerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F65956612B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerTests" */;
+			buildPhases = (
+				F65956462B56BF11004896C3 /* Sources */,
+				F65956472B56BF11004896C3 /* Frameworks */,
+				F65956482B56BF11004896C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F659564C2B56BF11004896C3 /* PBXTargetDependency */,
+			);
+			name = DementiaCheckerTests;
+			productName = DementiaCheckerTests;
+			productReference = F659564A2B56BF11004896C3 /* DementiaCheckerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F65956532B56BF11004896C3 /* DementiaCheckerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F65956642B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerUITests" */;
+			buildPhases = (
+				F65956502B56BF11004896C3 /* Sources */,
+				F65956512B56BF11004896C3 /* Frameworks */,
+				F65956522B56BF11004896C3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F65956562B56BF11004896C3 /* PBXTargetDependency */,
+			);
+			name = DementiaCheckerUITests;
+			productName = DementiaCheckerUITests;
+			productReference = F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F65956302B56BF10004896C3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					F65956372B56BF10004896C3 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					F65956492B56BF11004896C3 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = F65956372B56BF10004896C3;
+					};
+					F65956532B56BF11004896C3 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = F65956372B56BF10004896C3;
+					};
+				};
+			};
+			buildConfigurationList = F65956332B56BF10004896C3 /* Build configuration list for PBXProject "DementiaChecker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F659562F2B56BF10004896C3;
+			productRefGroup = F65956392B56BF10004896C3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F65956372B56BF10004896C3 /* DementiaChecker */,
+				F65956492B56BF11004896C3 /* DementiaCheckerTests */,
+				F65956532B56BF11004896C3 /* DementiaCheckerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F65956362B56BF10004896C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F65956452B56BF11004896C3 /* Preview Assets.xcassets in Resources */,
+				F65956422B56BF11004896C3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956482B56BF11004896C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956522B56BF11004896C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F65956342B56BF10004896C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F659563E2B56BF10004896C3 /* ContentView.swift in Sources */,
+				F65956402B56BF10004896C3 /* Item.swift in Sources */,
+				F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956462B56BF11004896C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F65956502B56BF11004896C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */,
+				F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F659564C2B56BF11004896C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F65956372B56BF10004896C3 /* DementiaChecker */;
+			targetProxy = F659564B2B56BF11004896C3 /* PBXContainerItemProxy */;
+		};
+		F65956562B56BF11004896C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F65956372B56BF10004896C3 /* DementiaChecker */;
+			targetProxy = F65956552B56BF11004896C3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F659565C2B56BF11004896C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F659565D2B56BF11004896C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F659565F2B56BF11004896C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaChecker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F65956602B56BF11004896C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaChecker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F65956622B56BF11004896C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaCheckerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DementiaChecker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DementiaChecker";
+			};
+			name = Debug;
+		};
+		F65956632B56BF11004896C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaCheckerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DementiaChecker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DementiaChecker";
+			};
+			name = Release;
+		};
+		F65956652B56BF11004896C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaCheckerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DementiaChecker;
+			};
+			name = Debug;
+		};
+		F65956662B56BF11004896C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JLQKH6P6PL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cj.DementiaCheckerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DementiaChecker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F65956332B56BF10004896C3 /* Build configuration list for PBXProject "DementiaChecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F659565C2B56BF11004896C3 /* Debug */,
+				F659565D2B56BF11004896C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F659565E2B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaChecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F659565F2B56BF11004896C3 /* Debug */,
+				F65956602B56BF11004896C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F65956612B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F65956622B56BF11004896C3 /* Debug */,
+				F65956632B56BF11004896C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F65956642B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F65956652B56BF11004896C3 /* Debug */,
+				F65956662B56BF11004896C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F65956302B56BF10004896C3 /* Project object */;
+}
