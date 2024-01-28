@@ -49,7 +49,7 @@ struct InspectionView: View {
                     
                     Spacer().frame(height: 20)
                     
-                    NavigationLink(destination: EmptyView()){
+                    NavigationLink(destination: MMSEInspectionMainView()){
                         HStack{
                             Text("다음 단계로")
                                 .foregroundStyle(Color.white)

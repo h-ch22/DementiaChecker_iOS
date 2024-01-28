@@ -36,6 +36,10 @@
 		F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999622B66369700F9E4C7 /* MoreView.swift */; };
 		F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */; };
 		F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */; };
+		F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */; };
+		F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */; };
+		F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */; };
+		F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +87,10 @@
 		F6D999622B66369700F9E4C7 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionIntroductionListModel.swift; sourceTree = "<group>"; };
 		F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionIntroductionDataModel.swift; sourceTree = "<group>"; };
+		F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEInspectionMainView.swift; sourceTree = "<group>"; };
+		F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEInspectionView.swift; sourceTree = "<group>"; };
+		F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
+		F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEAnswerTypeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +285,7 @@
 		F6D999572B66366D00F9E4C7 /* Inspection */ = {
 			isa = PBXGroup;
 			children = (
+				F6D9996D2B664D0200F9E4C7 /* Helper */,
 				F6D999642B663A7700F9E4C7 /* Models */,
 				F6D999592B66367600F9E4C7 /* View */,
 			);
@@ -287,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				F6D9995A2B66367E00F9E4C7 /* InspectionView.swift */,
+				F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */,
+				F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,8 +339,17 @@
 			children = (
 				F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */,
 				F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */,
+				F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F6D9996D2B664D0200F9E4C7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,8 +503,12 @@
 				F659566A2B56BF88004896C3 /* SplashView.swift in Sources */,
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
+				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
+				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */,
+				F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */,
+				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,
 				F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */,
