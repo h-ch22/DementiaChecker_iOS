@@ -40,6 +40,7 @@
 		F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */; };
 		F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */; };
 		F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */; };
+		F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEInspectionView.swift; sourceTree = "<group>"; };
 		F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
 		F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEAnswerTypeModel.swift; sourceTree = "<group>"; };
+		F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSECanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 				F6D9995A2B66367E00F9E4C7 /* InspectionView.swift */,
 				F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */,
 				F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */,
+				F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
 				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
 				F682DA3F2B662AB0004F1E79 /* ProgressOverlay.swift in Sources */,
+				F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */,
 				F682DA382B662415004F1E79 /* AES256Util.swift in Sources */,
 				F659566A2B56BF88004896C3 /* SplashView.swift in Sources */,
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
@@ -682,6 +686,7 @@
 				DEVELOPMENT_TEAM = H7245MHSUG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -714,6 +719,7 @@
 				DEVELOPMENT_TEAM = H7245MHSUG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

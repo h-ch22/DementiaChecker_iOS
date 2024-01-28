@@ -7,9 +7,22 @@
 
 import Foundation
 import UIKit
+import AVFoundation
+import Speech
 
-class InspectionHelper: ObservableObject{
+class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     private var answerList: [String] = []
+    private let audioEngine = AVAudioEngine()
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
+    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    private var recognitionTask: SFSpeechRecognitionTask?
+    
+    @Published var resultText = ""
+    
+    override init(){
+        super.init()
+        speechRecognizer?.delegate = self
+    }
     
     func getMMSEQuestion(id: Int) -> String{
         switch id{
@@ -93,7 +106,7 @@ class InspectionHelper: ObservableObject{
     func getAnswer(id: Int) -> String{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
-
+        
         switch id{
         case 0:
             dateFormatter.dateFormat = "yyyy"
@@ -167,7 +180,10 @@ class InspectionHelper: ObservableObject{
         case 22..<26:
             return .DRAW
             
-        case 26, 27:
+        case 26:
+            return .AUDIO
+            
+        case 27:
             return .TEXT_FIELD
             
         default:
@@ -177,5 +193,73 @@ class InspectionHelper: ObservableObject{
     
     func saveAnswer(answer: String){
         answerList.append(answer)
+    }
+    
+    func getAudioEngineRunning() -> Bool{
+        return audioEngine.isRunning ? true : false
+    }
+    
+    func endAudio(){
+        audioEngine.stop()
+        recognitionRequest?.endAudio()
+    }
+    
+    func startRecording(){
+        audioEngine.inputNode.removeTap(onBus: 0)
+        
+        if recognitionTask != nil{
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do{
+            try audioSession.setCategory(AVAudioSession.Category.record)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch{
+            print(error.localizedDescription)
+        }
+        
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let inputNode = audioEngine.inputNode
+        
+        guard let recognitionRequest = recognitionRequest else{
+            fatalError("Cannot initalize recognition request.")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            var isFinal = false
+            
+            if result != nil{
+                self.resultText = result?.bestTranscription.formattedString ?? ""
+                
+                isFinal = (result?.isFinal)!
+            }
+            
+            if isFinal{
+                self.audioEngine.stop()
+                inputNode.removeTap(onBus: 0)
+                
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+            }
+        })
+        
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat){ (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        
+        do{
+            try audioEngine.start()
+        } catch{
+            print(error.localizedDescription)
+        }
     }
 }
