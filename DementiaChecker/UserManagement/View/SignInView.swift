@@ -70,7 +70,7 @@ struct SignInView: View {
                                 showProgress = false
                                 
                                 if result == .SUCCESS{
-                                    
+                                    changeView = true
                                 } else{
                                     alertType = result
                                     showAlert = true
@@ -120,7 +120,9 @@ struct SignInView: View {
                     } message: {error in
                         Text(error.recoverySuggestion ?? "")
                     }
-            }
+            }.fullScreenCover(isPresented: $changeView, content: {
+                MainView()
+            })
         }
         
     }

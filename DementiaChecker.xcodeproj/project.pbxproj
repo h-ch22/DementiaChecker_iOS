@@ -28,6 +28,14 @@
 		F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA442B662DD6004F1E79 /* UserManagement.swift */; };
 		F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA462B662E91004F1E79 /* UserInfoModel.swift */; };
 		F682DA492B6631EB004F1E79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */; };
+		F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9994D2B66363500F9E4C7 /* MainView.swift */; };
+		F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */; };
+		F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999552B66366B00F9E4C7 /* HomeView.swift */; };
+		F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9995A2B66367E00F9E4C7 /* InspectionView.swift */; };
+		F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9995E2B66368A00F9E4C7 /* HistoryView.swift */; };
+		F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999622B66369700F9E4C7 /* MoreView.swift */; };
+		F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */; };
+		F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +75,14 @@
 		F682DA442B662DD6004F1E79 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		F682DA462B662E91004F1E79 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F6D9994D2B66363500F9E4C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalMapView.swift; sourceTree = "<group>"; };
+		F6D999552B66366B00F9E4C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F6D9995A2B66367E00F9E4C7 /* InspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionView.swift; sourceTree = "<group>"; };
+		F6D9995E2B66368A00F9E4C7 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		F6D999622B66369700F9E4C7 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionIntroductionListModel.swift; sourceTree = "<group>"; };
+		F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionIntroductionDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +138,11 @@
 		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F6D999602B66368C00F9E4C7 /* More */,
+				F6D9995C2B66368100F9E4C7 /* History */,
+				F6D999572B66366D00F9E4C7 /* Inspection */,
+				F6D999532B66365C00F9E4C7 /* Home */,
+				F6D9994F2B66364D00F9E4C7 /* HospitalMap */,
 				F682DA272B6622B1004F1E79 /* UserManagement */,
 				F65956672B56BF74004896C3 /* Frameworks */,
 				F65956412B56BF11004896C3 /* Assets.xcassets */,
@@ -171,6 +192,7 @@
 				F65956692B56BF88004896C3 /* SplashView.swift */,
 				F682DA252B6621BB004F1E79 /* Logos.swift */,
 				F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */,
+				F6D9994D2B66363500F9E4C7 /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -218,6 +240,96 @@
 				F682DA442B662DD6004F1E79 /* UserManagement.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		F6D9994F2B66364D00F9E4C7 /* HospitalMap */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999502B66365300F9E4C7 /* View */,
+			);
+			path = HospitalMap;
+			sourceTree = "<group>";
+		};
+		F6D999502B66365300F9E4C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6D999532B66365C00F9E4C7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999542B66366000F9E4C7 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F6D999542B66366000F9E4C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999552B66366B00F9E4C7 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6D999572B66366D00F9E4C7 /* Inspection */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999642B663A7700F9E4C7 /* Models */,
+				F6D999592B66367600F9E4C7 /* View */,
+			);
+			path = Inspection;
+			sourceTree = "<group>";
+		};
+		F6D999592B66367600F9E4C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6D9995A2B66367E00F9E4C7 /* InspectionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6D9995C2B66368100F9E4C7 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				F6D9995D2B66368500F9E4C7 /* View */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		F6D9995D2B66368500F9E4C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6D9995E2B66368A00F9E4C7 /* HistoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6D999602B66368C00F9E4C7 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999612B66369000F9E4C7 /* View */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
+		F6D999612B66369000F9E4C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999622B66369700F9E4C7 /* MoreView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F6D999642B663A7700F9E4C7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */,
+				F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,13 +474,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */,
 				F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */,
+				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
+				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
 				F682DA3F2B662AB0004F1E79 /* ProgressOverlay.swift in Sources */,
 				F682DA382B662415004F1E79 /* AES256Util.swift in Sources */,
 				F659566A2B56BF88004896C3 /* SplashView.swift in Sources */,
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
+				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
+				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */,
+				F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */,
+				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,
 				F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */,
+				F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */,
 				F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */,
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,

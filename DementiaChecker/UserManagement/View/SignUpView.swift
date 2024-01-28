@@ -17,6 +17,7 @@ struct SignUpView: View {
     
     @State private var showProgress = false
     @State private var showAlert = false
+    @State private var changeView = false
     @State private var alertType: UserManagementAlertType? = nil
     
     @StateObject private var helper = UserManagement()
@@ -95,6 +96,7 @@ struct SignUpView: View {
                                 .foregroundStyle(phone == "" ? Color.gray : Color.accentColor)
                             
                             TextField("연락처", text: $phone)
+                                .keyboardType(.phonePad)
                         }
                         .foregroundStyle(Color.accentColor)
                         .padding(20)
@@ -134,7 +136,7 @@ struct SignUpView: View {
                                         showProgress = false
                                         
                                         if result == .SUCCESS{
-                                            
+                                            changeView = true
                                         } else{
                                             alertType = result
                                             showAlert = true
@@ -166,7 +168,9 @@ struct SignUpView: View {
                         Text(error.recoverySuggestion ?? "")
                     }
                     .padding(20)
-            }
+            }.fullScreenCover(isPresented: $changeView, content: {
+                MainView()
+            })
         }
     }
 }
