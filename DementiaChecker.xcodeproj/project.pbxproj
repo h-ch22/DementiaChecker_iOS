@@ -14,6 +14,7 @@
 		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
 		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
 		F659566A2B56BF88004896C3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956692B56BF88004896C3 /* SplashView.swift */; };
+		F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */; };
 		F682DA262B6621BB004F1E79 /* Logos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA252B6621BB004F1E79 /* Logos.swift */; };
 		F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA292B6622BD004F1E79 /* SignInView.swift */; };
 		F682DA2F2B662397004F1E79 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA2E2B662397004F1E79 /* FirebaseAnalytics */; };
@@ -71,6 +72,7 @@
 		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
 		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F65956692B56BF88004896C3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceMainView.swift; sourceTree = "<group>"; };
 		F682DA252B6621BB004F1E79 /* Logos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logos.swift; sourceTree = "<group>"; };
 		F682DA292B6622BD004F1E79 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		F682DA372B662415004F1E79 /* AES256Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Util.swift; sourceTree = "<group>"; };
@@ -148,6 +150,8 @@
 		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F66AE8F22B67D26400D84C8A /* DigialInheritance */,
+				F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */,
 				F6D999602B66368C00F9E4C7 /* More */,
 				F6D9995C2B66368100F9E4C7 /* History */,
 				F6D999572B66366D00F9E4C7 /* Inspection */,
@@ -207,10 +211,25 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F66AE8F22B67D26400D84C8A /* DigialInheritance */ = {
+			isa = PBXGroup;
+			children = (
+				F66AE8F32B67D27200D84C8A /* View */,
+			);
+			path = DigialInheritance;
+			sourceTree = "<group>";
+		};
+		F66AE8F32B67D27200D84C8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F682DA272B6622B1004F1E79 /* UserManagement */ = {
 			isa = PBXGroup;
 			children = (
-				F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */,
 				F682DA432B662DCE004F1E79 /* Helper */,
 				F682DA402B662B92004F1E79 /* Models */,
 				F682DA282B6622B6004F1E79 /* View */,
@@ -519,6 +538,7 @@
 				F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */,
 				F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */,
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
+				F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */,
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

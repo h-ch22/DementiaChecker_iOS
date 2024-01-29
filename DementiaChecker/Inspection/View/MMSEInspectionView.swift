@@ -14,6 +14,7 @@ struct MMSEInspectionView: View {
     @State private var currentIndex = 0
     @State private var answer = ""
     @State private var isRecording = false
+    @State private var isPlayed = false
     @State private var timer = 0
     @State private var canvasView = PKCanvasView()
     
@@ -60,10 +61,23 @@ struct MMSEInspectionView: View {
                             answer = ""
                             helper.resultText = ""
                             IsAnswerFieldFocused = false
+                            isPlayed = false
                             currentIndex += 1
                         }
                     }){
                         Text("완료")
+                    }
+                } else if helper.isTTSAvailable(id: currentIndex) && !isPlayed{
+                    Spacer().frame(height: 20)
+
+                    Button(action: {
+                        helper.play(id: currentIndex)
+                        isPlayed = true
+                    }){
+                        HStack{
+                            Image(systemName: "play.fill")
+                            Text("재생")
+                        }
                     }
                 }
                 
@@ -117,6 +131,7 @@ struct MMSEInspectionView: View {
                             answer = ""
                             helper.resultText = ""
                             IsAnswerFieldFocused = false
+                            isPlayed = false
                             currentIndex += 1
                         }
                     }){
@@ -128,9 +143,11 @@ struct MMSEInspectionView: View {
                                 .foregroundStyle(Color.white)
                         }.padding(20)
                             .padding([.horizontal], 80)
-                            .background(RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(Color.accentColor)
-                                .shadow(radius: 5))
+                            .background(
+                                LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
                     }
                 }
 

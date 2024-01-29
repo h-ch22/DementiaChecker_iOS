@@ -12,10 +12,12 @@ import Speech
 
 class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     private var answerList: [String] = []
-    private let audioEngine = AVAudioEngine()
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
+    
+    private let audioEngine = AVAudioEngine()
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
+    private let synthesizer = AVSpeechSynthesizer()
     
     @Published var resultText = ""
     
@@ -155,6 +157,34 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
         default:
             return UIKeyboardType.default
         }
+    }
+    
+    func isTTSAvailable(id: Int) -> Bool{
+        switch id{
+        case 10, 21: return true
+        default: return false
+        }
+    }
+    
+    private func getTTSString(id: Int) -> String{
+        switch id{
+        case 10:
+            return "비행기 연필 소나무"
+            
+        case 21:
+            return "백문이 불여일견"
+            
+        default:
+            return ""
+        }
+    }
+    
+    func play(id: Int, isSample: Bool = false){
+        let utterance = AVSpeechUtterance(string: isSample ? "안녕하세요. 이 문장은 Dementia Checker에서 스피커 테스트를 위해 재생되는 문장입니다. 이 소리가 너무 크거나 작게 들리면 시스템 볼륨을 조절해주세요." : self.getTTSString(id: id))
+        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+        utterance.rate = 0.2
+        synthesizer.stopSpeaking(at: .immediate)
+        synthesizer.speak(utterance)
     }
     
     func getAnswerType(id: Int) -> MMSEAnswerTypeModel{

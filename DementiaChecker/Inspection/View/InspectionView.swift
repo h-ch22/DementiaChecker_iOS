@@ -58,9 +58,11 @@ struct InspectionView: View {
                                 .foregroundStyle(Color.white)
                         }.padding(20)
                             .padding([.horizontal], 80)
-                            .background(RoundedRectangle(cornerRadius: 15)
-                                .foregroundStyle(Color.accentColor)
-                                .shadow(radius: 5))
+                            .background(
+                                LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
                     }
                 }.padding(20)
                 .navigationTitle(Text("검사 시작하기"))

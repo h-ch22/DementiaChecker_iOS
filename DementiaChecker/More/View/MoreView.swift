@@ -8,8 +8,109 @@
 import SwiftUI
 
 struct MoreView: View {
+    @StateObject private var helper = UserManagement()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
+            
+            VStack{
+                HStack{
+                    TextLogoRegular()
+                    
+                    Spacer()
+                }
+                
+                Button(action: {}){
+                    HStack{
+                        Image("ic_appstore")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                            .shadow(radius: 5)
+                        
+                        Text(helper.userInfo?.name ?? "알 수 없는 사용자")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+
+                }
+                
+                Divider()
+                
+                NavigationLink(destination: EmptyView()){
+                    HStack{
+                        Image(systemName: "chart.xyaxis.line")
+                            .foregroundStyle(Color.txt)
+
+                        Text("치매 예방과 관련된 내용 읽어보기")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+                }
+                
+                NavigationLink(destination: EmptyView()){
+                    HStack{
+                        Image(systemName: "brain.filled.head.profile")
+                            .foregroundStyle(Color.txt)
+
+                        Text("심각도별 치매 개선 프로세스")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+                }
+                
+                NavigationLink(destination: EmptyView()){
+                    HStack{
+                        Image(systemName: "person.crop.artframe")
+                            .foregroundStyle(Color.txt)
+
+                        Text("유산 관리자")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+                }
+                
+                NavigationLink(destination: EmptyView()){
+                    HStack{
+                        Image(systemName: "info.circle.fill")
+                            .foregroundStyle(Color.txt)
+
+                        Text("정보")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+                }
+                
+                Spacer()
+                
+            }.padding(20)
+        }
     }
 }
 

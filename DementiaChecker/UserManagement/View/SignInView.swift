@@ -22,7 +22,6 @@ struct SignInView: View {
         NavigationStack{
             ZStack{
                 Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
-                
                 VStack{
                     Spacer()
                     
@@ -86,9 +85,11 @@ struct SignInView: View {
                                 .foregroundStyle(Color.white)
                         }.padding(20)
                             .padding([.horizontal], 80)
-                            .background(RoundedRectangle(cornerRadius: 15).foregroundStyle(
-                                (email == "" || password == "") ? Color.gray : Color.accentColor
-                            ).shadow(radius: 5))
+                            .background(
+                                LinearGradient(colors: email != "" && password != "" ? [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
                     }
                     
                     Spacer()

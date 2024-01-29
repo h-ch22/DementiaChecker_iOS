@@ -9,8 +9,14 @@ import SwiftUI
 
 struct TextLogo: View {
     var body: some View {
-        Text("Dementia **Checker**")
+        Text("**Dementia** Checker")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+    }
+}
+
+struct TextLogoRegular: View {
+    var body: some View {
+        Text("**Dementia** Checker")
     }
 }
 
@@ -22,7 +28,7 @@ struct TextWithImageLogo: View{
                 .frame(width: 80, height: 80)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
             
-            Text("Dementia **Checker**")
+            Text("**Dementia** Checker")
                 .font(.title2)
         }
     }
@@ -36,7 +42,7 @@ struct TextWithImageLogo_Vertical: View{
                 .frame(width: 150, height: 150)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
             
-            Text("Dementia **Checker**")
+            Text("**Dementia** Checker")
                 .font(.title2)
         }
     }
