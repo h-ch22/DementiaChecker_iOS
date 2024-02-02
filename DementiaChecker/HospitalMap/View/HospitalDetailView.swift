@@ -45,7 +45,7 @@ struct HospitalDetailView: View {
                             .font(.caption)
                             .foregroundStyle(Color.gray)
                     }.padding()
-                    .background(.ultraThickMaterial)
+                    .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Spacer().frame(height: 20)
@@ -61,7 +61,7 @@ struct HospitalDetailView: View {
                             .foregroundStyle(Color.accent)
 
                     }.padding()
-                    .background(.ultraThickMaterial)
+                    .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Spacer().frame(height: 20)
@@ -77,7 +77,7 @@ struct HospitalDetailView: View {
                             .foregroundStyle(Color.accent)
 
                     }.padding()
-                    .background(.ultraThickMaterial)
+                    .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Spacer().frame(height: 20)
@@ -92,7 +92,7 @@ struct HospitalDetailView: View {
                         Text("\(data?.scrcsCount ?? 0)명")
                             .foregroundStyle(Color.accent)
                     }.padding()
-                    .background(.ultraThickMaterial)
+                    .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                 }.padding(20)

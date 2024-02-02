@@ -39,6 +39,10 @@
 		F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA442B662DD6004F1E79 /* UserManagement.swift */; };
 		F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA462B662E91004F1E79 /* UserInfoModel.swift */; };
 		F682DA492B6631EB004F1E79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */; };
+		F68DDA602B6CF8170029AECF /* UserTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */; };
+		F68DDA622B6CF82F0029AECF /* UserTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */; };
+		F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */; };
+		F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */; };
 		F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C02B694CB4005A764E /* onInspectionView.swift */; };
 		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
 		F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9994D2B66363500F9E4C7 /* MainView.swift */; };
@@ -112,6 +116,10 @@
 		F682DA442B662DD6004F1E79 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		F682DA462B662E91004F1E79 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeModel.swift; sourceTree = "<group>"; };
+		F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionView.swift; sourceTree = "<group>"; };
+		F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritanceGuardianSelectionView.swift; sourceTree = "<group>"; };
+		F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteritanceGuardianListModel.swift; sourceTree = "<group>"; };
 		F69830C02B694CB4005A764E /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
 		F69830C22B694D63005A764E /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
 		F6D9994D2B66363500F9E4C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -301,6 +309,7 @@
 		F66AE8F22B67D26400D84C8A /* DigialInheritance */ = {
 			isa = PBXGroup;
 			children = (
+				F68DDA652B6CFF950029AECF /* Models */,
 				F66AE8F32B67D27200D84C8A /* View */,
 			);
 			path = DigialInheritance;
@@ -310,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */,
+				F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +339,7 @@
 			children = (
 				F682DA292B6622BD004F1E79 /* SignInView.swift */,
 				F682DA3C2B662803004F1E79 /* SignUpView.swift */,
+				F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -347,6 +358,7 @@
 				F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */,
 				F682DA462B662E91004F1E79 /* UserInfoModel.swift */,
 				F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */,
+				F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -357,6 +369,14 @@
 				F682DA442B662DD6004F1E79 /* UserManagement.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		F68DDA652B6CFF950029AECF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F6D9994F2B66364D00F9E4C7 /* HospitalMap */ = {
@@ -738,6 +758,7 @@
 				F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */,
 				F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */,
 				F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */,
+				F68DDA622B6CF82F0029AECF /* UserTypeSelectionView.swift in Sources */,
 				F63948362B6BA58F00E82620 /* LocationDataModel.swift in Sources */,
 				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
 				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
@@ -753,6 +774,8 @@
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
+				F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */,
+				F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */,
 				F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */,
@@ -767,6 +790,7 @@
 				F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */,
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
 				F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */,
+				F68DDA602B6CF8170029AECF /* UserTypeModel.swift in Sources */,
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

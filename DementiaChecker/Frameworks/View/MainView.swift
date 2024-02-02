@@ -63,9 +63,9 @@ struct MainView: View {
                                     .foregroundColor(.white)
                                     .frame(width : 60, height : 60)
                                     .background(
-                                        LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .ultraThinMaterial
                                     )
-                                    .cornerRadius(30)
+                                    .clipShape(Circle())
                                     .shadow(radius: 5)
                             }
                             

@@ -65,7 +65,7 @@ struct MMSEInspectionMainView: View {
                             Text(isRecording ? "녹음 중지" : "마이크 테스트")
                         }.padding(20)
                             .background(
-                                .ultraThickMaterial
+                                .ultraThinMaterial
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
@@ -81,7 +81,7 @@ struct MMSEInspectionMainView: View {
                             Text("스피커 테스트")
                         }.padding(20)
                             .background(
-                                .ultraThickMaterial
+                                .ultraThinMaterial
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
@@ -119,7 +119,7 @@ struct MMSEInspectionMainView: View {
                     }.padding(20)
                         .padding([.horizontal], 80)
                         .background(
-                            LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            .ultraThinMaterial
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)

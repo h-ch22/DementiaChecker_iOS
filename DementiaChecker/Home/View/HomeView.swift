@@ -107,7 +107,7 @@ struct HomeView: View {
                                 }
                                 .padding(20)
                                 .frame(width: (UIScreen.main.bounds.width * 0.8) / 2, height: 80)
-                                .background(.ultraThickMaterial)
+                                .background(.ultraThinMaterial)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(radius: 5)
                             }

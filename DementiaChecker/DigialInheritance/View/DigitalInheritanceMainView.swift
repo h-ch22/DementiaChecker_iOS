@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DigitalInheritanceMainView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var helper: UserManagement
     
     var body: some View {
         NavigationStack{
@@ -72,8 +73,7 @@ struct DigitalInheritanceMainView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                    }){
+                    NavigationLink(destination: InheritanceGuardianSelectionView().environmentObject(helper)){
                         HStack{
                             Text("시작하기")
                                 .foregroundStyle(Color.white)
@@ -83,7 +83,7 @@ struct DigitalInheritanceMainView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                .ultraThinMaterial
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
@@ -103,4 +103,5 @@ struct DigitalInheritanceMainView: View {
 
 #Preview {
     DigitalInheritanceMainView()
+        .environmentObject(UserManagement())
 }

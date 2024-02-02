@@ -96,7 +96,7 @@ struct MMSEInspectionView: View {
                     }
                     .foregroundStyle(Color.accent)
                     .padding(20)
-                    .background(.ultraThickMaterial)
+                    .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     .shadow(radius: 5)
                     
@@ -198,7 +198,7 @@ struct MMSEInspectionView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                .ultraThinMaterial
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)

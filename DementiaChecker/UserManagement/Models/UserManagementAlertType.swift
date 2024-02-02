@@ -14,6 +14,7 @@ enum UserManagementAlertType: Error, LocalizedError{
     case INCORRECT_EMAIL_TYPE
     case WEAK_PASSWORD
     case UNKNOWN_ERROR
+    case PATIENT_EMAIL_DOES_NOT_FOUND
     case SUCCESS
     
     var failureReason: String?{
@@ -35,6 +36,9 @@ enum UserManagementAlertType: Error, LocalizedError{
             
         case .UNKNOWN_ERROR:
             return "오류"
+            
+        case .PATIENT_EMAIL_DOES_NOT_FOUND:
+            return "환자 E-Mail을 찾을 수 없습니다."
             
         case .SUCCESS:
             return ""
@@ -61,6 +65,9 @@ enum UserManagementAlertType: Error, LocalizedError{
         case .UNKNOWN_ERROR:
             return "네트워크 상태를 확인하거나 나중에 다시 시도하십시오."
             
+        case .PATIENT_EMAIL_DOES_NOT_FOUND:
+            return "환자 E-Mail을 다시 확인하십시오."
+            
         case .SUCCESS:
             return ""
         }
@@ -85,6 +92,9 @@ enum UserManagementAlertType: Error, LocalizedError{
             
         case .UNKNOWN_ERROR:
             return "오류"
+            
+        case .PATIENT_EMAIL_DOES_NOT_FOUND:
+            return "환자 E-Mail을 찾을 수 없음"
             
         case .SUCCESS:
             return ""

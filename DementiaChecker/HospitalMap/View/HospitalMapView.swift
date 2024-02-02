@@ -52,7 +52,7 @@ struct HospitalMapView: View {
                             
                         }
                     }.frame(width: 300, height: 100)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

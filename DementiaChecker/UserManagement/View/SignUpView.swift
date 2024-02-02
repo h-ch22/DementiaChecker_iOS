@@ -14,6 +14,7 @@ struct SignUpView: View {
     @State private var name = ""
     @State private var phone = ""
     @State private var birthday = Date.now
+    @State private var patientEmail = ""
     
     @State private var showProgress = false
     @State private var showAlert = false
@@ -21,9 +22,16 @@ struct SignUpView: View {
     @State private var alertType: UserManagementAlertType? = nil
     
     @StateObject private var helper = UserManagement()
+    
+    let userType: UserTypeModel
 
     private func getEmptyFields() -> Bool{
-        return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "") ? true : false
+        if userType == .PATIENT{
+            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "") ? true : false
+        } else{
+            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "" || patientEmail == "") ? true : false
+        }
+        
     }
     
     var body: some View {
@@ -44,7 +52,7 @@ struct SignUpView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         
@@ -58,7 +66,7 @@ struct SignUpView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         
@@ -72,7 +80,7 @@ struct SignUpView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         
@@ -86,7 +94,7 @@ struct SignUpView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         
@@ -101,9 +109,27 @@ struct SignUpView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
+                                      
+                        if userType == .GUARDIAN{
+                            Spacer().frame(height: 20)
+                                                        
+                            HStack {
+                                Image(systemName: "figure.arms.open")
+                                    .foregroundStyle(patientEmail == "" ? Color.gray : Color.accent)
+                                
+                                TextField("환자 E-Mail", text: $patientEmail)
+                                    .keyboardType(.emailAddress)
+                            }
+                            .foregroundStyle(Color.accent)
+                            .padding(20)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
+                        }
+
                         
                         Spacer().frame(height: 20)
                         
@@ -135,16 +161,41 @@ struct SignUpView: View {
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "yyyy. MM. dd."
                                     
-                                    helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday)){ result in
-                                        guard let result = result else{return}
-                                        
-                                        showProgress = false
-                                        
-                                        if result == .SUCCESS{
-                                            changeView = true
-                                        } else{
-                                            alertType = result
-                                            showAlert = true
+                                    if userType == .GUARDIAN{
+                                        helper.searchPatient(email: patientEmail){ result in
+                                            guard let result = result else{return}
+                                            
+                                            if result{
+                                                helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
+                                                    guard let result = result else{return}
+                                                    
+                                                    showProgress = false
+                                                    
+                                                    if result == .SUCCESS{
+                                                        changeView = true
+                                                    } else{
+                                                        alertType = result
+                                                        showAlert = true
+                                                    }
+                                                }
+                                            } else{
+                                                showProgress = false
+                                                alertType = .PATIENT_EMAIL_DOES_NOT_FOUND
+                                                showAlert = true
+                                            }
+                                        }
+                                    } else{
+                                        helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
+                                            guard let result = result else{return}
+                                            
+                                            showProgress = false
+                                            
+                                            if result == .SUCCESS{
+                                                changeView = true
+                                            } else{
+                                                alertType = result
+                                                showAlert = true
+                                            }
                                         }
                                     }
                                 }
@@ -184,5 +235,5 @@ struct SignUpView: View {
 }
 
 #Preview {
-    SignUpView()
+    SignUpView(userType: UserTypeModel.PATIENT)
 }

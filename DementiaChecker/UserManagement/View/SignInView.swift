@@ -61,7 +61,7 @@ struct SignInView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                         
@@ -75,7 +75,7 @@ struct SignInView: View {
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
                     }
@@ -94,7 +94,7 @@ struct SignInView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: email != "" && password != "" ? [Color.accent.opacity(0.4), Color.accent.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                .ultraThinMaterial
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
@@ -110,7 +110,7 @@ struct SignInView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: SignUpView()){
+                        NavigationLink(destination: UserTypeSelectionView()){
                             Text("회원가입")
                                 .foregroundStyle(Color.white)
                         }

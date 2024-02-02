@@ -114,6 +114,7 @@ struct MoreView: View {
             }.padding(20)
                 .sheet(isPresented: $showDigialInheritance, content: {
                     DigitalInheritanceMainView()
+                        .environmentObject(helper)
                 })
         }
     }
