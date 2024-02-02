@@ -11,6 +11,8 @@ struct MainView: View {
     @State var selectedIndex = 0
     @State private var showModal = false
     
+    @EnvironmentObject var userManagement: UserManagement
+    
     private let icons = ["house.fill", "map.fill", "plus", "calendar.badge.clock", "ellipsis.circle.fill"]
     private let titles = ["홈", "병원", "진단", "기록", "더 보기"]
     
@@ -61,7 +63,7 @@ struct MainView: View {
                                     .foregroundColor(.white)
                                     .frame(width : 60, height : 60)
                                     .background(
-                                        LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                     )
                                     .cornerRadius(30)
                                     .shadow(radius: 5)
@@ -85,8 +87,7 @@ struct MainView: View {
                                             .foregroundStyle(Color.txt)
                                     }
                                 }.padding(selectedIndex == number ? 10 : 0)
-                                    .background(selectedIndex == number ? .ultraThinMaterial : .regular)
-                                    .clipShape(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0))
+                                    .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.btn : Color.clear).opacity(0.6))
                                 
                             }
                             
@@ -103,7 +104,7 @@ struct MainView: View {
             .sheet(isPresented: $showModal, content: {
                 InspectionView()
             })
-            .background(Color.background.ignoresSafeArea(.all, edges: [.top, .bottom]))
+            .background(Color.backgroundEnd.ignoresSafeArea(.all, edges: [.top, .bottom]))
             
         }
         .toolbar(.hidden)
@@ -113,4 +114,5 @@ struct MainView: View {
 
 #Preview {
     MainView()
+        .environmentObject(UserManagement())
 }

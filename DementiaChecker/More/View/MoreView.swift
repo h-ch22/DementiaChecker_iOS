@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct MoreView: View {
-    @StateObject private var helper = UserManagement()
+    @EnvironmentObject var helper: UserManagement
     
+    @State private var showDigialInheritance = false
+
     var body: some View {
         ZStack{
-            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
+            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
             
             VStack{
                 HStack{
@@ -35,7 +37,7 @@ struct MoreView: View {
                         
                         Spacer()
                     }.padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 1)
 
@@ -45,16 +47,16 @@ struct MoreView: View {
                 
                 NavigationLink(destination: EmptyView()){
                     HStack{
-                        Image(systemName: "chart.xyaxis.line")
+                        Image(systemName: "lightbulb.max.fill")
                             .foregroundStyle(Color.txt)
 
-                        Text("치매 예방과 관련된 내용 읽어보기")
+                        Text("치매 예방과 관련된 내용")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
                         Spacer()
                     }.padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 1)
                 }
@@ -70,12 +72,12 @@ struct MoreView: View {
                         
                         Spacer()
                     }.padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 1)
                 }
                 
-                NavigationLink(destination: EmptyView()){
+                Button(action: { showDigialInheritance = true }){
                     HStack{
                         Image(systemName: "person.crop.artframe")
                             .foregroundStyle(Color.txt)
@@ -86,7 +88,7 @@ struct MoreView: View {
                         
                         Spacer()
                     }.padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 1)
                 }
@@ -102,7 +104,7 @@ struct MoreView: View {
                         
                         Spacer()
                     }.padding(20)
-                        .background(.ultraThickMaterial)
+                        .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 1)
                 }
@@ -110,10 +112,14 @@ struct MoreView: View {
                 Spacer()
                 
             }.padding(20)
+                .sheet(isPresented: $showDigialInheritance, content: {
+                    DigitalInheritanceMainView()
+                })
         }
     }
 }
 
 #Preview {
     MoreView()
+        .environmentObject(UserManagement())
 }

@@ -40,7 +40,7 @@ struct InspectionView: View {
                     Spacer()
                     
                     Image(systemName: "person.badge.shield.checkmark.fill")
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                     
                     Text("Dementia Checker는 진단 결과의 정확성을 보증하지 않습니다.\n치매가 의심되는 경우 의료기관에 방문해 전문가와 상담을 통해 의학적 조치를 받으십시오.\n사용자는 Dementia Checker를 통해 치료상의 이익을 얻을 수 없습니다.")
                         .font(.caption)
@@ -59,7 +59,7 @@ struct InspectionView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)

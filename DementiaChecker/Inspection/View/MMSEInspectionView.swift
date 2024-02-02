@@ -12,6 +12,7 @@ struct MMSEInspectionView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var currentIndex = 0
+    @State private var dragOffset = CGSize.zero
     @State private var answer = ""
     @State private var isRecording = false
     @State private var isPlayed = false
@@ -24,12 +25,12 @@ struct MMSEInspectionView: View {
     
     var body: some View {
         ZStack{
-            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
+            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
             
             VStack{
                 HStack{
                     Text(String(format: "%02d:%02d", timer / 60, timer % 60))
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                     
                     Spacer()
                     
@@ -40,7 +41,7 @@ struct MMSEInspectionView: View {
                     
                     Button(action: {dismiss()}){
                         Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(Color.gray)
+                            .foregroundStyle(.ultraThinMaterial)
                     }
                 }
                 
@@ -56,6 +57,7 @@ struct MMSEInspectionView: View {
                     
                     Button(action: {
                         if currentIndex < 27{
+                            dragOffset = CGSize.zero
                             canvasView = PKCanvasView()
                             helper.saveAnswer(answer: answer)
                             answer = ""
@@ -69,7 +71,7 @@ struct MMSEInspectionView: View {
                     }
                 } else if helper.isTTSAvailable(id: currentIndex) && !isPlayed{
                     Spacer().frame(height: 20)
-
+                    
                     Button(action: {
                         helper.play(id: currentIndex)
                         isPlayed = true
@@ -84,10 +86,20 @@ struct MMSEInspectionView: View {
                 Spacer().frame(height: 20)
                 
                 if helper.getAnswerType(id: currentIndex) == .TEXT_FIELD{
-                    TextField("정답을 입력하세요.", text: $answer)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(helper.getMMSETextFieldType(id: currentIndex))
-                        .focused($IsAnswerFieldFocused)
+                    HStack {
+                        Image(systemName: "a.circle.fill")
+                            .foregroundStyle(answer == "" ? Color.gray : Color.accent)
+                        
+                        TextField("정답을 입력하세요.", text: $answer)
+                            .keyboardType(helper.getMMSETextFieldType(id: currentIndex))
+                            .focused($IsAnswerFieldFocused)
+                    }
+                    .foregroundStyle(Color.accent)
+                    .padding(20)
+                    .background(.ultraThickMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .shadow(radius: 5)
+                    
                 } else if helper.getAnswerType(id: currentIndex) == .AUDIO{
                     Button(action: {
                         if !isRecording{
@@ -106,19 +118,60 @@ struct MMSEInspectionView: View {
                     }){
                         VStack{
                             Image(systemName: isRecording ? "stop.circle.fill" : "waveform")
+                                .foregroundStyle(Color.txt)
+                            
                             Text(isRecording ? "녹음 중지" : "녹음 시작")
+                                .foregroundStyle(Color.txt)
+                            
                         }.padding(20)
-                            .background(RoundedRectangle(cornerRadius: 15).foregroundStyle(Color.btn).shadow(radius: 5))
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
                     }
                     
                     Spacer().frame(height: 10)
                     
                     Text(helper.resultText)
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                     
                 } else if helper.getAnswerType(id: currentIndex) == .DRAW{
                     MMSECanvasView(canvas: $canvasView)
                         .frame(height: 250)
+                } else if helper.getAnswerType(id: currentIndex) == .PAPER{
+                    if currentIndex == 22{
+                        Rectangle()
+                            .frame(width: 300, height: 300)
+                            .foregroundStyle(
+                                LinearGradient(stops: [
+                                    Gradient.Stop(color: .red, location: 1.0 - abs(self.dragOffset.width) / 300),
+                                    Gradient.Stop(color: .blue, location: abs(self.dragOffset.width) / 300)
+                                ], startPoint: .topTrailing, endPoint: .topLeading)
+                            )
+                            .gesture(
+                                DragGesture()
+                                    .onChanged{ gesture in
+                                        self.dragOffset = gesture.translation
+                                        print("start: \(1.0 - abs(self.dragOffset.width) / 300), end: \(abs(self.dragOffset.width) / 300)")
+                                    }
+                            )
+                    } else if currentIndex == 23{
+                        Rectangle()
+                            .frame(width: 300, height: 300)
+                            .foregroundStyle(
+                                LinearGradient(stops: [
+                                    Gradient.Stop(color: .red, location: 1.0 - abs(self.dragOffset.width) / 300),
+                                    Gradient.Stop(color: .blue, location: abs(self.dragOffset.width) / 300)
+                                ], startPoint: .topTrailing, endPoint: .topLeading)
+                            )
+                            .gesture(
+                                DragGesture()
+                                    .onChanged{ gesture in
+                                        self.dragOffset = gesture.translation
+                                        print("start: \(1.0 - abs(self.dragOffset.width) / 300), end: \(abs(self.dragOffset.width) / 300)")
+                                    }
+                            )
+                    }
+
                 }
                 
                 Spacer()
@@ -126,6 +179,7 @@ struct MMSEInspectionView: View {
                 if helper.getAnswerType(id: currentIndex) != .DRAW{
                     Button(action: {
                         if currentIndex < 27{
+                            dragOffset = CGSize.zero
                             canvasView = PKCanvasView()
                             helper.saveAnswer(answer: answer)
                             answer = ""
@@ -144,13 +198,13 @@ struct MMSEInspectionView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
                     }
                 }
-
+                
             }.padding(20)
                 .animation(.easeInOut)
                 .onAppear{

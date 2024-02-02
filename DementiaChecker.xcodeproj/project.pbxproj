@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */; };
+		E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */; };
+		F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */; };
+		F639482F2B6BA22700E82620 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F639482E2B6BA22700E82620 /* MapView.swift */; };
+		F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63948322B6BA56E00E82620 /* HospitalMapHelper.swift */; };
+		F63948362B6BA58F00E82620 /* LocationDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63948352B6BA58F00E82620 /* LocationDataModel.swift */; };
+		F63948392B6BA77C00E82620 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = F63948382B6BA77C00E82620 /* Alamofire */; };
+		F639483F2B6BA99B00E82620 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = F639483E2B6BA99B00E82620 /* SwiftyJSON */; };
+		F63948442B6BB1E200E82620 /* include in Resources */ = {isa = PBXBuildFile; fileRef = F63948432B6BB1E200E82620 /* include */; };
+		F63948462B6BBB8100E82620 /* HospitalListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63948452B6BBB8100E82620 /* HospitalListModel.swift */; };
+		F63948492B6BBD9800E82620 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = F63948482B6BBD9800E82620 /* SwiftUIPager */; };
 		F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */; };
 		F65956422B56BF11004896C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65956412B56BF11004896C3 /* Assets.xcassets */; };
 		F65956452B56BF11004896C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F65956442B56BF11004896C3 /* Preview Assets.xcassets */; };
 		F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */; };
 		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
 		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
-		F659566A2B56BF88004896C3 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956692B56BF88004896C3 /* SplashView.swift */; };
 		F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */; };
 		F682DA262B6621BB004F1E79 /* Logos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA252B6621BB004F1E79 /* Logos.swift */; };
 		F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA292B6622BD004F1E79 /* SignInView.swift */; };
@@ -29,6 +39,8 @@
 		F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA442B662DD6004F1E79 /* UserManagement.swift */; };
 		F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA462B662E91004F1E79 /* UserInfoModel.swift */; };
 		F682DA492B6631EB004F1E79 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */; };
+		F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C02B694CB4005A764E /* onInspectionView.swift */; };
+		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
 		F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9994D2B66363500F9E4C7 /* MainView.swift */; };
 		F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */; };
 		F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999552B66366B00F9E4C7 /* HomeView.swift */; };
@@ -42,6 +54,10 @@
 		F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */; };
 		F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */; };
 		F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */; };
+		F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */; };
+		F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */; };
+		F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */; };
+		F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4D2B6C875D00DCC256 /* HealthKitHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +78,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaCheckerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker.release.xcconfig"; sourceTree = "<group>"; };
+		1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker.debug.xcconfig"; sourceTree = "<group>"; };
+		74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaChecker_DementiaCheckerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.release.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.release.xcconfig"; sourceTree = "<group>"; };
+		C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F639482E2B6BA22700E82620 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		F63948302B6BA3F200E82620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F63948322B6BA56E00E82620 /* HospitalMapHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalMapHelper.swift; sourceTree = "<group>"; };
+		F63948352B6BA58F00E82620 /* LocationDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataModel.swift; sourceTree = "<group>"; };
+		F63948432B6BB1E200E82620 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; path = include; sourceTree = "<group>"; };
+		F63948452B6BBB8100E82620 /* HospitalListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalListModel.swift; sourceTree = "<group>"; };
 		F65956382B56BF10004896C3 /* DementiaChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DementiaChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerApp.swift; sourceTree = "<group>"; };
 		F65956412B56BF11004896C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,7 +102,6 @@
 		F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
 		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F65956692B56BF88004896C3 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceMainView.swift; sourceTree = "<group>"; };
 		F682DA252B6621BB004F1E79 /* Logos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logos.swift; sourceTree = "<group>"; };
 		F682DA292B6622BD004F1E79 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -82,6 +112,8 @@
 		F682DA442B662DD6004F1E79 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		F682DA462B662E91004F1E79 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
 		F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F69830C02B694CB4005A764E /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
+		F69830C22B694D63005A764E /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
 		F6D9994D2B66363500F9E4C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalMapView.swift; sourceTree = "<group>"; };
 		F6D999552B66366B00F9E4C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -95,6 +127,11 @@
 		F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
 		F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEAnswerTypeModel.swift; sourceTree = "<group>"; };
 		F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSECanvasView.swift; sourceTree = "<group>"; };
+		F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDataModel.swift; sourceTree = "<group>"; };
+		F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailView.swift; sourceTree = "<group>"; };
+		F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailsMapViewController.swift; sourceTree = "<group>"; };
+		F6F4BB4D2B6C875D00DCC256 /* HealthKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
+		F6F4BB4F2B6C89DF00DCC256 /* DementiaChecker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DementiaChecker.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,11 +139,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F639483F2B6BA99B00E82620 /* SwiftyJSON in Frameworks */,
 				F682DA2F2B662397004F1E79 /* FirebaseAnalytics in Frameworks */,
+				F63948392B6BA77C00E82620 /* Alamofire in Frameworks */,
 				F682DA352B662397004F1E79 /* FirebaseStorage in Frameworks */,
+				F63948492B6BBD9800E82620 /* SwiftUIPager in Frameworks */,
 				F682DA312B662397004F1E79 /* FirebaseAuth in Frameworks */,
 				F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */,
 				F682DA332B662397004F1E79 /* FirebaseFirestore in Frameworks */,
+				31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,12 +163,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C6A2BA4522F373BE58BCD61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */,
+				74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */,
+				13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A304D36A0E5082717BFA2886 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */,
+				1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */,
+				9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */,
+				C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */,
+				391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */,
+				B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F63948312B6BA56400E82620 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F63948322B6BA56E00E82620 /* HospitalMapHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F63948342B6BA58100E82620 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F63948352B6BA58F00E82620 /* LocationDataModel.swift */,
+				F63948452B6BBB8100E82620 /* HospitalListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F659562F2B56BF10004896C3 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +217,8 @@
 				F659564D2B56BF11004896C3 /* DementiaCheckerTests */,
 				F65956572B56BF11004896C3 /* DementiaCheckerUITests */,
 				F65956392B56BF10004896C3 /* Products */,
+				A304D36A0E5082717BFA2886 /* Pods */,
+				1C6A2BA4522F373BE58BCD61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +235,9 @@
 		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F6F4BB4F2B6C89DF00DCC256 /* DementiaChecker.entitlements */,
+				F63948432B6BB1E200E82620 /* include */,
+				F63948302B6BA3F200E82620 /* Info.plist */,
 				F66AE8F22B67D26400D84C8A /* DigialInheritance */,
 				F682DA482B6631EB004F1E79 /* GoogleService-Info.plist */,
 				F6D999602B66368C00F9E4C7 /* More */,
@@ -203,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */,
-				F65956692B56BF88004896C3 /* SplashView.swift */,
 				F682DA252B6621BB004F1E79 /* Logos.swift */,
 				F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */,
 				F6D9994D2B66363500F9E4C7 /* MainView.swift */,
@@ -259,6 +346,7 @@
 			children = (
 				F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */,
 				F682DA462B662E91004F1E79 /* UserInfoModel.swift */,
+				F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +362,8 @@
 		F6D9994F2B66364D00F9E4C7 /* HospitalMap */ = {
 			isa = PBXGroup;
 			children = (
+				F63948312B6BA56400E82620 /* Helper */,
+				F63948342B6BA58100E82620 /* Models */,
 				F6D999502B66365300F9E4C7 /* View */,
 			);
 			path = HospitalMap;
@@ -283,6 +373,9 @@
 			isa = PBXGroup;
 			children = (
 				F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */,
+				F639482E2B6BA22700E82620 /* MapView.swift */,
+				F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */,
+				F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -290,6 +383,7 @@
 		F6D999532B66365C00F9E4C7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F6F4BB4C2B6C875400DCC256 /* Helper */,
 				F6D999542B66366000F9E4C7 /* View */,
 			);
 			path = Home;
@@ -320,6 +414,7 @@
 				F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */,
 				F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */,
 				F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */,
+				F69830C02B694CB4005A764E /* onInspectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -362,6 +457,7 @@
 				F6D999652B663A8200F9E4C7 /* InspectionIntroductionListModel.swift */,
 				F6D999672B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift */,
 				F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */,
+				F69830C22B694D63005A764E /* InspectionTypeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +470,14 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		F6F4BB4C2B6C875400DCC256 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F6F4BB4D2B6C875D00DCC256 /* HealthKitHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -381,9 +485,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F659565E2B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaChecker" */;
 			buildPhases = (
+				F8BFD11122CC4288F975426C /* [CP] Check Pods Manifest.lock */,
 				F65956342B56BF10004896C3 /* Sources */,
 				F65956352B56BF10004896C3 /* Frameworks */,
 				F65956362B56BF10004896C3 /* Resources */,
+				35A87E55A9EE6AF0B99CAF93 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -396,6 +502,9 @@
 				F682DA322B662397004F1E79 /* FirebaseFirestore */,
 				F682DA342B662397004F1E79 /* FirebaseStorage */,
 				F682DA3A2B662437004F1E79 /* CryptoSwift */,
+				F63948382B6BA77C00E82620 /* Alamofire */,
+				F639483E2B6BA99B00E82620 /* SwiftyJSON */,
+				F63948482B6BBD9800E82620 /* SwiftUIPager */,
 			);
 			productName = DementiaChecker;
 			productReference = F65956382B56BF10004896C3 /* DementiaChecker.app */;
@@ -405,6 +514,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F65956612B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerTests" */;
 			buildPhases = (
+				061C8C87A16D616FF1A6AE2E /* [CP] Check Pods Manifest.lock */,
 				F65956462B56BF11004896C3 /* Sources */,
 				F65956472B56BF11004896C3 /* Frameworks */,
 				F65956482B56BF11004896C3 /* Resources */,
@@ -423,9 +533,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F65956642B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerUITests" */;
 			buildPhases = (
+				ADF4032831EB672B2EB7B649 /* [CP] Check Pods Manifest.lock */,
 				F65956502B56BF11004896C3 /* Sources */,
 				F65956512B56BF11004896C3 /* Frameworks */,
 				F65956522B56BF11004896C3 /* Resources */,
+				3FFF499F3C35D0F50A11C0C9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -472,6 +584,9 @@
 			packageReferences = (
 				F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F682DA392B662437004F1E79 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				F639483D2B6BA99B00E82620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				F63948472B6BBD9800E82620 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 			);
 			productRefGroup = F65956392B56BF10004896C3 /* Products */;
 			projectDirPath = "";
@@ -492,6 +607,7 @@
 				F65956452B56BF11004896C3 /* Preview Assets.xcassets in Resources */,
 				F65956422B56BF11004896C3 /* Assets.xcassets in Resources */,
 				F682DA492B6631EB004F1E79 /* GoogleService-Info.plist in Resources */,
+				F63948442B6BB1E200E82620 /* include in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +627,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		061C8C87A16D616FF1A6AE2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DementiaCheckerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35A87E55A9EE6AF0B99CAF93 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FFF499F3C35D0F50A11C0C9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADF4032831EB672B2EB7B649 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DementiaChecker-DementiaCheckerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8BFD11122CC4288F975426C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DementiaChecker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F65956342B56BF10004896C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -518,20 +737,29 @@
 			files = (
 				F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */,
 				F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */,
+				F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */,
+				F63948362B6BA58F00E82620 /* LocationDataModel.swift in Sources */,
 				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
 				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
 				F682DA3F2B662AB0004F1E79 /* ProgressOverlay.swift in Sources */,
 				F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */,
+				F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */,
+				F639482F2B6BA22700E82620 /* MapView.swift in Sources */,
+				F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */,
 				F682DA382B662415004F1E79 /* AES256Util.swift in Sources */,
-				F659566A2B56BF88004896C3 /* SplashView.swift in Sources */,
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
+				F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */,
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
+				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */,
 				F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */,
+				F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */,
+				F63948462B6BBB8100E82620 /* HospitalListModel.swift in Sources */,
 				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
+				F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,
 				F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */,
@@ -697,15 +925,22 @@
 		};
 		F659565F2B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DementiaChecker/DementiaChecker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = H7245MHSUG;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DementiaChecker/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -730,15 +965,22 @@
 		};
 		F65956602B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = DementiaChecker/DementiaChecker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = H7245MHSUG;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DementiaChecker/Info.plist;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -763,6 +1005,7 @@
 		};
 		F65956622B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -783,6 +1026,7 @@
 		};
 		F65956632B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -803,6 +1047,7 @@
 		};
 		F65956652B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -821,6 +1066,7 @@
 		};
 		F65956662B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -879,6 +1125,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+		F639483D2B6BA99B00E82620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		F63948472B6BBD9800E82620 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/fermoya/SwiftUIPager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.0;
+			};
+		};
 		F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -898,6 +1168,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F63948382B6BA77C00E82620 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		F639483E2B6BA99B00E82620 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F639483D2B6BA99B00E82620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		F63948482B6BBD9800E82620 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F63948472B6BBD9800E82620 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;
+			productName = SwiftUIPager;
+		};
 		F682DA2E2B662397004F1E79 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -206,8 +206,11 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
             
         case 21:
             return .AUDIO
-            
-        case 22..<26:
+        
+        case 22..<25:
+            return .PAPER
+        
+        case 25:
             return .DRAW
             
         case 26:

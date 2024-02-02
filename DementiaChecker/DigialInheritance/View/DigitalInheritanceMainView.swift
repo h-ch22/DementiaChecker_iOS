@@ -20,10 +20,10 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "person.fill")
-                            .foregroundStyle(Color.accentColor)
+                            .foregroundStyle(Color.accent)
                         
                         VStack(alignment: .leading){
-                            Text("유산 관리자 추가하기")
+                            Text("유산 관리자 시작하기")
                                 .fontWeight(.semibold)
                             
                             Text("신뢰하는 사람의 계정을 추가하면, 사용자가 사망한 이후 이 사람이 사용자의 데이터에 접근할 수 있게 됩니다.")
@@ -38,7 +38,7 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "lock.doc.fill")
-                            .foregroundStyle(Color.accentColor)
+                            .foregroundStyle(Color.accent)
                         
                         VStack(alignment: .leading){
                             Text("접근 제한")
@@ -56,7 +56,7 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "doc.fill")
-                            .foregroundStyle(Color.accentColor)
+                            .foregroundStyle(Color.accent)
                         
                         VStack(alignment: .leading){
                             Text("디지털 유산 물려주기")
@@ -83,7 +83,7 @@ struct DigitalInheritanceMainView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)

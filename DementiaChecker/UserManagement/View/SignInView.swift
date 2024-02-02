@@ -18,10 +18,33 @@ struct SignInView: View {
     
     @StateObject private var helper = UserManagement()
     
+    @AppStorage("authInfo") var authInfo = ""
+    
+    private func signIn(){
+        if email != "" && password != ""{
+            showProgress = true
+            
+            helper.signIn(email: email, password: password){ result in
+                guard let result = result else{return}
+                
+                showProgress = false
+                
+                if result == .SUCCESS{
+                    authInfo = "\(AES256Util.encrypt(string: email)), \(AES256Util.encrypt(string: password))"
+                    changeView = true
+                } else{
+                    alertType = result
+                    showAlert = true
+                }
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
-                Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
+                LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+
                 VStack{
                     Spacer()
                     
@@ -32,50 +55,35 @@ struct SignInView: View {
                     Group{
                         HStack {
                             Image(systemName: "at.circle.fill")
-                                .foregroundStyle(email == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(email == "" ? Color.gray : Color.accent)
                             
                             TextField("E-Mail", text: $email)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height : 20)
                         
                         HStack {
                             Image(systemName: "key.fill")
-                                .foregroundStyle(password == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(password == "" ? Color.gray : Color.accent)
                             
                             SecureField("비밀번호", text: $password)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                     }
                     
                     Spacer()
                     
                     Button(action: {
-                        if email != "" && password != ""{
-                            showProgress = true
-                            
-                            helper.signIn(email: email, password: password){ result in
-                                guard let result = result else{return}
-                                
-                                showProgress = false
-                                
-                                if result == .SUCCESS{
-                                    changeView = true
-                                } else{
-                                    alertType = result
-                                    showAlert = true
-                                }
-                            }
-                        }
+                        signIn()
                     }){
                         HStack{
                             Text("로그인")
@@ -86,7 +94,7 @@ struct SignInView: View {
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                LinearGradient(colors: email != "" && password != "" ? [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                LinearGradient(colors: email != "" && password != "" ? [Color.accent.opacity(0.4), Color.accent.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
@@ -97,12 +105,14 @@ struct SignInView: View {
                     HStack{
                         NavigationLink(destination: EmptyView()){
                             Text("비밀번호 재설정")
+                                .foregroundStyle(Color.white)
                         }
                         
                         Spacer()
                         
                         NavigationLink(destination: SignUpView()){
                             Text("회원가입")
+                                .foregroundStyle(Color.white)
                         }
                     }
                     
@@ -123,7 +133,18 @@ struct SignInView: View {
                     }
             }.fullScreenCover(isPresented: $changeView, content: {
                 MainView()
+                    .environmentObject(helper)
             })
+            .onAppear{
+                if authInfo.contains(", "){
+                    let authInfoSplited = authInfo.split(separator: ", ")
+                    
+                    email = AES256Util.decrypt(encoded: String(authInfoSplited[0]))
+                    password = AES256Util.decrypt(encoded: String(authInfoSplited[1]))
+                    
+                    signIn()
+                }
+            }
         }
         
     }

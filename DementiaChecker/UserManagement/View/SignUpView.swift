@@ -28,7 +28,7 @@ struct SignUpView: View {
     
     var body: some View {
         ZStack{
-            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
+            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
             
             ScrollView{
                 VStack{
@@ -37,76 +37,81 @@ struct SignUpView: View {
                     Group{
                         HStack {
                             Image(systemName: "at.circle.fill")
-                                .foregroundStyle(email == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(email == "" ? Color.gray : Color.accent)
                             
                             TextField("E-Mail", text: $email)
+                                .keyboardType(.emailAddress)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                         
                         HStack {
                             Image(systemName: "key.fill")
-                                .foregroundStyle(password == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(password == "" ? Color.gray : Color.accent)
                             
                             SecureField("비밀번호", text: $password)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                                                     
                         HStack {
                             Image(systemName: "key.fill")
-                                .foregroundStyle(checkPassword == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(checkPassword == "" ? Color.gray : Color.accent)
                             
                             SecureField("비밀번호 확인", text: $checkPassword)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                                                     
                         HStack {
                             Image(systemName: "person.fill")
-                                .foregroundStyle(name == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(name == "" ? Color.gray : Color.accent)
                             
                             TextField("이름", text: $name)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                                                     
                         HStack {
                             Image(systemName: "phone.fill")
-                                .foregroundStyle(phone == "" ? Color.gray : Color.accentColor)
+                                .foregroundStyle(phone == "" ? Color.gray : Color.accent)
                             
                             TextField("연락처", text: $phone)
                                 .keyboardType(.phonePad)
                         }
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                         .padding(20)
-                        .padding([.horizontal], 20)
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.btn).shadow(radius: 5)
-                            .padding([.horizontal],15))
+                        .background(.ultraThickMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                         
                         DatePicker("생년월일", selection: $birthday, in: ...Date.now, displayedComponents: .date)
+                            .padding(20)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
                         
                         Spacer().frame(height: 20)
                                                     
@@ -154,7 +159,7 @@ struct SignUpView: View {
                             }.padding(20)
                                 .padding([.horizontal], 80)
                                 .background(
-                                    LinearGradient(colors: !getEmptyFields() ? [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    LinearGradient(colors: !getEmptyFields() ? [Color.accent.opacity(0.4), Color.accent.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                                 )
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(radius: 5)
@@ -172,6 +177,7 @@ struct SignUpView: View {
                     .padding(20)
             }.fullScreenCover(isPresented: $changeView, content: {
                 MainView()
+                    .environmentObject(helper)
             })
         }
     }

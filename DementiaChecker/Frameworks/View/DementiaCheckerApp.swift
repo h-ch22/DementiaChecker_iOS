@@ -7,10 +7,13 @@
 
 import SwiftUI
 import FirebaseCore
+import NMapsMap
 
 class AppDelegate: NSObject, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
+        NMFAuthManager.shared().clientId = "wg1lmr2uds"
+        
         return true
     }
 }
@@ -21,9 +24,7 @@ struct DementiaCheckerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack{
-                SplashView()
-            }
+            SignInView()
         }
     }
 }

@@ -11,6 +11,7 @@ struct TextLogo: View {
     var body: some View {
         Text("**Dementia** Checker")
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .foregroundStyle(Color.white)
     }
 }
 
@@ -30,6 +31,8 @@ struct TextWithImageLogo: View{
             
             Text("**Dementia** Checker")
                 .font(.title2)
+                .foregroundStyle(Color.white)
+
         }
     }
 }
@@ -44,6 +47,8 @@ struct TextWithImageLogo_Vertical: View{
             
             Text("**Dementia** Checker")
                 .font(.title2)
+                .foregroundStyle(Color.white)
+
         }
     }
 }

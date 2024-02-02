@@ -8,5 +8,5 @@
 import Foundation
 
 enum MMSEAnswerTypeModel{
-    case TEXT_FIELD, AUDIO, DRAW
+    case TEXT_FIELD, AUDIO, DRAW, IMAGE, PAPER
 }

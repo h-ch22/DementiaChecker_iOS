@@ -92,13 +92,13 @@ struct MMSEInspectionMainView: View {
                     Spacer().frame(height: 10)
                     
                     Text("인식됨: \(helper.resultText)")
-                        .foregroundStyle(Color.accentColor)
+                        .foregroundStyle(Color.accent)
                 }
                 
                 Spacer()
                 
                 Image(systemName: "checkmark.circle")
-                    .foregroundStyle(Color.accentColor)
+                    .foregroundStyle(Color.accent)
                 
                 Text("검사 준비가 완료된 경우 아래 버튼을 터치해 검사를 시작하십시오.")
                     .font(.caption)
@@ -119,7 +119,7 @@ struct MMSEInspectionMainView: View {
                     }.padding(20)
                         .padding([.horizontal], 80)
                         .background(
-                            LinearGradient(colors: [Color.accentColor.opacity(0.4), Color.accentColor.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            LinearGradient(colors: [Color.accent.opacity(0.4), Color.accent.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
                         )
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
