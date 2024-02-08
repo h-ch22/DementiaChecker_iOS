@@ -24,6 +24,7 @@
 		F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */; };
 		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
 		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
+		F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F660539C2B752F1100BEF80E /* UserInfoView.swift */; };
 		F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */; };
 		F682DA262B6621BB004F1E79 /* Logos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA252B6621BB004F1E79 /* Logos.swift */; };
 		F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA292B6622BD004F1E79 /* SignInView.swift */; };
@@ -109,6 +110,7 @@
 		F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
 		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F660539C2B752F1100BEF80E /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceMainView.swift; sourceTree = "<group>"; };
 		F682DA252B6621BB004F1E79 /* Logos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logos.swift; sourceTree = "<group>"; };
 		F682DA292B6622BD004F1E79 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				F682DA292B6622BD004F1E79 /* SignInView.swift */,
 				F682DA3C2B662803004F1E79 /* SignUpView.swift */,
 				F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */,
+				F660539C2B752F1100BEF80E /* UserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -783,6 +786,7 @@
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
+				F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */,
 				F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */,
 				F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,

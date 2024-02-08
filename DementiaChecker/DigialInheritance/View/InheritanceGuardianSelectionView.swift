@@ -25,7 +25,7 @@ struct InheritanceGuardianSelectionView: View {
             Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             VStack{
-                Text("유산 관리자의 E-Mail을 선택하거나, 기존의 보호자를 유산 관리자로 지정할 수 있습니다.")
+                Text("유산 관리자의 E-Mail을 입력하거나, 기존의 보호자를 유산 관리자로 지정할 수 있습니다.")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                     .multilineTextAlignment(.center)

@@ -11,6 +11,7 @@ struct MoreView: View {
     @EnvironmentObject var helper: UserManagement
     
     @State private var showDigialInheritance = false
+    @State private var showUserInfo = false
 
     var body: some View {
         ZStack{
@@ -23,7 +24,9 @@ struct MoreView: View {
                     Spacer()
                 }
                 
-                Button(action: {}){
+                Button(action: {
+                    showUserInfo = true
+                }){
                     HStack{
                         Image("ic_appstore")
                             .resizable()
@@ -114,6 +117,10 @@ struct MoreView: View {
             }.padding(20)
                 .sheet(isPresented: $showDigialInheritance, content: {
                     DigitalInheritanceMainView()
+                        .environmentObject(helper)
+                })
+                .sheet(isPresented: $showUserInfo, content: {
+                    UserInfoView()
                         .environmentObject(helper)
                 })
         }
