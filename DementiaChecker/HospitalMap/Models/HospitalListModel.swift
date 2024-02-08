@@ -29,7 +29,7 @@ struct HospitalListModel: View {
 
             HStack{
                 Image(systemName: "location.fill.viewfinder")
-                    .foregroundStyle(Color.gray)
+                    .foregroundStyle(Color.txt)
                 
                 Spacer().frame(width: 5)
                 

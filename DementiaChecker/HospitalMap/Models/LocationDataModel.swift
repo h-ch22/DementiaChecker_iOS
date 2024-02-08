@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct LocationDataModel: Hashable{
     var centerName: String
@@ -17,8 +18,9 @@ struct LocationDataModel: Hashable{
     var nurseCount: Int
     var scrcsCount: Int
     var tel: String
+    var distance: CLLocationDistance?
     
-    init(centerName: String, centerType: String, roadAddr: String, latitude: Double, longitude: Double, doctorCount: Int, nurseCount: Int, scrcsCount: Int, tel: String) {
+    init(centerName: String, centerType: String, roadAddr: String, latitude: Double, longitude: Double, doctorCount: Int, nurseCount: Int, scrcsCount: Int, tel: String, distance: CLLocationDistance? = nil) {
         self.centerName = centerName
         self.centerType = centerType
         self.roadAddr = roadAddr
@@ -28,5 +30,6 @@ struct LocationDataModel: Hashable{
         self.nurseCount = nurseCount
         self.scrcsCount = scrcsCount
         self.tel = tel
+        self.distance = distance
     }
 }
