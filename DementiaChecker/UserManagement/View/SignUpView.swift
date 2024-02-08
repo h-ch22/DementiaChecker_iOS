@@ -203,14 +203,14 @@ struct SignUpView: View {
                         }){
                             HStack{
                                 Text("회원가입")
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.txt)
                             }.padding(20)
                                 .padding([.horizontal], 80)
                                 .background(
-                                    LinearGradient(colors: !getEmptyFields() ? [Color.accent.opacity(0.4), Color.accent.opacity(0.3)] : [Color.gray.opacity(0.4), Color.gray.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    GlassBackground(color: !getEmptyFields() ? Color.accent : Color.gray)
                                 )
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(radius: 5)

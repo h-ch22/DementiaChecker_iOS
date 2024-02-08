@@ -52,14 +52,14 @@ struct InspectionView: View {
                     NavigationLink(destination: MMSEInspectionMainView()){
                         HStack{
                             Text("다음 단계로")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }.padding(20)
                             .padding([.horizontal], 80)
                             .background(
-                                .ultraThinMaterial
+                                GlassBackground(color: Color.accent)
                             )
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)

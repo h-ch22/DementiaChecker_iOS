@@ -70,15 +70,15 @@ struct HomeView: View {
                                             .foregroundStyle(colors[index])
                                         
                                     case 1:
-                                        Text("__\(String(helper.heartRate))__ BPM")
+                                        Text("__\(String(format: "%.2f", helper.heartRate))__ BPM")
                                             .foregroundStyle(colors[index])
                                         
                                     case 2:
-                                        Text("__\(String(helper.restingHeartRate))__ BPM")
+                                        Text("__\(String(format: "%.2f", helper.restingHeartRate))__ BPM")
                                             .foregroundStyle(colors[index])
                                         
                                     case 3:
-                                        Text("__\(String(helper.walkingHeartRate))__ BPM")
+                                        Text("__\(String(format: "%.2f", helper.walkingHeartRate))__ BPM")
                                             .foregroundStyle(colors[index])
                                         
                                     case 4:

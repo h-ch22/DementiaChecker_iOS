@@ -33,7 +33,7 @@ struct HospitalDetailView: View {
                 
                 VStack{
                     HospitalDetailMapView(data: data)
-                                        
+                                       
                     HStack{
                         Image(systemName: "location.fill.viewfinder")
                         Spacer().frame(width: 5)
@@ -49,6 +49,7 @@ struct HospitalDetailView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Spacer().frame(height: 20)
+                    
 
                     HStack{
                         Image(systemName: "person.3.fill")
@@ -94,6 +95,28 @@ struct HospitalDetailView: View {
                     }.padding()
                     .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
+                    
+                    Spacer().frame(height: 20)
+
+                    HStack{
+                        Button(action: {
+                            if let url = NSURL(string: "tel://\(data?.tel ?? "")"){
+                                if UIApplication.shared.canOpenURL(url as URL){
+                                    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                                }
+                            }
+                        }){
+                            HStack{
+                                Image(systemName: "phone.fill")
+                                Spacer().frame(width: 5)
+                                Text("전화 걸기")
+                            }.padding()
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }
+                        
+                        Spacer()
+                    }
                     
                 }.padding(20)
                 .navigationTitle(Text(data?.centerName ?? "센터 정보"))

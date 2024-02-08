@@ -13,7 +13,12 @@ struct InheritanceGuardianSelectionView: View {
     @State private var showProgress = true
     @State private var email = ""
     @State private var guardians: [UserInfoModel] = []
+    @State private var inheritanceGuardians: [UserInfoModel] = []
     @State private var selectedIndex = 0
+    @State private var showOverlay = false
+    @State private var showAlert = false
+    @State private var alertType: DigitalInheritanceAlertType? = nil
+    @State private var selectedEmail = ""
     
     var body: some View {
         ZStack{
@@ -44,7 +49,55 @@ struct InheritanceGuardianSelectionView: View {
                 
                 LazyVStack{
                     ForEach(guardians.indices, id: \.self){ index in
-                        NavigationLink(destination: EmptyView()){
+                        Button(action: {
+                            showOverlay = true
+                            
+                            helper.setInheritanceGuardian(email: guardians[index].email, completion: { result in
+                                guard let result = result else{return}
+                                
+                                showOverlay = false
+                                alertType = result ? .SUCCESS : .FAIL
+                                showAlert = true
+                            })
+                        }){
+                            InteritanceGuardianListModel(name: guardians[index].name, email: guardians[index].email)
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                        }
+
+                    }
+                }
+                
+                Spacer().frame(height: 20)
+                
+                HStack{
+                    Text("이미 추가된 유산 관리자")
+                        .font(.caption)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(Color.gray)
+                    
+                    Spacer()
+                    
+                    if showProgress{
+                        ProgressView()
+                    }
+                }
+                
+                Spacer().frame(height: 20)
+
+                LazyVStack{
+                    ForEach(inheritanceGuardians.indices, id: \.self){ index in
+                        Button(action: {
+                            showOverlay = true
+                            
+                            helper.removeInheritanceGuardian(email: guardians[index].email, completion: { result in
+                                guard let result = result else{return}
+                                
+                                showOverlay = false
+                                alertType = result ? .REMOVE_SUCCESS : .REMOVE_FAIL
+                                showAlert = true
+                            })
+                        }){
                             InteritanceGuardianListModel(name: guardians[index].name, email: guardians[index].email)
                                 .background(.ultraThinMaterial)
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -70,7 +123,31 @@ struct InheritanceGuardianSelectionView: View {
                 Spacer()
                 
                 if email != ""{
-                    NavigationLink(destination: EmptyView()){
+                    Button(action: {
+                        showOverlay = true
+                        
+                        helper.searchPatient(email: email){ result in
+                            guard let result = result else{return}
+                            
+                            if result{
+                                selectedEmail = email
+                            }
+                            
+                            showOverlay = !result
+                            alertType = result ? nil : .USER_DOES_NOT_EXISTS
+                            showAlert = !result
+                            
+                            if result{
+                                helper.setInheritanceGuardian(email: email, completion: { result in
+                                    guard let result = result else{return}
+                                    
+                                    showOverlay = false
+                                    alertType = result ? .SUCCESS : .FAIL
+                                    showAlert = true
+                                })
+                            }
+                        }
+                    }){
                         HStack{
                             Text("다음 단계로")
                             
@@ -87,14 +164,28 @@ struct InheritanceGuardianSelectionView: View {
                 
             }.padding(20)
             .navigationTitle(Text("유산 관리자 선택하기"))
+            .overlay(ProgressOverlay().isHidden(!showOverlay))
             .onAppear{
                 helper.getGuardians(){ result in
                     guard let result = result else{return}
                     
                     self.guardians = result
-                    showProgress = false
                 }
+                
+                helper.getInheritanceGuardian(completion: { result in
+                    guard let result = result else{return}
+                    
+                    self.inheritanceGuardians = result
+                    
+                    showProgress = false
+                })
             }
+            .alert(isPresented: $showAlert, error: alertType){ _ in
+
+            } message: {error in
+                Text(error.recoverySuggestion ?? "")
+            }
+            .animation(.easeInOut)
         }
     }
 }

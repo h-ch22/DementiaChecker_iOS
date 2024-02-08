@@ -60,7 +60,7 @@ struct MainView: View {
                                         weight: .regular,
                                         design: .default
                                     ))
-                                    .foregroundColor(.white)
+                                    .foregroundStyle(Color.txt)
                                     .frame(width : 60, height : 60)
                                     .background(
                                         .ultraThinMaterial

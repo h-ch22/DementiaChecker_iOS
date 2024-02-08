@@ -34,7 +34,10 @@ struct UserTypeSelectionView: View {
                     NavigationLink(destination: SignUpView(userType: .GUARDIAN)){
                         VStack{
                             Image(systemName: "figure.and.child.holdinghands")
+                                .foregroundStyle(Color.txt)
+                            
                             Text("보호자")
+                                .foregroundStyle(Color.txt)
                         }.padding(20)
                             .frame(width: 120, height: 80)
                             .background(.ultraThinMaterial)

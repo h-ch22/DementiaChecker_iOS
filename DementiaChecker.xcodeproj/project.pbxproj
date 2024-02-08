@@ -45,6 +45,9 @@
 		F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */; };
 		F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C02B694CB4005A764E /* onInspectionView.swift */; };
 		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
+		F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */; };
+		F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */; };
+		F6C8190F2B6DC80F00655786 /* GlassBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C8190E2B6DC80F00655786 /* GlassBackground.swift */; };
 		F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9994D2B66363500F9E4C7 /* MainView.swift */; };
 		F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */; };
 		F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999552B66366B00F9E4C7 /* HomeView.swift */; };
@@ -122,6 +125,8 @@
 		F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteritanceGuardianListModel.swift; sourceTree = "<group>"; };
 		F69830C02B694CB4005A764E /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
 		F69830C22B694D63005A764E /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
+		F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceAlertType.swift; sourceTree = "<group>"; };
+		F6C8190E2B6DC80F00655786 /* GlassBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassBackground.swift; sourceTree = "<group>"; };
 		F6D9994D2B66363500F9E4C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalMapView.swift; sourceTree = "<group>"; };
 		F6D999552B66366B00F9E4C7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -152,6 +157,7 @@
 				F63948392B6BA77C00E82620 /* Alamofire in Frameworks */,
 				F682DA352B662397004F1E79 /* FirebaseStorage in Frameworks */,
 				F63948492B6BBD9800E82620 /* SwiftUIPager in Frameworks */,
+				F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */,
 				F682DA312B662397004F1E79 /* FirebaseAuth in Frameworks */,
 				F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */,
 				F682DA332B662397004F1E79 /* FirebaseFirestore in Frameworks */,
@@ -302,6 +308,7 @@
 				F682DA252B6621BB004F1E79 /* Logos.swift */,
 				F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */,
 				F6D9994D2B66363500F9E4C7 /* MainView.swift */,
+				F6C8190E2B6DC80F00655786 /* GlassBackground.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -375,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */,
+				F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -525,6 +533,7 @@
 				F63948382B6BA77C00E82620 /* Alamofire */,
 				F639483E2B6BA99B00E82620 /* SwiftyJSON */,
 				F63948482B6BBD9800E82620 /* SwiftUIPager */,
+				F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */,
 			);
 			productName = DementiaChecker;
 			productReference = F65956382B56BF10004896C3 /* DementiaChecker.app */;
@@ -594,11 +603,11 @@
 			};
 			buildConfigurationList = F65956332B56BF10004896C3 /* Build configuration list for PBXProject "DementiaChecker" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ko,
 			);
 			mainGroup = F659562F2B56BF10004896C3;
 			packageReferences = (
@@ -784,9 +793,11 @@
 				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
 				F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* InspectionIntroductionDataModel.swift in Sources */,
+				F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,
 				F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */,
 				F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */,
+				F6C8190F2B6DC80F00655786 /* GlassBackground.swift in Sources */,
 				F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */,
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
 				F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */,
@@ -1231,6 +1242,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F682DA392B662437004F1E79 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
+		};
+		F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestoreSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

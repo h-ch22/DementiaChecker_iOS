@@ -35,12 +35,18 @@ struct HospitalListModel: View {
                 
                 Text(data.roadAddr)
                     .font(.caption)
-                    .foregroundStyle(Color.gray)
+                    .foregroundStyle(Color.txt)
             }
             
             Spacer().frame(height: 10)
             
-            Button(action: {}){
+            Button(action: {
+                if let url = NSURL(string: "tel://\(data.tel)"){
+                    if UIApplication.shared.canOpenURL(url as URL){
+                        UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                    }
+                }
+            }){
                 Image(systemName: "phone.circle.fill")
             }
             

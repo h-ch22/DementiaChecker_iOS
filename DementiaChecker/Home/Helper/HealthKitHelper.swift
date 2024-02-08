@@ -272,8 +272,6 @@ class HealthKitHelper: ObservableObject{
     }
     
     func getSleepTime(start: Date, end: Date, completion: @escaping (Double?) ->  Void){
-        var sleepHoursCount: Double = 0.0
-
         guard let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) else{
             return
         }
@@ -299,6 +297,8 @@ class HealthKitHelper: ObservableObject{
                         let start = sample.startDate
                         let end = sample.endDate
                         self.inBedTime = sample.endDate.timeIntervalSince(sample.startDate)
+                        
+                        print(self.inBedTime)
                     }
                     
                 }

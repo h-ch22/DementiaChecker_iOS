@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseFirestoreSwift
 
 class UserManagement: ObservableObject{
     @Published var userInfo: UserInfoModel? = nil
@@ -136,6 +137,81 @@ class UserManagement: ObservableObject{
                 completion(results)
                 return
             }
+        }
+    }
+    
+    func setInheritanceGuardian(email: String, completion: @escaping(_ result: Bool?) -> Void){
+        db.collection("Users").document(auth.currentUser?.uid ?? "").updateData(
+            [
+                "inheritanceGuardians": FieldValue.arrayUnion([AES256Util.encrypt(string: email)])
+            ]
+        ){error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error==nil)
+        }
+    }
+    
+    func removeInheritanceGuardian(email: String, completion: @escaping(_ result: Bool?) -> Void){
+        db.collection("Users").document(auth.currentUser?.uid ?? "").updateData(
+            [
+                "inheritanceGuardians": FieldValue.arrayRemove([AES256Util.encrypt(string: email)])
+            ]
+        ){error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error==nil)
+        }
+    }
+    
+    func getInheritanceGuardian(completion: @escaping(_ result: [UserInfoModel]?) -> Void){
+        var inheritanceGuardians: [UserInfoModel] = []
+        
+        db.collection("Users").document(auth.currentUser?.uid ?? "").getDocument(){(document, error) in
+            if error != nil{
+                error?.localizedDescription
+                completion(inheritanceGuardians)
+                return
+            }
+            
+            var results: [String] = document?.get("inheritanceGuardians") as? [String] ?? []
+            
+            if !results.isEmpty{
+                for result in results{
+                    self.db.collection("Users").whereField("email", isEqualTo: result).getDocuments(){(querySnapshot, error) in
+                        if error != nil{
+                            completion(inheritanceGuardians)
+                            return
+                        }
+                        
+                        if querySnapshot != nil{
+                            for document in querySnapshot!.documents{
+                                inheritanceGuardians.append(UserInfoModel(email: AES256Util.decrypt(encoded: document.get("email") as? String ?? ""),
+                                                             name: AES256Util.decrypt(encoded: document.get("name") as? String ?? ""),
+                                                             phone: AES256Util.decrypt(encoded: document.get("phone") as? String ?? ""),
+                                                             birthDay: AES256Util.decrypt(encoded: document.get("birthday") as? String ?? ""),
+                                                             patientEmail: document.get("patientEmail") as? String ?? "" != "" ? AES256Util.decrypt(encoded: document.get("patientEmail") as? String ?? "") : "",
+                                                             userType: document.get("userType") as? String ?? "PATIENT" == "PATIENT" ? .PATIENT : .GUARDIAN))
+                            }
+                            
+                            completion(inheritanceGuardians)
+                            return
+                        } else{
+                            completion(inheritanceGuardians)
+                            return
+                        }
+                    }
+                }
+            } else{
+                completion(inheritanceGuardians)
+                return
+            }
+            
+
         }
     }
 }
