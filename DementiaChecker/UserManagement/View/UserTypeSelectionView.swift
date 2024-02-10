@@ -38,27 +38,25 @@ struct UserTypeSelectionView: View {
                             
                             Text("보호자")
                                 .foregroundStyle(Color.txt)
-                        }.padding(20)
-                            .frame(width: 120, height: 80)
-                            .background(.ultraThinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                        }.frame(width: 120, height: 80)
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 5, cornerRadius: 15))
                     
                     NavigationLink(destination: SignUpView(userType: .PATIENT)){
                         VStack{
                             Image(systemName: "figure.arms.open")
+                                .foregroundStyle(Color.txt)
+
                             Text("환자 본인")
+                                .foregroundStyle(Color.txt)
                         }.padding(20)
                             .frame(width: 120, height: 80)
-                            .background(.ultraThinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 5, cornerRadius: 15))
                 }
                 
                 Spacer()
             }.padding(20)
+                .animation(.easeInOut)
+
                 .navigationTitle(Text("사용자 유형 선택"))
         }
     }

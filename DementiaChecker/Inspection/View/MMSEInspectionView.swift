@@ -40,9 +40,9 @@ struct MMSEInspectionView: View {
                     Spacer()
                     
                     Button(action: {dismiss()}){
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: "xmark")
                             .foregroundStyle(.ultraThinMaterial)
-                    }
+                    }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.gray, paddingValue: 7))
                 }
                 
                 Spacer()
@@ -191,18 +191,13 @@ struct MMSEInspectionView: View {
                     }){
                         HStack{
                             Text(currentIndex < 27 ? "다음 문항" : "검사 종료")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(Color.white)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding(20)
+                                .foregroundStyle(Color.white)
+                        }
                             .padding([.horizontal], 80)
-                            .background(
-                                GlassBackground(color: Color.accent)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accent))
                 }
                 
             }.padding(20)

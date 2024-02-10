@@ -84,6 +84,8 @@ struct HospitalMapView: View {
         .sheet(isPresented: $showDetailView, content: {
             HospitalDetailView(data: $selectedData)
         })
+        .animation(.easeInOut)
+
     }
 }
 

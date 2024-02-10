@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct InspectionIntroductionDataModel: Hashable{
-    static func == (lhs: InspectionIntroductionDataModel, rhs: InspectionIntroductionDataModel) -> Bool {
+struct IntroductionDataModel: Hashable{
+    static func == (lhs: IntroductionDataModel, rhs: IntroductionDataModel) -> Bool {
         return lhs.title == rhs.title
     }
     

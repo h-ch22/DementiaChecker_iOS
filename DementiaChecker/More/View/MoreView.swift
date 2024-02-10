@@ -23,7 +23,7 @@ struct MoreView: View {
                     
                     Spacer()
                 }
-                
+          
                 Button(action: {
                     showUserInfo = true
                 }){
@@ -50,6 +50,22 @@ struct MoreView: View {
                 
                 NavigationLink(destination: EmptyView()){
                     HStack{
+                        Image(systemName: "book.pages.fill")
+                            .foregroundStyle(Color.txt)
+
+                        Text("하루 일기")
+                            .foregroundStyle(Color.txt)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                        .background(.ultraThinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .shadow(radius: 1)
+                }
+                
+                NavigationLink(destination: EmptyView()){
+                    HStack{
                         Image(systemName: "lightbulb.max.fill")
                             .foregroundStyle(Color.txt)
 
@@ -64,7 +80,7 @@ struct MoreView: View {
                         .shadow(radius: 1)
                 }
                 
-                NavigationLink(destination: EmptyView()){
+                NavigationLink(destination: DementiaImprovementMainView()){
                     HStack{
                         Image(systemName: "brain.filled.head.profile")
                             .foregroundStyle(Color.txt)
@@ -123,6 +139,8 @@ struct MoreView: View {
                     UserInfoView()
                         .environmentObject(helper)
                 })
+                .animation(.easeInOut)
+
         }
     }
 }

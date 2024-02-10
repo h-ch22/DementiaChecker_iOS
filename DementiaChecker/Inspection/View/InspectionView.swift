@@ -10,15 +10,15 @@ import SwiftUI
 struct InspectionView: View {
     @Environment(\.dismiss) var dismiss
     @State private var introductionTexts = [
-        InspectionIntroductionDataModel(icon: "magnifyingglass",
+        IntroductionDataModel(icon: "magnifyingglass",
                                         title: "딥러닝을 이용한 치매 검사",
                                         description: "생활 패턴, 기본 검사 결과를 바탕으로 딥러닝을 이용해 사용자의 치매 상황을 확인하고 예측할 수 있습니다."),
         
-        InspectionIntroductionDataModel(icon: "calendar.badge.clock",
+        IntroductionDataModel(icon: "calendar.badge.clock",
                                         title: "검사 기록 확인",
                                         description: "검사 기록 탭에서 사용자의 검사 기록을 일자별로 확인하고, 심각도 변화 추이를 확인할 수 있습니다."),
         
-        InspectionIntroductionDataModel(icon: "applewatch",
+        IntroductionDataModel(icon: "applewatch",
                                         title: "정확한 진단을 위해 Apple Watch 착용하기",
                                         description: "정확한 진단을 위해 Apple Watch를 착용하고 최소 2주 이상 생활하십시오.")
     ]
@@ -52,18 +52,12 @@ struct InspectionView: View {
                     NavigationLink(destination: MMSEInspectionMainView()){
                         HStack{
                             Text("다음 단계로")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(Color.white)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding(20)
-                            .padding([.horizontal], 80)
-                            .background(
-                                GlassBackground(color: Color.accent)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                                .foregroundStyle(Color.white)
+                        }.padding([.horizontal], 80)
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
                 }.padding(20)
                 .navigationTitle(Text("검사 시작하기"))
                 .toolbar{
@@ -73,6 +67,8 @@ struct InspectionView: View {
                         }
                     })
                 }
+                .animation(.easeInOut)
+
             }
         }
     }

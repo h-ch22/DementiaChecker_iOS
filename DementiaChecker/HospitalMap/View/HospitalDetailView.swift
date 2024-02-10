@@ -127,6 +127,8 @@ struct HospitalDetailView: View {
                         }
                     })
                 }
+                .animation(.easeInOut)
+
             }
         }
     }

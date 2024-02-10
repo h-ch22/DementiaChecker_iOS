@@ -60,13 +60,14 @@ struct MainView: View {
                                         weight: .regular,
                                         design: .default
                                     ))
-                                    .foregroundStyle(Color.txt)
+                                    .foregroundStyle(Color.white)
                                     .frame(width : 60, height : 60)
                                     .background(
-                                        .ultraThinMaterial
+                                        Circle()
+                                            .fill(Color.accentColor)
+                                            .shadow(color: Color.txt.opacity(0.2), radius: 10, x: 10, y: 10)
+                                            .shadow(color: Color.accentColor.opacity(0.7), radius: 10, x: -5, y: -5)
                                     )
-                                    .clipShape(Circle())
-                                    .shadow(radius: 5)
                             }
                             
                             else{

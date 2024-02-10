@@ -49,3 +49,9 @@ extension CLLocationCoordinate2D{
         return from.distance(from: to)
     }
 }
+
+extension LinearGradient {
+    init(_ colors: Color...) {
+        self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
+    }
+}

@@ -98,10 +98,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
                         
                         Spacer().frame(width: 20)
                         
@@ -115,10 +112,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
                     }
                     
                     Spacer().frame(height: 20)
@@ -134,10 +128,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
                         
                         Spacer().frame(width: 20)
                         
@@ -151,10 +142,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
                     }
                     
                     Spacer()
@@ -186,6 +174,8 @@ struct UserInfoView: View {
                         }
                     }
                     .navigationTitle(Text("프로필 정보"))
+                    .animation(.easeInOut)
+
             }
         }
     }

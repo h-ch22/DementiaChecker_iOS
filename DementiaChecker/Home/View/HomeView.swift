@@ -40,12 +40,9 @@ struct HomeView: View {
                         
                         NavigationLink(destination: EmptyView()){
                             Image(systemName: "bell.fill")
-                                .foregroundStyle(Color.white)
-                                .padding(10)
+                                .foregroundStyle(Color.txt.opacity(0.5))
                                 .background(.ultraThinMaterial)
-                                .clipShape(Circle())
-                                .shadow(radius: 15)
-                        }
+                        }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.btn, paddingValue: 7))
                     }.padding()
                     
                     VStack{                        
@@ -114,7 +111,9 @@ struct HomeView: View {
                         }
                     }.padding(20)
  
-                }
+                }                
+                .animation(.easeInOut)
+
                     .onAppear{
                         helper.requestAuthorization(){result in
                             guard let result = result else{return}

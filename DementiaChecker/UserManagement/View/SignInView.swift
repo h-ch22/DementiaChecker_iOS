@@ -40,6 +40,10 @@ struct SignInView: View {
         }
     }
     
+    private func isEmpty() -> Bool {
+        return email == "" || password == ""
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -87,18 +91,14 @@ struct SignInView: View {
                     }){
                         HStack{
                             Text("로그인")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(Color.white)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding(20)
+                                .foregroundStyle(Color.white)
+                        }
                             .padding([.horizontal], 80)
-                            .background(
-                                GlassBackground(color: email != "" && password != "" ? Color.accent : Color.gray)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                            
+                    }.buttonStyle(NewMorphButtonStyle(foreground: isEmpty() ? Color.gray : Color.accentColor))
                     
                     Spacer()
                     
@@ -145,6 +145,7 @@ struct SignInView: View {
                     signIn()
                 }
             }
+            .animation(.easeInOut)
         }
         
     }

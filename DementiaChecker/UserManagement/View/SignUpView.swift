@@ -203,18 +203,12 @@ struct SignUpView: View {
                         }){
                             HStack{
                                 Text("회원가입")
-                                    .foregroundStyle(Color.txt)
+                                    .foregroundStyle(Color.white)
                                 
                                 Image(systemName: "chevron.right")
-                                    .foregroundStyle(Color.txt)
-                            }.padding(20)
-                                .padding([.horizontal], 80)
-                                .background(
-                                    GlassBackground(color: !getEmptyFields() ? Color.accent : Color.gray)
-                                )
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
-                        }
+                                    .foregroundStyle(Color.white)
+                            }.padding([.horizontal], 80)
+                        }.buttonStyle(NewMorphButtonStyle(foreground: getEmptyFields() ? Color.gray : Color.accentColor))
                         
                     }
 
@@ -226,10 +220,12 @@ struct SignUpView: View {
                         Text(error.recoverySuggestion ?? "")
                     }
                     .padding(20)
+                    .animation(.easeInOut)
             }.fullScreenCover(isPresented: $changeView, content: {
                 MainView()
                     .environmentObject(helper)
             })
+            
         }
     }
 }

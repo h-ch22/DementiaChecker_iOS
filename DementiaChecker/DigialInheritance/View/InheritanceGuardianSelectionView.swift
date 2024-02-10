@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Neumorphic
 
 struct InheritanceGuardianSelectionView: View {
     @EnvironmentObject var helper: UserManagement
@@ -122,8 +123,8 @@ struct InheritanceGuardianSelectionView: View {
                 
                 Spacer()
                 
-                if email != ""{
-                    Button(action: {
+                Button(action: {
+                    if email != ""{
                         showOverlay = true
                         
                         helper.searchPatient(email: email){ result in
@@ -147,20 +148,17 @@ struct InheritanceGuardianSelectionView: View {
                                 })
                             }
                         }
-                    }){
-                        HStack{
-                            Text("다음 단계로")
-                            
-                            Image(systemName: "chevron.right")
-                        }.padding(20)
-                            .padding([.horizontal], 80)
-                            .background(
-                                .ultraThickMaterial
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
                     }
-                }
+
+                }){
+                    HStack{
+                        Text("다음 단계로")
+                            .foregroundStyle(Color.white)
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(Color.white)
+                    }.padding([.horizontal], 80)
+                }.buttonStyle(NewMorphButtonStyle(foreground: email == "" ? Color.gray : Color.accentColor))
                 
             }.padding(20)
             .navigationTitle(Text("유산 관리자 선택하기"))

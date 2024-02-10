@@ -119,18 +119,12 @@ struct onInspectionView: View {
                     Button(action: {}){
                         HStack{
                             Text("이전 화면으로")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(Color.white)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding(20)
-                            .padding([.horizontal], 80)
-                            .background(
-                                GlassBackground(color: Color.accent)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                                .foregroundStyle(Color.white)
+                        }.padding([.horizontal], 80)
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
                 }
                 
             }.padding(20)

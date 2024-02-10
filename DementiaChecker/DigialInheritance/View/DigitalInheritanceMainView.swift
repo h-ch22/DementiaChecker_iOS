@@ -76,18 +76,13 @@ struct DigitalInheritanceMainView: View {
                     NavigationLink(destination: InheritanceGuardianSelectionView().environmentObject(helper)){
                         HStack{
                             Text("시작하기")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(Color.white)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding(20)
+                                .foregroundStyle(Color.white)
+                        }
                             .padding([.horizontal], 80)
-                            .background(
-                                GlassBackground(color: Color.accent)
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
                 }.padding(20)
             }.navigationTitle(Text("유산 관리자"))
                 .toolbar{
@@ -97,6 +92,8 @@ struct DigitalInheritanceMainView: View {
                         }
                     })
                 }
+                .animation(.easeInOut)
+
         }
     }
 }
