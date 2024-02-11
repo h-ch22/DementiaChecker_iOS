@@ -52,17 +52,22 @@ struct DementiaImprovementMainView: View {
                     HStack{
                         Spacer()
                         
-                        NavigationLink(destination: EmptyView()){
+                        NavigationLink(destination: DementiaImprovementTypeSelectionView()){
                             HStack{
+                                Spacer()
+                                
                                 Text("다음 단계로")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
                                     .foregroundStyle(Color.txt)
+                                
+                                Spacer()
+                                
                             }
                         }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                         
-                        Spacer()
+                        Spacer().frame(width: 20)
                         
                         Button(action: {
                             showHelper = true

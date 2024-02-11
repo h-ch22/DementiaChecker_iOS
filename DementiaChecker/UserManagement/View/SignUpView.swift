@@ -205,12 +205,16 @@ struct SignUpView: View {
                                 }
                             }){
                                 HStack{
+                                    Spacer()
+
                                     Text("회원가입")
                                         .foregroundStyle(getEmptyFields() ? Color.white : Color.txt)
                                     
                                     Image(systemName: "chevron.right")
                                         .foregroundStyle(getEmptyFields() ? Color.white : Color.txt)
-                                }.padding([.horizontal], 80)
+                                    
+                                    Spacer()
+                                }
                             }.buttonStyle(NewMorphButtonStyle(foreground: getEmptyFields() ? Color.gray : Color.background))
                         }
 

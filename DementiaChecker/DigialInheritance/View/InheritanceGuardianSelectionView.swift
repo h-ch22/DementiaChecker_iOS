@@ -152,12 +152,16 @@ struct InheritanceGuardianSelectionView: View {
 
                     }){
                         HStack{
+                            Spacer()
+                            
                             Text("다음 단계로")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
                                 .foregroundStyle(Color.txt)
-                        }.padding([.horizontal], 80)
+                            
+                            Spacer()
+                        }
                     }.buttonStyle(NewMorphButtonStyle(foreground: email == "" ? Color.gray : Color.background))
                 }
 

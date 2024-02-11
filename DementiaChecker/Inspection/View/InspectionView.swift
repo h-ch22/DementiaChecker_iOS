@@ -51,12 +51,17 @@ struct InspectionView: View {
                     
                     NavigationLink(destination: MMSEInspectionMainView()){
                         HStack{
+                            Spacer()
+
                             Text("다음 단계로")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
                                 .foregroundStyle(Color.txt)
-                        }.padding([.horizontal], 80)
+                            
+                            Spacer()
+
+                        }
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }.padding(20)
                 .navigationTitle(Text("검사 시작하기"))

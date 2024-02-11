@@ -10,6 +10,30 @@
 		31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */; };
 		E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */; };
 		F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */; };
+		F605309A2B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530992B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift */; };
+		F605309C2B78BB4A00141A21 /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605309B2B78BB4A00141A21 /* PuzzleView.swift */; };
+		F605309E2B78BB5F00141A21 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605309D2B78BB5F00141A21 /* Consts.swift */; };
+		F60530A02B78BB8300141A21 /* Coord.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605309F2B78BB8300141A21 /* Coord.swift */; };
+		F60530A32B78BE3300141A21 /* SwiftImage in Frameworks */ = {isa = PBXBuildFile; productRef = F60530A22B78BE3300141A21 /* SwiftImage */; };
+		F60530A52B78C67400141A21 /* AcrosticPoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530A42B78C67400141A21 /* AcrosticPoemView.swift */; };
+		F60530A82B78C7E800141A21 /* DementiaImprovementsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530A72B78C7E800141A21 /* DementiaImprovementsHelper.swift */; };
+		F60530B12B78CDF800141A21 /* DiaryCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530AC2B78CDF800141A21 /* DiaryCanvasView.swift */; };
+		F60530B22B78CDF800141A21 /* WriteDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530AD2B78CDF800141A21 /* WriteDiaryView.swift */; };
+		F60530B32B78CDF800141A21 /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530AE2B78CDF800141A21 /* DiaryView.swift */; };
+		F60530B42B78CDF800141A21 /* WriteDiaryMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530AF2B78CDF800141A21 /* WriteDiaryMainView.swift */; };
+		F60530B52B78CDF800141A21 /* DiaryMarkUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530B02B78CDF800141A21 /* DiaryMarkUpView.swift */; };
+		F60530BA2B78CE0D00141A21 /* DiaryContentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530B82B78CE0D00141A21 /* DiaryContentsModel.swift */; };
+		F60530BB2B78CE0D00141A21 /* DiaryEmotionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530B92B78CE0D00141A21 /* DiaryEmotionModel.swift */; };
+		F60530BE2B78CE1D00141A21 /* DiaryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530BD2B78CE1D00141A21 /* DiaryHelper.swift */; };
+		F60530C02B78CE7D00141A21 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530BF2B78CE7D00141A21 /* ImagePicker.swift */; };
+		F60530C22B78CEFC00141A21 /* EmotionDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530C12B78CEFC00141A21 /* EmotionDataModel.swift */; };
+		F60530C82B78D4C000141A21 /* KoreanKPNB-R.otf in Resources */ = {isa = PBXBuildFile; fileRef = F60530C72B78D4C000141A21 /* KoreanKPNB-R.otf */; };
+		F60530CA2B78E3BA00141A21 /* InspectionResultTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530C92B78E3BA00141A21 /* InspectionResultTypeModel.swift */; };
+		F60530CC2B78E3E000141A21 /* InspectionResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530CB2B78E3E000141A21 /* InspectionResultsView.swift */; };
+		F60530CE2B78E40200141A21 /* InspectionResultDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530CD2B78E40200141A21 /* InspectionResultDataModel.swift */; };
+		F60530D02B78E8CA00141A21 /* BarGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530CF2B78E8CA00141A21 /* BarGraph.swift */; };
+		F60530D22B78F06100141A21 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530D12B78F06100141A21 /* InfoView.swift */; };
+		F60530D52B78F1CC00141A21 /* VersionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530D42B78F1CC00141A21 /* VersionHelper.swift */; };
 		F608863A2B78A351004E1AF8 /* HealthListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60886392B78A351004E1AF8 /* HealthListModel.swift */; };
 		F62A0F802B7857B80040C50C /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F7F2B7857B80040C50C /* Dot.swift */; };
 		F62A0F822B7857CE0040C50C /* DotProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F812B7857CE0040C50C /* DotProgressView.swift */; };
@@ -42,11 +66,11 @@
 		F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */; };
 		F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA442B662DD6004F1E79 /* UserManagement.swift */; };
 		F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA462B662E91004F1E79 /* UserInfoModel.swift */; };
+		F68BC69D2B79068C0058F929 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68BC69C2B79068C0058F929 /* ARViewContainer.swift */; };
 		F68DDA602B6CF8170029AECF /* UserTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */; };
 		F68DDA622B6CF82F0029AECF /* UserTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */; };
 		F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */; };
 		F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */; };
-		F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C02B694CB4005A764E /* onInspectionView.swift */; };
 		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
 		F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */; };
 		F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */; };
@@ -101,6 +125,29 @@
 		9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.release.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F60530992B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaImprovementTypeSelectionView.swift; sourceTree = "<group>"; };
+		F605309B2B78BB4A00141A21 /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
+		F605309D2B78BB5F00141A21 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		F605309F2B78BB8300141A21 /* Coord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coord.swift; sourceTree = "<group>"; };
+		F60530A42B78C67400141A21 /* AcrosticPoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcrosticPoemView.swift; sourceTree = "<group>"; };
+		F60530A72B78C7E800141A21 /* DementiaImprovementsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaImprovementsHelper.swift; sourceTree = "<group>"; };
+		F60530AC2B78CDF800141A21 /* DiaryCanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryCanvasView.swift; sourceTree = "<group>"; };
+		F60530AD2B78CDF800141A21 /* WriteDiaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteDiaryView.swift; sourceTree = "<group>"; };
+		F60530AE2B78CDF800141A21 /* DiaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		F60530AF2B78CDF800141A21 /* WriteDiaryMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteDiaryMainView.swift; sourceTree = "<group>"; };
+		F60530B02B78CDF800141A21 /* DiaryMarkUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryMarkUpView.swift; sourceTree = "<group>"; };
+		F60530B82B78CE0D00141A21 /* DiaryContentsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryContentsModel.swift; sourceTree = "<group>"; };
+		F60530B92B78CE0D00141A21 /* DiaryEmotionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEmotionModel.swift; sourceTree = "<group>"; };
+		F60530BD2B78CE1D00141A21 /* DiaryHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryHelper.swift; sourceTree = "<group>"; };
+		F60530BF2B78CE7D00141A21 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		F60530C12B78CEFC00141A21 /* EmotionDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionDataModel.swift; sourceTree = "<group>"; };
+		F60530C72B78D4C000141A21 /* KoreanKPNB-R.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoreanKPNB-R.otf"; sourceTree = "<group>"; };
+		F60530C92B78E3BA00141A21 /* InspectionResultTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultTypeModel.swift; sourceTree = "<group>"; };
+		F60530CB2B78E3E000141A21 /* InspectionResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultsView.swift; sourceTree = "<group>"; };
+		F60530CD2B78E40200141A21 /* InspectionResultDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionResultDataModel.swift; sourceTree = "<group>"; };
+		F60530CF2B78E8CA00141A21 /* BarGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGraph.swift; sourceTree = "<group>"; };
+		F60530D12B78F06100141A21 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F60530D42B78F1CC00141A21 /* VersionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionHelper.swift; sourceTree = "<group>"; };
 		F60886392B78A351004E1AF8 /* HealthListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthListModel.swift; sourceTree = "<group>"; };
 		F62A0F7F2B7857B80040C50C /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		F62A0F812B7857CE0040C50C /* DotProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotProgressView.swift; sourceTree = "<group>"; };
@@ -129,11 +176,11 @@
 		F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementAlertType.swift; sourceTree = "<group>"; };
 		F682DA442B662DD6004F1E79 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		F682DA462B662E91004F1E79 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
+		F68BC69C2B79068C0058F929 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 		F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeModel.swift; sourceTree = "<group>"; };
 		F68DDA612B6CF82F0029AECF /* UserTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionView.swift; sourceTree = "<group>"; };
 		F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InheritanceGuardianSelectionView.swift; sourceTree = "<group>"; };
 		F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteritanceGuardianListModel.swift; sourceTree = "<group>"; };
-		F69830C02B694CB4005A764E /* onInspectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onInspectionView.swift; sourceTree = "<group>"; };
 		F69830C22B694D63005A764E /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
 		F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceAlertType.swift; sourceTree = "<group>"; };
 		F6BF143E2B77C9D1007FAA35 /* NewMorphButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMorphButtonStyle.swift; sourceTree = "<group>"; };
@@ -175,6 +222,7 @@
 				F682DA312B662397004F1E79 /* FirebaseAuth in Frameworks */,
 				F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */,
 				F682DA332B662397004F1E79 /* FirebaseFirestore in Frameworks */,
+				F60530A32B78BE3300141A21 /* SwiftImage in Frameworks */,
 				31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +267,70 @@
 				B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F60530A62B78C7DC00141A21 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F60530A72B78C7E800141A21 /* DementiaImprovementsHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F60530A92B78CDC600141A21 /* Diary */ = {
+			isa = PBXGroup;
+			children = (
+				F60530BC2B78CE1200141A21 /* Helper */,
+				F60530B72B78CDFF00141A21 /* Models */,
+				F60530AA2B78CDCB00141A21 /* View */,
+			);
+			path = Diary;
+			sourceTree = "<group>";
+		};
+		F60530AA2B78CDCB00141A21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F60530AC2B78CDF800141A21 /* DiaryCanvasView.swift */,
+				F60530B02B78CDF800141A21 /* DiaryMarkUpView.swift */,
+				F60530AE2B78CDF800141A21 /* DiaryView.swift */,
+				F60530AF2B78CDF800141A21 /* WriteDiaryMainView.swift */,
+				F60530AD2B78CDF800141A21 /* WriteDiaryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F60530B72B78CDFF00141A21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F60530B82B78CE0D00141A21 /* DiaryContentsModel.swift */,
+				F60530B92B78CE0D00141A21 /* DiaryEmotionModel.swift */,
+				F60530C12B78CEFC00141A21 /* EmotionDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F60530BC2B78CE1200141A21 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F60530BD2B78CE1D00141A21 /* DiaryHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F60530C62B78D4C000141A21 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F60530C72B78D4C000141A21 /* KoreanKPNB-R.otf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		F60530D32B78F1C700141A21 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				F60530D42B78F1CC00141A21 /* VersionHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		F60886382B78A346004E1AF8 /* Models */ = {
@@ -279,6 +391,8 @@
 		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F60530C62B78D4C000141A21 /* fonts */,
+				F60530A92B78CDC600141A21 /* Diary */,
 				F6BF14402B77D71E007FAA35 /* DementiaImprovements */,
 				F62AAFE82B777107009B4002 /* GoogleService-Info.plist */,
 				F6F4BB4F2B6C89DF00DCC256 /* DementiaChecker.entitlements */,
@@ -341,6 +455,7 @@
 				F6D9994D2B66363500F9E4C7 /* MainView.swift */,
 				F6BF143E2B77C9D1007FAA35 /* NewMorphButtonStyle.swift */,
 				F62A0F812B7857CE0040C50C /* DotProgressView.swift */,
+				F60530BF2B78CE7D00141A21 /* ImagePicker.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -423,6 +538,7 @@
 		F6BF14402B77D71E007FAA35 /* DementiaImprovements */ = {
 			isa = PBXGroup;
 			children = (
+				F60530A62B78C7DC00141A21 /* Helper */,
 				F6BF14462B77DAAA007FAA35 /* Models */,
 				F6BF14412B77D727007FAA35 /* View */,
 			);
@@ -434,6 +550,9 @@
 			children = (
 				F6BF14422B77D736007FAA35 /* DementiaImprovementMainView.swift */,
 				F6BF14442B77D9B3007FAA35 /* DementiaSeverityInfoView.swift */,
+				F60530992B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift */,
+				F605309B2B78BB4A00141A21 /* PuzzleView.swift */,
+				F60530A42B78C67400141A21 /* AcrosticPoemView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,6 +562,8 @@
 			children = (
 				F6BF14472B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift */,
 				F6BF14492B77DB22007FAA35 /* DementiaSeverityDataModel.swift */,
+				F605309D2B78BB5F00141A21 /* Consts.swift */,
+				F605309F2B78BB8300141A21 /* Coord.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -503,7 +624,8 @@
 				F6D999692B664A9600F9E4C7 /* MMSEInspectionMainView.swift */,
 				F6D9996B2B664C5000F9E4C7 /* MMSEInspectionView.swift */,
 				F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */,
-				F69830C02B694CB4005A764E /* onInspectionView.swift */,
+				F60530CB2B78E3E000141A21 /* InspectionResultsView.swift */,
+				F68BC69C2B79068C0058F929 /* ARViewContainer.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -527,6 +649,7 @@
 		F6D999602B66368C00F9E4C7 /* More */ = {
 			isa = PBXGroup;
 			children = (
+				F60530D32B78F1C700141A21 /* Helper */,
 				F6D999612B66369000F9E4C7 /* View */,
 			);
 			path = More;
@@ -536,6 +659,7 @@
 			isa = PBXGroup;
 			children = (
 				F6D999622B66369700F9E4C7 /* MoreView.swift */,
+				F60530D12B78F06100141A21 /* InfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -547,6 +671,9 @@
 				F6D999672B663B0800F9E4C7 /* IntroductionDataModel.swift */,
 				F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */,
 				F69830C22B694D63005A764E /* InspectionTypeModel.swift */,
+				F60530C92B78E3BA00141A21 /* InspectionResultTypeModel.swift */,
+				F60530CD2B78E40200141A21 /* InspectionResultDataModel.swift */,
+				F60530CF2B78E8CA00141A21 /* BarGraph.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -595,6 +722,7 @@
 				F639483E2B6BA99B00E82620 /* SwiftyJSON */,
 				F63948482B6BBD9800E82620 /* SwiftUIPager */,
 				F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */,
+				F60530A22B78BE3300141A21 /* SwiftImage */,
 			);
 			productName = DementiaChecker;
 			productReference = F65956382B56BF10004896C3 /* DementiaChecker.app */;
@@ -677,6 +805,7 @@
 				F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				F639483D2B6BA99B00E82620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				F63948472B6BBD9800E82620 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
+				F60530A12B78BE3300141A21 /* XCRemoteSwiftPackageReference "swift-image" */,
 			);
 			productRefGroup = F65956392B56BF10004896C3 /* Products */;
 			projectDirPath = "";
@@ -697,6 +826,7 @@
 				F65956452B56BF11004896C3 /* Preview Assets.xcassets in Resources */,
 				F65956422B56BF11004896C3 /* Assets.xcassets in Resources */,
 				F63948442B6BB1E200E82620 /* include in Resources */,
+				F60530C82B78D4C000141A21 /* KoreanKPNB-R.otf in Resources */,
 				F62AAFE92B777107009B4002 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,50 +956,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6D999662B663A8200F9E4C7 /* InspectionIntroductionListModel.swift in Sources */,
+				F60530A02B78BB8300141A21 /* Coord.swift in Sources */,
 				F659563C2B56BF10004896C3 /* DementiaCheckerApp.swift in Sources */,
 				F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */,
 				F68DDA622B6CF82F0029AECF /* UserTypeSelectionView.swift in Sources */,
+				F60530BA2B78CE0D00141A21 /* DiaryContentsModel.swift in Sources */,
+				F60530B32B78CDF800141A21 /* DiaryView.swift in Sources */,
 				F63948362B6BA58F00E82620 /* LocationDataModel.swift in Sources */,
+				F60530D52B78F1CC00141A21 /* VersionHelper.swift in Sources */,
+				F60530B42B78CDF800141A21 /* WriteDiaryMainView.swift in Sources */,
 				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
 				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
 				F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */,
+				F60530D02B78E8CA00141A21 /* BarGraph.swift in Sources */,
 				F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */,
 				F639482F2B6BA22700E82620 /* MapView.swift in Sources */,
 				F6BF14432B77D736007FAA35 /* DementiaImprovementMainView.swift in Sources */,
 				F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */,
+				F60530B52B78CDF800141A21 /* DiaryMarkUpView.swift in Sources */,
+				F60530B12B78CDF800141A21 /* DiaryCanvasView.swift in Sources */,
 				F682DA382B662415004F1E79 /* AES256Util.swift in Sources */,
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
 				F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */,
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
+				F605309E2B78BB5F00141A21 /* Consts.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
 				F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */,
 				F6BF14482B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift in Sources */,
 				F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */,
 				F62A0F802B7857B80040C50C /* Dot.swift in Sources */,
 				F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */,
+				F60530CC2B78E3E000141A21 /* InspectionResultsView.swift in Sources */,
+				F60530CE2B78E40200141A21 /* InspectionResultDataModel.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
+				F60530BB2B78CE0D00141A21 /* DiaryEmotionModel.swift in Sources */,
 				F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */,
+				F60530D22B78F06100141A21 /* InfoView.swift in Sources */,
 				F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */,
 				F6D9996C2B664C5000F9E4C7 /* MMSEInspectionView.swift in Sources */,
 				F6BF14452B77D9B3007FAA35 /* DementiaSeverityInfoView.swift in Sources */,
+				F60530C22B78CEFC00141A21 /* EmotionDataModel.swift in Sources */,
+				F60530BE2B78CE1D00141A21 /* DiaryHelper.swift in Sources */,
+				F60530B22B78CDF800141A21 /* WriteDiaryView.swift in Sources */,
+				F60530CA2B78E3BA00141A21 /* InspectionResultTypeModel.swift in Sources */,
 				F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */,
 				F63948462B6BBB8100E82620 /* HospitalListModel.swift in Sources */,
 				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
-				F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */,
+				F605309C2B78BB4A00141A21 /* PuzzleView.swift in Sources */,
 				F608863A2B78A351004E1AF8 /* HealthListModel.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* IntroductionDataModel.swift in Sources */,
 				F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */,
+				F60530C02B78CE7D00141A21 /* ImagePicker.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,
 				F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */,
 				F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */,
+				F60530A52B78C67400141A21 /* AcrosticPoemView.swift in Sources */,
 				F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */,
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
 				F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */,
 				F68DDA602B6CF8170029AECF /* UserTypeModel.swift in Sources */,
 				F62A0F822B7857CE0040C50C /* DotProgressView.swift in Sources */,
+				F605309A2B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift in Sources */,
+				F68BC69D2B79068C0058F929 /* ARViewContainer.swift in Sources */,
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,
+				F60530A82B78C7E800141A21 /* DementiaImprovementsHelper.swift in Sources */,
 				F6BF144A2B77DB22007FAA35 /* DementiaSeverityDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1034,13 +1186,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DementiaChecker/DementiaChecker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1000;
 				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DementiaChecker/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "하루 일기 사진 촬영, ARKit 사용을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
@@ -1074,13 +1227,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DementiaChecker/DementiaChecker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1000;
 				DEVELOPMENT_ASSET_PATHS = "\"DementiaChecker/Preview Content\"";
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DementiaChecker/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "하루 일기 사진 촬영, ARKit 사용을 위해 카메라 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
@@ -1228,6 +1382,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F60530A12B78BE3300141A21 /* XCRemoteSwiftPackageReference "swift-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/koher/swift-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.1;
+			};
+		};
 		F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1271,6 +1433,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F60530A22B78BE3300141A21 /* SwiftImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F60530A12B78BE3300141A21 /* XCRemoteSwiftPackageReference "swift-image" */;
+			productName = SwiftImage;
+		};
 		F63948382B6BA77C00E82620 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F63948372B6BA77C00E82620 /* XCRemoteSwiftPackageReference "Alamofire" */;

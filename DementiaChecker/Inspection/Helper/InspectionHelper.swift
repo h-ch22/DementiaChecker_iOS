@@ -9,8 +9,11 @@ import Foundation
 import UIKit
 import AVFoundation
 import Speech
+import CoreLocation
+import Alamofire
+import SwiftyJSON
 
-class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
+class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, CLLocationManagerDelegate{
     private var answerList: [String] = []
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
@@ -18,8 +21,14 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     private let audioEngine = AVAudioEngine()
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
     private let synthesizer = AVSpeechSynthesizer()
+    private let locationManager = CLLocationManager()
+    private let API_KEY = "wg1lmr2uds"
+    private let API_SECRET = "etkEdOhXHoQ3wOF628HGAwSPHdSaoi8SvmU5RpGJ"
+    private let RGC_URL = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?"
     
     @Published var resultText = ""
+    @Published var scores = [Int]()
+    @Published var answers = [String]()
     
     override init(){
         super.init()
@@ -105,48 +114,238 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
         }
     }
     
-    func getAnswer(id: Int) -> String{
+    func grading() -> Bool{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         
-        switch id{
-        case 0:
-            dateFormatter.dateFormat = "yyyy"
-            return dateFormatter.string(from: Date())
-            
-        case 1:
-            dateFormatter.dateFormat = "mm"
-            let monthAsString = dateFormatter.string(from: Date())
-            let month = Int(monthAsString) ?? 0
-            
-            if month+1 == 12 || month+1 == 1 || month+1 == 2{
-                return "겨울"
-            } else if month+1 >= 3 && month+1 < 6{
-                return "봄"
-            } else if month+1 >= 6 && month+1 < 9{
-                return "여름"
-            } else if month+1 >= 9 && month+1 < 12{
-                return "가을"
+        for i in 0..<answerList.count{
+            switch i{
+            case 0:
+                dateFormatter.dateFormat = "yyyy"
+                answers.append(dateFormatter.string(from: Date()))
+                scores.append(dateFormatter.string(from: Date()) == answerList[i] ? 1 : 0)
+                
+            case 1:
+                dateFormatter.dateFormat = "mm"
+                let monthAsString = dateFormatter.string(from: Date())
+                let month = Int(monthAsString) ?? 0
+                
+                if month+1 == 12 || month+1 == 1 || month+1 == 2{
+                    scores.append(answerList[i] == "겨울" ? 1 : 0)
+                    answers.append("겨울")
+                } else if month+1 >= 3 && month+1 < 6{
+                    scores.append(answerList[i] == "봄" ? 1 : 0)
+                    answers.append("봄")
+                } else if month+1 >= 6 && month+1 < 9{
+                    scores.append(answerList[i] == "여름" ? 1 : 0)
+                    answers.append("여름")
+                } else if month+1 >= 9 && month+1 < 12{
+                    scores.append(answerList[i] == "가을" ? 1 : 0)
+                    answers.append("가을")
+                }
+                
+            case 2:
+                dateFormatter.dateFormat = "dd"
+                answers.append(dateFormatter.string(from: Date()))
+                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 1 : 0)
+                
+            case 3:
+                dateFormatter.dateFormat = "EEEE"
+                answers.append(dateFormatter.string(from: Date()))
+                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 1 : 0)
+                
+            case 4:
+                dateFormatter.dateFormat = "mm"
+                let monthAsString = dateFormatter.string(from: Date())
+                let month = Int(monthAsString) ?? 0
+                
+                answers.append(String(month + 1))
+                scores.append(answerList[i] == String(month + 1) ? 1 : 0)
+                
+            case 5:
+                if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
+                    scores.append(answerList[i] == name ? 1 : 0)
+                    answers.append(name)
+                } else {
+                    scores.append(answerList[i] == Locale.current.region?.identifier ? 1 : 0)
+                    answers.append(Locale.current.region?.identifier ?? "")
+                }
+                
+            case 6:
+                let latLng = self.getCurrentLatLng()
+                self.reverseGeoCode(requestType: "State", lat: String(latLng?.coordinate.latitude ?? 0.0), lng: String(latLng?.coordinate.longitude ?? 0.0)){ answerState in
+                    guard let answerState = answerState else{ return }
+                    
+                    self.answers.append(answerState ?? "")
+                    self.scores.append(self.answerList[i] == answerState ? 1 : 0)
+                }
+
+            case 7:
+                let latLng = self.getCurrentLatLng()
+                self.reverseGeoCode(requestType: "Building", lat: String(latLng?.coordinate.latitude ?? 0.0), lng: String(latLng?.coordinate.longitude ?? 0.0)){ answerBuilding in
+                    guard let answerBuilding = answerBuilding else{ return }
+                    
+                    if answerBuilding != ""{
+                        self.scores.append(self.answerList[i] == answerBuilding ? 1 : 0)
+                        self.answers.append(answerBuilding ?? "")
+                    } else{
+                        self.scores.append(self.answerList[i] != "" ? 1 : 0)
+                        self.answers.append("")
+                    }
+                }
+
+                
+            case 8:
+                let latLng = self.getCurrentLatLng()
+                let altitude = Double(latLng?.altitude ?? 0.0)
+                
+                scores.append(answerList[i] == String(Int(altitude / 240)) ? 1 : 0)
+                answers.append(String(Int(altitude / 240)))
+                
+            case 9:
+                scores.append(answerList[i] != "" ? 1 : 0)
+                answers.append("")
+                
+            case 10:
+                answers.append("비행기 연필 소나무")
+                
+                if answerList[i].contains("비행기") && answerList[i].contains("연필") && answerList[i].contains("소나무"){
+                    scores.append(1)
+                } else{
+                    scores.append(0)
+                }
+                
+            case 11:
+                answers.append("93")
+                scores.append(answerList[i] == "93" ? 1 : 0)
+
+            case 12:
+                answers.append("86")
+                scores.append(answerList[i] == "86" ? 1 : 0)
+
+            case 13:
+                answers.append("79")
+                scores.append(answerList[i] == "79" ? 1 : 0)
+                
+            case 14:
+                answers.append("72")
+                scores.append(answerList[i] == "72" ? 1 : 0)
+                
+            case 15:
+                answers.append("65")
+                scores.append(answerList[i] == "65" ? 1 : 0)
+                
+            case 16:
+                answers.append("비행기")
+                scores.append(answerList[i] == "비행기" ? 1 : 0)
+                
+            case 17:
+                answers.append("연필")
+                scores.append(answerList[i] == "연필" ? 1 : 0)
+                
+            case 18:
+                answers.append("소나무")
+                scores.append(answerList[i] == "소나무" ? 1 : 0)
+                
+            case 19:
+                answers.append("비행기")
+                scores.append(answerList[i] == "비행기" ? 1 : 0)
+                
+            case 20:
+                answers.append("시계")
+                scores.append(answerList[i] == "시계" ? 1 : 0)
+                
+            case 21:
+                answers.append("백문이 불여일견")
+                scores.append(answerList[i].contains("백문이 불여일견") ? 1 : 0)
+                
+            case 22, 23, 24, 25, 26:
+                answers.append("")
+                scores.append(answerList[i] == "1" ? 1 : 0)
+                
+            case 27:
+                answers.append("")
+                scores.append(answerList[i] != "" ? 1 : 0)
+                
+            default:
+                break
             }
             
-        case 2:
-            dateFormatter.dateFormat = "dd"
-            
-            return dateFormatter.string(from: Date())
-            
-        case 3:
-            dateFormatter.dateFormat = "EEEE"
-            return dateFormatter.string(from: Date())
-            
-        case 4:
-            dateFormatter.dateFormat = "mm"
-            return dateFormatter.string(from: Date())
-            
-        default:
-            return ""
+            print(answers)
         }
         
-        return ""
+        return true
+    }
+    
+    private func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) -> CLLocation? {
+        if CLLocationManager.locationServicesEnabled(){
+            return locationManager.location
+        }
+        
+        return nil
+    }
+    
+    private func getCurrentLatLng() -> CLLocation?{
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        
+        return self.locationManagerDidChangeAuthorization(locationManager)
+    }
+    
+    private func reverseGeoCode(requestType: String, lat: String, lng: String, completion: @escaping(_ answer: String?) -> Void){
+        let header_key = HTTPHeader(name : "X-NCP-APIGW-API-KEY-ID", value : API_KEY)
+        let header_secret = HTTPHeader(name: "X-NCP-APIGW-API-KEY", value: API_SECRET)
+        let headers = HTTPHeaders([header_key, header_secret])
+        
+        let lat_double = Double(lat)!
+        let lng_double = Double(lng)!
+                
+        let parameters : Parameters = [
+            "coords" : "\(lng_double),\(lat_double)",
+            "output" : "json",
+            "orders" : "addr,admcode,roadaddr"
+        ]
+        
+        let alamo = AF.request(RGC_URL, method: .get, parameters: parameters, headers: headers)
+        
+        alamo.validate().responseJSON(){response in
+                switch response.result{
+                case .success(let value as [String : Any]):
+                    let json = JSON(value)
+                    let data = json["results"]
+                    let state = data[0]["region"]["area1"]["name"].string ?? ""
+                    let address = data[0]["region"]["area2"]["name"].string ?? ""
+                    let address_detail = data[0]["region"]["area3"]["name"].string ?? ""
+                    let roadName = data[2]["land"]["name"].string ?? ""
+                    let road = data[2]["land"]["number1"].string ?? ""
+                    var roadCode = data[2]["land"]["number2"].string ?? ""
+                    let building = data[2]["land"]["addition0"]["value"].string ?? ""
+                    
+                    if roadCode != ""{
+                        roadCode = "-" + roadCode
+                    }
+                    
+                    if requestType == "State"{
+                        print(state)
+                        completion(state)
+                    } else if requestType == "Building"{
+                        print(building)
+                        completion(building)
+                    }
+                    
+                case .failure(let error) :
+                    print(error)
+                    completion("")
+                    
+                    return
+                    
+                default:
+                    completion("")
+                    fatalError()
+                }
+                
+            }
     }
     
     func getMMSETextFieldType(id: Int) -> UIKeyboardType{
@@ -210,10 +409,10 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
             
         case 21:
             return .AUDIO
-        
+            
         case 22..<25:
             return .PAPER
-        
+            
         case 25:
             return .DRAW
             

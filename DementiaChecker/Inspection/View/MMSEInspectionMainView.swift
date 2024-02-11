@@ -74,9 +74,11 @@ struct MMSEInspectionMainView: View {
                     
                     Button(action: {
                         if !isPlaying{
+                            isPlaying = true
                             helper.play(id: 0, isSample: true)
                         } else{
                             helper.stop()
+                            isPlaying = false
                         }
                     }){
                         VStack{

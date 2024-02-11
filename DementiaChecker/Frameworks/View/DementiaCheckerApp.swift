@@ -55,3 +55,85 @@ extension LinearGradient {
         self.init(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing)
     }
 }
+
+extension Array{
+    func chunked(into size: Int) -> [[Element]]{
+        return stride(from: 0, to: count, by: size).map{
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
+}
+
+extension View {
+    public func asUIImage() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        
+        controller.view.backgroundColor = .clear
+        
+        controller.view.frame = CGRect(x: 0, y: CGFloat(Int.max), width: 1, height: 1)
+        UIApplication.shared.windows.first!.rootViewController?.view.addSubview(controller.view)
+        
+        let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
+        controller.view.bounds = CGRect(origin: .zero, size: size)
+        controller.view.sizeToFit()
+        
+        let image = controller.view.asUIImage()
+        controller.view.removeFromSuperview()
+        return image
+    }
+}
+
+extension UIView {
+    public func asUIImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
+extension Date{
+    public var year: Int{
+        return Calendar.current.component(.year, from: self)
+    }
+    
+    public var month: Int{
+        return Calendar.current.component(.month, from: self)
+    }
+    
+    public var day: Int{
+        return Calendar.current.component(.day, from: self)
+    }
+    
+    public var weekDay: Int{
+        return Calendar.current.component(.weekday, from: self)
+    }
+    
+    public func codeToWeekDay(code: Int) -> String{
+        switch code{
+        case 1:
+            return "일"
+            
+        case 2:
+            return "월"
+            
+        case 3:
+            return "화"
+            
+        case 4:
+            return "수"
+            
+        case 5:
+            return "목"
+            
+        case 6:
+            return "금"
+            
+        case 7:
+            return "토"
+            
+        default:
+            return ""
+        }
+    }
+}

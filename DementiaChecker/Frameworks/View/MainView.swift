@@ -99,6 +99,7 @@ struct MainView: View {
                 }.padding(10)
                     .background(.ultraThinMaterial)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
+                    .padding([.horizontal], 5)
                     .animation(.easeInOut)
             }
             

@@ -23,6 +23,8 @@ struct MoreView: View {
                     
                     Spacer()
                 }
+                
+                Spacer().frame(height: 20)
           
                 Button(action: {
                     showUserInfo = true
@@ -39,16 +41,17 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
+                    }
 
-                }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 
+                Spacer().frame(height: 10)
+
                 Divider()
                 
-                NavigationLink(destination: EmptyView()){
+                Spacer().frame(height: 10)
+                
+                NavigationLink(destination: DiaryView()){
                     HStack{
                         Image(systemName: "book.pages.fill")
                             .foregroundStyle(Color.txt)
@@ -58,12 +61,11 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
-                }
+                    }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 
+                Spacer().frame(height: 20)
+
                 NavigationLink(destination: EmptyView()){
                     HStack{
                         Image(systemName: "lightbulb.max.fill")
@@ -74,12 +76,11 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
-                }
+                    }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 
+                Spacer().frame(height: 20)
+
                 NavigationLink(destination: DementiaImprovementMainView()){
                     HStack{
                         Image(systemName: "brain.filled.head.profile")
@@ -90,12 +91,11 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
-                }
+                    }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 
+                Spacer().frame(height: 20)
+
                 Button(action: { showDigialInheritance = true }){
                     HStack{
                         Image(systemName: "person.crop.artframe")
@@ -106,13 +106,12 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
-                }
+                    }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 
-                NavigationLink(destination: EmptyView()){
+                Spacer().frame(height: 20)
+
+                NavigationLink(destination: InfoView()){
                     HStack{
                         Image(systemName: "info.circle.fill")
                             .foregroundStyle(Color.txt)
@@ -122,12 +121,9 @@ struct MoreView: View {
                             .fontWeight(.semibold)
                         
                         Spacer()
-                    }.padding(20)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 1)
-                }
-                
+                    }
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
+
                 Spacer()
                 
             }.padding(20)

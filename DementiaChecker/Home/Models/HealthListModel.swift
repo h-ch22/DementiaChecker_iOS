@@ -39,7 +39,7 @@ struct HealthListModel: View {
                 .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
                 .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
         )
-        .frame(width: (UIScreen.main.bounds.width * 0.8) / 2, height: 80)
+        .frame(width: 150, height: 80)
 
     }
 }

@@ -75,12 +75,11 @@ struct HomeView: View {
                         NavigationLink(destination: EmptyView()){
                             Image(systemName: "bell.fill")
                                 .foregroundStyle(Color.txt)
-                                .background(.ultraThinMaterial)
                         }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 7))
                     }.padding()
                     
                     VStack{                        
-                        LazyHGrid(rows: columns){
+                        LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]){
                             ForEach((0 ..< 9), id: \.self){ index in
                                 HealthListModel(symbol: symbols[index], title: titles[index], value: getLifeLogValue(index: index), color: colors[index])
 

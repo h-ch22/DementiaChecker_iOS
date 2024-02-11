@@ -93,13 +93,16 @@ struct SignInView: View {
                             signIn()
                         }){
                             HStack{
+                                Spacer()
+
                                 Text("로그인")
                                     .foregroundStyle(isEmpty() ? Color.white : Color.txt)
                                 
                                 Image(systemName: "chevron.right")
                                     .foregroundStyle(isEmpty() ? Color.white : Color.txt)
+                                
+                                Spacer()
                             }
-                                .padding([.horizontal], 80)
                                 
                         }.buttonStyle(NewMorphButtonStyle(foreground: isEmpty() ? Color.gray : Color.background))
                     }
@@ -109,14 +112,14 @@ struct SignInView: View {
                     HStack{
                         NavigationLink(destination: EmptyView()){
                             Text("비밀번호 재설정")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }
                         
                         Spacer()
                         
                         NavigationLink(destination: UserTypeSelectionView()){
                             Text("회원가입")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }
                     }
                     
