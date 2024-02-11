@@ -34,17 +34,21 @@ struct InspectionResultsView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("사용자에게 경도인지장애 또는 치매의 증상이 확인되지 않습니다.\n사용자는 정상적인 상태로 추정됩니다.")
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
-                        
+                        HStack{
+                            Text("사용자에게 경도인지장애 또는 치매의 증상이 확인되지 않습니다.\n사용자는 정상적인 상태로 추정됩니다.")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                            
+                            Spacer()
+                        }
+
                     case .MCI:
                         HStack{
                             Image(systemName: "exclamationmark.circle.fill")
                                 .font(.largeTitle)
                                 .foregroundStyle(Color.orange)
                             
-                            Text("Dementia Checker에서 사용자에게 경도인지장애의 증상이 확인되었습니다.")
+                            Text("Dementia Checker에서 사용자에게 경도인지장애의 증상이 있음을 확인하였습니다.")
                                 .foregroundStyle(Color.txt)
                                 .fontWeight(.semibold)
                             
@@ -53,9 +57,14 @@ struct InspectionResultsView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("사용자에게 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활 습관을 개선하십시오.")
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
+                        HStack{
+                            Text("사용자에게 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활 습관을 개선하십시오.")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                            
+                            Spacer()
+                        }
+
                         
                     case .DEMENTIA:
                         HStack{
@@ -63,7 +72,7 @@ struct InspectionResultsView: View {
                                 .font(.largeTitle)
                                 .foregroundStyle(Color.red)
                             
-                            Text("Dementia Checker에서 사용자의 데이터로부터 치매 증상을 확인하였습니다.")
+                            Text("Dementia Checker에서 사용자의 데이터로부터 치매 증상이 있음을 확인하였습니다.")
                                 .foregroundStyle(Color.txt)
                                 .fontWeight(.semibold)
                             
@@ -72,10 +81,14 @@ struct InspectionResultsView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("사용자에게 치매 증상이 확인되었습니다.\n즉시 의료기관에 방문하여 정밀 검사를 의뢰하십시오.")
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
-                        
+                        HStack{
+                            Text("사용자에게 치매 증상이 확인되었습니다.\n즉시 의료기관에 방문하여 정밀 검사를 의뢰하십시오.")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                            
+                            Spacer()
+                        }
+
                         Divider()
                     }
                     
@@ -163,13 +176,13 @@ struct InspectionResultsView: View {
                                     .foregroundStyle(Color.txt)
                                 
                             case .MCI:
-                                Text("사용자에게는 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활습관을 개선하고, 치매 예방을 위한 두뇌 훈련 등의 조치가 필요할 수 있습니다.")
+                                Text("사용자에게 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활습관을 개선하고, 치매 예방을 위한 두뇌 훈련 등의 조치가 필요할 수 있습니다.")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.txt)
                                 
                             case .DEMENTIA:
-                                Text("사용자에게는 치매의 증상이 확인됩니다.\n즉시 의료기관에 내원하여 정밀검사를 의뢰하고, 의학적 조치를 받으십시오.")
+                                Text("사용자에게 치매의 증상이 확인되었습니다.\n즉시 의료기관에 내원하여 정밀검사를 의뢰하고, 의학적 조치를 받으십시오.")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.txt)
