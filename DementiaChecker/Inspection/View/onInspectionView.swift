@@ -13,7 +13,7 @@ struct onInspectionView: View {
     
     var body: some View {
         ZStack(alignment: .top){
-            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             Rectangle()
                 .frame(height: 200, alignment: .top)
@@ -41,7 +41,7 @@ struct onInspectionView: View {
                     if errorType != .MMSE{
                         switch currentInspectingType {
                         case .MMSE:
-                            ProgressView()
+                            DotProgressView(width: 4)
                             
                         case .SLEEP, .WALK:
                             Image(systemName: "checkmark")
@@ -52,10 +52,10 @@ struct onInspectionView: View {
                             .foregroundStyle(Color.orange)
                     }
                     
-                    Spacer().frame(width: 5)
+                    Spacer().frame(width: 10)
                     
                     Text("인지 기능 검사")
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(Color.txt)
                         .fontWeight(currentInspectingType == .MMSE ? .semibold : .regular)
                         .font(currentInspectingType == .MMSE ? .headline : .caption)
                 }
@@ -69,8 +69,8 @@ struct onInspectionView: View {
                             EmptyView()
                             
                         case .SLEEP:
-                            ProgressView()
-                            
+                            DotProgressView()
+
                         case .WALK:
                             Image(systemName: "checkmark")
                                 .foregroundStyle(Color.green)
@@ -81,10 +81,10 @@ struct onInspectionView: View {
                     }
 
                     
-                    Spacer().frame(width: 5)
-                    
+                    Spacer().frame(width: 10)
+
                     Text("수면 검사")
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(Color.txt)
                         .fontWeight(currentInspectingType == .SLEEP ? .semibold : .regular)
                         .font(currentInspectingType == .SLEEP ? .headline : .caption)
                 }
@@ -98,17 +98,17 @@ struct onInspectionView: View {
                             EmptyView()
                             
                         case .WALK:
-                            ProgressView()
+                            DotProgressView()
                         }
                     } else if errorType == .WALK{
                         Image(systemName: "exclamationmark.circle.fill")
                             .foregroundStyle(Color.orange)
                     }
 
-                    Spacer().frame(width: 5)
-                    
-                    Text("활동 내역 검사")
-                        .foregroundStyle(Color.white)
+                    Spacer().frame(width: 10)
+
+                    Text("라이프로그 데이터 검사")
+                        .foregroundStyle(Color.txt)
                         .fontWeight(currentInspectingType == .WALK ? .semibold : .regular)
                         .font(currentInspectingType == .WALK ? .headline : .caption)
                 }
@@ -119,12 +119,12 @@ struct onInspectionView: View {
                     Button(action: {}){
                         HStack{
                             Text("이전 화면으로")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }.padding([.horizontal], 80)
-                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }
                 
             }.padding(20)

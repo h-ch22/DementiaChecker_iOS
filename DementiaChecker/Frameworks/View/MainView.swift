@@ -60,13 +60,13 @@ struct MainView: View {
                                         weight: .regular,
                                         design: .default
                                     ))
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.txt)
                                     .frame(width : 60, height : 60)
                                     .background(
                                         Circle()
-                                            .fill(Color.accentColor)
-                                            .shadow(color: Color.txt.opacity(0.2), radius: 10, x: 10, y: 10)
-                                            .shadow(color: Color.accentColor.opacity(0.7), radius: 10, x: -5, y: -5)
+                                            .fill(Color.background)
+                                            .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                            .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
                                     )
                             }
                             
@@ -88,7 +88,7 @@ struct MainView: View {
                                             .foregroundStyle(Color.txt)
                                     }
                                 }.padding(selectedIndex == number ? 10 : 0)
-                                    .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.btn : Color.clear).opacity(0.6))
+                                    .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.background : Color.clear).opacity(0.6))
                                 
                             }
                             
@@ -105,7 +105,7 @@ struct MainView: View {
             .sheet(isPresented: $showModal, content: {
                 InspectionView()
             })
-            .background(Color.backgroundEnd.ignoresSafeArea(.all, edges: [.top, .bottom]))
+            .background(Color.background.ignoresSafeArea(.all, edges: [.top, .bottom]))
             
         }
         .toolbar(.hidden)

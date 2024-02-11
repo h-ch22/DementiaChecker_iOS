@@ -27,22 +27,22 @@ struct HomeView: View {
     
     var body: some View {
         ZStack(alignment: .top){
-            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             ScrollView{
                 VStack{
                     HStack{
                         Text("안녕하세요,\n\(userManagement.userInfo?.name ?? "")님😆")
                             .fontWeight(.semibold)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.txt)
                         
                         Spacer()
                         
                         NavigationLink(destination: EmptyView()){
                             Image(systemName: "bell.fill")
-                                .foregroundStyle(Color.txt.opacity(0.5))
+                                .foregroundStyle(Color.txt)
                                 .background(.ultraThinMaterial)
-                        }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.btn, paddingValue: 7))
+                        }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 7))
                     }.padding()
                     
                     VStack{                        

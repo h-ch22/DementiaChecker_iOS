@@ -25,7 +25,7 @@ struct MMSEInspectionView: View {
     
     var body: some View {
         ZStack{
-            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             VStack{
                 HStack{
@@ -118,16 +118,13 @@ struct MMSEInspectionView: View {
                     }){
                         VStack{
                             Image(systemName: isRecording ? "stop.circle.fill" : "waveform")
-                                .foregroundStyle(Color.txt)
+                                .foregroundStyle(isRecording ? Color.white : Color.txt)
                             
                             Text(isRecording ? "녹음 중지" : "녹음 시작")
-                                .foregroundStyle(Color.txt)
-                            
-                        }.padding(20)
-                            .background(.ultraThinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                                .foregroundStyle(isRecording ? Color.white : Color.txt)
+
+                        }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: isRecording ? Color.red : Color.background))
                     
                     Spacer().frame(height: 10)
                     
@@ -191,13 +188,13 @@ struct MMSEInspectionView: View {
                     }){
                         HStack{
                             Text(currentIndex < 27 ? "다음 문항" : "검사 종료")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }
                             .padding([.horizontal], 80)
-                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accent))
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }
                 
             }.padding(20)

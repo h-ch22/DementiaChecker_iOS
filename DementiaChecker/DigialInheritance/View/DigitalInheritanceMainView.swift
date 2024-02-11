@@ -76,13 +76,13 @@ struct DigitalInheritanceMainView: View {
                     NavigationLink(destination: InheritanceGuardianSelectionView().environmentObject(helper)){
                         HStack{
                             Text("시작하기")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.white)
+                                .foregroundStyle(Color.txt)
                         }
                             .padding([.horizontal], 80)
-                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }.padding(20)
             }.navigationTitle(Text("유산 관리자"))
                 .toolbar{

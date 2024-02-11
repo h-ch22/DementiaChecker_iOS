@@ -187,6 +187,10 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
         synthesizer.speak(utterance)
     }
     
+    func stop(){
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+    
     func getAnswerType(id: Int) -> MMSEAnswerTypeModel{
         switch id{
         case 0..<9:

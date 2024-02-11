@@ -47,7 +47,7 @@ struct SignInView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+                Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
 
                 VStack{
                     Spacer()
@@ -86,19 +86,23 @@ struct SignInView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        signIn()
-                    }){
-                        HStack{
-                            Text("로그인")
-                                .foregroundStyle(Color.white)
-                            
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.white)
-                        }
-                            .padding([.horizontal], 80)
-                            
-                    }.buttonStyle(NewMorphButtonStyle(foreground: isEmpty() ? Color.gray : Color.accentColor))
+                    if showProgress{
+                        DotProgressView()
+                    } else{
+                        Button(action: {
+                            signIn()
+                        }){
+                            HStack{
+                                Text("로그인")
+                                    .foregroundStyle(isEmpty() ? Color.white : Color.txt)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundStyle(isEmpty() ? Color.white : Color.txt)
+                            }
+                                .padding([.horizontal], 80)
+                                
+                        }.buttonStyle(NewMorphButtonStyle(foreground: isEmpty() ? Color.gray : Color.background))
+                    }
                     
                     Spacer()
                     
@@ -125,7 +129,6 @@ struct SignInView: View {
                 }.padding(20)
                     .navigationTitle(Text("로그인"))
                     .toolbar(.hidden)
-                    .overlay(ProgressOverlay().isHidden(!showProgress))
                     .alert(isPresented: $showAlert, error: alertType){ _ in
 
                     } message: {error in

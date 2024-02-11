@@ -25,20 +25,20 @@ struct NewMorphButtonStyle: ButtonStyle {
                                     .stroke(Color.gray, lineWidth: 4)
                                     .blur(radius: 4)
                                     .offset(x: 2, y: 2)
-                                    .mask(RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(Color.txt, Color.clear)))
+                                    .mask(RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(Color.btnStart, Color.btnEnd)))
                             )
                             .overlay(
                                 RoundedRectangle(cornerRadius: cornerRadius)
                                     .stroke(foreground, lineWidth: 8)
                                     .blur(radius: 4)
                                     .offset(x: -2, y: -2)
-                                    .mask(RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(Color.clear, Color.txt)))
+                                    .mask(RoundedRectangle(cornerRadius: cornerRadius).fill(LinearGradient(Color.btnEnd, Color.btnStart)))
                             )
                     } else {
                         RoundedRectangle(cornerRadius: cornerRadius)
                             .fill(foreground)
-                            .shadow(color: Color.txt.opacity(0.2), radius: 10, x: 10, y: 10)
-                            .shadow(color: foreground.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
                     }
                 }
             )
@@ -63,20 +63,20 @@ struct CircleNewMorphButtonStyle: ButtonStyle {
                                     .stroke(Color.gray, lineWidth: 4)
                                     .blur(radius: 4)
                                     .offset(x: 2, y: 2)
-                                    .mask(Circle().fill(LinearGradient(Color.txt, Color.clear)))
+                                    .mask(Circle().fill(LinearGradient(Color.btnStart, Color.btnEnd)))
                             )
                             .overlay(
                                 Circle()
                                     .stroke(foreground, lineWidth: 8)
                                     .blur(radius: 4)
                                     .offset(x: -2, y: -2)
-                                    .mask(Circle().fill(LinearGradient(Color.clear, Color.txt)))
+                                    .mask(Circle().fill(LinearGradient(Color.btnEnd, Color.btnStart)))
                             )
                     } else {
                         Circle()
                             .fill(foreground)
-                            .shadow(color: Color.txt.opacity(0.2), radius: 10, x: 10, y: 10)
-                            .shadow(color: foreground.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
                     }
                 }
             )

@@ -28,6 +28,7 @@ struct MMSEInspectionMainView: View {
     
     @State private var changeView = false
     @State private var isRecording = false
+    @State private var isPlaying = false
     @StateObject private var helper = InspectionHelper()
     
     var body: some View {
@@ -62,30 +63,31 @@ struct MMSEInspectionMainView: View {
                     }){
                         VStack{
                             Image(systemName: isRecording ? "stop.circle.fill" : "waveform")
+                                .foregroundStyle(isRecording ? Color.white : Color.txt)
+                            
                             Text(isRecording ? "녹음 중지" : "마이크 테스트")
-                        }.padding(20)
-                            .background(
-                                .ultraThinMaterial
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                                .foregroundStyle(isRecording ? Color.white : Color.txt)
+                        }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: isRecording ? Color.red : Color.background, paddingValue: 20, cornerRadius: 15))
                     
                     Spacer().frame(width: 20)
                     
                     Button(action: {
-                        helper.play(id: 0, isSample: true)
+                        if !isPlaying{
+                            helper.play(id: 0, isSample: true)
+                        } else{
+                            helper.stop()
+                        }
                     }){
                         VStack{
-                            Image(systemName: "play.fill")
-                            Text("스피커 테스트")
-                        }.padding(20)
-                            .background(
-                                .ultraThinMaterial
-                            )
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
-                            .shadow(radius: 5)
-                    }
+                            Image(systemName: isPlaying ? "stop.circle.fill" : "play.fill")
+                                .foregroundStyle(isPlaying ? Color.white : Color.txt)
+
+                            Text(isPlaying ? "정지" : "스피커 테스트")
+                                .foregroundStyle(isPlaying ? Color.white : Color.txt)
+
+                        }
+                    }.buttonStyle(NewMorphButtonStyle(foreground: isPlaying ? Color.red : Color.background, paddingValue: 20, cornerRadius: 15))
                 }
                 
                 if helper.resultText != ""{
@@ -112,12 +114,12 @@ struct MMSEInspectionMainView: View {
                 }){
                     HStack{
                         Text("시작하기")
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.txt)
                         
                         Image(systemName: "chevron.right")
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.txt)
                     }.padding([.horizontal], 80)
-                }.buttonStyle(NewMorphButtonStyle(foreground: Color.accentColor))
+                }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
             }.padding(20)
                 .navigationTitle(Text("인지기능 검사 시작하기"))
                 .fullScreenCover(isPresented: $changeView, content: {

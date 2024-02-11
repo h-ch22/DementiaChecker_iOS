@@ -2,3 +2,4 @@ DementiaChecker/include/
 Pods/
 Podfile
 Podfile.lock
+replacements.txt

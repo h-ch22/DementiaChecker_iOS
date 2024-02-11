@@ -42,7 +42,7 @@ struct InheritanceGuardianSelectionView: View {
                     Spacer()
                     
                     if showProgress{
-                        ProgressView()
+                        DotProgressView()
                     }
                 }
                 
@@ -80,7 +80,7 @@ struct InheritanceGuardianSelectionView: View {
                     Spacer()
                     
                     if showProgress{
-                        ProgressView()
+                        DotProgressView()
                     }
                 }
                 
@@ -122,47 +122,49 @@ struct InheritanceGuardianSelectionView: View {
                 .shadow(radius: 5)
                 
                 Spacer()
-                
-                Button(action: {
-                    if email != ""{
-                        showOverlay = true
-                        
-                        helper.searchPatient(email: email){ result in
-                            guard let result = result else{return}
-                            
-                            if result{
-                                selectedEmail = email
-                            }
-                            
-                            showOverlay = !result
-                            alertType = result ? nil : .USER_DOES_NOT_EXISTS
-                            showAlert = !result
-                            
-                            if result{
-                                helper.setInheritanceGuardian(email: email, completion: { result in
-                                    guard let result = result else{return}
-                                    
-                                    showOverlay = false
-                                    alertType = result ? .SUCCESS : .FAIL
-                                    showAlert = true
-                                })
+                if showOverlay{
+                    DotProgressView()
+                } else{
+                    Button(action: {
+                        if email != ""{
+                            showOverlay = true
+                            helper.searchPatient(email: email){ result in
+                                guard let result = result else{return}
+                                
+                                if result{
+                                    selectedEmail = email
+                                }
+                                
+                                showOverlay = !result
+                                alertType = result ? nil : .USER_DOES_NOT_EXISTS
+                                showAlert = !result
+                                
+                                if result{
+                                    helper.setInheritanceGuardian(email: email, completion: { result in
+                                        guard let result = result else{return}
+                                        
+                                        showOverlay = false
+                                        alertType = result ? .SUCCESS : .FAIL
+                                        showAlert = true
+                                    })
+                                }
                             }
                         }
-                    }
 
-                }){
-                    HStack{
-                        Text("다음 단계로")
-                            .foregroundStyle(Color.white)
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundStyle(Color.white)
-                    }.padding([.horizontal], 80)
-                }.buttonStyle(NewMorphButtonStyle(foreground: email == "" ? Color.gray : Color.accentColor))
+                    }){
+                        HStack{
+                            Text("다음 단계로")
+                                .foregroundStyle(Color.txt)
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(Color.txt)
+                        }.padding([.horizontal], 80)
+                    }.buttonStyle(NewMorphButtonStyle(foreground: email == "" ? Color.gray : Color.background))
+                }
+
                 
             }.padding(20)
             .navigationTitle(Text("유산 관리자 선택하기"))
-            .overlay(ProgressOverlay().isHidden(!showOverlay))
             .onAppear{
                 helper.getGuardians(){ result in
                     guard let result = result else{return}

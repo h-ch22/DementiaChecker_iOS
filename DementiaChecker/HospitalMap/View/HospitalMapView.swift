@@ -32,7 +32,7 @@ struct HospitalMapView: View {
     
     var body: some View {
         ZStack{
-            LinearGradient(colors: [Color.backgroundStart, Color.backgroundEnd], startPoint: .topLeading, endPoint: .bottomTrailing).ignoresSafeArea(.all, edges: [.top, .bottom])
+            Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             if showView{
                 HospitalMapViewController()
@@ -65,7 +65,7 @@ struct HospitalMapView: View {
                 VStack{
                     Spacer()
                     
-                    ProgressView()
+                    DotProgressView()
 
                     Spacer()
                 }

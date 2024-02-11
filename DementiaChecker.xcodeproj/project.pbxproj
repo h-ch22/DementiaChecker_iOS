@@ -10,6 +10,8 @@
 		31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */; };
 		E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */; };
 		F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */; };
+		F62A0F802B7857B80040C50C /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F7F2B7857B80040C50C /* Dot.swift */; };
+		F62A0F822B7857CE0040C50C /* DotProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F812B7857CE0040C50C /* DotProgressView.swift */; };
 		F62AAFE92B777107009B4002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F62AAFE82B777107009B4002 /* GoogleService-Info.plist */; };
 		F639482F2B6BA22700E82620 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F639482E2B6BA22700E82620 /* MapView.swift */; };
 		F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63948322B6BA56E00E82620 /* HospitalMapHelper.swift */; };
@@ -36,7 +38,6 @@
 		F682DA382B662415004F1E79 /* AES256Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA372B662415004F1E79 /* AES256Util.swift */; };
 		F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA3A2B662437004F1E79 /* CryptoSwift */; };
 		F682DA3D2B662803004F1E79 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA3C2B662803004F1E79 /* SignUpView.swift */; };
-		F682DA3F2B662AB0004F1E79 /* ProgressOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */; };
 		F682DA422B662B9D004F1E79 /* UserManagementAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */; };
 		F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA442B662DD6004F1E79 /* UserManagement.swift */; };
 		F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA462B662E91004F1E79 /* UserInfoModel.swift */; };
@@ -99,6 +100,8 @@
 		9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.release.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F62A0F7F2B7857B80040C50C /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
+		F62A0F812B7857CE0040C50C /* DotProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotProgressView.swift; sourceTree = "<group>"; };
 		F62AAFE82B777107009B4002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F639482E2B6BA22700E82620 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		F63948302B6BA3F200E82620 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +124,6 @@
 		F682DA292B6622BD004F1E79 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		F682DA372B662415004F1E79 /* AES256Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AES256Util.swift; sourceTree = "<group>"; };
 		F682DA3C2B662803004F1E79 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressOverlay.swift; sourceTree = "<group>"; };
 		F682DA412B662B9D004F1E79 /* UserManagementAlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagementAlertType.swift; sourceTree = "<group>"; };
 		F682DA442B662DD6004F1E79 /* UserManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagement.swift; sourceTree = "<group>"; };
 		F682DA462B662E91004F1E79 /* UserInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoModel.swift; sourceTree = "<group>"; };
@@ -217,6 +219,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F62A0F7E2B7857B30040C50C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F62A0F7F2B7857B80040C50C /* Dot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		F63948312B6BA56400E82620 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +316,7 @@
 		F65956672B56BF74004896C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F62A0F7E2B7857B30040C50C /* Models */,
 				F682DA362B66240D004F1E79 /* Helper */,
 				F65956682B56BF79004896C3 /* View */,
 			);
@@ -317,9 +328,9 @@
 			children = (
 				F659563B2B56BF10004896C3 /* DementiaCheckerApp.swift */,
 				F682DA252B6621BB004F1E79 /* Logos.swift */,
-				F682DA3E2B662AB0004F1E79 /* ProgressOverlay.swift */,
 				F6D9994D2B66363500F9E4C7 /* MainView.swift */,
 				F6BF143E2B77C9D1007FAA35 /* NewMorphButtonStyle.swift */,
+				F62A0F812B7857CE0040C50C /* DotProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -810,7 +821,6 @@
 				F63948362B6BA58F00E82620 /* LocationDataModel.swift in Sources */,
 				F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */,
 				F6D999562B66366B00F9E4C7 /* HomeView.swift in Sources */,
-				F682DA3F2B662AB0004F1E79 /* ProgressOverlay.swift in Sources */,
 				F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */,
 				F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */,
 				F639482F2B6BA22700E82620 /* MapView.swift in Sources */,
@@ -826,6 +836,7 @@
 				F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */,
 				F6BF14482B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift in Sources */,
 				F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */,
+				F62A0F802B7857B80040C50C /* Dot.swift in Sources */,
 				F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */,
@@ -845,6 +856,7 @@
 				F682DA452B662DD6004F1E79 /* UserManagement.swift in Sources */,
 				F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */,
 				F68DDA602B6CF8170029AECF /* UserTypeModel.swift in Sources */,
+				F62A0F822B7857CE0040C50C /* DotProgressView.swift in Sources */,
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,
 				F6BF144A2B77DB22007FAA35 /* DementiaSeverityDataModel.swift in Sources */,
 			);

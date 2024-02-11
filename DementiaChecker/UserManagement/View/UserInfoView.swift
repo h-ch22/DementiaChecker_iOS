@@ -98,7 +98,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
                         
                         Spacer().frame(width: 20)
                         
@@ -112,7 +112,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
                     }
                     
                     Spacer().frame(height: 20)
@@ -128,7 +128,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
                         
                         Spacer().frame(width: 20)
                         
@@ -142,7 +142,7 @@ struct UserInfoView: View {
                                     .foregroundStyle(Color.txt)
                             }.padding()
                                 .frame(width: 120, height: 100)
-                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.btn, paddingValue: 0, cornerRadius: 15))
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
                     }
                     
                     Spacer()
