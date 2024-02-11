@@ -25,6 +25,40 @@ struct HomeView: View {
     
     @State private var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
+    private func getLifeLogValue(index: Int) -> String{
+        switch index{
+        case 0:
+            return "\(String(format: "%.2f", helper.oxygenSaturation * 100)) %"
+            
+        case 1:
+            return "\(String(format: "%.2f", helper.heartRate)) BPM"
+            
+        case 2:
+            return "\(String(format: "%.2f", helper.restingHeartRate)) BPM"
+            
+        case 3:
+            return "\(String(format: "%.2f", helper.walkingHeartRate)) BPM"
+            
+        case 4:
+            return "\(String(format: "%.2f", helper.inBedTime)) 시간"
+            
+        case 5:
+            return "\(String(format: "%.0f", helper.steps)) 걸음"
+            
+        case 6:
+            return "\(String(format: "%.2f", helper.distanceWalkingRunning)) M"
+            
+        case 7:
+            return "\(String(format: "%.2f", helper.activityEnergy)) KCAL"
+            
+        case 8:
+            return "\(String(format: "%.2f", helper.wristTemperature)) °C"
+            
+        default:
+            return ""
+        }
+    }
+    
     var body: some View {
         ZStack(alignment: .top){
             Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
@@ -48,65 +82,8 @@ struct HomeView: View {
                     VStack{                        
                         LazyHGrid(rows: columns){
                             ForEach((0 ..< 9), id: \.self){ index in
-                                VStack{
-                                    HStack{
-                                        Image(systemName: symbols[index])
-                                            .font(.caption)
-                                            .foregroundStyle(colors[index])
-                                        
-                                        Text(titles[index])
-                                            .font(.caption)
-                                            .foregroundStyle(Color.txt)
-                                        
-                                        Spacer()
-                                    }
-                                    
-                                    switch index{
-                                    case 0:
-                                        Text("__\(String(format: "%.2f", helper.oxygenSaturation * 100))__ %")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 1:
-                                        Text("__\(String(format: "%.2f", helper.heartRate))__ BPM")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 2:
-                                        Text("__\(String(format: "%.2f", helper.restingHeartRate))__ BPM")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 3:
-                                        Text("__\(String(format: "%.2f", helper.walkingHeartRate))__ BPM")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 4:
-                                        Text("__\(String(format: "%.2f", helper.inBedTime))__ 시간")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 5:
-                                        Text("__\(String(format: "%.0f", helper.steps))__ 걸음")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 6:
-                                        Text("__\(String(format: "%.2f", helper.distanceWalkingRunning))__ M")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 7:
-                                        Text("__\(String(format: "%.2f", helper.activityEnergy))__ KCAL")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    case 8:
-                                        Text("__\(String(format: "%.2f", helper.wristTemperature))__ °C")
-                                            .foregroundStyle(colors[index])
-                                        
-                                    default:
-                                        Text("")
-                                    }
-                                }
-                                .padding(20)
-                                .frame(width: (UIScreen.main.bounds.width * 0.8) / 2, height: 80)
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
-                                .shadow(radius: 5)
+                                HealthListModel(symbol: symbols[index], title: titles[index], value: getLifeLogValue(index: index), color: colors[index])
+
                             }
                         }
                     }.padding(20)

@@ -49,31 +49,34 @@ struct DementiaImprovementMainView: View {
                     
                     Spacer().frame(height: 20)
                     
-                    NavigationLink(destination: EmptyView()){
-                        HStack{
-                            Text("다음 단계로")
-                                .foregroundStyle(Color.txt)
-                            
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(Color.txt)
-                        }.padding([.horizontal], 80)
-                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
-                }
-            }.padding(20).navigationTitle(Text("치매 개선 프로세스 시작하기"))
-                .sheet(isPresented: $showHelper, content: {
-                    DementiaSeverityInfoView()
-                })
-                .toolbar{
-                    ToolbarItem(placement: .topBarTrailing, content: {
+                    HStack{
+                        Spacer()
+                        
+                        NavigationLink(destination: EmptyView()){
+                            HStack{
+                                Text("다음 단계로")
+                                    .foregroundStyle(Color.txt)
+                                
+                                Image(systemName: "chevron.right")
+                                    .foregroundStyle(Color.txt)
+                            }
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
+                        
+                        Spacer()
+                        
                         Button(action: {
                             showHelper = true
                         }){
                             Image(systemName: "questionmark")
                                 .font(.caption)
-                                .foregroundStyle(.ultraThinMaterial)
-                        }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.gray, paddingValue: 7))
-                    })
+                                .foregroundStyle(Color.txt)
+                        }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 7))
+                    }
                 }
+            }.padding(20).navigationTitle(Text("치매 개선 프로세스 시작"))
+                .sheet(isPresented: $showHelper, content: {
+                    DementiaSeverityInfoView()
+                })
                 .animation(.easeInOut)
         }
     }

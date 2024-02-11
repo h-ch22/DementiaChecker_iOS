@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Neumorphic
 
 struct InheritanceGuardianSelectionView: View {
     @EnvironmentObject var helper: UserManagement

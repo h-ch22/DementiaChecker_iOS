@@ -15,6 +15,8 @@ enum UserManagementAlertType: Error, LocalizedError{
     case WEAK_PASSWORD
     case UNKNOWN_ERROR
     case PATIENT_EMAIL_DOES_NOT_FOUND
+    case SIGN_OUT_FAIL
+    case DELETE_MEMBERSHIP_FAIL
     case SUCCESS
     
     var failureReason: String?{
@@ -35,13 +37,19 @@ enum UserManagementAlertType: Error, LocalizedError{
             return "안전하지 않은 비밀번호입니다."
             
         case .UNKNOWN_ERROR:
-            return "오류"
+            return "알 수 없는 오류가 발생하였습니다."
             
         case .PATIENT_EMAIL_DOES_NOT_FOUND:
             return "환자 E-Mail을 찾을 수 없습니다."
             
         case .SUCCESS:
             return ""
+            
+        case .SIGN_OUT_FAIL:
+            return "로그아웃 중 문제가 발생하였습니다."
+            
+        case .DELETE_MEMBERSHIP_FAIL:
+            return "회원탈퇴 중 문제가 발생하였습니다."
         }
     }
     
@@ -70,6 +78,9 @@ enum UserManagementAlertType: Error, LocalizedError{
             
         case .SUCCESS:
             return ""
+            
+        case .SIGN_OUT_FAIL, .DELETE_MEMBERSHIP_FAIL:
+            return "정상 로그인 여부, 네트워크 상태를 확인하거나 나중에 다시 시도하십시오."
         }
     }
     
@@ -98,6 +109,9 @@ enum UserManagementAlertType: Error, LocalizedError{
             
         case .SUCCESS:
             return ""
+            
+        case .SIGN_OUT_FAIL, .DELETE_MEMBERSHIP_FAIL:
+            return "오류"
         }
     }
 }

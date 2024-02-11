@@ -10,6 +10,7 @@
 		31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */; };
 		E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */; };
 		F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */; };
+		F608863A2B78A351004E1AF8 /* HealthListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60886392B78A351004E1AF8 /* HealthListModel.swift */; };
 		F62A0F802B7857B80040C50C /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F7F2B7857B80040C50C /* Dot.swift */; };
 		F62A0F822B7857CE0040C50C /* DotProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62A0F812B7857CE0040C50C /* DotProgressView.swift */; };
 		F62AAFE92B777107009B4002 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F62AAFE82B777107009B4002 /* GoogleService-Info.plist */; };
@@ -100,6 +101,7 @@
 		9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.release.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F60886392B78A351004E1AF8 /* HealthListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthListModel.swift; sourceTree = "<group>"; };
 		F62A0F7F2B7857B80040C50C /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		F62A0F812B7857CE0040C50C /* DotProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotProgressView.swift; sourceTree = "<group>"; };
 		F62AAFE82B777107009B4002 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -217,6 +219,14 @@
 				B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F60886382B78A346004E1AF8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F60886392B78A351004E1AF8 /* HealthListModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F62A0F7E2B7857B30040C50C /* Models */ = {
@@ -461,6 +471,7 @@
 		F6D999532B66365C00F9E4C7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F60886382B78A346004E1AF8 /* Models */,
 				F6F4BB4C2B6C875400DCC256 /* Helper */,
 				F6D999542B66366000F9E4C7 /* View */,
 			);
@@ -847,6 +858,7 @@
 				F63948462B6BBB8100E82620 /* HospitalListModel.swift in Sources */,
 				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
 				F69830C12B694CB4005A764E /* onInspectionView.swift in Sources */,
+				F608863A2B78A351004E1AF8 /* HealthListModel.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* IntroductionDataModel.swift in Sources */,
 				F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,

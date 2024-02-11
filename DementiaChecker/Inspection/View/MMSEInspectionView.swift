@@ -41,8 +41,8 @@ struct MMSEInspectionView: View {
                     
                     Button(action: {dismiss()}){
                         Image(systemName: "xmark")
-                            .foregroundStyle(.ultraThinMaterial)
-                    }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.gray, paddingValue: 7))
+                            .foregroundStyle(Color.txt)
+                    }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 7))
                 }
                 
                 Spacer()

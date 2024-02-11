@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct HospitalListModel: View {
+    @Environment(\.colorScheme) var colorScheme
     let data: LocationDataModel
     
     var body: some View {
         VStack(alignment: .leading){
             HStack{
                 Text(data.centerName)
+                    .fontWeight(.semibold)
                 
                 Spacer()
                 
                 Text(data.centerType)
                     .font(.caption)
+                    .foregroundStyle(Color.gray)
             }
             
             Spacer().frame(height: 5)
@@ -51,6 +54,7 @@ struct HospitalListModel: View {
             }
             
         }.padding()
+
 
     }
 }

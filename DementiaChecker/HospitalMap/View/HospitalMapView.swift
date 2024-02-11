@@ -30,6 +30,8 @@ struct HospitalMapView: View {
     @State private var currentIndex = 0
     @State private var selectedData: LocationDataModel? = nil
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack{
             Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
@@ -54,9 +56,12 @@ struct HospitalMapView: View {
                             
                         }
                     }.frame(width: 300, height: 100)
-                        .background(.ultraThinMaterial)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                        .shadow(radius: 5)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.background)
+                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                        )
                         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
                 
@@ -66,7 +71,7 @@ struct HospitalMapView: View {
                     Spacer()
                     
                     DotProgressView()
-
+                    
                     Spacer()
                 }
             }
@@ -85,7 +90,7 @@ struct HospitalMapView: View {
             HospitalDetailView(data: $selectedData)
         })
         .animation(.easeInOut)
-
+        
     }
 }
 

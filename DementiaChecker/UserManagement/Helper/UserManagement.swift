@@ -214,4 +214,33 @@ class UserManagement: ObservableObject{
 
         }
     }
+    
+    func signOut(completion: @escaping(_ result: Bool?) -> Void){
+        do{
+            try auth.signOut()
+            completion(true)
+            return
+        } catch let error as NSError{
+            print(error)
+            completion(false)
+            return
+        }
+    }
+    
+    func cancelMembership(completion: @escaping(_ result: Bool?) -> Void){
+        let uid = auth.currentUser?.uid
+        
+        auth.currentUser?.delete{ error in
+            if let error = error{
+                print(error.localizedDescription)
+                completion(false)
+                return
+            }
+            
+            self.db.collection("Users").document(uid ?? "").delete(){ _ in
+                completion(true)
+                return
+            }
+        }
+    }
 }
