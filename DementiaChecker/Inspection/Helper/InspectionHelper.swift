@@ -12,6 +12,8 @@ import Speech
 import CoreLocation
 import Alamofire
 import SwiftyJSON
+import FirebaseFirestore
+import FirebaseAuth
 
 class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, CLLocationManagerDelegate{
     private var answerList: [String] = []
@@ -25,6 +27,38 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     private let API_KEY = "wg1lmr2uds"
     private let API_SECRET = "etkEdOhXHoQ3wOF628HGAwSPHdSaoi8SvmU5RpGJ"
     private let RGC_URL = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?"
+    private let db = Firestore.firestore()
+    private let auth = Auth.auth()
+    
+    private lazy var module_MMSE: TorchModule? = {
+        if let filePath = Bundle.main.path(forResource: "cognitive_mobile", ofType: "ptl", inDirectory: "include"),
+           let module_MMSE = TorchModule(fileAtPath: filePath){
+            return module_MMSE
+        } else{
+            print("Failed to load model : MMSE")
+            return nil
+        }
+    }()
+    
+    private lazy var module_LifeLog: TorchModule? = {
+        if let filePath = Bundle.main.path(forResource: "walk_mobile", ofType: "ptl", inDirectory: "include"),
+           let module_LifeLog = TorchModule(fileAtPath: filePath){
+            return module_LifeLog
+        } else{
+            print("Failed to load model : LifeLog")
+            return nil
+        }
+    }()
+    
+    private lazy var module_Sleep: TorchModule? = {
+        if let filePath = Bundle.main.path(forResource: "sleep_mobile", ofType: "ptl", inDirectory: "include"),
+           let module_Sleep = TorchModule(fileAtPath: filePath){
+            return module_Sleep
+        } else{
+            print("Failed to load model : Sleep")
+            return nil
+        }
+    }()
     
     @Published var resultText = ""
     @Published var scores = [Int]()
@@ -33,6 +67,48 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     override init(){
         super.init()
         speechRecognizer?.delegate = self
+    }
+    
+    func uploadResult(data: InspectionResultDataModel, MMSEData: ClassInspectionResultDataModel, sleepData: ClassInspectionResultDataModel, lifeLogData: ClassInspectionResultDataModel, MMSEScore: Int, completion: @escaping(_ result: Bool?) -> Void){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy. MM. dd. kk:mm:ss"
+        
+        db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").document(dateFormatter.string(from: Date())).setData([
+            "Type": data.getTypeAsString(),
+            "percentOfNormal": data.percentageOfNormal,
+            "percentOfMCI": data.percentageOfMCI,
+            "percentOfDementia": data.percentageOfDementia,
+            "MMSEScore": MMSEScore,
+            "MMSEType": MMSEData.getTypeAsString(),
+            "percentOfMMSENormal": MMSEData.percentageOfNormal,
+            "percentOfMMSEMCI": MMSEData.percentageOfMCI,
+            "percentOfMMSEDementia": MMSEData.percentageOfDementia,
+            "lifeLogType": lifeLogData.max,
+            "percentOfLifeLogNormal": lifeLogData.percentageOfNormal,
+            "percentOfLifeLogMCI": lifeLogData.percentageOfMCI,
+            "percentOfLifeLogDementia": lifeLogData.percentageOfDementia,
+            "sleepType": sleepData.getTypeAsString(),
+            "percentOfSleepNormal": sleepData.percentageOfNormal,
+            "percentOfSleepMCI": sleepData.percentageOfMCI,
+            "percentOfSleepDementia": sleepData.percentageOfDementia
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(false)
+                return
+            }
+            
+            completion(true)
+            return
+        }
+    }
+    
+    private func topK(scores: [NSNumber], labels: [String], count: Int) -> [PredictResult]?{
+        let zippedResults = zip(labels.indices, scores)
+        let sortedResults = zippedResults.sorted { $0.1.floatValue > $1.1.floatValue }.prefix(count)
+        
+        let result = sortedResults.map { PredictResult(score: $0.1.floatValue, label: labels[$0.0]) }
+        return result
     }
     
     func getMMSEQuestion(id: Int) -> String{
@@ -114,7 +190,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         }
     }
     
-    func grading() -> Bool{
+    func grading(job: String) -> Bool{
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         
@@ -123,7 +199,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             case 0:
                 dateFormatter.dateFormat = "yyyy"
                 answers.append(dateFormatter.string(from: Date()))
-                scores.append(dateFormatter.string(from: Date()) == answerList[i] ? 1 : 0)
+                scores.append(dateFormatter.string(from: Date()) == answerList[i] ? 2 : 1)
                 
             case 1:
                 dateFormatter.dateFormat = "mm"
@@ -131,28 +207,28 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                 let month = Int(monthAsString) ?? 0
                 
                 if month+1 == 12 || month+1 == 1 || month+1 == 2{
-                    scores.append(answerList[i] == "겨울" ? 1 : 0)
+                    scores.append(answerList[i] == "겨울" ? 2 : 1)
                     answers.append("겨울")
                 } else if month+1 >= 3 && month+1 < 6{
-                    scores.append(answerList[i] == "봄" ? 1 : 0)
+                    scores.append(answerList[i] == "봄" ? 2 : 1)
                     answers.append("봄")
                 } else if month+1 >= 6 && month+1 < 9{
-                    scores.append(answerList[i] == "여름" ? 1 : 0)
+                    scores.append(answerList[i] == "여름" ? 2 : 1)
                     answers.append("여름")
                 } else if month+1 >= 9 && month+1 < 12{
-                    scores.append(answerList[i] == "가을" ? 1 : 0)
+                    scores.append(answerList[i] == "가을" ? 2 : 1)
                     answers.append("가을")
                 }
                 
             case 2:
                 dateFormatter.dateFormat = "dd"
                 answers.append(dateFormatter.string(from: Date()))
-                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 1 : 0)
+                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
                 
             case 3:
                 dateFormatter.dateFormat = "EEEE"
                 answers.append(dateFormatter.string(from: Date()))
-                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 1 : 0)
+                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
                 
             case 4:
                 dateFormatter.dateFormat = "mm"
@@ -160,14 +236,14 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                 let month = Int(monthAsString) ?? 0
                 
                 answers.append(String(month + 1))
-                scores.append(answerList[i] == String(month + 1) ? 1 : 0)
+                scores.append(answerList[i] == String(month + 1) ? 2 : 1)
                 
             case 5:
                 if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
-                    scores.append(answerList[i] == name ? 1 : 0)
+                    scores.append(answerList[i] == name ? 2 : 1)
                     answers.append(name)
                 } else {
-                    scores.append(answerList[i] == Locale.current.region?.identifier ? 1 : 0)
+                    scores.append(answerList[i] == Locale.current.region?.identifier ? 2 : 1)
                     answers.append(Locale.current.region?.identifier ?? "")
                 }
                 
@@ -177,7 +253,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     guard let answerState = answerState else{ return }
                     
                     self.answers.append(answerState ?? "")
-                    self.scores.append(self.answerList[i] == answerState ? 1 : 0)
+                    self.scores.append(self.answerList[i] == answerState ? 2 : 1)
                 }
 
             case 7:
@@ -186,10 +262,10 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     guard let answerBuilding = answerBuilding else{ return }
                     
                     if answerBuilding != ""{
-                        self.scores.append(self.answerList[i] == answerBuilding ? 1 : 0)
+                        self.scores.append(self.answerList[i] == answerBuilding ? 2 : 1)
                         self.answers.append(answerBuilding ?? "")
                     } else{
-                        self.scores.append(self.answerList[i] != "" ? 1 : 0)
+                        self.scores.append(self.answerList[i] != "" ? 2 : 1)
                         self.answers.append("")
                     }
                 }
@@ -199,73 +275,83 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                 let latLng = self.getCurrentLatLng()
                 let altitude = Double(latLng?.altitude ?? 0.0)
                 
-                scores.append(answerList[i] == String(Int(altitude / 240)) ? 1 : 0)
+                scores.append(answerList[i] == String(Int(altitude / 240)) ? 2 : 1)
                 answers.append(String(Int(altitude / 240)))
                 
             case 9:
-                scores.append(answerList[i] != "" ? 1 : 0)
-                answers.append("")
+                if job == ""{
+                    if answerList[i] == "" || answerList[i] == "무직" || answerList[i] == "없음"{
+                        scores.append(2)
+                    } else{
+                        scores.append(1)
+                    }
+                } else{
+                    scores.append(job == answerList[i] ? 2 : 1)
+                }
+                
+                answers.append(job)
                 
             case 10:
                 answers.append("비행기 연필 소나무")
                 
                 if answerList[i].contains("비행기") && answerList[i].contains("연필") && answerList[i].contains("소나무"){
-                    scores.append(1)
+                    scores.append(2)
                 } else{
-                    scores.append(0)
+                    scores.append(1)
                 }
                 
             case 11:
                 answers.append("93")
-                scores.append(answerList[i] == "93" ? 1 : 0)
+                scores.append(answerList[i] == "93" ? 2 : 1)
 
             case 12:
                 answers.append("86")
-                scores.append(answerList[i] == "86" ? 1 : 0)
+                scores.append(answerList[i] == "86" ? 2 : 1)
 
             case 13:
                 answers.append("79")
-                scores.append(answerList[i] == "79" ? 1 : 0)
+                scores.append(answerList[i] == "79" ? 2 : 1)
                 
             case 14:
                 answers.append("72")
-                scores.append(answerList[i] == "72" ? 1 : 0)
+                scores.append(answerList[i] == "72" ? 2 : 1)
                 
             case 15:
                 answers.append("65")
-                scores.append(answerList[i] == "65" ? 1 : 0)
+                scores.append(answerList[i] == "65" ? 2 : 1)
+                scores.append(0)
                 
             case 16:
                 answers.append("비행기")
-                scores.append(answerList[i] == "비행기" ? 1 : 0)
+                scores.append(answerList[i] == "비행기" ? 2 : 1)
                 
             case 17:
                 answers.append("연필")
-                scores.append(answerList[i] == "연필" ? 1 : 0)
+                scores.append(answerList[i] == "연필" ? 2 : 1)
                 
             case 18:
                 answers.append("소나무")
-                scores.append(answerList[i] == "소나무" ? 1 : 0)
+                scores.append(answerList[i] == "소나무" ? 2 : 1)
                 
             case 19:
                 answers.append("비행기")
-                scores.append(answerList[i] == "비행기" ? 1 : 0)
+                scores.append(answerList[i] == "비행기" ? 2 : 1)
                 
             case 20:
                 answers.append("시계")
-                scores.append(answerList[i] == "시계" ? 1 : 0)
+                scores.append(answerList[i] == "시계" ? 2 : 1)
                 
             case 21:
                 answers.append("백문이 불여일견")
-                scores.append(answerList[i].contains("백문이 불여일견") ? 1 : 0)
+                scores.append(answerList[i].contains("백문이 불여일견") ? 2 : 1)
                 
             case 22, 23, 24, 25, 26:
                 answers.append("")
-                scores.append(answerList[i] == "1" ? 1 : 0)
+                scores.append(answerList[i] == "True" ? 2 : 1)
                 
             case 27:
                 answers.append("")
-                scores.append(answerList[i] != "" ? 1 : 0)
+                scores.append(answerList[i] != "" ? 2 : 1)
                 
             default:
                 break
@@ -274,7 +360,34 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             print(answers)
         }
         
+        scores.append(self.getTotalScore())
+        print(scores)
+        
+        guard module_MMSE != nil else{
+            return false
+        }
+        
+        guard let outputs = module_MMSE!.predict_MMSE(data: UnsafeMutableRawPointer(&scores), outputSize: 3) else{
+            return false
+        }
+        
+        let labels = ["NORMAL", "MCI", "DEMENTIA"]
+        
+        print(topK(scores: outputs, labels: labels, count: 3))
+        
         return true
+    }
+    
+    private func getTotalScore() -> Int{
+        var total = 0
+        
+        for score in scores{
+            if score == 2{
+                total += 1
+            }
+        }
+        
+        return total
     }
     
     private func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) -> CLLocation? {

@@ -23,6 +23,8 @@ struct InspectionView: View {
                                         description: "정확한 진단을 위해 Apple Watch를 착용하고 최소 2주 이상 생활하십시오.")
     ]
     
+    @EnvironmentObject var userManagement: UserManagement
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -49,7 +51,7 @@ struct InspectionView: View {
                     
                     Spacer().frame(height: 20)
                     
-                    NavigationLink(destination: MMSEInspectionMainView()){
+                    NavigationLink(destination: MMSEInspectionMainView().environmentObject(userManagement)){
                         HStack{
                             Spacer()
 
@@ -81,4 +83,5 @@ struct InspectionView: View {
 
 #Preview {
     InspectionView()
+        .environmentObject(UserManagement())
 }

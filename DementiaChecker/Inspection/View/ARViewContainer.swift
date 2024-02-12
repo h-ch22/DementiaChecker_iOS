@@ -10,6 +10,8 @@ import RealityKit
 import ARKit
 
 struct ARViewContainer: UIViewRepresentable{
+    @Binding var isSuccess: Bool
+    
     func makeUIView(context: Context) -> ARView{
         let arView = ARView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         let faceTrackingConfig = ARFaceTrackingConfiguration()
@@ -23,11 +25,15 @@ struct ARViewContainer: UIViewRepresentable{
     }
     
     func makeCoordinator() -> Coordinator {
-        return Coordinator()
+        return Coordinator(isSuccessful: $isSuccess)
     }
     
     class Coordinator: NSObject, ObservableObject, ARSessionDelegate{
-        @Published var isSuccessful = false
+        @Binding var isSuccessful: Bool
+        
+        init(isSuccessful: Binding<Bool>) {
+            _isSuccessful = isSuccessful
+        }
         
         func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
             if let faceAnchor = anchors.first as? ARFaceAnchor{

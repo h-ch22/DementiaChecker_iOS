@@ -16,6 +16,8 @@ struct UserInfoView: View {
     @State private var alertType: UserManagementAlertType? = nil
     @State private var showAlert = false
     @State private var showSignInView = false
+    @State private var homeAddress = ""
+    @State private var workAddress = ""
     
     @AppStorage("authInfo") var authInfo = ""
 
@@ -35,6 +37,51 @@ struct UserInfoView: View {
                         Text(helper.userInfo?.name ?? "알 수 없는 사용자")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
+                        
+                        Text(helper.userInfo?.email ?? "")
+                            .font(.caption)
+                            .foregroundStyle(Color.gray)
+                        
+                        Spacer().frame(height: 10)
+
+                        HStack{
+                            Image(systemName: "house.fill")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+
+                            Text(homeAddress)
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                        }
+                        
+                        if helper.userInfo?.job ?? "" != ""{
+                            Spacer().frame(height: 10)
+                            
+                            HStack{
+                                Image(systemName: "person.2.badge.gearshape.fill")
+                                    .font(.caption)
+                                    .foregroundStyle(Color.gray)
+                                
+                                Text(helper.userInfo?.job ?? "")
+                                    .font(.caption)
+                                    .foregroundStyle(Color.gray)
+
+                            }
+                            
+                            Spacer().frame(height: 10)
+                            
+                            HStack{
+                                Image(systemName: "building.2.fill")
+                                    .font(.caption)
+                                    .foregroundStyle(Color.gray)
+                                
+                                Text(workAddress)
+                                    .font(.caption)
+                                    .foregroundStyle(Color.gray)
+
+                            }
+
+                        }
                         
                         Spacer().frame(height: 20)
                         
@@ -148,6 +195,36 @@ struct UserInfoView: View {
                             }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
                         }
                         
+                        Spacer().frame(height: 20)
+                        
+                        HStack{
+                            Button(action: {}){
+                                VStack{
+                                    Image(systemName: "house.fill")
+                                        .foregroundStyle(Color.txt)
+                                        .font(.title)
+                                    
+                                    Text("집 주소")
+                                        .foregroundStyle(Color.txt)
+                                }.padding()
+                                    .frame(width: 120, height: 100)
+                            }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
+                            
+                            Spacer().frame(width: 20)
+                            
+                            Button(action: {}){
+                                VStack{
+                                    Image(systemName: "building.2.fill")
+                                        .foregroundStyle(Color.txt)
+                                        .font(.title)
+                                    
+                                    Text("직업")
+                                        .foregroundStyle(Color.txt)
+                                }.padding()
+                                    .frame(width: 120, height: 100)
+                            }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
+                        }
+                        
                         Spacer()
                         
                         Image(systemName: "person.crop.artframe")
@@ -250,6 +327,31 @@ struct UserInfoView: View {
                     .fullScreenCover(isPresented: $showSignInView, content: {
                         SignInView()
                     })
+                    .onAppear{
+                        let homeGeocode = helper.userInfo?.homeAddress
+                        let workGeocode = helper.userInfo?.workAddress
+                        
+                        if homeGeocode != "" && homeGeocode != nil{
+                            let homeGeocode_split = homeGeocode!.split(separator: ", ")
+                            
+                            helper.reverseGeocode(geoCode: "\(homeGeocode_split[0]),\(homeGeocode_split[1])", completion: { address in
+                                guard let address = address else{return}
+                                
+                                homeAddress = address
+                            })
+                        }
+                        
+                        if workGeocode != "" && workGeocode != nil{
+                            let workGeocode_split = workGeocode!.split(separator: ", ")
+                            
+                            helper.reverseGeocode(geoCode: "\(workGeocode_split[0]),\(workGeocode_split[1])", completion: { address in
+                                guard let address = address else{return}
+                                
+                                workAddress = address
+                            })
+                        }
+
+                    }
                 
             }
         }

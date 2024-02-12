@@ -1,20 +1,20 @@
 //
-//  InspectionResultDataModel.swift
+//  ClassInspectionResultDataModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by 하창진 on 2/12/24.
 //
 
 import Foundation
 
-struct InspectionResultDataModel: Hashable{
-    var type: InspectionResultTypeModel
+struct ClassInspectionResultDataModel: Hashable{
+    var max: InspectionResultTypeModel
     var percentageOfNormal: Float
     var percentageOfMCI: Float
     var percentageOfDementia: Float
     
     func getTypeAsString() -> String{
-        switch self.type {
+        switch self.max {
         case .NORMAL:
             return "NORMAL"
             

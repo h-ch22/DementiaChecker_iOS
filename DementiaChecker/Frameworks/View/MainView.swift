@@ -105,6 +105,7 @@ struct MainView: View {
             
             .sheet(isPresented: $showModal, content: {
                 InspectionView()
+                    .environmentObject(userManagement)
             })
             .background(Color.background.ignoresSafeArea(.all, edges: [.top, .bottom]))
             

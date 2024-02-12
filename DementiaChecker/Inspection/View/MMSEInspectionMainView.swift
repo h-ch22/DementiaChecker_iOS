@@ -30,6 +30,7 @@ struct MMSEInspectionMainView: View {
     @State private var isRecording = false
     @State private var isPlaying = false
     @StateObject private var helper = InspectionHelper()
+    @EnvironmentObject var userManagement: UserManagement
     
     var body: some View {
         ZStack{
@@ -126,6 +127,7 @@ struct MMSEInspectionMainView: View {
                 .navigationTitle(Text("인지기능 검사 시작하기"))
                 .fullScreenCover(isPresented: $changeView, content: {
                     MMSEInspectionView()
+                        .environmentObject(userManagement)
                 })
                 .animation(.easeInOut)
         }
@@ -134,4 +136,5 @@ struct MMSEInspectionMainView: View {
 
 #Preview {
     MMSEInspectionMainView()
+        .environmentObject(UserManagement())
 }

@@ -15,6 +15,10 @@ struct SignUpView: View {
     @State private var phone = ""
     @State private var birthday = Date.now
     @State private var patientEmail = ""
+    @State private var job = ""
+    @State private var workAddress = ""
+    @State private var homeAddress = ""
+    @State private var isOutOfWork = false
     
     @State private var showProgress = false
     @State private var showAlert = false
@@ -22,14 +26,15 @@ struct SignUpView: View {
     @State private var alertType: UserManagementAlertType? = nil
     
     @StateObject private var helper = UserManagement()
+    @AppStorage("authInfo") var authInfo = ""
     
     let userType: UserTypeModel
 
     private func getEmptyFields() -> Bool{
         if userType == .PATIENT{
-            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "") ? true : false
+            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "" || homeAddress == "" || (!isOutOfWork && (workAddress == "" || job == ""))) ? true : false
         } else{
-            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "" || patientEmail == "") ? true : false
+            return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "" || patientEmail == "" || (!isOutOfWork && (workAddress == "" || job == ""))) ? true : false
         }
         
     }
@@ -112,7 +117,70 @@ struct SignUpView: View {
                         .background(.ultraThinMaterial)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                         .shadow(radius: 5)
-                                      
+                        
+                        Spacer().frame(height: 20)
+                        
+                        HStack{
+                            HStack {
+                                Image(systemName: "house.fill")
+                                    .foregroundStyle(homeAddress == "" ? Color.gray : Color.accent)
+                                
+                                TextField("집 주소", text: $homeAddress)
+                                
+                            }
+                            .disabled(true)
+                            .foregroundStyle(Color.accent)
+                            .padding(20)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
+                            
+                            NavigationLink(destination: AddressSearchView(address: $homeAddress).navigationTitle(Text("주소 검색"))){
+                                Image(systemName: "magnifyingglass")
+                            }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 5))
+                        }
+                        
+                        Spacer().frame(height: 20)
+                        
+                        if !isOutOfWork{
+                            HStack {
+                                Image(systemName: "person.2.badge.gearshape.fill")
+                                    .foregroundStyle(job == "" ? Color.gray : Color.accent)
+                                
+                                TextField("직업", text: $job)
+                            }
+                            .foregroundStyle(Color.accent)
+                            .padding(20)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .shadow(radius: 5)
+                            
+                            Spacer().frame(height: 20)
+
+                            HStack{
+                                HStack {
+                                    Image(systemName: "building.2.fill")
+                                        .foregroundStyle(workAddress == "" ? Color.gray : Color.accent)
+                                    
+                                    TextField("직장 주소", text: $workAddress)
+                                }
+                                .disabled(true)
+                                .foregroundStyle(Color.accent)
+                                .padding(20)
+                                .background(.ultraThinMaterial)
+                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                                .shadow(radius: 5)
+                                
+                                NavigationLink(destination: AddressSearchView(address: $workAddress).navigationTitle(Text("주소 검색"))){
+                                    Image(systemName: "magnifyingglass")
+                                }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 5))
+                            }
+                        }
+                        
+                        Spacer().frame(height: 10)
+                        
+                        CheckBox(isChecked: $isOutOfWork, title: "무직")
+                        
                         if userType == .GUARDIAN{
                             Spacer().frame(height: 20)
                                                         
@@ -169,7 +237,7 @@ struct SignUpView: View {
                                                 guard let result = result else{return}
                                                 
                                                 if result{
-                                                    helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
+                                                    helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
                                                         guard let result = result else{return}
                                                         
                                                         showProgress = false
@@ -188,12 +256,14 @@ struct SignUpView: View {
                                                 }
                                             }
                                         } else{
-                                            helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
+                                            helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT"){ result in
                                                 guard let result = result else{return}
                                                 
                                                 showProgress = false
                                                 
                                                 if result == .SUCCESS{
+                                                    authInfo = "\(AES256Util.encrypt(string: email)), \(AES256Util.encrypt(string: password))"
+
                                                     changeView = true
                                                 } else{
                                                     alertType = result

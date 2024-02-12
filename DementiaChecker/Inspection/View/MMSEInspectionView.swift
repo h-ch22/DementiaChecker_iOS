@@ -19,6 +19,7 @@ struct MMSEInspectionView: View {
     @State private var timer = 0
     @State private var canvasView = PKCanvasView()
     @State private var changeView = false
+    @State private var isSuccess = false
     
     @State private var x: CGFloat = 50
     @State private var y: CGFloat = 400
@@ -30,12 +31,17 @@ struct MMSEInspectionView: View {
     @FocusState private var IsAnswerFieldFocused: Bool
     
     @StateObject private var helper = InspectionHelper()
+    @EnvironmentObject var userManagement: UserManagement
     
     var drag: some Gesture{
         DragGesture()
             .onChanged{ value in
                 self.x = value.location.x
                 self.y = value.location.y
+                
+                if abs(x - 250) > 20 && abs(y - 150) > 20{
+                    isSuccess = true
+                }
             }
     }
     
@@ -161,7 +167,9 @@ struct MMSEInspectionView: View {
                     Spacer()
                     
                     if errorType != nil{
-                        Button(action: {}){
+                        Button(action: {
+                            dismiss()
+                        }){
                             HStack{
                                 Spacer()
 
@@ -195,12 +203,14 @@ struct MMSEInspectionView: View {
                 }.padding(20)
                 .animation(.easeInOut)
                 .onAppear{
-                    let result = helper.grading()
-                    
-                    if result{
-                        currentInspectingType = .SLEEP
-                    } else{
-                        errorType = .MMSE
+                    DispatchQueue.global().async{
+                        let result = helper.grading(job: userManagement.userInfo?.job ?? "")
+                        
+                        if result{
+                            currentInspectingType = .SLEEP
+                        } else{
+                            errorType = .MMSE
+                        }
                     }
                 }
             } else{
@@ -365,6 +375,20 @@ struct MMSEInspectionView: View {
                                         .onChanged{ gesture in
                                             self.dragOffset = gesture.translation
                                             print("start: \(min(max((self.dragOffset.width + 300) / 300, 0), 1)), end: \(min(max(self.dragOffset.width / 300, 0), 1))")
+                                            
+                                            if currentIndex == 22{
+                                                if min(max((self.dragOffset.width + 300) / 300, 0), 1) == 0.0{
+                                                    isSuccess = true
+                                                } else{
+                                                    isSuccess = false
+                                                }
+                                            } else if currentIndex == 23{
+                                                if min(max((self.dragOffset.width + 300) / 300, 0), 1) >= 0.4 && min(max((self.dragOffset.width + 300) / 300, 0), 1) >= 0.6{
+                                                    isSuccess = true
+                                                } else{
+                                                    isSuccess = false
+                                                }
+                                            }
                                         }
                                 )
 
@@ -377,7 +401,7 @@ struct MMSEInspectionView: View {
                     if currentIndex == 26{
                         Spacer().frame(height: 20)
                         
-                        ARViewContainer()
+                        ARViewContainer(isSuccess: $isSuccess)
                     }
                     
                     Spacer()
@@ -387,11 +411,18 @@ struct MMSEInspectionView: View {
                             if currentIndex < 27{
                                 dragOffset = CGSize.zero
                                 canvasView = PKCanvasView()
-                                helper.saveAnswer(answer: answer)
+                                
+                                if currentIndex < 22 || currentIndex == 27{
+                                    helper.saveAnswer(answer: answer)
+                                } else{
+                                    helper.saveAnswer(answer: isSuccess ? "True" : "False")
+                                }
+                                
                                 answer = ""
                                 helper.resultText = ""
                                 IsAnswerFieldFocused = false
                                 isPlayed = false
+                                isSuccess = false
                                 currentIndex += 1
                             } else{
                                 changeView = true
@@ -428,4 +459,5 @@ struct MMSEInspectionView: View {
 
 #Preview {
     MMSEInspectionView()
+        .environmentObject(UserManagement())
 }

@@ -10,7 +10,13 @@ import SwiftUI
 struct InspectionResultsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
+    
     let data: InspectionResultDataModel
+    let mmseData: ClassInspectionResultDataModel
+    let sleepData: ClassInspectionResultDataModel
+    let lifeLogData: ClassInspectionResultDataModel
+    let MMSEResult: [Bool]
+    let MMSEAnswer: [String]
     
     var body: some View {
         ZStack{
@@ -95,64 +101,13 @@ struct InspectionResultsView: View {
                     Spacer().frame(height: 20)
                     
                     Group{
-                        VStack{
-                            HStack{
-                                Image(systemName: "chart.pie.fill")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.gray)
-                                
-                                Text("질환별 발병률")
-                                    .font(.caption)
-                                    .fontWeight(.semibold)
-                                    .foregroundStyle(Color.gray)
-                                
-                                Spacer()
-                            }
-                            
-                            Spacer().frame(height: 20)
-                            
-                            HStack{
-                                Text("정상 (Normal): __\(String(format: "%.2f", data.percentageOfNormal))%__")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.txt)
-                                
-                                Spacer()
-                                
-                                BarGraph(value: data.percentageOfNormal / 100, color: Color.green)
-                            }
-                            
-                            HStack{
-                                Text("경도인지장애 (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.txt)
-                                
-                                Spacer()
-                                
-                                BarGraph(value: data.percentageOfMCI / 100, color: Color.orange)
-                            }
-                            
-                            HStack{
-                                Text("치매 (Dementia): __\(String(format: "%.2f", data.percentageOfDementia))%__")
-                                    .font(.caption)
-                                    .foregroundStyle(Color.txt)
-                                
-                                Spacer()
-                                
-                                BarGraph(value: data.percentageOfDementia / 100, color: Color.red)
-                            }
-                        }.padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color.background)
-                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
-                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
-                        )
+                        IncidenceRateListModel(data: data)
                     }
                     
                     Spacer().frame(height: 20)
 
                     Group{
-                        VStack{
+                        VStack(alignment: .leading){
                             HStack{
                                 Image(systemName: "arrow.triangle.branch")
                                     .font(.caption)
@@ -199,7 +154,21 @@ struct InspectionResultsView: View {
                     Spacer().frame(height: 20)
 
                     Group{
-                        VStack{
+                        MMSEInspectionResultView(MMSEResult: MMSEResult, MMSEAnswer: MMSEAnswer, MMSEData: mmseData)
+                        
+                        Spacer().frame(height: 20)
+
+                        LifeLogIncidenceRateListModel(data: lifeLogData, inspectionType: .WALK)
+                        
+                        Spacer().frame(height: 20)
+
+                        LifeLogIncidenceRateListModel(data: sleepData, inspectionType: .SLEEP)
+                    }
+                    
+                    Spacer().frame(height: 20)
+
+                    Group{
+                        VStack(alignment: .leading){
                             HStack{
                                 Image(systemName: "lightbulb.max.fill")
                                     .font(.caption)
@@ -282,13 +251,32 @@ struct InspectionResultsView: View {
 }
 
 #Preview {
-    InspectionResultsView(data: InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10))
+    InspectionResultsView(
+        data: InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
+        mmseData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
+        sleepData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
+        lifeLogData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
+        MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
+        MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    )
 }
 
 #Preview {
-    InspectionResultsView(data: InspectionResultDataModel(type: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10))
+    InspectionResultsView(data: InspectionResultDataModel(type: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
+                          mmseData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
+                          sleepData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
+                          lifeLogData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
+                          MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
+                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    )
 }
 
 #Preview {
-    InspectionResultsView(data: InspectionResultDataModel(type: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80))
+    InspectionResultsView(data: InspectionResultDataModel(type: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
+                          mmseData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
+                          sleepData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
+                          lifeLogData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
+                          MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
+                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+    )
 }
