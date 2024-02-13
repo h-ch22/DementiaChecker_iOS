@@ -52,7 +52,7 @@ struct MMSEInspectionResultView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(getColor())
                 
-                Text("/ 28")
+                Text("/ 30")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
             }

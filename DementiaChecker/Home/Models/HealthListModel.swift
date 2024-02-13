@@ -30,6 +30,7 @@ struct HealthListModel: View {
             }
             
             Text(value)
+                .fontWeight(.semibold)
                 .foregroundStyle(color)
         }
         .padding(20)

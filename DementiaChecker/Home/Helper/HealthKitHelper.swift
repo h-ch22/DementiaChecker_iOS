@@ -298,7 +298,6 @@ class HealthKitHelper: ObservableObject{
                         let end = sample.endDate
                         self.inBedTime = sample.endDate.timeIntervalSince(sample.startDate)
                         
-                        print(self.inBedTime)
                     }
                     
                 }

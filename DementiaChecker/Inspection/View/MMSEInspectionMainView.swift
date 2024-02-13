@@ -128,6 +128,7 @@ struct MMSEInspectionMainView: View {
                 .fullScreenCover(isPresented: $changeView, content: {
                     MMSEInspectionView()
                         .environmentObject(userManagement)
+                    
                 })
                 .animation(.easeInOut)
         }

@@ -204,13 +204,19 @@ struct MMSEInspectionView: View {
                 .animation(.easeInOut)
                 .onAppear{
                     DispatchQueue.global().async{
-                        let result = helper.grading(job: userManagement.userInfo?.job ?? "")
-                        
-                        if result{
-                            currentInspectingType = .SLEEP
-                        } else{
-                            errorType = .MMSE
+                        helper.grading(job: userManagement.userInfo?.job ?? "",
+                                                    homeLatLng: userManagement.userInfo?.homeAddress ?? "",
+                                       workLatLng: userManagement.userInfo?.workAddress ?? ""){ MMSEResult in
+                            guard let MMSEResult = MMSEResult else{return}
+                            
+                            if MMSEResult{
+                                currentInspectingType = .SLEEP
+                            } else{
+                                errorType = .MMSE
+                            }
                         }
+                        
+
                     }
                 }
             } else{

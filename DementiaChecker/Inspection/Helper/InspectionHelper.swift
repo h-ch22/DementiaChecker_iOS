@@ -190,192 +190,225 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         }
     }
     
-    func grading(job: String) -> Bool{
+    func grading(job: String, homeLatLng: String, workLatLng: String, completion: @escaping(_ result: Bool?) -> Void){
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         
-        for i in 0..<answerList.count{
-            switch i{
-            case 0:
-                dateFormatter.dateFormat = "yyyy"
-                answers.append(dateFormatter.string(from: Date()))
-                scores.append(dateFormatter.string(from: Date()) == answerList[i] ? 2 : 1)
-                
-            case 1:
-                dateFormatter.dateFormat = "mm"
-                let monthAsString = dateFormatter.string(from: Date())
-                let month = Int(monthAsString) ?? 0
-                
-                if month+1 == 12 || month+1 == 1 || month+1 == 2{
-                    scores.append(answerList[i] == "겨울" ? 2 : 1)
-                    answers.append("겨울")
-                } else if month+1 >= 3 && month+1 < 6{
-                    scores.append(answerList[i] == "봄" ? 2 : 1)
-                    answers.append("봄")
-                } else if month+1 >= 6 && month+1 < 9{
-                    scores.append(answerList[i] == "여름" ? 2 : 1)
-                    answers.append("여름")
-                } else if month+1 >= 9 && month+1 < 12{
-                    scores.append(answerList[i] == "가을" ? 2 : 1)
-                    answers.append("가을")
-                }
-                
-            case 2:
-                dateFormatter.dateFormat = "dd"
-                answers.append(dateFormatter.string(from: Date()))
-                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
-                
-            case 3:
-                dateFormatter.dateFormat = "EEEE"
-                answers.append(dateFormatter.string(from: Date()))
-                scores.append(answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
-                
-            case 4:
-                dateFormatter.dateFormat = "mm"
-                let monthAsString = dateFormatter.string(from: Date())
-                let month = Int(monthAsString) ?? 0
-                
-                answers.append(String(month + 1))
-                scores.append(answerList[i] == String(month + 1) ? 2 : 1)
-                
-            case 5:
-                if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
-                    scores.append(answerList[i] == name ? 2 : 1)
-                    answers.append(name)
-                } else {
-                    scores.append(answerList[i] == Locale.current.region?.identifier ? 2 : 1)
-                    answers.append(Locale.current.region?.identifier ?? "")
-                }
-                
-            case 6:
-                let latLng = self.getCurrentLatLng()
-                self.reverseGeoCode(requestType: "State", lat: String(latLng?.coordinate.latitude ?? 0.0), lng: String(latLng?.coordinate.longitude ?? 0.0)){ answerState in
-                    guard let answerState = answerState else{ return }
-                    
-                    self.answers.append(answerState ?? "")
-                    self.scores.append(self.answerList[i] == answerState ? 2 : 1)
-                }
+        let latLng = self.getCurrentLatLng()
+        let lat = String(latLng?.coordinate.latitude ?? 0.0)
+        let lng = String(latLng?.coordinate.longitude ?? 0.0)
+        
+        let altitude = Double(latLng?.altitude ?? 0.0)
 
-            case 7:
-                let latLng = self.getCurrentLatLng()
-                self.reverseGeoCode(requestType: "Building", lat: String(latLng?.coordinate.latitude ?? 0.0), lng: String(latLng?.coordinate.longitude ?? 0.0)){ answerBuilding in
-                    guard let answerBuilding = answerBuilding else{ return }
-                    
-                    if answerBuilding != ""{
-                        self.scores.append(self.answerList[i] == answerBuilding ? 2 : 1)
-                        self.answers.append(answerBuilding ?? "")
-                    } else{
-                        self.scores.append(self.answerList[i] != "" ? 2 : 1)
-                        self.answers.append("")
-                    }
-                }
-
-                
-            case 8:
-                let latLng = self.getCurrentLatLng()
-                let altitude = Double(latLng?.altitude ?? 0.0)
-                
-                scores.append(answerList[i] == String(Int(altitude / 240)) ? 2 : 1)
-                answers.append(String(Int(altitude / 240)))
-                
-            case 9:
-                if job == ""{
-                    if answerList[i] == "" || answerList[i] == "무직" || answerList[i] == "없음"{
-                        scores.append(2)
-                    } else{
-                        scores.append(1)
-                    }
-                } else{
-                    scores.append(job == answerList[i] ? 2 : 1)
-                }
-                
-                answers.append(job)
-                
-            case 10:
-                answers.append("비행기 연필 소나무")
-                
-                if answerList[i].contains("비행기") && answerList[i].contains("연필") && answerList[i].contains("소나무"){
-                    scores.append(2)
-                } else{
-                    scores.append(1)
-                }
-                
-            case 11:
-                answers.append("93")
-                scores.append(answerList[i] == "93" ? 2 : 1)
-
-            case 12:
-                answers.append("86")
-                scores.append(answerList[i] == "86" ? 2 : 1)
-
-            case 13:
-                answers.append("79")
-                scores.append(answerList[i] == "79" ? 2 : 1)
-                
-            case 14:
-                answers.append("72")
-                scores.append(answerList[i] == "72" ? 2 : 1)
-                
-            case 15:
-                answers.append("65")
-                scores.append(answerList[i] == "65" ? 2 : 1)
-                scores.append(0)
-                
-            case 16:
-                answers.append("비행기")
-                scores.append(answerList[i] == "비행기" ? 2 : 1)
-                
-            case 17:
-                answers.append("연필")
-                scores.append(answerList[i] == "연필" ? 2 : 1)
-                
-            case 18:
-                answers.append("소나무")
-                scores.append(answerList[i] == "소나무" ? 2 : 1)
-                
-            case 19:
-                answers.append("비행기")
-                scores.append(answerList[i] == "비행기" ? 2 : 1)
-                
-            case 20:
-                answers.append("시계")
-                scores.append(answerList[i] == "시계" ? 2 : 1)
-                
-            case 21:
-                answers.append("백문이 불여일견")
-                scores.append(answerList[i].contains("백문이 불여일견") ? 2 : 1)
-                
-            case 22, 23, 24, 25, 26:
-                answers.append("")
-                scores.append(answerList[i] == "True" ? 2 : 1)
-                
-            case 27:
-                answers.append("")
-                scores.append(answerList[i] != "" ? 2 : 1)
-                
-            default:
-                break
-            }
+        self.reverseGeoCode(requestType: "State", lat: lat, lng: lng, completion: { state in
+            guard let state = state else{return}
             
-            print(answers)
-        }
-        
-        scores.append(self.getTotalScore())
-        print(scores)
-        
-        guard module_MMSE != nil else{
-            return false
-        }
-        
-        guard let outputs = module_MMSE!.predict_MMSE(data: UnsafeMutableRawPointer(&scores), outputSize: 3) else{
-            return false
-        }
-        
-        let labels = ["NORMAL", "MCI", "DEMENTIA"]
-        
-        print(topK(scores: outputs, labels: labels, count: 3))
-        
-        return true
+            self.reverseGeoCode(requestType: "Building", lat: lat, lng: lng, completion: { building in
+                guard let building = building else{return}
+                
+                for i in 0..<self.answerList.count{
+                    switch i{
+                    case 0:
+                        dateFormatter.dateFormat = "yyyy"
+                        self.answers.append(dateFormatter.string(from: Date()))
+                        self.scores.append(dateFormatter.string(from: Date()) == self.answerList[i] ? 2 : 1)
+                        
+                    case 1:
+                        dateFormatter.dateFormat = "MM"
+                        let monthAsString = dateFormatter.string(from: Date())
+                        let month = Int(monthAsString) ?? 0
+                        
+                        if month == 12 || month == 1 || month == 2{
+                            self.scores.append(self.answerList[i] == "겨울" ? 2 : 1)
+                            self.answers.append("겨울")
+                        } else if month >= 3 && month < 6{
+                            self.scores.append(self.answerList[i] == "봄" ? 2 : 1)
+                            self.answers.append("봄")
+                        } else if month >= 6 && month < 9{
+                            self.scores.append(self.answerList[i] == "여름" ? 2 : 1)
+                            self.answers.append("여름")
+                        } else if month >= 9 && month < 12{
+                            self.scores.append(self.answerList[i] == "가을" ? 2 : 1)
+                            self.answers.append("가을")
+                        }
+                        
+                    case 2:
+                        dateFormatter.dateFormat = "dd"
+                        self.answers.append(dateFormatter.string(from: Date()))
+                        self.scores.append(self.answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
+                        
+                    case 3:
+                        dateFormatter.dateFormat = "EEEE"
+                        self.answers.append(dateFormatter.string(from: Date()))
+                        self.scores.append(self.answerList[i] == dateFormatter.string(from: Date()) ? 2 : 1)
+                        
+                    case 4:
+                        dateFormatter.dateFormat = "MM"
+                        let monthAsString = dateFormatter.string(from: Date())
+                        let month = Int(monthAsString) ?? 0
+                        
+                        self.answers.append(String(month + 1))
+                        self.scores.append(self.answerList[i] == String(month + 1) ? 2 : 1)
+                        
+                    case 5:
+                        if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
+                            self.scores.append(self.answerList[i] == name ? 2 : 1)
+                            self.answers.append(name)
+                        } else {
+                            self.scores.append(self.answerList[i] == Locale.current.region?.identifier ? 2 : 1)
+                            self.answers.append(Locale.current.region?.identifier ?? "")
+                        }
+                        
+                    case 6:
+                        self.answers.append(state ?? "")
+                        self.scores.append(self.answerList[i] == state ? 2 : 1)
+
+                    case 7:
+                        if self.answerList[i] == "집"{
+                            let homeLatLngSplited = homeLatLng.split(separator: ", ")
+                            
+                            let distance = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
+                                      .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            
+                            self.scores.append(distance < 10 ? 2 : 1)
+                            self.answers.append("")
+                        } else if self.answerList[i] == "회사"{
+                            let workLatLngSplited = workLatLng.split(separator: ", ")
+                            
+                            let distance = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
+                                      .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            
+                            self.scores.append(distance < 10 ? 2 : 1)
+                            self.answers.append("")
+                        } else{
+                            if building != ""{
+                                self.scores.append(self.answerList[i] == building ? 2 : 1)
+                                self.answers.append(building ?? "")
+                            } else{
+                                self.scores.append(self.answerList[i] != "" ? 2 : 1)
+                                self.answers.append("")
+                            }
+                        }
+                        
+                    case 8:
+                        self.scores.append(self.answerList[i] == String(Int(altitude / 240)) ? 2 : 1)
+                        self.answers.append(String(Int(altitude / 240)))
+                        
+                    case 9:
+                        if job == ""{
+                            if self.answerList[i] == "" || self.answerList[i] == "무직" || self.answerList[i] == "없음"{
+                                self.scores.append(2)
+                            } else{
+                                self.scores.append(1)
+                            }
+                        } else{
+                            self.scores.append(job == self.answerList[i] ? 2 : 1)
+                        }
+                        
+                        self.answers.append(job)
+                        
+                    case 10:
+                        self.answers.append("비행기 연필 소나무")
+                        
+                        if self.answerList[i].contains("비행기"){
+                            self.scores.append(2)
+                        } else{
+                            self.scores.append(1)
+                        }
+                        
+                        if self.answerList[i].contains("연필"){
+                            self.scores.append(2)
+                        } else{
+                            self.scores.append(1)
+                        }
+                        
+                        if self.answerList[i].contains("소나무"){
+                            self.scores.append(2)
+                        } else{
+                            self.scores.append(1)
+                        }
+                        
+                    case 11:
+                        self.answers.append("93")
+                        self.scores.append(self.answerList[i] == "93" ? 2 : 1)
+
+                    case 12:
+                        self.answers.append("86")
+                        self.scores.append(self.answerList[i] == "86" ? 2 : 1)
+
+                    case 13:
+                        self.answers.append("79")
+                        self.scores.append(self.answerList[i] == "79" ? 2 : 1)
+                        
+                    case 14:
+                        self.answers.append("72")
+                        self.scores.append(self.answerList[i] == "72" ? 2 : 1)
+                        
+                    case 15:
+                        self.answers.append("65")
+                        self.scores.append(self.answerList[i] == "65" ? 2 : 1)
+                        self.scores.append(0)
+                        
+                    case 16:
+                        self.answers.append("비행기")
+                        self.scores.append(self.answerList[i] == "비행기" ? 2 : 1)
+                        
+                    case 17:
+                        self.answers.append("연필")
+                        self.scores.append(self.answerList[i] == "연필" ? 2 : 1)
+                        
+                    case 18:
+                        self.answers.append("소나무")
+                        self.scores.append(self.answerList[i] == "소나무" ? 2 : 1)
+                        
+                    case 19:
+                        self.answers.append("비행기")
+                        self.scores.append(self.answerList[i] == "비행기" ? 2 : 1)
+                        
+                    case 20:
+                        self.answers.append("시계")
+                        self.scores.append(self.answerList[i] == "시계" ? 2 : 1)
+                        
+                    case 21:
+                        self.answers.append("백문이불여일견")
+                        self.scores.append(self.answerList[i].contains("백문이불여일견") ? 2 : 1)
+                        
+                    case 22, 23, 24, 25, 26:
+                        self.answers.append("")
+                        self.scores.append(self.answerList[i] == "True" ? 2 : 1)
+                        
+                    case 27:
+                        self.answers.append("")
+                        self.scores.append(self.answerList[i] != "" ? 2 : 1)
+                        
+                    default:
+                        break
+                    }
+                    
+                    print(self.answers)
+                }
+                
+                self.scores.append(self.getTotalScore())
+                print(self.scores)
+                
+                guard self.module_MMSE != nil else{
+                    completion(false)
+                    return
+                }
+                
+                guard let outputs = self.module_MMSE!.predict_MMSE(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
+                    completion(false)
+                    return
+                }
+                
+                let labels = ["NORMAL", "MCI", "DEMENTIA"]
+                
+                print(self.topK(scores: outputs, labels: labels, count: 3))
+                
+                completion(true)
+                return
+            })
+        })
     }
     
     private func getTotalScore() -> Int{

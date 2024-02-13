@@ -46,10 +46,10 @@ struct HomeView: View {
             return "\(String(format: "%.0f", helper.steps)) 걸음"
             
         case 6:
-            return "\(String(format: "%.2f", helper.distanceWalkingRunning)) M"
+            return "\(String(format: "%.2f", helper.distanceWalkingRunning)) m"
             
         case 7:
-            return "\(String(format: "%.2f", helper.activityEnergy)) KCAL"
+            return "\(String(format: "%.2f", helper.activityEnergy)) kcal"
             
         case 8:
             return "\(String(format: "%.2f", helper.wristTemperature)) °C"
