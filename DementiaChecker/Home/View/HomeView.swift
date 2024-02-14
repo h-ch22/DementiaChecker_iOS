@@ -12,15 +12,15 @@ struct HomeView: View {
     
     @StateObject private var helper = HealthKitHelper()
     @State private var symbols = [
-        "lungs.fill", "heart.fill", "heart.fill", "heart.fill", "bed.double.fill", "flame.fill", "flame.fill", "flame.fill", "figure"
+        "lungs.fill", "heart.fill", "heart.fill", "heart.fill", "bed.double.fill", "flame.fill", "flame.fill", "flame.fill", "figure", "figure.run"
     ]
     
     @State private var colors = [
-        Color.blue, Color.red, Color.red, Color.red, Color.cyan, Color.orange, Color.orange, Color.orange, Color.purple
+        Color.blue, Color.red, Color.red, Color.red, Color.cyan, Color.orange, Color.orange, Color.orange, Color.purple, Color.green
     ]
     
     @State private var titles = [
-        "산소포화도", "심박수", "휴식기 심박수", "걷기 심박수", "수면", "걸음", "움직인 거리", "소모 칼로리", "체온"
+        "산소포화도", "심박수", "휴식기 심박수", "걷기 심박수", "수면", "걸음", "움직인 거리", "소모 칼로리", "체온", "활동 시간"
     ]
     
     @State private var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -54,6 +54,9 @@ struct HomeView: View {
         case 8:
             return "\(String(format: "%.2f", helper.wristTemperature)) °C"
             
+        case 9:
+            return "\(String(format: "%.2f", helper.activityMinute)) 분"
+            
         default:
             return ""
         }
@@ -80,7 +83,7 @@ struct HomeView: View {
                     
                     VStack{                        
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]){
-                            ForEach((0 ..< 9), id: \.self){ index in
+                            ForEach((0 ..< 10), id: \.self){ index in
                                 HealthListModel(symbol: symbols[index], title: titles[index], value: getLifeLogValue(index: index), color: colors[index])
 
                             }
@@ -132,6 +135,10 @@ struct HomeView: View {
                         helper.getWristTemperature(start: start, end: Date()){ result in
                             guard result != nil else{return}
                         }
+                        
+                        helper.getActivityMinutes(start: start, end: Date(), completion: { result in
+                            guard result != nil else{return}
+                        })
                     }
             }
         }

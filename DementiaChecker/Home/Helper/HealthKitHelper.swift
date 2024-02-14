@@ -19,7 +19,8 @@ class HealthKitHelper: ObservableObject{
         HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!,
         HKObjectType.quantityType(forIdentifier: .oxygenSaturation)!,
         HKObjectType.quantityType(forIdentifier: .appleSleepingWristTemperature)!,
-        HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!
+        HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
+        HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
     ])
     
     private let heartRateUnit: HKUnit = HKUnit(from: "count/min")
@@ -35,6 +36,7 @@ class HealthKitHelper: ObservableObject{
     @Published var oxygenSaturation: Double = 0.0
     @Published var inBedTime: Double = 0.0
     @Published var wristTemperature: Double = 0.0
+    @Published var activityMinute: Double = 0.0
     
     func requestAuthorization(completion: @escaping(_ result: Bool?) -> Void){
         self.healthStore.requestAuthorization(toShare: nil, read: read){(success, error) in
@@ -46,6 +48,30 @@ class HealthKitHelper: ObservableObject{
                 completion(success ? true : false)
             }
         }
+    }
+    
+    func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
+        guard let exercieseQuantityType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime) else{return}
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
+        let query = HKStatisticsQuery(quantityType: exercieseQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum){ (_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else{
+                print("Getting activity minutes data : Fail")
+                return
+            }
+            
+            if error != nil{
+                print(error?.localizedDescription)
+                return
+            }
+
+            DispatchQueue.main.async{
+                self.activityMinute = sum.doubleValue(for: HKUnit.minute())
+                completion(sum.doubleValue(for: HKUnit.minute()))
+            }
+        }
+        
+        healthStore.execute(query)
     }
     
     func getHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){

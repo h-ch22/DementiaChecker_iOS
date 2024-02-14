@@ -83,6 +83,19 @@ struct UserInfoView: View {
 
                         }
                         
+                        Spacer().frame(height: 10)
+
+                        HStack{
+                            Image(systemName: "figure.stand")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+                            
+                            Text("\(helper.userInfo?.gender == "Male" ? "남성" : "여성") (\(Int(helper.getAge()))세) | \(helper.userInfo?.tall ?? "")cm, \(helper.userInfo?.weight ?? "")kg")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
+
+                        }
+
                         Spacer().frame(height: 20)
                         
                         
@@ -219,6 +232,36 @@ struct UserInfoView: View {
                                         .font(.title)
                                     
                                     Text("직업")
+                                        .foregroundStyle(Color.txt)
+                                }.padding()
+                                    .frame(width: 120, height: 100)
+                            }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
+                        }
+                        
+                        Spacer().frame(height: 20)
+                        
+                        HStack{
+                            Button(action: {}){
+                                VStack{
+                                    Image(systemName: "figure.stand")
+                                        .foregroundStyle(Color.txt)
+                                        .font(.title)
+                                    
+                                    Text("키")
+                                        .foregroundStyle(Color.txt)
+                                }.padding()
+                                    .frame(width: 120, height: 100)
+                            }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 0, cornerRadius: 15))
+                            
+                            Spacer().frame(width: 20)
+                            
+                            Button(action: {}){
+                                VStack{
+                                    Image(systemName: "gauge")
+                                        .foregroundStyle(Color.txt)
+                                        .font(.title)
+                                    
+                                    Text("몸무게")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)

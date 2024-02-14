@@ -11,12 +11,15 @@ struct InspectionResultsView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     
+    @State private var showMMSEResult = false
+    
     let data: InspectionResultDataModel
     let mmseData: ClassInspectionResultDataModel
     let sleepData: ClassInspectionResultDataModel
     let lifeLogData: ClassInspectionResultDataModel
-    let MMSEResult: [Bool]
+    let MMSEResult: [Int]
     let MMSEAnswer: [String]
+    let answerList: [String]
     
     var body: some View {
         ZStack{
@@ -154,7 +157,27 @@ struct InspectionResultsView: View {
                     Spacer().frame(height: 20)
 
                     Group{
-                        MMSEInspectionResultView(MMSEResult: MMSEResult, MMSEAnswer: MMSEAnswer, MMSEData: mmseData)
+                        MMSEInspectionResultView(MMSEResult: MMSEResult, MMSEData: mmseData)
+                        
+                        Spacer().frame(height: 20)
+                        
+                        HStack{
+                            Spacer()
+                            
+                            Button(action: {
+                                showMMSEResult = true
+                            }){
+                                HStack{
+                                    Text("인지기능검사 결과 확인")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.txt)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .font(.caption)
+                                        .foregroundStyle(Color.txt)
+                                }
+                            }
+                        }
                         
                         Spacer().frame(height: 20)
 
@@ -245,6 +268,9 @@ struct InspectionResultsView: View {
                             .multilineTextAlignment(.center)
                     }
                 }.padding(20)
+                    .sheet(isPresented: $showMMSEResult, content: {
+                        MMSEResultsView(MMSEResult: MMSEResult, MMSEData: mmseData)
+                    })
             }
         }
     }
@@ -256,8 +282,9 @@ struct InspectionResultsView: View {
         mmseData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
         sleepData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
         lifeLogData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10),
-        MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
-        MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+        MMSEResult: [0],
+        MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+        answerList: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     )
 }
 
@@ -266,8 +293,9 @@ struct InspectionResultsView: View {
                           mmseData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
                           sleepData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
                           lifeLogData: ClassInspectionResultDataModel(max: .MCI, percentageOfNormal: 10, percentageOfMCI: 80, percentageOfDementia: 10),
-                          MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
-                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+                          MMSEResult: [0],
+                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+                          answerList: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     )
 }
 
@@ -276,7 +304,8 @@ struct InspectionResultsView: View {
                           mmseData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
                           sleepData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
                           lifeLogData: ClassInspectionResultDataModel(max: .DEMENTIA, percentageOfNormal: 10, percentageOfMCI: 10, percentageOfDementia: 80),
-                          MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
-                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+                          MMSEResult: [0],
+                          MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+                          answerList: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
     )
 }

@@ -21,8 +21,8 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "person.fill")
-                            .foregroundStyle(Color.accent)
-                        
+                            .foregroundStyle(Color.txt)
+
                         VStack(alignment: .leading){
                             Text("유산 관리자 시작하기")
                                 .fontWeight(.semibold)
@@ -39,8 +39,8 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "lock.doc.fill")
-                            .foregroundStyle(Color.accent)
-                        
+                            .foregroundStyle(Color.txt)
+
                         VStack(alignment: .leading){
                             Text("접근 제한")
                                 .fontWeight(.semibold)
@@ -57,7 +57,7 @@ struct DigitalInheritanceMainView: View {
                     
                     HStack{
                         Image(systemName: "doc.fill")
-                            .foregroundStyle(Color.accent)
+                            .foregroundStyle(Color.txt)
                         
                         VStack(alignment: .leading){
                             Text("디지털 유산 물려주기")

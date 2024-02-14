@@ -71,25 +71,45 @@ struct MainView: View {
                             }
                             
                             else{
-                                VStack{
-                                    Image(systemName: icons[number])
-                                        .font(.system(
-                                            size: 20,
-                                            weight: .regular,
-                                            design: .default
-                                        ))
-                                        .foregroundStyle(selectedIndex == number ? Color.txt : Color.gray)
-                                    
-                                    Spacer().frame(height: 5)
-                                    
-                                    if selectedIndex == number{
-                                        Text(titles[number])
-                                            .font(.caption)
-                                            .foregroundStyle(Color.txt)
-                                    }
-                                }.padding(selectedIndex == number ? 10 : 0)
-                                    .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.background : Color.clear).opacity(0.6))
-                                
+                                if UIDevice.current.userInterfaceIdiom == .pad{
+                                    HStack{
+                                        Image(systemName: icons[number])
+                                            .font(.system(
+                                                size: 20,
+                                                weight: .regular,
+                                                design: .default
+                                            ))
+                                            .foregroundStyle(selectedIndex == number ? Color.txt : Color.gray)
+                                        
+                                        Spacer().frame(width: 5)
+                                        
+                                        if selectedIndex == number{
+                                            Text(titles[number])
+                                                .font(.caption)
+                                                .foregroundStyle(Color.txt)
+                                        }
+                                    }.padding(selectedIndex == number ? 10 : 0)
+                                        .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.background : Color.clear).opacity(0.6))
+                                } else{
+                                    VStack{
+                                        Image(systemName: icons[number])
+                                            .font(.system(
+                                                size: 20,
+                                                weight: .regular,
+                                                design: .default
+                                            ))
+                                            .foregroundStyle(selectedIndex == number ? Color.txt : Color.gray)
+                                        
+                                        Spacer().frame(height: 5)
+                                        
+                                        if selectedIndex == number{
+                                            Text(titles[number])
+                                                .font(.caption)
+                                                .foregroundStyle(Color.txt)
+                                        }
+                                    }.padding(selectedIndex == number ? 10 : 0)
+                                        .background(RoundedRectangle(cornerRadius: selectedIndex == number ? 15 : 0).foregroundStyle(selectedIndex == number ? Color.background : Color.clear).opacity(0.6))
+                                }
                             }
                             
                         }

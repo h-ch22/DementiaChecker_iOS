@@ -16,9 +16,12 @@ struct UserInfoModel: Hashable{
     var homeAddress: String
     var job: String
     var workAddress: String
+    var tall: String
+    var weight: String
+    var gender: String
     var userType: UserTypeModel
     
-    init(email: String, name: String, phone: String, birthDay: String, patientEmail: String, homeAddress: String, job: String, workAddress: String, userType: UserTypeModel) {
+    init(email: String, name: String, phone: String, birthDay: String, patientEmail: String, homeAddress: String, job: String, workAddress: String, tall: String, weight: String, gender: String, userType: UserTypeModel) {
         self.email = email
         self.name = name
         self.phone = phone
@@ -27,6 +30,9 @@ struct UserInfoModel: Hashable{
         self.homeAddress = homeAddress
         self.job = job
         self.workAddress = workAddress
+        self.tall = tall
+        self.weight = weight
+        self.gender = gender
         self.userType = userType
     }
 }

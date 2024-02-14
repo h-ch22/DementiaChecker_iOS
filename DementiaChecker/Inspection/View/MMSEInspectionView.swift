@@ -19,6 +19,7 @@ struct MMSEInspectionView: View {
     @State private var timer = 0
     @State private var canvasView = PKCanvasView()
     @State private var changeView = false
+    @State private var showResultView = false
     @State private var isSuccess = false
     
     @State private var x: CGFloat = 50
@@ -105,30 +106,29 @@ struct MMSEInspectionView: View {
                     Spacer().frame(height: 10)
                     
                     HStack{
-                        if errorType != .SLEEP{
+                        if errorType != .WALK{
                             switch currentInspectingType {
                             case .MMSE:
                                 EmptyView()
                                 
-                            case .SLEEP:
+                            case .WALK:
                                 ProgressView()
 
-                            case .WALK:
+                            case .SLEEP:
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(Color.green)
                             }
-                        } else if errorType == .SLEEP{
+                        } else if errorType == .WALK{
                             Image(systemName: "exclamationmark.circle.fill")
                                 .foregroundStyle(Color.orange)
                         }
 
-                        
                         Spacer().frame(width: 10)
 
-                        Text("수면 검사")
-                            .foregroundStyle(currentInspectingType == .SLEEP ? Color.txt : Color.gray)
-                            .fontWeight(currentInspectingType == .SLEEP ? .semibold : .regular)
-                            .font(currentInspectingType == .SLEEP ? .headline : .caption)
+                        Text("라이프로그 데이터 검사")
+                            .foregroundStyle(currentInspectingType == .WALK ? Color.txt : Color.gray)
+                            .fontWeight(currentInspectingType == .WALK ? .semibold : .regular)
+                            .font(currentInspectingType == .WALK ? .headline : .caption)
                     }
                     
                     Spacer().frame(height: 10)
@@ -137,15 +137,15 @@ struct MMSEInspectionView: View {
                         if isDone{
                             Image(systemName: "checkmark")
                                 .foregroundStyle(Color.green)
-                        } else if errorType != .WALK{
+                        } else if errorType != .SLEEP && errorType != .WALK{
                             switch currentInspectingType {
-                            case .MMSE, .SLEEP:
+                            case .MMSE, .WALK:
                                 EmptyView()
                                 
-                            case .WALK:
+                            case .SLEEP:
                                 ProgressView()
                             }
-                        } else if errorType == .WALK{
+                        } else if errorType == .SLEEP{
                             Image(systemName: "exclamationmark.circle.fill")
                                 .foregroundStyle(Color.orange)
                         }
@@ -153,12 +153,12 @@ struct MMSEInspectionView: View {
                         Spacer().frame(width: 10)
                         
                         if !isDone{
-                            Text("라이프로그 데이터 검사")
-                                .foregroundStyle(currentInspectingType == .WALK ? Color.txt : Color.gray)
-                                .fontWeight(currentInspectingType == .WALK ? .semibold : .regular)
-                                .font(currentInspectingType == .WALK ? .headline : .caption)
+                            Text("수면 패턴 데이터 검사")
+                                .foregroundStyle(currentInspectingType == .SLEEP && errorType != .WALK ? Color.txt : Color.gray)
+                                .fontWeight(currentInspectingType == .SLEEP && errorType != .WALK ? .semibold : .regular)
+                                .font(currentInspectingType == .SLEEP && errorType != .WALK ? .headline : .caption)
                         } else{
-                            Text("라이프로그 데이터 검사")
+                            Text("수면 패턴 데이터 검사")
                                 .foregroundStyle(Color.gray)
                                 .font(.caption)
                         }
@@ -184,7 +184,9 @@ struct MMSEInspectionView: View {
                             }
                         }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                     } else if isDone{
-                        Button(action: {}){
+                        Button(action: {
+                            showResultView = true
+                        }){
                             HStack{
                                 Spacer()
 
@@ -198,10 +200,22 @@ struct MMSEInspectionView: View {
 
                             }
                         }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
+                        
+                        Spacer().frame(height: 20)
+                        
+                        Button(action: {
+                            dismiss()
+                        }){
+                            Text("닫기")
+                                .foregroundStyle(Color.accentColor)
+                        }
                     }
                     
                 }.padding(20)
                 .animation(.easeInOut)
+                .fullScreenCover(isPresented: $showResultView, content: {
+                    InspectionResultsView(data: helper.inspectionResult, mmseData: helper.mmseData, sleepData: helper.sleepData, lifeLogData: helper.lifeLogData, MMSEResult: helper.scores, MMSEAnswer: helper.answers, answerList: helper.answerList)
+                })
                 .onAppear{
                     DispatchQueue.global().async{
                         helper.grading(job: userManagement.userInfo?.job ?? "",
@@ -210,8 +224,34 @@ struct MMSEInspectionView: View {
                             guard let MMSEResult = MMSEResult else{return}
                             
                             if MMSEResult{
-                                currentInspectingType = .SLEEP
+                                currentInspectingType = .WALK
+                                
+                                helper.predictLifeLog(tall: Double(userManagement.userInfo?.tall ?? "0.0") ?? 0.0,
+                                                      weight: Double(userManagement.userInfo?.weight ?? "0.0") ?? 0.0,
+                                                      age: Double(userManagement.getAge()),
+                                                      gender: userManagement.userInfo?.gender ?? "Male",
+                                                      completion: { lifeLogResult in
+                                    guard let lifeLogResult = lifeLogResult else{return}
+                                    
+                                    if lifeLogResult{
+                                        currentInspectingType = .SLEEP
+                                        
+                                        let result = helper.predictSleep()
+                                        
+                                        if result{
+                                            helper.calculateInspectionResult()
+                                            isDone = true
+                                        } else{
+                                            currentInspectingType = .SLEEP
+                                            errorType = .SLEEP
+                                        }
+                                    } else{
+                                        currentInspectingType = .WALK
+                                        errorType = .WALK
+                                    }
+                                })
                             } else{
+                                currentInspectingType = .MMSE
                                 errorType = .MMSE
                             }
                         }

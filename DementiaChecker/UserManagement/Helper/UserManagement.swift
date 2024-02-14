@@ -41,7 +41,7 @@ class UserManagement: ObservableObject{
         }
     }
     
-    func signUp(email: String, password: String, name: String, phone: String, birthday: String, patientEmail: String, homeAddress: String, job: String, workAddress: String, userType: String, completion: @escaping(_ result: UserManagementAlertType?) -> Void){
+    func signUp(email: String, password: String, name: String, phone: String, birthday: String, patientEmail: String, homeAddress: String, job: String, workAddress: String, tall: String, weight: String, userType: String, gender: String, completion: @escaping(_ result: UserManagementAlertType?) -> Void){
         
         self.geoCode(address: homeAddress, completion: { homeGeocode in
             guard let homeGeocode = homeGeocode else{return}
@@ -66,7 +66,7 @@ class UserManagement: ObservableObject{
                             return
                         }
                         
-                        self.setUserInfo(email: email, name: name, phone: phone, birthday: birthday, patientEmail: patientEmail, userType: userType, homeAddress: homeGeocode, job: job, workAddress: workGeocode, completion: { result in
+                        self.setUserInfo(email: email, name: name, phone: phone, birthday: birthday, patientEmail: patientEmail, userType: userType, homeAddress: homeGeocode, job: job, workAddress: workGeocode, tall: tall, weight: weight, gender: gender, completion: { result in
                             guard let result = result else{return}
                             
                             if result{
@@ -180,7 +180,7 @@ class UserManagement: ObservableObject{
         }
     }
     
-    func setUserInfo(email: String, name: String, phone: String, birthday: String, patientEmail: String, userType: String, homeAddress: String, job: String, workAddress: String, completion: @escaping(_ result: Bool?) -> Void){
+    func setUserInfo(email: String, name: String, phone: String, birthday: String, patientEmail: String, userType: String, homeAddress: String, job: String, workAddress: String, tall: String, weight: String, gender: String, completion: @escaping(_ result: Bool?) -> Void){
         db.collection("Users").document(auth.currentUser?.uid ?? "").setData([
             "email": AES256Util.encrypt(string: email),
             "name": AES256Util.encrypt(string: name),
@@ -190,6 +190,9 @@ class UserManagement: ObservableObject{
             "homeAddress": AES256Util.encrypt(string: homeAddress),
             "job": AES256Util.encrypt(string: job),
             "workAddress": AES256Util.encrypt(string: workAddress),
+            "tall": AES256Util.encrypt(string: tall),
+            "weight": AES256Util.encrypt(string: weight),
+            "gender": AES256Util.encrypt(string: gender),
             "userType": userType
         ]){ error in
             if error != nil{
@@ -220,6 +223,9 @@ class UserManagement: ObservableObject{
                                               homeAddress: AES256Util.decrypt(encoded: document?.get("homeAddress") as? String ?? ""),
                                               job: AES256Util.decrypt(encoded: document?.get("job") as? String ?? ""),
                                               workAddress: AES256Util.decrypt(encoded: document?.get("workAddress") as? String ?? ""),
+                                              tall: AES256Util.decrypt(encoded: document?.get("tall") as? String ?? ""),
+                                              weight: AES256Util.decrypt(encoded: document?.get("weight") as? String ?? ""),
+                                              gender: AES256Util.decrypt(encoded: document?.get("gender") as? String ?? ""),
                                               userType: document?.get("userType") as? String ?? "PATIENT" == "PATIENT" ? .PATIENT : .GUARDIAN)
                 
                 completion(true)
@@ -247,6 +253,9 @@ class UserManagement: ObservableObject{
                                                  homeAddress: AES256Util.decrypt(encoded: document.get("homeAddress") as? String ?? ""),
                                                  job: AES256Util.decrypt(encoded: document.get("job") as? String ?? ""),
                                                  workAddress: AES256Util.decrypt(encoded: document.get("workAddress") as? String ?? ""),
+                                                 tall: AES256Util.decrypt(encoded: document.get("tall") as? String ?? ""),
+                                                 weight: AES256Util.decrypt(encoded: document.get("weight") as? String ?? ""),
+                                                 gender: AES256Util.decrypt(encoded: document.get("gender") as? String ?? ""),
                                                  userType: document.get("userType") as? String ?? "PATIENT" == "PATIENT" ? .PATIENT : .GUARDIAN))
                 }
                 
@@ -287,6 +296,18 @@ class UserManagement: ObservableObject{
         }
     }
     
+    func getAge() -> Int{
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy. MM. dd."
+        
+        let calendar = Calendar.current
+        
+        let birthDay = dateFormatter.date(from: userInfo?.birthDay ?? "19991. 01. 01.")
+        let ageComponents = calendar.dateComponents([.year], from: birthDay!, to: now)
+        return ageComponents.year!
+    }
+    
     func getInheritanceGuardian(completion: @escaping(_ result: [UserInfoModel]?) -> Void){
         var inheritanceGuardians: [UserInfoModel] = []
         
@@ -317,6 +338,9 @@ class UserManagement: ObservableObject{
                                                                           homeAddress: AES256Util.decrypt(encoded: document.get("homeAddress") as? String ?? ""),
                                                                           job: AES256Util.decrypt(encoded: document.get("job") as? String ?? ""),
                                                                           workAddress: AES256Util.decrypt(encoded: document.get("workAddress") as? String ?? ""),
+                                                                          tall: AES256Util.decrypt(encoded: document.get("tall") as? String ?? ""),
+                                                                          weight: AES256Util.decrypt(encoded: document.get("weight") as? String ?? ""),
+                                                                          gender: AES256Util.decrypt(encoded: document.get("gender") as? String ?? ""),
                                                                           userType: document.get("userType") as? String ?? "PATIENT" == "PATIENT" ? .PATIENT : .GUARDIAN))
                             }
                             
@@ -334,6 +358,17 @@ class UserManagement: ObservableObject{
             }
             
             
+        }
+    }
+    
+    func sendResetPasswordMail(email: String, completion: @escaping(_ result: Bool?) -> Void){
+        auth.sendPasswordReset(withEmail: email){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
         }
     }
     

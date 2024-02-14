@@ -52,7 +52,7 @@ struct DiaryView: View {
                 if showProgress{
                     Spacer()
                     
-                    ProgressView()
+                    DotProgressView()
                     
                     Spacer()
                 } else if showError{

@@ -14,9 +14,19 @@ import Alamofire
 import SwiftyJSON
 import FirebaseFirestore
 import FirebaseAuth
+import HealthKit
 
 class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, CLLocationManagerDelegate{
-    private var answerList: [String] = []
+    @Published var resultText = ""
+    @Published var scores = [Int]()
+    @Published var answers = [String]()
+    @Published var answerList: [String] = []
+
+    @Published var inspectionResult: InspectionResultDataModel = InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
+    @Published var mmseData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
+    @Published var sleepData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
+    @Published var lifeLogData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
+    
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     
@@ -29,6 +39,9 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     private let RGC_URL = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?"
     private let db = Firestore.firestore()
     private let auth = Auth.auth()
+    private let labels = ["NORMAL", "MCI", "DEMENTIA"]
+    private let healthStore = HKHealthStore()
+
     
     private lazy var module_MMSE: TorchModule? = {
         if let filePath = Bundle.main.path(forResource: "cognitive_mobile", ofType: "ptl", inDirectory: "include"),
@@ -59,10 +72,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             return nil
         }
     }()
-    
-    @Published var resultText = ""
-    @Published var scores = [Int]()
-    @Published var answers = [String]()
     
     override init(){
         super.init()
@@ -109,6 +118,43 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         
         let result = sortedResults.map { PredictResult(score: $0.1.floatValue, label: labels[$0.0]) }
         return result
+    }
+    
+    private func getMaxType(result: [PredictResult]) -> InspectionResultTypeModel?{
+        var max: Float = 0.0
+        var label = ""
+        
+        for prediction in result{
+            if prediction.score > max{
+                max = prediction.score
+                label = prediction.label
+            }
+        }
+        
+        switch label{
+        case "NORMAL": return .NORMAL
+        case "MCI": return .MCI
+        case "DEMENTIA": return .DEMENTIA
+        default: return nil
+        }
+    }
+    
+    private func getPercentageByTypes(result: [PredictResult]) -> (Float, Float, Float){
+        var percentageOfDementia: Float = 0.0
+        var percentageOfMCI: Float = 0.0
+        var percentageOfNormal: Float = 0.0
+        
+        for prediction in result{
+            if prediction.label == "NORMAL"{
+                percentageOfNormal = prediction.score
+            } else if prediction.label == "MCI"{
+                percentageOfMCI = prediction.score
+            } else if prediction.label == "DEMENTIA"{
+                percentageOfDementia = prediction.score
+            }
+        }
+        
+        return (percentageOfNormal, percentageOfMCI, percentageOfDementia)
     }
     
     func getMMSEQuestion(id: Int) -> String{
@@ -247,8 +293,8 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         let monthAsString = dateFormatter.string(from: Date())
                         let month = Int(monthAsString) ?? 0
                         
-                        self.answers.append(String(month + 1))
-                        self.scores.append(self.answerList[i] == String(month + 1) ? 2 : 1)
+                        self.answers.append(String(month))
+                        self.scores.append(self.answerList[i] == String(month) ? 2 : 1)
                         
                     case 5:
                         if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
@@ -264,33 +310,38 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         self.scores.append(self.answerList[i] == state ? 2 : 1)
 
                     case 7:
+                        let homeLatLngSplited = homeLatLng.split(separator: ", ")
+
+                        let distanceToHome = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
+                                  .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                        
+                        let workLatLngSplited = workLatLng.split(separator: ", ")
+                        
+                        let distanceToWork = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
+                                  .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                        
+                        if distanceToHome < 10{
+                            self.answers.append("집")
+                        } else if distanceToWork < 10{
+                            self.answers.append("회사")
+                        } else{
+                            self.answers.append(building)
+                        }
+                                                
                         if self.answerList[i] == "집"{
-                            let homeLatLngSplited = homeLatLng.split(separator: ", ")
-                            
-                            let distance = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                                      .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
-                            
-                            self.scores.append(distance < 10 ? 2 : 1)
-                            self.answers.append("")
+                            self.scores.append(distanceToHome < 10 ? 2 : 1)
                         } else if self.answerList[i] == "회사"{
-                            let workLatLngSplited = workLatLng.split(separator: ", ")
-                            
-                            let distance = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                                      .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
-                            
-                            self.scores.append(distance < 10 ? 2 : 1)
-                            self.answers.append("")
+                            self.scores.append(distanceToWork < 10 ? 2 : 1)
                         } else{
                             if building != ""{
                                 self.scores.append(self.answerList[i] == building ? 2 : 1)
-                                self.answers.append(building ?? "")
                             } else{
                                 self.scores.append(self.answerList[i] != "" ? 2 : 1)
-                                self.answers.append("")
                             }
                         }
                         
                     case 8:
+                        print(String(altitude))
                         self.scores.append(self.answerList[i] == String(Int(altitude / 240)) ? 2 : 1)
                         self.answers.append(String(Int(altitude / 240)))
                         
@@ -308,8 +359,10 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         self.answers.append(job)
                         
                     case 10:
-                        self.answers.append("비행기 연필 소나무")
-                        
+                        self.answers.append("비행기")
+                        self.answers.append("연필")
+                        self.answers.append("소나무")
+
                         if self.answerList[i].contains("비행기"){
                             self.scores.append(2)
                         } else{
@@ -396,19 +449,237 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     return
                 }
                 
-                guard let outputs = self.module_MMSE!.predict_MMSE(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
+                guard let outputs = self.module_MMSE!.predict(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
                     completion(false)
                     return
                 }
                 
-                let labels = ["NORMAL", "MCI", "DEMENTIA"]
+                print(outputs)
+                                
+                let result = self.topK(scores: outputs, labels: self.labels, count: 3)
+                print(result)
                 
-                print(self.topK(scores: outputs, labels: labels, count: 3))
+                guard result != nil else{
+                    completion(false)
+                    return
+                }
+                
+                let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
+                let max = self.getMaxType(result: result!)
+                
+                self.mmseData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
                 
                 completion(true)
                 return
             })
         })
+    }
+    
+    func predictLifeLog(tall: Double, weight: Double, age: Double, gender: String, completion: @escaping(_ result: Bool?) -> Void){
+        let basalMetabolicRate = gender == "Male" ? Double(66.47) + (13.75 * weight) + (5.0 * tall) - (6.76 * age) : Double(655.1) + (9.56 * weight) + (1.85 * tall) - (4.68 * age)
+        let start = Calendar.current.startOfDay(for: Date())
+
+        self.getActivityEnergyBurned(start: start, end: Date(), completion: { activeCalorie in
+            guard activeCalorie != nil else{
+                completion(false)
+                return
+            }
+            
+            let usedAllCalrorie = activeCalorie * basalMetabolicRate
+            
+            self.getDistanceWalkingRunning(start: start, end: Date(), completion: { distance in
+                guard distance != nil else{
+                    completion(false)
+                    return
+                }
+                
+                self.getStepCount(start: start, end: Date(), completion: { stepCount in
+                    guard stepCount != nil else{
+                        completion(false)
+                        return
+                    }
+                    
+                    self.getActivityMinutes(start: start, end: Date(), completion: { activityMinutes in
+                        guard activityMinutes != nil else{
+                            completion(false)
+                            return
+                        }
+                        
+                        guard self.module_LifeLog != nil else{
+                            completion(false)
+                            return
+                        }
+                        
+                        var data = [activeCalorie, usedAllCalrorie, distance, stepCount, activityMinutes]
+                        
+                        guard let outputs = self.module_LifeLog!.predict(data: UnsafeMutableRawPointer(&data), outputSize: 3) else{
+                            completion(false)
+                            return
+                        }
+                        
+                        print(outputs)
+                                        
+                        let result = self.topK(scores: outputs, labels: self.labels, count: 3)
+                        print(result)
+                        
+                        guard result != nil else{
+                            completion(false)
+                            return
+                        }
+                        
+                        let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
+                        let max = self.getMaxType(result: result!)
+                        
+                        self.lifeLogData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
+                        
+                        completion(true)
+                        return
+                    })
+                })
+            })
+        })
+    }
+    
+    func predictSleep() -> Bool{
+        guard self.module_Sleep != nil else{
+            return false
+        }
+        
+        return true
+    }
+    
+    func calculateInspectionResult() -> Bool{
+        var percentageOfNormal: Float = (mmseData.percentageOfNormal * Float(0.5)) + (lifeLogData.percentageOfNormal * Float(0.25)) + (sleepData.percentageOfNormal * Float(0.25))
+        var percentageOfMCI: Float = (mmseData.percentageOfMCI * Float(0.5)) + (lifeLogData.percentageOfMCI * Float(0.25)) + (sleepData.percentageOfMCI * Float(0.25))
+        var percentageOfDementia: Float = (mmseData.percentageOfDementia * Float(0.5)) + (lifeLogData.percentageOfDementia * Float(0.25)) + (sleepData.percentageOfDementia * Float(0.25))
+        
+        var max: InspectionResultTypeModel = .NORMAL
+        
+        if percentageOfNormal > percentageOfMCI{
+            max = .NORMAL
+            
+            if percentageOfDementia > percentageOfNormal{
+                max = .DEMENTIA
+            } else{
+                max = .NORMAL
+            }
+        } else{
+            max = .MCI
+            
+            if percentageOfDementia > percentageOfMCI{
+                max = .DEMENTIA
+            } else{
+                max = .MCI
+            }
+        }
+                
+        self.inspectionResult = InspectionResultDataModel(type: max, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
+        
+        return true
+    }
+    
+    private func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
+        guard let exercieseQuantityType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime) else{return}
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
+        let query = HKStatisticsQuery(quantityType: exercieseQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum){ (_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else{
+                print("Getting activity minutes data : Fail")
+                return
+            }
+            
+            if error != nil{
+                print(error?.localizedDescription)
+                return
+            }
+
+            DispatchQueue.main.async{
+                completion(sum.doubleValue(for: HKUnit.minute()))
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    private func getDistanceWalkingRunning(start: Date, end: Date, completion: @escaping (Double) -> Void){
+        guard let distanceWalkingRunningType = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning) else{
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: distanceWalkingRunningType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
+            var distance: Double = 0
+            
+            guard let result = result, let sum = result.sumQuantity() else{
+                print("Getting Distance Walking Running Data : Fail")
+                return
+            }
+            
+            distance = sum.doubleValue(for: HKUnit.meter())
+            
+            DispatchQueue.main.async{
+                completion(distance)
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    private func getActivityEnergyBurned(start: Date, end: Date, completion: @escaping (Double) -> Void){
+        guard let activeEnergyBurnedType = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned) else{
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: activeEnergyBurnedType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
+            var cal: Double = 0
+            
+            if error != nil{
+                print(error?.localizedDescription)
+                return
+            }
+            
+            guard let result = result, let sum = result.sumQuantity() else{
+                print("Getting Activity Energy Burned Data : Fail")
+                return
+            }
+            
+            cal = sum.doubleValue(for: HKUnit.kilocalorie())
+            
+            DispatchQueue.main.async{
+                completion(cal)
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    private func getStepCount(start: Date, end: Date, completion: @escaping (Double) -> Void){
+        guard let stepQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else{
+            return
+        }
+        
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        
+        let query = HKStatisticsQuery(quantityType: stepQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
+            guard let result = result, let sum = result.sumQuantity() else{
+                print("Getting step count data : Fail")
+                return
+            }
+            
+            if error != nil{
+                print(error?.localizedDescription)
+                return
+            }
+            
+            DispatchQueue.main.async{
+                completion(sum.doubleValue(for: HKUnit.count()))
+            }
+        }
+        
+        healthStore.execute(query)
     }
     
     private func getTotalScore() -> Int{

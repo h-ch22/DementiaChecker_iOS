@@ -26,38 +26,9 @@
   return self;
 }
 
--(NSArray<NSNumber*>*)predict_MMSE:(void*)data : (int)outputSize {
+-(NSArray<NSNumber*>*)predict:(void*)data : (int)outputSize {
     try{
         at::Tensor tensor = torch::from_blob(data, {1, 1, 3, 32}, at::kFloat);
-        c10::InferenceMode mode;
-
-        auto outputTensor = _impl.forward({tensor}).toTensor();
-        float* floatBuffer = outputTensor.data_ptr<float>();
-        
-        if(!floatBuffer){
-            return nil;
-        }
-        
-        NSMutableArray* results = [[NSMutableArray alloc] init];
-        
-        for(int i = 0; i < outputSize; i++){
-            float score = floatBuffer[i] * 100;
-            
-            [results addObject:@((int)(score * 1000.0) / 1000.0)];
-        }
-        
-        return [results copy];
-        
-    } catch(const std::exception& exception){
-        NSLog(@"%s", exception.what());
-    }
-    
-    return nil;
-}
-
--(NSArray<NSNumber*>*)predict_Others:(void*)data : (int)outputSize{
-    try{
-        at::Tensor tensor = torch::from_blob(data, {1, 3, 1}, at::kFloat);
         c10::InferenceMode mode;
 
         auto outputTensor = _impl.forward({tensor}).toTensor();

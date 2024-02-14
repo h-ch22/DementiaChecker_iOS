@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MMSEInspectionResultView: View {
-    let MMSEResult: [Bool]
-    let MMSEAnswer: [String]
+    let MMSEResult: [Int]
     let MMSEData: ClassInspectionResultDataModel
     
     @State private var score = 0
@@ -98,7 +97,7 @@ struct MMSEInspectionResultView: View {
         )
         .onAppear{
             for result in MMSEResult{
-                if result{
+                if result == 2{
                     score += 1
                 }
             }
@@ -107,8 +106,7 @@ struct MMSEInspectionResultView: View {
 }
 
 #Preview {
-    MMSEInspectionResultView(MMSEResult: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, true, true, true, true, true],
-                             MMSEAnswer: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+    MMSEInspectionResultView(MMSEResult: [0],
                              MMSEData: ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10)
     )
 }

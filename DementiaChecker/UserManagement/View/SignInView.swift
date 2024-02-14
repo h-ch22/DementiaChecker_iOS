@@ -96,21 +96,21 @@ struct SignInView: View {
                                 Spacer()
 
                                 Text("로그인")
-                                    .foregroundStyle(isEmpty() ? Color.white : Color.txt)
+                                    .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
-                                    .foregroundStyle(isEmpty() ? Color.white : Color.txt)
+                                    .foregroundStyle(Color.txt)
                                 
                                 Spacer()
                             }
                                 
-                        }.buttonStyle(NewMorphButtonStyle(foreground: isEmpty() ? Color.gray : Color.background))
+                        }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                     }
                     
                     Spacer()
                     
                     HStack{
-                        NavigationLink(destination: EmptyView()){
+                        NavigationLink(destination: ResetPasswordView().environmentObject(helper)){
                             Text("비밀번호 재설정")
                                 .foregroundStyle(Color.txt)
                         }

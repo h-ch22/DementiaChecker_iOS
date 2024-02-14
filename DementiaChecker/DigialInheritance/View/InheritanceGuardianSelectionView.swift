@@ -127,6 +127,7 @@ struct InheritanceGuardianSelectionView: View {
                     Button(action: {
                         if email != ""{
                             showOverlay = true
+                            
                             helper.searchPatient(email: email){ result in
                                 guard let result = result else{return}
                                 
@@ -134,7 +135,7 @@ struct InheritanceGuardianSelectionView: View {
                                     selectedEmail = email
                                 }
                                 
-                                showOverlay = !result
+                                showOverlay = result
                                 alertType = result ? nil : .USER_DOES_NOT_EXISTS
                                 showAlert = !result
                                 

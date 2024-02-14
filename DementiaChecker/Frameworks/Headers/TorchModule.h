@@ -15,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(init(fileAtPath:)) NS_DESIGNATED_INITIALIZER;
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype) init NS_UNAVAILABLE;
-- (nullable NSArray<NSNumber*>*)predict_MMSE:(void*)data :(int)outputSize NS_SWIFT_NAME(predict_MMSE(data:outputSize:));
-- (nullable NSArray<NSNumber*>*)predict_Others:(void*)data :(int)outputSize NS_SWIFT_NAME(predict_Others(data:outputSize:));
+- (nullable NSArray<NSNumber*>*)predict:(void*)data :(int)outputSize NS_SWIFT_NAME(predict(data:outputSize:));
 
 @end /* TorchModule_h */
 

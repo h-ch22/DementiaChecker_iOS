@@ -11,6 +11,7 @@ struct MoreView: View {
     @EnvironmentObject var helper: UserManagement
     
     @State private var showDigialInheritance = false
+    @State private var showPreventionView = false
     @State private var showUserInfo = false
 
     var body: some View {
@@ -66,7 +67,9 @@ struct MoreView: View {
                 
                 Spacer().frame(height: 20)
 
-                NavigationLink(destination: EmptyView()){
+                Button(action: {
+                    showPreventionView = true
+                }){
                     HStack{
                         Image(systemName: "lightbulb.max.fill")
                             .foregroundStyle(Color.txt)
@@ -134,6 +137,9 @@ struct MoreView: View {
                 .sheet(isPresented: $showUserInfo, content: {
                     UserInfoView()
                         .environmentObject(helper)
+                })
+                .sheet(isPresented: $showPreventionView, content: {
+                    DementiaPreventionView()
                 })
                 .animation(.easeInOut)
 
