@@ -206,6 +206,109 @@ class UserManagement: ObservableObject{
         }
     }
     
+    func changePassword(password: String, completion: @escaping(_ result: Bool?) -> Void){
+        auth.currentUser?.updatePassword(to: password){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeBirthday(birthday: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "birthday": AES256Util.encrypt(string: birthday)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeName(name: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "name": AES256Util.encrypt(string: name)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changePhone(phone: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "phone": AES256Util.encrypt(string: phone)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeHomeAddress(address: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "homeAddress": AES256Util.encrypt(string: address)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeWork(job: String, workAddress: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "workAddress": AES256Util.encrypt(string: workAddress),
+            "job": AES256Util.encrypt(string: job)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeTall(tall: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "tall": AES256Util.encrypt(string: tall)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
+    func changeWeight(weight: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+            "weight": AES256Util.encrypt(string: weight)
+        ]){ error in
+            if error != nil{
+                print(error?.localizedDescription)
+            }
+            
+            completion(error == nil)
+            return
+        }
+    }
+    
     private func getUserInfo(completion: @escaping(_ result: Bool?) -> Void){
         db.collection("Users").document(auth.currentUser?.uid ?? "").getDocument(){ document, error in
             if error != nil{

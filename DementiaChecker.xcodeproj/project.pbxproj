@@ -84,6 +84,8 @@
 		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
 		F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */; };
 		F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */; };
+		F6A6C9712B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A6C9702B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift */; };
+		F6A6C9732B7CAADB004396BA /* UpdateUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A6C9722B7CAADB004396BA /* UpdateUserInfoView.swift */; };
 		F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF143E2B77C9D1007FAA35 /* NewMorphButtonStyle.swift */; };
 		F6BF14432B77D736007FAA35 /* DementiaImprovementMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF14422B77D736007FAA35 /* DementiaImprovementMainView.swift */; };
 		F6BF14452B77D9B3007FAA35 /* DementiaSeverityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF14442B77D9B3007FAA35 /* DementiaSeverityInfoView.swift */; };
@@ -207,6 +209,8 @@
 		F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteritanceGuardianListModel.swift; sourceTree = "<group>"; };
 		F69830C22B694D63005A764E /* InspectionTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionTypeModel.swift; sourceTree = "<group>"; };
 		F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceAlertType.swift; sourceTree = "<group>"; };
+		F6A6C9702B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoTypeModel.swift; sourceTree = "<group>"; };
+		F6A6C9722B7CAADB004396BA /* UpdateUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInfoView.swift; sourceTree = "<group>"; };
 		F6BF143E2B77C9D1007FAA35 /* NewMorphButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMorphButtonStyle.swift; sourceTree = "<group>"; };
 		F6BF14422B77D736007FAA35 /* DementiaImprovementMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaImprovementMainView.swift; sourceTree = "<group>"; };
 		F6BF14442B77D9B3007FAA35 /* DementiaSeverityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaSeverityInfoView.swift; sourceTree = "<group>"; };
@@ -543,6 +547,7 @@
 				F660539C2B752F1100BEF80E /* UserInfoView.swift */,
 				F68BC6A82B79D6EB0058F929 /* AddressSearchView.swift */,
 				F637008F2B7C87AF00EBA7C5 /* ResetPasswordView.swift */,
+				F6A6C9722B7CAADB004396BA /* UpdateUserInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -562,6 +567,7 @@
 				F682DA462B662E91004F1E79 /* UserInfoModel.swift */,
 				F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */,
 				F68DDA5F2B6CF8170029AECF /* UserTypeModel.swift */,
+				F6A6C9702B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1046,6 +1052,7 @@
 				F6BF14432B77D736007FAA35 /* DementiaImprovementMainView.swift in Sources */,
 				F68BC6A92B79D6EB0058F929 /* AddressSearchView.swift in Sources */,
 				F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */,
+				F6A6C9712B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift in Sources */,
 				F60530B52B78CDF800141A21 /* DiaryMarkUpView.swift in Sources */,
 				F60530B12B78CDF800141A21 /* DiaryCanvasView.swift in Sources */,
 				F682DA382B662415004F1E79 /* AES256Util.swift in Sources */,
@@ -1069,6 +1076,7 @@
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F6C5DB342B7A0A7E0023412B /* PredictResult.swift in Sources */,
 				F60530BB2B78CE0D00141A21 /* DiaryEmotionModel.swift in Sources */,
+				F6A6C9732B7CAADB004396BA /* UpdateUserInfoView.swift in Sources */,
 				F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */,
 				F679A7A02B7BB68C00E0C768 /* MMSEResultsView.swift in Sources */,
 				F60530D22B78F06100141A21 /* InfoView.swift in Sources */,

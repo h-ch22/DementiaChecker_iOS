@@ -151,7 +151,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 10)
                         
                         HStack{
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .PASSWORD).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "key.fill")
                                         .foregroundStyle(Color.txt)
@@ -165,7 +165,7 @@ struct UserInfoView: View {
                             
                             Spacer().frame(width: 20)
                             
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .BIRTHDAY).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "calendar")
                                         .foregroundStyle(Color.txt)
@@ -181,7 +181,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .NAME).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "person.fill")
                                         .foregroundStyle(Color.txt)
@@ -195,7 +195,7 @@ struct UserInfoView: View {
                             
                             Spacer().frame(width: 20)
                             
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .PHONE).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "phone.fill")
                                         .foregroundStyle(Color.txt)
@@ -211,7 +211,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .HOME_ADDRESS).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "house.fill")
                                         .foregroundStyle(Color.txt)
@@ -225,7 +225,7 @@ struct UserInfoView: View {
                             
                             Spacer().frame(width: 20)
                             
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .WORK_ADDRESS).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "building.2.fill")
                                         .foregroundStyle(Color.txt)
@@ -241,7 +241,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .TALL).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "figure.stand")
                                         .foregroundStyle(Color.txt)
@@ -255,7 +255,7 @@ struct UserInfoView: View {
                             
                             Spacer().frame(width: 20)
                             
-                            Button(action: {}){
+                            NavigationLink(destination: UpdateUserInfoView(updateType: .WEIGHTS).environmentObject(helper)){
                                 VStack{
                                     Image(systemName: "gauge")
                                         .foregroundStyle(Color.txt)

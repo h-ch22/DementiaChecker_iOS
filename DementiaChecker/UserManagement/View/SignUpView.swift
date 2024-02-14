@@ -323,14 +323,14 @@ struct SignUpView: View {
                                     Spacer()
                                     
                                     Text("회원가입")
-                                        .foregroundStyle(getEmptyFields() ? Color.white : Color.txt)
+                                        .foregroundStyle(Color.txt)
                                     
                                     Image(systemName: "chevron.right")
-                                        .foregroundStyle(getEmptyFields() ? Color.white : Color.txt)
+                                        .foregroundStyle(Color.txt)
                                     
                                     Spacer()
                                 }
-                            }.buttonStyle(NewMorphButtonStyle(foreground: getEmptyFields() ? Color.gray : Color.background))
+                            }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                         }
                         
                         
