@@ -23,6 +23,7 @@ struct HospitalDetailMapView: UIViewControllerRepresentable{
 
 struct HospitalDetailView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var colorScheme
     
     @Binding var data: LocationDataModel?
     
@@ -31,104 +32,175 @@ struct HospitalDetailView: View {
             ZStack{
                 Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
                 
-                VStack{
-                    HospitalDetailMapView(data: data)
-                                       
-                    HStack{
-                        Image(systemName: "location.fill.viewfinder")
-                        Spacer().frame(width: 5)
-                        Text(data?.roadAddr ?? "")
+                ScrollView{
+                    VStack{
+                        HospitalDetailMapView(data: data)
+                            .frame(width: 300, height: 250)
                         
-                        Spacer()
+                        Spacer().frame(height: 20)
                         
-                        Text(data?.centerType ?? "")
-                            .font(.caption)
-                            .foregroundStyle(Color.gray)
-                    }.padding()
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    
-                    Spacer().frame(height: 20)
-                    
-
-                    HStack{
-                        Image(systemName: "person.3.fill")
-                        Spacer().frame(width: 5)
-                        Text("의사")
-                        
-                        Spacer()
-                        
-                        Text("\(data?.doctorCount ?? 0)명")
-                            .foregroundStyle(Color.accent)
-
-                    }.padding()
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    
-                    Spacer().frame(height: 20)
-
-                    HStack{
-                        Image(systemName: "person.3.fill")
-                        Spacer().frame(width: 5)
-                        Text("간호사")
-                        
-                        Spacer()
-                        
-                        Text("\(data?.nurseCount ?? 0)명")
-                            .foregroundStyle(Color.accent)
-
-                    }.padding()
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    
-                    Spacer().frame(height: 20)
-
-                    HStack{
-                        Image(systemName: "person.3.fill")
-                        Spacer().frame(width: 5)
-                        Text("사회 복지사")
-                        
-                        Spacer()
-                        
-                        Text("\(data?.scrcsCount ?? 0)명")
-                            .foregroundStyle(Color.accent)
-                    }.padding()
-                    .background(.ultraThinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    
-                    Spacer().frame(height: 20)
-
-                    HStack{
-                        Button(action: {
-                            if let url = NSURL(string: "tel://\(data?.tel ?? "")"){
-                                if UIApplication.shared.canOpenURL(url as URL){
-                                    UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                        HStack{
+                            Button(action: {
+                                let url = URL(string: "maps://?saddr=&daddr=\(data?.latitude ?? 0.0), \(data?.longitude ?? 0.0)")
+                                
+                                if UIApplication.shared.canOpenURL(url!){
+                                    UIApplication.shared.open(url!, options: [:], completionHandler: nil)
                                 }
+                            }){
+                                VStack{
+                                    Image(systemName: "arrow.triangle.turn.up.right.diamond.fill")
+                                        .foregroundStyle(Color.white)
+                                    
+                                    Spacer().frame(height: 5)
+                                    
+                                    Text("길 안내")
+                                        .foregroundStyle(Color.white)
+                                }
+                                    .frame(width: 80, height: 80)
                             }
-                        }){
-                            HStack{
-                                Image(systemName: "phone.fill")
-                                Spacer().frame(width: 5)
-                                Text("전화 걸기")
-                            }.padding()
-                                .background(.ultraThinMaterial)
-                                .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .buttonStyle(NewMorphButtonStyle(foreground: Color.blue, paddingValue: 5, cornerRadius: 15))
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                if let url = NSURL(string: "tel://\(data?.tel ?? "")"){
+                                    if UIApplication.shared.canOpenURL(url as URL){
+                                        UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                                    }
+                                }
+                            }){
+                                VStack{
+                                    Image(systemName: "phone.fill")
+                                        .foregroundStyle(Color.txt)
+                                    
+                                    Spacer().frame(height: 5)
+                                    
+                                    Text("전화 걸기")
+                                        .foregroundStyle(Color.txt)
+                                }
+                                    .frame(width: 80, height: 80)
+                            }
+                            .buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 5, cornerRadius: 15))
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                if let url = NSURL(string: "https://map.naver.com/index.nhn?enc=utf8&level=2&lng=\(data?.longitude ?? 0.0)&lat=\(data?.latitude ?? 0.0)&pinTitle=\(data?.centerName ?? "")&pinType=SITE"){
+                                    if UIApplication.shared.canOpenURL(url as URL){
+                                        UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+                                    }
+                                }
+                            }){
+                                VStack{
+                                    Image(systemName: "ellipsis")
+                                        .foregroundStyle(Color.txt)
+                                    
+                                    Spacer().frame(height: 5)
+                                    
+                                    Text("더 보기")
+                                        .foregroundStyle(Color.txt)
+                                }
+                                    .frame(width: 80, height: 80)
+                            }
+                            .buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 5, cornerRadius: 15))
                         }
                         
-                        Spacer()
-                    }
-                    
-                }.padding(20)
-                .navigationTitle(Text(data?.centerName ?? "센터 정보"))
-                .toolbar{
-                    ToolbarItem(placement: .topBarLeading, content: {
-                        Button("닫기"){
-                            self.dismiss()
+                        Spacer().frame(height: 20)
+                                           
+                        HStack{
+                            Image(systemName: "location.fill.viewfinder")
+                            Spacer().frame(width: 5)
+                            Text(data?.roadAddr ?? "")
+                            
+                            Spacer()
+                            
+                            Text(data?.centerType ?? "")
+                                .font(.caption)
+                                .foregroundStyle(Color.gray)
                         }
-                    })
-                }
-                .animation(.easeInOut)
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.background)
+                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                        )
+                        
+                        Spacer().frame(height: 20)
+                        
 
+                        HStack{
+                            Image(systemName: "person.3.fill")
+                            Spacer().frame(width: 5)
+                            Text("의사")
+                            
+                            Spacer()
+                            
+                            Text("\(data?.doctorCount ?? 0)명")
+                                .foregroundStyle(Color.accent)
+
+                        }
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.background)
+                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                        )
+                        
+                        Spacer().frame(height: 20)
+
+                        HStack{
+                            Image(systemName: "person.3.fill")
+                            Spacer().frame(width: 5)
+                            Text("간호사")
+                            
+                            Spacer()
+                            
+                            Text("\(data?.nurseCount ?? 0)명")
+                                .foregroundStyle(Color.accent)
+
+                        }
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.background)
+                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                        )
+                        
+                        Spacer().frame(height: 20)
+
+                        HStack{
+                            Image(systemName: "person.3.fill")
+                            Spacer().frame(width: 5)
+                            Text("사회 복지사")
+                            
+                            Spacer()
+                            
+                            Text("\(data?.scrcsCount ?? 0)명")
+                                .foregroundStyle(Color.accent)
+                        }
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.background)
+                                .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                        )
+                        
+                        
+                    }.padding(20)
+                    .navigationTitle(Text(data?.centerName ?? "센터 정보"))
+                    .toolbar{
+                        ToolbarItem(placement: .topBarLeading, content: {
+                            Button("닫기"){
+                                self.dismiss()
+                            }
+                        })
+                    }
+                    .animation(.easeInOut)
+                }
             }
         }
     }

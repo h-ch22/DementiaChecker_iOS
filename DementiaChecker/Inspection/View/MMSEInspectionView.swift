@@ -423,7 +423,6 @@ struct MMSEInspectionView: View {
                                     DragGesture()
                                         .onChanged{ gesture in
                                             self.dragOffset = gesture.translation
-                                            print("start: \(min(max((self.dragOffset.width + 300) / 300, 0), 1)), end: \(min(max(self.dragOffset.width / 300, 0), 1))")
                                             
                                             if currentIndex == 22{
                                                 if min(max((self.dragOffset.width + 300) / 300, 0), 1) == 0.0{

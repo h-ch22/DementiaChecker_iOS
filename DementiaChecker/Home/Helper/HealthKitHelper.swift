@@ -302,33 +302,31 @@ class HealthKitHelper: ObservableObject{
             return
         }
         
+        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        
-        let query = HKSampleQuery(sampleType: sleepType, predicate: nil, limit: 30, sortDescriptors: [sortDescriptor]){ (query, samples, error) in
-            guard error == nil, samples == samples as? [HKCategorySample] else{
-                print("Error while getting sleep analysis: \(error.debugDescription)")
+        let query = HKSampleQuery(sampleType: HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!, predicate: nil, limit: 30, sortDescriptors: [sortDescriptor]){ [weak self] (query, sleepResult, error) -> Void in
+            if error != nil{
+                completion(0.0)
                 return
             }
             
-            DispatchQueue.main.async{
-                if !samples!.isEmpty{
-                    guard let result = samples as? [HKCategorySample] else{return}
-                    
-                    for sample in result{
-                        guard let sleepValue = HKCategoryValueSleepAnalysis(rawValue: sample.value) else{
-                            print("Invalid sleep data")
-                            return
+            if let result = sleepResult{
+                DispatchQueue.main.async{
+                    for data in result{
+                        if let data = data as? HKCategorySample{
+                            switch data.value{
+                            case 0:
+                                self?.inBedTime += Double((Int(data.endDate.timeIntervalSince(data.startDate)) % 3600) / 60)
+                                
+                            case 1:
+                                self?.inBedTime += Double((Int(data.endDate.timeIntervalSince(data.startDate)) % 3600) / 60)
+
+                            default:
+                                break
+                            }
                         }
-                        
-                        let start = sample.startDate
-                        let end = sample.endDate
-                        self.inBedTime = sample.endDate.timeIntervalSince(sample.startDate)
-                        
                     }
-                    
                 }
-                
-                completion(self.inBedTime / 3600)
             }
         }
         

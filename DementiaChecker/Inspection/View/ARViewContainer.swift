@@ -45,7 +45,6 @@ struct ARViewContainer: UIViewRepresentable{
                 if leftEyeOpen > 0.7 && rightEyeOpen > 0.7{
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         self.isSuccessful = true
-                        print("Success")
                     })
                 }
              }

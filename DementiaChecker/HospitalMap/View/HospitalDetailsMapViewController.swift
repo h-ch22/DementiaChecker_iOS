@@ -31,7 +31,7 @@ class HospitalDetailsMapViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.frame = CGRect(x: 0, y: 0, width : UIScreen.main.bounds.width - 40, height : UIScreen.main.bounds.height / 3)
+        view.frame = CGRect(x: 0, y: 0, width : 300, height : 250)
         
         naverMapView = NMFNaverMapView(frame: view.frame)
         naverMapView.showZoomControls = true

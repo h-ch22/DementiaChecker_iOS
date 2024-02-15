@@ -15,6 +15,12 @@
 ![ ](ReadMe/hospitalMap_1.png)<br>
 ![ ](ReadMe/hospitalMap_2.png)<br>
 
+> And you also can navigate, call, or get so much more information on web.<br>
+
+![ ](ReadMe/hospitalMap_3.png)<br>
+![ ](ReadMe/hospitalMap_4.png)<br>
+![ ](ReadMe/hospitalMap_5.png)<br>
+
 #### Inspection<br>
 > Use your iPhone or iPad to proceed with the MMSE test as it was in reality. <br>
 

@@ -11,6 +11,9 @@ struct HomeView: View {
     @EnvironmentObject var userManagement: UserManagement
     
     @StateObject private var helper = HealthKitHelper()
+    @StateObject private var inspectionHelper = InspectionHelper()
+    
+    @State private var showInspectionResult = false
     @State private var symbols = [
         "lungs.fill", "heart.fill", "heart.fill", "heart.fill", "bed.double.fill", "flame.fill", "flame.fill", "flame.fill", "figure", "figure.run"
     ]
@@ -40,7 +43,7 @@ struct HomeView: View {
             return "\(String(format: "%.2f", helper.walkingHeartRate)) BPM"
             
         case 4:
-            return "\(String(format: "%.2f", helper.inBedTime)) 시간"
+            return "\(String(format: "%.2f", helper.inBedTime)) 분"
             
         case 5:
             return "\(String(format: "%.0f", helper.steps)) 걸음"
@@ -89,10 +92,31 @@ struct HomeView: View {
                             }
                         }
                     }.padding(20)
- 
-                }                
+                    
+                    HStack{
+                        Image(systemName: "magnifyingglass")
+                        
+                        Spacer().frame(width: 5)
+                        
+                        Text("최근 검사 결과")
+                            .font(.caption)
+                            .foregroundStyle(Color.gray)
+                            .fontWeight(.semibold)
+                        
+                        Spacer()
+                    }.padding(20)
+                                        
+                    VStack{
+                        if !showInspectionResult{
+                            Text("최근 검사 기록이 없습니다.")
+                                .fontWeight(.semibold)
+                                .foregroundStyle(Color.gray)
+                        } else{
+                            IncidenceRateListModel(data: inspectionHelper.inspectionResult)
+                        }
+                    }.padding([.horizontal], 20)
+                }
                 .animation(.easeInOut)
-
                     .onAppear{
                         helper.requestAuthorization(){result in
                             guard let result = result else{return}
@@ -138,6 +162,12 @@ struct HomeView: View {
                         
                         helper.getActivityMinutes(start: start, end: Date(), completion: { result in
                             guard result != nil else{return}
+                        })
+                        
+                        inspectionHelper.getLatestResult(completion: { result in
+                            guard let result = result else{return}
+                            
+                            self.showInspectionResult = result
                         })
                     }
             }

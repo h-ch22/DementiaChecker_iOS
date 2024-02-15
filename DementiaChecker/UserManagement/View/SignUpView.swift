@@ -257,7 +257,6 @@ struct SignUpView: View {
                             DotProgressView()
                         } else{
                             Button(action: {
-                                print(selectedGender)
                                 if !getEmptyFields(){
                                     showProgress = true
                                     

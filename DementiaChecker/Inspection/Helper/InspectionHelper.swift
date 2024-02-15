@@ -176,6 +176,37 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         }
     }
     
+    func getLatestResult(completion: @escaping(_ result: Bool?) -> Void){
+        db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").getDocuments(){(querySnapshot, error) in
+            if error != nil{
+                completion(false)
+                return
+            }
+            
+            if querySnapshot != nil{
+                if !querySnapshot!.isEmpty{
+                    let document = querySnapshot!.documents[querySnapshot!.documents.count - 1]
+                    
+                    let type = AES256Util.decrypt(encoded: document.get("type") as? String ?? "")
+                    let percentOfNormal = document.get("percentOfNormal") as? Double ?? 0.0
+                    let percentOfMCI = document.get("percentOfMCI") as? Double ?? 0.0
+                    let percentOfDementia = document.get("percentOfDementia") as? Double ?? 0.0
+                    
+                    self.inspectionResult = InspectionResultDataModel(type: self.getInspectionType(type: type),
+                                                                      percentageOfNormal: Float(percentOfNormal),
+                                                                      percentageOfMCI: Float(percentOfMCI),
+                                                                      percentageOfDementia: Float(percentOfDementia))
+                    
+                    completion(true)
+                    return
+                }
+            }
+            
+            completion(false)
+            return
+        }
+    }
+    
     func getDataList(completion: @escaping(_ result: [String]?) -> Void){
         var ids = [String]()
         
@@ -435,7 +466,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         }
                         
                     case 8:
-                        print(String(altitude))
                         self.scores.append(self.answerList[i] == String(Int(altitude / 240)) ? 2 : 1)
                         self.answers.append(String(Int(altitude / 240)))
                         
@@ -532,12 +562,9 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         break
                     }
                     
-                    print(self.answers)
                 }
                 
                 self.scores.append(self.getTotalScore())
-                print(self.scores)
-                
                 guard self.module_MMSE != nil else{
                     completion(false)
                     return
@@ -547,11 +574,8 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     completion(false)
                     return
                 }
-                
-                print(outputs)
-                                
+                                                
                 let result = self.topK(scores: outputs, labels: self.labels, count: 3)
-                print(result)
                 
                 guard result != nil else{
                     completion(false)
@@ -610,11 +634,8 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                             completion(false)
                             return
                         }
-                        
-                        print(outputs)
-                                        
+                                                                
                         let result = self.topK(scores: outputs, labels: self.labels, count: 3)
-                        print(result)
                         
                         guard result != nil else{
                             completion(false)
@@ -843,10 +864,8 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     }
                     
                     if requestType == "State"{
-                        print(state)
                         completion(state)
                     } else if requestType == "Building"{
-                        print(building)
                         completion(building)
                     }
                     

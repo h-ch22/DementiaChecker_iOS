@@ -125,7 +125,6 @@ class UserManagement: ObservableObject{
         let header_key = HTTPHeader(name : "X-NCP-APIGW-API-KEY-ID", value : API_KEY)
         let header_secret = HTTPHeader(name: "X-NCP-APIGW-API-KEY", value: API_SECRET)
         let headers = HTTPHeaders([header_key, header_secret])
-        print(geoCode)
         
         let parameters : Parameters = [
             "coords" : geoCode,
