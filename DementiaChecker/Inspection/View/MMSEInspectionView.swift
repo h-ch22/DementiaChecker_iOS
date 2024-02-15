@@ -32,6 +32,7 @@ struct MMSEInspectionView: View {
     @FocusState private var IsAnswerFieldFocused: Bool
     
     @StateObject private var helper = InspectionHelper()
+    @StateObject private var avHelper = AVHelper()
     @EnvironmentObject var userManagement: UserManagement
     
     var drag: some Gesture{
@@ -318,7 +319,7 @@ struct MMSEInspectionView: View {
                                 canvasView = PKCanvasView()
                                 helper.saveAnswer(answer: answer)
                                 answer = ""
-                                helper.resultText = ""
+                                avHelper.resultText = ""
                                 IsAnswerFieldFocused = false
                                 isPlayed = false
                                 currentIndex += 1
@@ -326,11 +327,11 @@ struct MMSEInspectionView: View {
                         }){
                             Text("완료")
                         }
-                    } else if helper.isTTSAvailable(id: currentIndex) && !isPlayed{
+                    } else if avHelper.isTTSAvailable(id: currentIndex) && !isPlayed{
                         Spacer().frame(height: 20)
                         
                         Button(action: {
-                            helper.play(id: currentIndex)
+                            avHelper.play(id: currentIndex)
                             isPlayed = true
                         }){
                             HStack{
@@ -382,16 +383,16 @@ struct MMSEInspectionView: View {
                     } else if helper.getAnswerType(id: currentIndex) == .AUDIO{
                         Button(action: {
                             if !isRecording{
-                                if helper.getAudioEngineRunning(){
-                                    helper.endAudio()
+                                if avHelper.getAudioEngineRunning(){
+                                    avHelper.endAudio()
                                 }
                                 
-                                helper.resultText = ""
-                                helper.startRecording()
+                                avHelper.resultText = ""
+                                avHelper.startRecording()
                                 isRecording = true
                             } else{
-                                answer = helper.resultText
-                                helper.endAudio()
+                                answer = avHelper.resultText
+                                avHelper.endAudio()
                                 isRecording = false
                             }
                         }){
@@ -407,7 +408,7 @@ struct MMSEInspectionView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text(helper.resultText)
+                        Text(avHelper.resultText)
                             .foregroundStyle(Color.accent)
                         
                     } else if helper.getAnswerType(id: currentIndex) == .DRAW{
@@ -471,7 +472,7 @@ struct MMSEInspectionView: View {
                                 }
                                 
                                 answer = ""
-                                helper.resultText = ""
+                                avHelper.resultText = ""
                                 IsAnswerFieldFocused = false
                                 isPlayed = false
                                 isSuccess = false

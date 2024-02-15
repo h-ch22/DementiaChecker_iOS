@@ -373,11 +373,12 @@ struct UserInfoView: View {
                     .onAppear{
                         let homeGeocode = helper.userInfo?.homeAddress
                         let workGeocode = helper.userInfo?.workAddress
+                        let locationHelper = LocationHelper()
                         
                         if homeGeocode != "" && homeGeocode != nil{
                             let homeGeocode_split = homeGeocode!.split(separator: ", ")
                             
-                            helper.reverseGeocode(geoCode: "\(homeGeocode_split[0]),\(homeGeocode_split[1])", completion: { address in
+                            locationHelper.reverseGeocode(geoCode: "\(homeGeocode_split[0]),\(homeGeocode_split[1])", completion: { address in
                                 guard let address = address else{return}
                                 
                                 homeAddress = address
@@ -387,7 +388,7 @@ struct UserInfoView: View {
                         if workGeocode != "" && workGeocode != nil{
                             let workGeocode_split = workGeocode!.split(separator: ", ")
                             
-                            helper.reverseGeocode(geoCode: "\(workGeocode_split[0]),\(workGeocode_split[1])", completion: { address in
+                            locationHelper.reverseGeocode(geoCode: "\(workGeocode_split[0]),\(workGeocode_split[1])", completion: { address in
                                 guard let address = address else{return}
                                 
                                 workAddress = address

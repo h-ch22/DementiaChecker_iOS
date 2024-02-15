@@ -29,7 +29,7 @@ struct MMSEInspectionMainView: View {
     @State private var changeView = false
     @State private var isRecording = false
     @State private var isPlaying = false
-    @StateObject private var helper = InspectionHelper()
+    @StateObject private var avHelper = AVHelper()
     @EnvironmentObject var userManagement: UserManagement
     
     var body: some View {
@@ -50,15 +50,15 @@ struct MMSEInspectionMainView: View {
                 HStack{
                     Button(action: {
                         if !isRecording{
-                            if helper.getAudioEngineRunning(){
-                                helper.endAudio()
+                            if avHelper.getAudioEngineRunning(){
+                                avHelper.endAudio()
                             }
                             
-                            helper.resultText = ""
-                            helper.startRecording()
+                            avHelper.resultText = ""
+                            avHelper.startRecording()
                             isRecording = true
                         } else{
-                            helper.endAudio()
+                            avHelper.endAudio()
                             isRecording = false
                         }
                     }){
@@ -76,9 +76,9 @@ struct MMSEInspectionMainView: View {
                     Button(action: {
                         if !isPlaying{
                             isPlaying = true
-                            helper.play(id: 0, isSample: true)
+                            avHelper.play(id: 0, isSample: true)
                         } else{
-                            helper.stop()
+                            avHelper.stop()
                             isPlaying = false
                         }
                     }){
@@ -93,10 +93,10 @@ struct MMSEInspectionMainView: View {
                     }.buttonStyle(NewMorphButtonStyle(foreground: isPlaying ? Color.red : Color.background, paddingValue: 20, cornerRadius: 15))
                 }
                 
-                if helper.resultText != ""{
+                if avHelper.resultText != ""{
                     Spacer().frame(height: 10)
                     
-                    Text("인식됨: \(helper.resultText)")
+                    Text("인식됨: \(avHelper.resultText)")
                         .foregroundStyle(Color.accent)
                 }
                 

@@ -7,18 +7,12 @@
 
 import Foundation
 import UIKit
-import AVFoundation
-import Speech
-import CoreLocation
-import Alamofire
-import SwiftyJSON
 import FirebaseFirestore
 import FirebaseAuth
-import HealthKit
 import Accelerate
+import CoreLocation
 
-class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, CLLocationManagerDelegate{
-    @Published var resultText = ""
+class InspectionHelper: NSObject, ObservableObject{
     @Published var scores = [Int]()
     @Published var answers = [String]()
     @Published var answerList: [String] = []
@@ -28,22 +22,11 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     @Published var sleepData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     @Published var lifeLogData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var recognitionTask: SFSpeechRecognitionTask?
-    
-    private let audioEngine = AVAudioEngine()
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
-    private let synthesizer = AVSpeechSynthesizer()
-    private let locationManager = CLLocationManager()
-    private let API_KEY = "wg1lmr2uds"
-    private let API_SECRET = "etkEdOhXHoQ3wOF628HGAwSPHdSaoi8SvmU5RpGJ"
-    private let RGC_URL = "https://naveropenapi.apigw.ntruss.com/map-reversegeocode/v2/gc?"
     private let db = Firestore.firestore()
     private let auth = Auth.auth()
     private let labels = ["NORMAL", "MCI", "DEMENTIA"]
-    private let healthStore = HKHealthStore()
     private let fileManager = FileManager.default
-
+    private let healthKitHelper = HealthKitHelper()
     
     private lazy var module_MMSE: TorchModule? = {
         if let filePath = Bundle.main.path(forResource: "cognitive_mobile", ofType: "ptl", inDirectory: "include"),
@@ -74,11 +57,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             return nil
         }
     }()
-    
-    override init(){
-        super.init()
-        speechRecognizer?.delegate = self
-    }
     
     private func getInspectionType(type: String) -> InspectionResultTypeModel{
         switch type{
@@ -367,16 +345,17 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         
-        let latLng = self.getCurrentLatLng()
+        let locationHelper = LocationHelper()
+        let latLng = locationHelper.getCurrentLatLng()
         let lat = String(latLng?.coordinate.latitude ?? 0.0)
         let lng = String(latLng?.coordinate.longitude ?? 0.0)
         
         let altitude = Double(latLng?.altitude ?? 0.0)
 
-        self.reverseGeoCode(requestType: "State", lat: lat, lng: lng, completion: { state in
+        locationHelper.reverseGeoCode(requestType: "State", lat: lat, lng: lng, completion: { state in
             guard let state = state else{return}
             
-            self.reverseGeoCode(requestType: "Building", lat: lat, lng: lng, completion: { building in
+            locationHelper.reverseGeoCode(requestType: "Building", lat: lat, lng: lng, completion: { building in
                 guard let building = building else{return}
                 
                 for i in 0..<self.answerList.count{
@@ -559,7 +538,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                     case 25:
                         self.answers.append("")
                         let similarity = self.compareImages()
-                        print(similarity)
                         
                         self.scores.append(similarity ?? 0.0 < 0.7 ? 1 : 2)
                         
@@ -606,7 +584,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         let basalMetabolicRate = gender == "Male" ? Double(66.47) + (13.75 * weight) + (5.0 * tall) - (6.76 * age) : Double(655.1) + (9.56 * weight) + (1.85 * tall) - (4.68 * age)
         let start = Calendar.current.startOfDay(for: Date())
 
-        self.getActivityEnergyBurned(start: start, end: Date(), completion: { activeCalorie in
+        healthKitHelper.getActivityEnergyBurned(start: start, end: Date(), completion: { activeCalorie in
             guard activeCalorie != nil else{
                 completion(false)
                 return
@@ -614,19 +592,19 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             
             let usedAllCalrorie = activeCalorie * basalMetabolicRate
             
-            self.getDistanceWalkingRunning(start: start, end: Date(), completion: { distance in
+            self.healthKitHelper.getDistanceWalkingRunning(start: start, end: Date(), completion: { distance in
                 guard distance != nil else{
                     completion(false)
                     return
                 }
                 
-                self.getStepCount(start: start, end: Date(), completion: { stepCount in
+                self.healthKitHelper.getStepCount(start: start, end: Date(), completion: { stepCount in
                     guard stepCount != nil else{
                         completion(false)
                         return
                     }
                     
-                    self.getActivityMinutes(start: start, end: Date(), completion: { activityMinutes in
+                    self.healthKitHelper.getActivityMinutes(start: start, end: Date(), completion: { activityMinutes in
                         guard activityMinutes != nil else{
                             completion(false)
                             return
@@ -705,29 +683,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             completion(result)
             return
         })
-    }
-    
-    private func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
-        guard let exercieseQuantityType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime) else{return}
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
-        let query = HKStatisticsQuery(quantityType: exercieseQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum){ (_, result, error) in
-            guard let result = result, let sum = result.sumQuantity() else{
-                print("Getting activity minutes data : Fail")
-                return
-            }
-            
-            if error != nil{
-                print(error?.localizedDescription)
-                return
-            }
-
-            DispatchQueue.main.async{
-                completion(sum.doubleValue(for: HKUnit.minute()))
-            }
-        }
-        
-        healthStore.execute(query)
     }
     
     private func getDocumentsDirectory() -> URL?{
@@ -843,87 +798,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         return imageData
     }
     
-    private func getDistanceWalkingRunning(start: Date, end: Date, completion: @escaping (Double) -> Void){
-        guard let distanceWalkingRunningType = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning) else{
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-        
-        let query = HKStatisticsQuery(quantityType: distanceWalkingRunningType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
-            var distance: Double = 0
-            
-            guard let result = result, let sum = result.sumQuantity() else{
-                print("Getting Distance Walking Running Data : Fail")
-                return
-            }
-            
-            distance = sum.doubleValue(for: HKUnit.meter())
-            
-            DispatchQueue.main.async{
-                completion(distance)
-            }
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    private func getActivityEnergyBurned(start: Date, end: Date, completion: @escaping (Double) -> Void){
-        guard let activeEnergyBurnedType = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned) else{
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-        
-        let query = HKStatisticsQuery(quantityType: activeEnergyBurnedType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
-            var cal: Double = 0
-            
-            if error != nil{
-                print(error?.localizedDescription)
-                return
-            }
-            
-            guard let result = result, let sum = result.sumQuantity() else{
-                print("Getting Activity Energy Burned Data : Fail")
-                return
-            }
-            
-            cal = sum.doubleValue(for: HKUnit.kilocalorie())
-            
-            DispatchQueue.main.async{
-                completion(cal)
-            }
-        }
-        
-        healthStore.execute(query)
-    }
-    
-    private func getStepCount(start: Date, end: Date, completion: @escaping (Double) -> Void){
-        guard let stepQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else{
-            return
-        }
-        
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
-        
-        let query = HKStatisticsQuery(quantityType: stepQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum){(_, result, error) in
-            guard let result = result, let sum = result.sumQuantity() else{
-                print("Getting step count data : Fail")
-                return
-            }
-            
-            if error != nil{
-                print(error?.localizedDescription)
-                return
-            }
-            
-            DispatchQueue.main.async{
-                completion(sum.doubleValue(for: HKUnit.count()))
-            }
-        }
-        
-        healthStore.execute(query)
-    }
-    
     private func getTotalScore() -> Int{
         var total = 0
         
@@ -936,75 +810,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         return total
     }
     
-    private func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) -> CLLocation? {
-        if CLLocationManager.locationServicesEnabled(){
-            return locationManager.location
-        }
-        
-        return nil
-    }
-    
-    private func getCurrentLatLng() -> CLLocation?{
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        
-        return self.locationManagerDidChangeAuthorization(locationManager)
-    }
-    
-    private func reverseGeoCode(requestType: String, lat: String, lng: String, completion: @escaping(_ answer: String?) -> Void){
-        let header_key = HTTPHeader(name : "X-NCP-APIGW-API-KEY-ID", value : API_KEY)
-        let header_secret = HTTPHeader(name: "X-NCP-APIGW-API-KEY", value: API_SECRET)
-        let headers = HTTPHeaders([header_key, header_secret])
-        
-        let lat_double = Double(lat)!
-        let lng_double = Double(lng)!
-                
-        let parameters : Parameters = [
-            "coords" : "\(lng_double),\(lat_double)",
-            "output" : "json",
-            "orders" : "addr,admcode,roadaddr"
-        ]
-        
-        let alamo = AF.request(RGC_URL, method: .get, parameters: parameters, headers: headers)
-        
-        alamo.validate().responseJSON(){response in
-                switch response.result{
-                case .success(let value as [String : Any]):
-                    let json = JSON(value)
-                    let data = json["results"]
-                    let state = data[0]["region"]["area1"]["name"].string ?? ""
-                    let address = data[0]["region"]["area2"]["name"].string ?? ""
-                    let address_detail = data[0]["region"]["area3"]["name"].string ?? ""
-                    let roadName = data[2]["land"]["name"].string ?? ""
-                    let road = data[2]["land"]["number1"].string ?? ""
-                    var roadCode = data[2]["land"]["number2"].string ?? ""
-                    let building = data[2]["land"]["addition0"]["value"].string ?? ""
-                    
-                    if roadCode != ""{
-                        roadCode = "-" + roadCode
-                    }
-                    
-                    if requestType == "State"{
-                        completion(state)
-                    } else if requestType == "Building"{
-                        completion(building)
-                    }
-                    
-                case .failure(let error) :
-                    print(error)
-                    completion("")
-                    
-                    return
-                    
-                default:
-                    completion("")
-                    fatalError()
-                }
-                
-            }
-    }
-    
     func getMMSETextFieldType(id: Int) -> UIKeyboardType{
         switch id{
         case 0, 2, 4, 8, 11, 12, 13, 14, 15:
@@ -1013,38 +818,6 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         default:
             return UIKeyboardType.default
         }
-    }
-    
-    func isTTSAvailable(id: Int) -> Bool{
-        switch id{
-        case 10, 21: return true
-        default: return false
-        }
-    }
-    
-    private func getTTSString(id: Int) -> String{
-        switch id{
-        case 10:
-            return "비행기 연필 소나무"
-            
-        case 21:
-            return "백문이 불여일견"
-            
-        default:
-            return ""
-        }
-    }
-    
-    func play(id: Int, isSample: Bool = false){
-        let utterance = AVSpeechUtterance(string: isSample ? "안녕하세요. 이 문장은 Dementia Checker에서 스피커 테스트를 위해 재생되는 문장입니다. 이 소리가 너무 크거나 작게 들리면 시스템 볼륨을 조절해주세요." : self.getTTSString(id: id))
-        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
-        utterance.rate = 0.2
-        synthesizer.stopSpeaking(at: .immediate)
-        synthesizer.speak(utterance)
-    }
-    
-    func stop(){
-        synthesizer.stopSpeaking(at: .immediate)
     }
     
     func getAnswerType(id: Int) -> MMSEAnswerTypeModel{
@@ -1086,73 +859,5 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     
     func saveAnswer(answer: String){
         answerList.append(answer)
-    }
-    
-    func getAudioEngineRunning() -> Bool{
-        return audioEngine.isRunning ? true : false
-    }
-    
-    func endAudio(){
-        audioEngine.stop()
-        recognitionRequest?.endAudio()
-    }
-    
-    func startRecording(){
-        audioEngine.inputNode.removeTap(onBus: 0)
-        
-        if recognitionTask != nil{
-            recognitionTask?.cancel()
-            recognitionTask = nil
-        }
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        
-        do{
-            try audioSession.setCategory(AVAudioSession.Category.record)
-            try audioSession.setMode(AVAudioSession.Mode.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch{
-            print(error.localizedDescription)
-        }
-        
-        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
-        let inputNode = audioEngine.inputNode
-        
-        guard let recognitionRequest = recognitionRequest else{
-            fatalError("Cannot initalize recognition request.")
-        }
-        
-        recognitionRequest.shouldReportPartialResults = true
-        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
-            var isFinal = false
-            
-            if result != nil{
-                self.resultText = result?.bestTranscription.formattedString ?? ""
-                
-                isFinal = (result?.isFinal)!
-            }
-            
-            if isFinal{
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-                
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-            }
-        })
-        
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat){ (buffer, when) in
-            self.recognitionRequest?.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        
-        do{
-            try audioEngine.start()
-        } catch{
-            print(error.localizedDescription)
-        }
     }
 }

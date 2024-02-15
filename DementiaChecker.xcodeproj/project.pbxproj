@@ -54,6 +54,8 @@
 		F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */; };
 		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
 		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
+		F65FD9B62B7E671500B536E3 /* AVHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FD9B52B7E671500B536E3 /* AVHelper.swift */; };
+		F65FD9B82B7E696700B536E3 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FD9B72B7E696700B536E3 /* LocationHelper.swift */; };
 		F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F660539C2B752F1100BEF80E /* UserInfoView.swift */; };
 		F66AE8F52B67D27A00D84C8A /* DigitalInheritanceMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */; };
 		F679A7A02B7BB68C00E0C768 /* MMSEResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F679A79F2B7BB68C00E0C768 /* MMSEResultsView.swift */; };
@@ -185,6 +187,8 @@
 		F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
 		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F65FD9B52B7E671500B536E3 /* AVHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHelper.swift; sourceTree = "<group>"; };
+		F65FD9B72B7E696700B536E3 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		F660539C2B752F1100BEF80E /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		F66AE8F42B67D27A00D84C8A /* DigitalInheritanceMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalInheritanceMainView.swift; sourceTree = "<group>"; };
 		F679A79F2B7BB68C00E0C768 /* MMSEResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEResultsView.swift; sourceTree = "<group>"; };
@@ -556,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				F682DA372B662415004F1E79 /* AES256Util.swift */,
+				F65FD9B72B7E696700B536E3 /* LocationHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 			isa = PBXGroup;
 			children = (
 				F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */,
+				F65FD9B52B7E671500B536E3 /* AVHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1052,6 +1058,7 @@
 				F6BF14432B77D736007FAA35 /* DementiaImprovementMainView.swift in Sources */,
 				F68BC6A92B79D6EB0058F929 /* AddressSearchView.swift in Sources */,
 				F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */,
+				F65FD9B62B7E671500B536E3 /* AVHelper.swift in Sources */,
 				F6A6C9712B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift in Sources */,
 				F60530B52B78CDF800141A21 /* DiaryMarkUpView.swift in Sources */,
 				F60530B12B78CDF800141A21 /* DiaryCanvasView.swift in Sources */,
@@ -1061,6 +1068,7 @@
 				F637008E2B7C7FDB00EBA7C5 /* DementiaPreventionView.swift in Sources */,
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
+				F65FD9B82B7E696700B536E3 /* LocationHelper.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F605309E2B78BB5F00141A21 /* Consts.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
