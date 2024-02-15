@@ -36,6 +36,12 @@
 ![ ](ReadMe/inspection_10.png)<br>
 ![ ](ReadMe/inspection_11.png)<br>
 
+#### History<br>
+> Get your all inspection histories<br>
+
+![ ](ReadMe/history_1.PNG)<br>
+![ ](ReadMe/history_2.PNG)<br>
+
 #### Diary<br>
 > Once a day, record your day and look back.<br>
 

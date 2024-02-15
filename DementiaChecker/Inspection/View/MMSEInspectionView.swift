@@ -207,7 +207,7 @@ struct MMSEInspectionView: View {
                             dismiss()
                         }){
                             Text("닫기")
-                                .foregroundStyle(Color.accentColor)
+                                .foregroundStyle(Color.txt)
                         }
                     }
                     
@@ -239,8 +239,11 @@ struct MMSEInspectionView: View {
                                         let result = helper.predictSleep()
                                         
                                         if result{
-                                            helper.calculateInspectionResult()
-                                            isDone = true
+                                            helper.calculateInspectionResult(){ result in
+                                                guard let result = result else{return}
+                                                
+                                                isDone = result
+                                            }
                                         } else{
                                             currentInspectingType = .SLEEP
                                             errorType = .SLEEP

@@ -78,28 +78,44 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         speechRecognizer?.delegate = self
     }
     
-    func uploadResult(data: InspectionResultDataModel, MMSEData: ClassInspectionResultDataModel, sleepData: ClassInspectionResultDataModel, lifeLogData: ClassInspectionResultDataModel, MMSEScore: Int, completion: @escaping(_ result: Bool?) -> Void){
+    private func getInspectionType(type: String) -> InspectionResultTypeModel{
+        switch type{
+        case "NORMAL":
+            return .NORMAL
+            
+        case "MCI":
+            return .MCI
+            
+        case "DEMENTIA":
+            return .DEMENTIA
+            
+        default:
+            return .NORMAL
+        }
+    }
+    
+    func uploadResult(completion: @escaping(_ result: Bool?) -> Void){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy. MM. dd. kk:mm:ss"
         
         db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").document(dateFormatter.string(from: Date())).setData([
-            "Type": data.getTypeAsString(),
-            "percentOfNormal": data.percentageOfNormal,
-            "percentOfMCI": data.percentageOfMCI,
-            "percentOfDementia": data.percentageOfDementia,
-            "MMSEScore": MMSEScore,
-            "MMSEType": MMSEData.getTypeAsString(),
-            "percentOfMMSENormal": MMSEData.percentageOfNormal,
-            "percentOfMMSEMCI": MMSEData.percentageOfMCI,
-            "percentOfMMSEDementia": MMSEData.percentageOfDementia,
-            "lifeLogType": lifeLogData.max,
+            "type": AES256Util.encrypt(string: inspectionResult.getTypeAsString()),
+            "percentOfNormal": inspectionResult.percentageOfNormal,
+            "percentOfMCI": inspectionResult.percentageOfMCI,
+            "percentOfDementia": inspectionResult.percentageOfDementia,
+            "MMSEType": AES256Util.encrypt(string: mmseData.getTypeAsString()),
+            "MMSEScores": scores,
+            "percentOfMMSENormal": mmseData.percentageOfNormal,
+            "percentOfMMSEMCI": mmseData.percentageOfMCI,
+            "percentOfMMSEDementia": mmseData.percentageOfDementia,
+            "lifeLogType": AES256Util.encrypt(string: lifeLogData.getTypeAsString()),
             "percentOfLifeLogNormal": lifeLogData.percentageOfNormal,
             "percentOfLifeLogMCI": lifeLogData.percentageOfMCI,
             "percentOfLifeLogDementia": lifeLogData.percentageOfDementia,
-            "sleepType": sleepData.getTypeAsString(),
+            "sleepType": AES256Util.encrypt(string: sleepData.getTypeAsString()),
             "percentOfSleepNormal": sleepData.percentageOfNormal,
             "percentOfSleepMCI": sleepData.percentageOfMCI,
-            "percentOfSleepDementia": sleepData.percentageOfDementia
+            "percentOfSleepDementia": sleepData.percentageOfDementia,
         ]){ error in
             if error != nil{
                 print(error?.localizedDescription)
@@ -109,6 +125,84 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
             
             completion(true)
             return
+        }
+    }
+    
+    func getResult(id: String, completion: @escaping(_ result: Bool?) -> Void){
+        db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").document(id).getDocument(){(document, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion(false)
+                return
+            }
+            
+            if document != nil{
+                let type = AES256Util.decrypt(encoded: document?.get("type") as? String ?? "")
+                let percentOfNormal = document?.get("percentOfNormal") as? Double ?? 0.0
+                let percentOfMCI = document?.get("percentOfMCI") as? Double ?? 0.0
+                let percentOfDementia = document?.get("percentOfDementia") as? Double ?? 0.0
+                
+                let MMSEType = AES256Util.decrypt(encoded: document?.get("MMSEType") as? String ?? "")
+                let MMSEScores = document?.get("MMSEScores") as? [Int] ?? []
+                
+                let percentOfMMSENormal = document?.get("percentOfMMSENormal") as? Double ?? 0.0
+                let percentOfMMSEMCI = document?.get("percentOfMMSEMCI") as? Double ?? 0.0
+                let percentOfMMSEDementia = document?.get("percentOfMMSEDementia") as? Double ?? 0.0
+                
+                let lifeLogType = AES256Util.decrypt(encoded: document?.get("lifeLogType") as? String ?? "")
+                let percentOfLifeLogNormal = document?.get("percentOfLifeLogNormal") as? Double ?? 0.0
+                let percentOfLifeLogMCI = document?.get("percentOfLifeLogMCI") as? Double ?? 0.0
+                let percentOfLifeLogDementia = document?.get("percentOfLifeLogDementia") as? Double ?? 0.0
+                
+                let sleepType = AES256Util.decrypt(encoded: document?.get("sleepType") as? String ?? "")
+                let percentOfSleepNormal = document?.get("percentOfSleepNormal") as? Double ?? 0.0
+                let percentOfSleepMCI = document?.get("percentOfSleepMCI") as? Double ?? 0.0
+                let percentOfSleepDementia = document?.get("percentOfSleepDementia") as? Double ?? 0.0
+                
+                self.inspectionResult = InspectionResultDataModel(type: self.getInspectionType(type: type),
+                                                                  percentageOfNormal: Float(percentOfNormal),
+                                                                  percentageOfMCI: Float(percentOfMCI),
+                                                                  percentageOfDementia: Float(percentOfDementia))
+                
+                self.scores = MMSEScores
+                
+                self.mmseData = ClassInspectionResultDataModel(max: self.getInspectionType(type: MMSEType), percentageOfNormal: Float(percentOfMMSENormal), percentageOfMCI: Float(percentOfMMSEMCI), percentageOfDementia: Float(percentOfMMSEDementia))
+                self.lifeLogData = ClassInspectionResultDataModel(max: self.getInspectionType(type: lifeLogType), percentageOfNormal: Float(percentOfLifeLogNormal), percentageOfMCI: Float(percentOfLifeLogMCI), percentageOfDementia: Float(percentOfLifeLogDementia))
+                self.sleepData = ClassInspectionResultDataModel(max: self.getInspectionType(type: sleepType), percentageOfNormal: Float(percentOfSleepNormal), percentageOfMCI: Float(percentOfSleepMCI), percentageOfDementia: Float(percentOfSleepDementia))
+                
+                completion(true)
+                return
+            }
+        }
+    }
+    
+    func getDataList(completion: @escaping(_ result: [String]?) -> Void){
+        var ids = [String]()
+        
+        db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").getDocuments(){(querySnapshot, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+                completion([])
+                return
+            }
+            
+            if querySnapshot != nil{
+                if !querySnapshot!.isEmpty{
+                    for document in querySnapshot!.documents{
+                        ids.append(document.documentID)
+                    }
+                    
+                    completion(ids)
+                    return
+                } else{
+                    completion([])
+                    return
+                }
+
+            } else{
+                completion([])
+                return
+            }
         }
     }
     
@@ -548,7 +642,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         return true
     }
     
-    func calculateInspectionResult() -> Bool{
+    func calculateInspectionResult(completion: @escaping(_ result: Bool?) -> Void){
         var percentageOfNormal: Float = (mmseData.percentageOfNormal * Float(0.5)) + (lifeLogData.percentageOfNormal * Float(0.25)) + (sleepData.percentageOfNormal * Float(0.25))
         var percentageOfMCI: Float = (mmseData.percentageOfMCI * Float(0.5)) + (lifeLogData.percentageOfMCI * Float(0.25)) + (sleepData.percentageOfMCI * Float(0.25))
         var percentageOfDementia: Float = (mmseData.percentageOfDementia * Float(0.5)) + (lifeLogData.percentageOfDementia * Float(0.25)) + (sleepData.percentageOfDementia * Float(0.25))
@@ -575,7 +669,12 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                 
         self.inspectionResult = InspectionResultDataModel(type: max, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
         
-        return true
+        self.uploadResult(completion: { result in
+            guard let result = result else{return}
+            
+            completion(result)
+            return
+        })
     }
     
     private func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
