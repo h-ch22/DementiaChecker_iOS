@@ -1,4 +1,5 @@
 DementiaChecker/include/
+DementiaChecker/Frameworks/Helper/LocationHelper.swift
 DementiaChecker/fonts
 Pods/
 Podfile

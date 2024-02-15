@@ -50,7 +50,74 @@ class HealthKitHelper: ObservableObject{
         }
     }
     
-    func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
+    func updateData(start: Date, end: Date, completion: @escaping(_ result: Bool?) -> Void){
+        let group = DispatchGroup()
+        group.enter()
+        
+        self.getActivityMinutes(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getHeartRateData(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getWalkingHeartRateData(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getRestingHeartRateData(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getStepCount(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getDistanceWalkingRunning(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getActivityEnergyBurned(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getOxygenSaturation(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getWristTemperature(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.enter()
+        
+        self.getSleepTime(start: start, end: end, completion: { _ in
+            group.leave()
+        })
+        
+        group.notify(queue: .main){
+            completion(true)
+        }
+    }
+    
+    private func getActivityMinutes(start: Date, end: Date, completion: @escaping(Double) -> Void){
         guard let exercieseQuantityType = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime) else{return}
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
@@ -74,7 +141,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
+    private func getHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate) else{return}
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
@@ -99,7 +166,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getWalkingHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
+    private func getWalkingHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .walkingHeartRateAverage) else{return}
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
@@ -124,7 +191,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getRestingHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
+    private func getRestingHeartRateData(start: Date, end: Date, completion: @escaping([HKSample]) -> Void){
         guard let sampleType = HKObjectType.quantityType(forIdentifier: .restingHeartRate) else{return}
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
@@ -149,7 +216,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getStepCount(start: Date, end: Date, completion: @escaping (Double) -> Void){
+    private func getStepCount(start: Date, end: Date, completion: @escaping (Double) -> Void){
         guard let stepQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount) else{
             return
         }
@@ -176,7 +243,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getDistanceWalkingRunning(start: Date, end: Date, completion: @escaping (Double) -> Void){
+    private func getDistanceWalkingRunning(start: Date, end: Date, completion: @escaping (Double) -> Void){
         guard let distanceWalkingRunningType = HKSampleType.quantityType(forIdentifier: .distanceWalkingRunning) else{
             return
         }
@@ -202,7 +269,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getActivityEnergyBurned(start: Date, end: Date, completion: @escaping (Double) -> Void){
+    private func getActivityEnergyBurned(start: Date, end: Date, completion: @escaping (Double) -> Void){
         guard let activeEnergyBurnedType = HKSampleType.quantityType(forIdentifier: .activeEnergyBurned) else{
             return
         }
@@ -233,7 +300,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getOxygenSaturation(start: Date, end: Date, completion: @escaping ([HKSample]) -> Void){
+    private func getOxygenSaturation(start: Date, end: Date, completion: @escaping ([HKSample]) -> Void){
         guard let oxygenSaturationType = HKSampleType.quantityType(forIdentifier: .oxygenSaturation) else{
             return
         }
@@ -266,7 +333,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getWristTemperature(start: Date, end: Date, completion: @escaping ([HKSample]) -> Void){
+    private func getWristTemperature(start: Date, end: Date, completion: @escaping ([HKSample]) -> Void){
         guard let wristTemperatureType = HKSampleType.quantityType(forIdentifier: .appleSleepingWristTemperature) else{
             return
         }
@@ -297,7 +364,7 @@ class HealthKitHelper: ObservableObject{
         healthStore.execute(query)
     }
     
-    func getSleepTime(start: Date, end: Date, completion: @escaping (Double?) ->  Void){
+    private func getSleepTime(start: Date, end: Date, completion: @escaping (Double?) ->  Void){
         guard let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) else{
             return
         }

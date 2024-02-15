@@ -124,44 +124,8 @@ struct HomeView: View {
                         
                         let start = Calendar.current.startOfDay(for: Date())
                         
-                        helper.getStepCount(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getOxygenSaturation(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getHeartRateData(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getRestingHeartRateData(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getWalkingHeartRateData(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getActivityEnergyBurned(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getDistanceWalkingRunning(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getSleepTime(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getWristTemperature(start: start, end: Date()){ result in
-                            guard result != nil else{return}
-                        }
-                        
-                        helper.getActivityMinutes(start: start, end: Date(), completion: { result in
-                            guard result != nil else{return}
+                        helper.updateData(start: start, end: Date(), completion: { _ in
+                            
                         })
                         
                         inspectionHelper.getLatestResult(completion: { result in
