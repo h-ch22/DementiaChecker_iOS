@@ -15,6 +15,7 @@ import SwiftyJSON
 import FirebaseFirestore
 import FirebaseAuth
 import HealthKit
+import Accelerate
 
 class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, CLLocationManagerDelegate{
     @Published var resultText = ""
@@ -41,6 +42,7 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     private let auth = Auth.auth()
     private let labels = ["NORMAL", "MCI", "DEMENTIA"]
     private let healthStore = HKHealthStore()
+    private let fileManager = FileManager.default
 
     
     private lazy var module_MMSE: TorchModule? = {
@@ -550,9 +552,16 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
                         self.answers.append("백문이불여일견")
                         self.scores.append(self.answerList[i].contains("백문이불여일견") ? 2 : 1)
                         
-                    case 22, 23, 24, 25, 26:
+                    case 22, 23, 24, 26:
                         self.answers.append("")
                         self.scores.append(self.answerList[i] == "True" ? 2 : 1)
+                        
+                    case 25:
+                        self.answers.append("")
+                        let similarity = self.compareImages()
+                        print(similarity)
+                        
+                        self.scores.append(similarity ?? 0.0 < 0.7 ? 1 : 2)
                         
                     case 27:
                         self.answers.append("")
@@ -664,9 +673,9 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
     }
     
     func calculateInspectionResult(completion: @escaping(_ result: Bool?) -> Void){
-        var percentageOfNormal: Float = (mmseData.percentageOfNormal * Float(0.5)) + (lifeLogData.percentageOfNormal * Float(0.25)) + (sleepData.percentageOfNormal * Float(0.25))
-        var percentageOfMCI: Float = (mmseData.percentageOfMCI * Float(0.5)) + (lifeLogData.percentageOfMCI * Float(0.25)) + (sleepData.percentageOfMCI * Float(0.25))
-        var percentageOfDementia: Float = (mmseData.percentageOfDementia * Float(0.5)) + (lifeLogData.percentageOfDementia * Float(0.25)) + (sleepData.percentageOfDementia * Float(0.25))
+        let percentageOfNormal: Float = (mmseData.percentageOfNormal * Float(0.5)) + (lifeLogData.percentageOfNormal * Float(0.25)) + (sleepData.percentageOfNormal * Float(0.25))
+        let percentageOfMCI: Float = (mmseData.percentageOfMCI * Float(0.5)) + (lifeLogData.percentageOfMCI * Float(0.25)) + (sleepData.percentageOfMCI * Float(0.25))
+        let percentageOfDementia: Float = (mmseData.percentageOfDementia * Float(0.5)) + (lifeLogData.percentageOfDementia * Float(0.25)) + (sleepData.percentageOfDementia * Float(0.25))
         
         var max: InspectionResultTypeModel = .NORMAL
         
@@ -719,6 +728,119 @@ class InspectionHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate, 
         }
         
         healthStore.execute(query)
+    }
+    
+    private func getDocumentsDirectory() -> URL?{
+        do{
+            let paths = try FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+            
+            return paths[0]
+        } catch{
+            print(error)
+            return nil
+        }
+
+    }
+    
+    func saveImage(image: UIImage) -> Bool{
+        do{
+            let directory = getDocumentsDirectory()?.appendingPathComponent("img_drew.png")
+            
+            if directory == nil{
+                print("directory: nil")
+                return false
+            }
+            
+            if fileManager.fileExists(atPath: directory!.absoluteString){
+                do{
+                    try fileManager.removeItem(atPath: directory!.absoluteString)
+                } catch let error{
+                    print(error)
+                    return false
+                }
+            }
+            
+            if let imageData = image.pngData(){
+                try imageData.write(to: directory!)
+                return true
+            } else{
+                print("cannot extract image data")
+                return false
+            }
+        } catch{
+            print(error)
+            return false
+        }
+    }
+    
+    private func compareImages() -> Double?{
+        let image_original = UIImage(named: "img_draw")
+        let directory = getDocumentsDirectory()?.appendingPathComponent("img_drew.png")
+
+        let image_drew = UIImage(contentsOfFile: (directory?.path())!) ?? nil
+        
+        if image_original != nil && image_drew != nil{
+            guard let imageData1 = getGrayscaleData(from: image_original!), let imageData2 = getGrayscaleData(from: image_drew!) else{
+                print("cannot get grayscale data")
+                return nil
+            }
+            
+            let width = Int(image_original!.size.width)
+            let height = Int(image_original!.size.height)
+            
+            var floatData1 = [Float](repeating: 0, count: width * height)
+            var floatData2 = [Float](repeating: 0, count: width * height)
+            var resultData = [Float](repeating: 0, count: width * height)
+            
+            vDSP.convertElements(of: imageData1, to: &floatData1)
+            vDSP.convertElements(of: imageData2, to: &floatData2)
+            vDSP.subtract(floatData2, floatData1, result: &resultData)
+            vDSP.absolute(resultData, result: &resultData)
+            vDSP.clip(resultData, to: 0...1, result: &resultData)
+            
+            let sum: Float = vDSP.sum(resultData)
+            let ratio = Double(sum) / Double(width * height)
+            
+            let similarity = 1 - ratio
+            return similarity
+        } else{
+            print("image_original or image_drew is nil")
+            return nil
+        }
+    }
+    
+    private func getGrayscaleData(from image: UIImage) -> [UInt8]? {
+        guard let cgImage = image.cgImage else {
+            return nil
+        }
+        
+        let width = Int(image.size.width)
+        let height = Int(image.size.height)
+        let bitsPerComponent = 8
+        let bytesPerPixel = 1
+        let bytesPerRow = width * bytesPerPixel
+        
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        let bitmapInfo: UInt32 = CGImageAlphaInfo.none.rawValue
+        
+        var imageData = [UInt8](repeating: 0, count: width * height)
+        
+        guard let context = CGContext(
+            data: &imageData,
+            width: width,
+            height: height,
+            bitsPerComponent: bitsPerComponent,
+            bytesPerRow: bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo
+        ) else {
+            return nil
+        }
+        
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        context.draw(cgImage, in: rect)
+        
+        return imageData
     }
     
     private func getDistanceWalkingRunning(start: Date, end: Date, completion: @escaping (Double) -> Void){

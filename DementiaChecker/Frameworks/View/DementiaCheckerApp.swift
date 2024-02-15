@@ -92,6 +92,31 @@ extension UIView {
     }
 }
 
+extension UIImage {
+    func resize(newWidth: CGFloat) -> UIImage {
+        let scale = newWidth / self.size.width
+        let newHeight = self.size.height * scale
+
+        let size = CGSize(width: newWidth, height: newHeight)
+        let render = UIGraphicsImageRenderer(size: size)
+        let renderImage = render.image { context in
+            self.draw(in: CGRect(origin: .zero, size: size))
+        }
+
+        return renderImage
+    }
+    
+    func resized(to newSize: CGSize, scale: CGFloat = 1) -> UIImage {
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = scale
+        let renderer = UIGraphicsImageRenderer(size: newSize, format: format)
+        let image = renderer.image { _ in
+            draw(in: CGRect(origin: .zero, size: newSize))
+        }
+        return image
+    }
+}
+
 extension Date{
     public var year: Int{
         return Calendar.current.component(.year, from: self)

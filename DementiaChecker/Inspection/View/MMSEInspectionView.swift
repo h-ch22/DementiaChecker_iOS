@@ -310,6 +310,10 @@ struct MMSEInspectionView: View {
                         
                         Button(action: {
                             if currentIndex < 27{
+                                if currentIndex == 25{
+                                    let _ = helper.saveImage(image: canvasView.asUIImage().resized(to: CGSize(width: 400, height: 400)))
+                                }
+                                
                                 dragOffset = CGSize.zero
                                 canvasView = PKCanvasView()
                                 helper.saveAnswer(answer: answer)
