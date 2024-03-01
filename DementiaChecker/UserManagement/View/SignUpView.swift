@@ -2,7 +2,7 @@
 //  SignUpView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -21,8 +21,8 @@ struct SignUpView: View {
     @State private var isOutOfWork = false
     @State private var tall = ""
     @State private var weight = ""
-    @State private var selectedGender = "남성"
-    @State private var genders = ["남성", "여성"]
+    @State private var selectedGender = "Male"
+    @State private var genders = ["Male", "Female"]
     
     @State private var showProgress = false
     @State private var showAlert = false
@@ -71,7 +71,7 @@ struct SignUpView: View {
                             Image(systemName: "key.fill")
                                 .foregroundStyle(password == "" ? Color.gray : Color.accent)
                             
-                            SecureField("비밀번호", text: $password)
+                            SecureField("Password", text: $password)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -85,7 +85,7 @@ struct SignUpView: View {
                             Image(systemName: "key.fill")
                                 .foregroundStyle(checkPassword == "" ? Color.gray : Color.accent)
                             
-                            SecureField("비밀번호 확인", text: $checkPassword)
+                            SecureField("Check Password", text: $checkPassword)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -99,7 +99,7 @@ struct SignUpView: View {
                             Image(systemName: "person.fill")
                                 .foregroundStyle(name == "" ? Color.gray : Color.accent)
                             
-                            TextField("이름", text: $name)
+                            TextField("Name", text: $name)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -113,7 +113,7 @@ struct SignUpView: View {
                             Image(systemName: "phone.fill")
                                 .foregroundStyle(phone == "" ? Color.gray : Color.accent)
                             
-                            TextField("연락처", text: $phone)
+                            TextField("Contact", text: $phone)
                                 .keyboardType(.phonePad)
                         }
                         .foregroundStyle(Color.accent)
@@ -129,7 +129,7 @@ struct SignUpView: View {
                                 Image(systemName: "house.fill")
                                     .foregroundStyle(homeAddress == "" ? Color.gray : Color.accent)
                                 
-                                TextField("집 주소", text: $homeAddress)
+                                TextField("Home Address", text: $homeAddress)
                                 
                             }
                             .disabled(true)
@@ -151,7 +151,7 @@ struct SignUpView: View {
                                 Image(systemName: "person.2.badge.gearshape.fill")
                                     .foregroundStyle(job == "" ? Color.gray : Color.accent)
                                 
-                                TextField("직업", text: $job)
+                                TextField("Job", text: $job)
                             }
                             .foregroundStyle(Color.accent)
                             .padding(20)
@@ -166,7 +166,7 @@ struct SignUpView: View {
                                     Image(systemName: "building.2.fill")
                                         .foregroundStyle(workAddress == "" ? Color.gray : Color.accent)
                                     
-                                    TextField("직장 주소", text: $workAddress)
+                                    TextField("Company Address", text: $workAddress)
                                 }
                                 .disabled(true)
                                 .foregroundStyle(Color.accent)
@@ -175,7 +175,7 @@ struct SignUpView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(radius: 5)
                                 
-                                NavigationLink(destination: AddressSearchView(address: $workAddress).navigationTitle(Text("주소 검색"))){
+                                NavigationLink(destination: AddressSearchView(address: $workAddress).navigationTitle(Text("Search Address"))){
                                     Image(systemName: "magnifyingglass")
                                 }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 5))
                             }
@@ -183,7 +183,7 @@ struct SignUpView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        CheckBox(isChecked: $isOutOfWork, title: "무직")
+                        CheckBox(isChecked: $isOutOfWork, title: "Out of work")
                         
                         Spacer().frame(height: 20)
                         
@@ -191,7 +191,7 @@ struct SignUpView: View {
                             Image(systemName: "figure.stand")
                                 .foregroundStyle(tall == "" ? Color.gray : Color.accent)
                             
-                            TextField("키 (cm)", text: $tall)
+                            TextField("Tall (cm)", text: $tall)
                                 .keyboardType(.numberPad)
                         }
                         .foregroundStyle(Color.accent)
@@ -206,7 +206,7 @@ struct SignUpView: View {
                             Image(systemName: "gauge")
                                 .foregroundStyle(weight == "" ? Color.gray : Color.accent)
                             
-                            TextField("몸무게 (kg)", text: $weight)
+                            TextField("Weight (kg)", text: $weight)
                                 .keyboardType(.numberPad)
                         }
                         .foregroundStyle(Color.accent)
@@ -217,7 +217,7 @@ struct SignUpView: View {
                         
                         Spacer().frame(height: 20)
                         
-                        Picker("성별", selection: $selectedGender){
+                        Picker("Gender", selection: $selectedGender){
                             ForEach(genders, id: \.self){
                                 Text($0)
                                     .foregroundStyle(Color.txt)
@@ -232,7 +232,7 @@ struct SignUpView: View {
                                 Image(systemName: "figure.arms.open")
                                     .foregroundStyle(patientEmail == "" ? Color.gray : Color.accent)
                                 
-                                TextField("환자 E-Mail", text: $patientEmail)
+                                TextField("Patient E-Mail", text: $patientEmail)
                                     .keyboardType(.emailAddress)
                             }
                             .foregroundStyle(Color.accent)
@@ -245,7 +245,7 @@ struct SignUpView: View {
                         
                         Spacer().frame(height: 20)
                         
-                        DatePicker("생년월일", selection: $birthday, in: ...Date.now, displayedComponents: .date)
+                        DatePicker("Birthday", selection: $birthday, in: ...Date.now, displayedComponents: .date)
                             .padding(20)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -281,7 +281,7 @@ struct SignUpView: View {
                                                 guard let result = result else{return}
                                                 
                                                 if result{
-                                                    helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, tall: tall, weight: weight, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT", gender: selectedGender == "남성" ? "Male" : "Female"){ result in
+                                                    helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, tall: tall, weight: weight, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT", gender: selectedGender){ result in
                                                         guard let result = result else{return}
                                                         
                                                         showProgress = false
@@ -300,7 +300,7 @@ struct SignUpView: View {
                                                 }
                                             }
                                         } else{
-                                            helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, tall: tall, weight: weight, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT", gender: selectedGender == "남성" ? "Male" : "Female"){ result in
+                                            helper.signUp(email: email, password: password, name: name, phone: phone, birthday: dateFormatter.string(from: birthday), patientEmail: patientEmail, homeAddress: homeAddress, job: isOutOfWork ? "" : job, workAddress: isOutOfWork ? "" : workAddress, tall: tall, weight: weight, userType: self.userType == .GUARDIAN ? "GUARDIAN" : "PATIENT", gender: selectedGender){ result in
                                                 guard let result = result else{return}
                                                 
                                                 showProgress = false
@@ -321,7 +321,7 @@ struct SignUpView: View {
                                 HStack{
                                     Spacer()
                                     
-                                    Text("회원가입")
+                                    Text("Sign Up")
                                         .foregroundStyle(Color.txt)
                                     
                                     Image(systemName: "chevron.right")
@@ -335,7 +335,7 @@ struct SignUpView: View {
                         
                     }
                     
-                }.navigationTitle(Text("회원가입"))
+                }.navigationTitle(Text("Sign Up"))
                     .alert(isPresented: $showAlert, error: alertType){ _ in
                         
                     } message: {error in

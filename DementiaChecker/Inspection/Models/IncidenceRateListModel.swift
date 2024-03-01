@@ -2,7 +2,7 @@
 //  BarChartListModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/12/24.
+//  Created by Changjin Ha on 2/12/24.
 //
 
 import SwiftUI
@@ -19,7 +19,7 @@ struct IncidenceRateListModel: View {
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                 
-                Text("질환별 발병률")
+                Text("Incidence Rates by Condition")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.gray)
@@ -30,7 +30,7 @@ struct IncidenceRateListModel: View {
             Spacer().frame(height: 20)
             
             HStack{
-                Text("정상 (Normal): __\(String(format: "%.2f", data.percentageOfNormal))%__")
+                Text("Normal: __\(String(format: "%.2f", data.percentageOfNormal))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
@@ -40,7 +40,7 @@ struct IncidenceRateListModel: View {
             }
             
             HStack{
-                Text("경도인지장애 (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
+                Text("Mild Cognitive Impairment (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
@@ -50,7 +50,7 @@ struct IncidenceRateListModel: View {
             }
             
             HStack{
-                Text("치매 (Dementia): __\(String(format: "%.2f", data.percentageOfDementia))%__")
+                Text("Dementia: __\(String(format: "%.2f", data.percentageOfDementia))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
@@ -64,9 +64,11 @@ struct IncidenceRateListModel: View {
                 .fill(Color.background)
                 .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
                 .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
-        )    }
+        )
+    }
 }
 
 #Preview {
     IncidenceRateListModel(data: InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 80, percentageOfMCI: 10, percentageOfDementia: 10))
 }
+

@@ -2,7 +2,7 @@
 //  DigitalInheritanceMainView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/29/24.
+//  Created by Changjin Ha on 1/29/24.
 //
 
 import SwiftUI
@@ -24,10 +24,10 @@ struct DigitalInheritanceMainView: View {
                             .foregroundStyle(Color.txt)
 
                         VStack(alignment: .leading){
-                            Text("유산 관리자 시작하기")
+                            Text("Start Digital Inheritance")
                                 .fontWeight(.semibold)
                             
-                            Text("신뢰하는 사람의 계정을 추가하면, 사용자가 사망한 이후 이 사람이 사용자의 데이터에 접근할 수 있게 됩니다.")
+                            Text("By adding the account of a trusted person, that person will be able to access the user's data after the user's death.")
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                         }
@@ -42,10 +42,10 @@ struct DigitalInheritanceMainView: View {
                             .foregroundStyle(Color.txt)
 
                         VStack(alignment: .leading){
-                            Text("접근 제한")
+                            Text("Access Restriction")
                                 .fontWeight(.semibold)
                             
-                            Text("사용자가 사망했음이 확인되기 전까지 유산 관리자는 사용자가 공유를 허가한 정보 외의 어떠한 정보에도 접근할 수 없습니다.")
+                            Text("Until it is confirmed that the user has died, the inheritance manager cannot access any information other than what the user has permitted.")
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                         }
@@ -60,10 +60,10 @@ struct DigitalInheritanceMainView: View {
                             .foregroundStyle(Color.txt)
                         
                         VStack(alignment: .leading){
-                            Text("디지털 유산 물려주기")
+                            Text("Passing on Digital Inheritance")
                                 .fontWeight(.semibold)
                             
-                            Text("애플리케이션 내에 저장된 검사 기록, 건강 상태 및 개인정보를 유산으로 사랑하는 사람과 공유하거나, 폐기를 요청할 수 있습니다.")
+                            Text("You can share or request disposal of test records, health status, and personal information stored within the application with loved ones as inheritance.")
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                         }
@@ -77,7 +77,7 @@ struct DigitalInheritanceMainView: View {
                         HStack{
                             Spacer()
                             
-                            Text("시작하기")
+                            Text("Get Started")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
@@ -87,10 +87,10 @@ struct DigitalInheritanceMainView: View {
                         }
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }.padding(20)
-            }.navigationTitle(Text("유산 관리자"))
+            }.navigationTitle(Text("Digital Inheritance"))
                 .toolbar{
                     ToolbarItem(placement: .topBarLeading, content: {
-                        Button("닫기"){
+                        Button("Close"){
                             dismiss()
                         }
                     })

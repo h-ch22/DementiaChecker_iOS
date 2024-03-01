@@ -2,7 +2,7 @@
 //  MoreView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -37,7 +37,7 @@ struct MoreView: View {
                             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                             .shadow(radius: 5)
                         
-                        Text(helper.userInfo?.name ?? "알 수 없는 사용자")
+                        Text(helper.userInfo?.name ?? "Unknown User")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -57,7 +57,7 @@ struct MoreView: View {
                         Image(systemName: "book.pages.fill")
                             .foregroundStyle(Color.txt)
 
-                        Text("하루 일기")
+                        Text("Daily Diary")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -74,7 +74,7 @@ struct MoreView: View {
                         Image(systemName: "lightbulb.max.fill")
                             .foregroundStyle(Color.txt)
 
-                        Text("치매 예방과 관련된 내용")
+                        Text("Information on the prevention of dementia")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -89,7 +89,7 @@ struct MoreView: View {
                         Image(systemName: "brain.filled.head.profile")
                             .foregroundStyle(Color.txt)
 
-                        Text("심각도별 치매 개선 프로세스")
+                        Text("Dementia Improvement Process")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -104,7 +104,7 @@ struct MoreView: View {
                         Image(systemName: "person.crop.artframe")
                             .foregroundStyle(Color.txt)
 
-                        Text("유산 관리자")
+                        Text("Digital Inheritance Manager")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -119,7 +119,7 @@ struct MoreView: View {
                         Image(systemName: "info.circle.fill")
                             .foregroundStyle(Color.txt)
 
-                        Text("정보")
+                        Text("About")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         

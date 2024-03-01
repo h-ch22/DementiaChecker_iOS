@@ -2,7 +2,7 @@
 //  UpdateUserInfoView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/14/24.
+//  Created by Changjin Ha on 2/14/24.
 //
 
 import SwiftUI
@@ -42,7 +42,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("비밀번호 변경")
+                        Text("Change Password")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -54,7 +54,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("생년월일 변경")
+                        Text("Change Birthday")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -66,7 +66,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("이름 변경")
+                        Text("Change Name")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -78,7 +78,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("연락처 변경")
+                        Text("Change Phone")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -90,7 +90,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("집 주소 변경")
+                        Text("Change Home Address")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -102,7 +102,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("회사 주소 변경")
+                        Text("Change Work Address")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -114,7 +114,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("키 변경")
+                        Text("Change Tall")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -126,7 +126,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("몸무게 변경")
+                        Text("Change Weight")
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -140,7 +140,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "key.fill")
                                 .foregroundStyle(password == "" ? Color.gray : Color.accent)
                             
-                            SecureField("비밀번호", text: $password)
+                            SecureField("Password", text: $password)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -154,7 +154,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "key.fill")
                                 .foregroundStyle(checkPassword == "" ? Color.gray : Color.accent)
                             
-                            SecureField("비밀번호 확인", text: $checkPassword)
+                            SecureField("Confirm Password", text: $checkPassword)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -163,7 +163,7 @@ struct UpdateUserInfoView: View {
                         .shadow(radius: 5)
                         
                     case .BIRTHDAY:
-                        DatePicker("생년월일", selection: $birthday, in: ...Date.now, displayedComponents: .date)
+                        DatePicker("Birthday", selection: $birthday, in: ...Date.now, displayedComponents: .date)
                             .padding(20)
                             .background(.ultraThinMaterial)
                             .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -174,7 +174,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "person.fill")
                                 .foregroundStyle(name == "" ? Color.gray : Color.accent)
                             
-                            TextField("이름", text: $name)
+                            TextField("Name", text: $name)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -187,7 +187,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "phone.fill")
                                 .foregroundStyle(phone == "" ? Color.gray : Color.accent)
                             
-                            TextField("연락처", text: $phone)
+                            TextField("Phone", text: $phone)
                                 .keyboardType(.phonePad)
                         }
                         .foregroundStyle(Color.accent)
@@ -202,7 +202,7 @@ struct UpdateUserInfoView: View {
                                 Image(systemName: "house.fill")
                                     .foregroundStyle(homeAddress == "" ? Color.gray : Color.accent)
                                 
-                                TextField("집 주소", text: $homeAddress)
+                                TextField("Home Address", text: $homeAddress)
                                 
                             }
                             .disabled(true)
@@ -212,7 +212,7 @@ struct UpdateUserInfoView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                             .shadow(radius: 5)
                             
-                            NavigationLink(destination: AddressSearchView(address: $homeAddress).navigationTitle(Text("주소 검색"))){
+                            NavigationLink(destination: AddressSearchView(address: $homeAddress).navigationTitle(Text("Address Search"))){
                                 Image(systemName: "magnifyingglass")
                             }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 5))
                         }
@@ -223,7 +223,7 @@ struct UpdateUserInfoView: View {
                                 Image(systemName: "person.2.badge.gearshape.fill")
                                     .foregroundStyle(job == "" ? Color.gray : Color.accent)
                                 
-                                TextField("직업", text: $job)
+                                TextField("Job", text: $job)
                             }
                             .foregroundStyle(Color.accent)
                             .padding(20)
@@ -238,7 +238,7 @@ struct UpdateUserInfoView: View {
                                     Image(systemName: "building.2.fill")
                                         .foregroundStyle(workAddress == "" ? Color.gray : Color.accent)
                                     
-                                    TextField("직장 주소", text: $workAddress)
+                                    TextField("Work Address", text: $workAddress)
                                 }
                                 .disabled(true)
                                 .foregroundStyle(Color.accent)
@@ -247,7 +247,7 @@ struct UpdateUserInfoView: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 15))
                                 .shadow(radius: 5)
                                 
-                                NavigationLink(destination: AddressSearchView(address: $workAddress).navigationTitle(Text("주소 검색"))){
+                                NavigationLink(destination: AddressSearchView(address: $workAddress).navigationTitle(Text("Address Search"))){
                                     Image(systemName: "magnifyingglass")
                                 }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 5))
                             }
@@ -255,7 +255,7 @@ struct UpdateUserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        CheckBox(isChecked: $isOutOfWork, title: "무직")
+                        CheckBox(isChecked: $isOutOfWork, title: "Out of Work")
 
                         
                     case .TALL:
@@ -263,7 +263,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "figure.stand")
                                 .foregroundStyle(tall == "" ? Color.gray : Color.accent)
                             
-                            TextField("키 (cm)", text: $tall)
+                            TextField("Tall (cm)", text: $tall)
                                 .keyboardType(.numberPad)
                         }
                         .foregroundStyle(Color.accent)
@@ -277,7 +277,7 @@ struct UpdateUserInfoView: View {
                             Image(systemName: "gauge")
                                 .foregroundStyle(weight == "" ? Color.gray : Color.accent)
                             
-                            TextField("몸무게 (kg)", text: $weight)
+                            TextField("Weight (kg)", text: $weight)
                                 .keyboardType(.numberPad)
                         }
                         .foregroundStyle(Color.accent)
@@ -412,7 +412,7 @@ struct UpdateUserInfoView: View {
                             HStack{
                                 Spacer()
                                 
-                                Text("정보 변경")
+                                Text("Update Info")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
@@ -424,14 +424,14 @@ struct UpdateUserInfoView: View {
                     }
 
                 }.padding(20)
-                    .navigationTitle(Text("사용자 정보 변경"))
+                    .navigationTitle(Text("Update User Info"))
                     .alert(isPresented: $showAlert, content: {
                         if alertModel{
-                            return Alert(title: Text("업데이트 완료"), message: Text("사용자 정보가 업데이트 되었습니다."), dismissButton: .default(Text("확인")){
+                            return Alert(title: Text("Update Completed"), message: Text("User information has been updated."), dismissButton: .default(Text("OK")){
                                 self.dismiss()
                             })
                         } else{
-                            return Alert(title: Text("오류"), message: Text("사용자 정보를 업데이트하는 중 문제가 발생했습니다.\n네트워크 상태, 정상 로그인 여부를 확인하거나 나중에 다시 시도하십시오."), dismissButton: .default(Text("확인")))
+                            return Alert(title: Text("Error"), message: Text("There was an issue updating user information.\nPlease check your network connection and try again later."), dismissButton: .default(Text("OK")))
                         }
                     })
                     .animation(.easeInOut)
@@ -440,6 +440,3 @@ struct UpdateUserInfoView: View {
     }
 }
 
-#Preview {
-    UpdateUserInfoView(updateType: .PASSWORD)
-}

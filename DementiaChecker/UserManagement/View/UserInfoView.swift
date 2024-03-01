@@ -2,7 +2,7 @@
 //  UserInfoView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/9/24.
+//  Created by Changjin Ha on 2/9/24.
 //
 
 import SwiftUI
@@ -34,7 +34,7 @@ struct UserInfoView: View {
                             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                             .shadow(radius: 15)
                         
-                        Text(helper.userInfo?.name ?? "알 수 없는 사용자")
+                        Text(helper.userInfo?.name ?? "Unknown User")
                             .foregroundStyle(Color.txt)
                             .fontWeight(.semibold)
                         
@@ -90,7 +90,7 @@ struct UserInfoView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("\(helper.userInfo?.gender == "Male" ? "남성" : "여성") (\(Int(helper.getAge()))세) | \(helper.userInfo?.tall ?? "")cm, \(helper.userInfo?.weight ?? "")kg")
+                            Text("\(helper.userInfo?.gender ?? "Unknown Gender") (Age: \(Int(helper.getAge()))) | \(helper.userInfo?.tall ?? "")cm, \(helper.userInfo?.weight ?? "")kg")
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
 
@@ -100,7 +100,7 @@ struct UserInfoView: View {
                         
                         
                         HStack{
-                            Text("보호자")
+                            Text("Guardians")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -115,7 +115,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 10)
                         
                         if guardians.isEmpty{
-                            Text("등록된 보호자 없음")
+                            Text("There are no registered guardians")
                                 .foregroundStyle(Color.gray)
                             
                         } else{
@@ -136,7 +136,7 @@ struct UserInfoView: View {
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Text("사용자 정보 변경")
+                            Text("Change User Information")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -157,7 +157,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("비밀번호")
+                                    Text("Password")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -171,7 +171,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("생년월일")
+                                    Text("Birthday")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -187,7 +187,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("이름")
+                                    Text("Name")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -201,7 +201,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("연락처")
+                                    Text("Contact")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -217,7 +217,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("집 주소")
+                                    Text("Home Address")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -231,7 +231,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("직업")
+                                    Text("Job")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -247,7 +247,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("키")
+                                    Text("Tall")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -261,7 +261,7 @@ struct UserInfoView: View {
                                         .foregroundStyle(Color.txt)
                                         .font(.title)
                                     
-                                    Text("몸무게")
+                                    Text("Weight")
                                         .foregroundStyle(Color.txt)
                                 }.padding()
                                     .frame(width: 120, height: 100)
@@ -275,7 +275,7 @@ struct UserInfoView: View {
                         
                         Spacer().frame(height: 10)
                         
-                        Text("유산 관리자를 추가하거나 제거하려면 더 보기 탭의 유산 관리자 페이지로 진입하십시오.")
+                        Text("To add or remove a Heritage Manager, go to the Heritage Manager page on the More tab.")
                             .font(.caption)
                             .foregroundStyle(Color.gray)
                             .multilineTextAlignment(.center)
@@ -306,13 +306,13 @@ struct UserInfoView: View {
                                         }
                                     }
                                 }){
-                                    Text("로그아웃")
+                                    Text("Sign Out")
                                         .font(.caption)
                                         .foregroundColor(.gray)
                                         .underline(true, color : .gray)
                                 }
                                 
-                                Text("또는")
+                                Text("or")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                                 
@@ -336,7 +336,7 @@ struct UserInfoView: View {
                                         }
                                     }
                                 }){
-                                    Text("회원 탈퇴")
+                                    Text("Cancel Membership")
                                         .font(.caption)
                                         .foregroundColor(.gray)
                                         .underline(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, color: .gray)
@@ -348,7 +348,7 @@ struct UserInfoView: View {
                     .toolbar{
                         ToolbarItem(placement: .topBarLeading,
                                     content: {
-                            Button("닫기"){
+                            Button("Close"){
                                 self.dismiss()
                             }
                         })
@@ -365,7 +365,7 @@ struct UserInfoView: View {
                             self.guardians = result
                         }
                     }
-                    .navigationTitle(Text("프로필 정보"))
+                    .navigationTitle(Text("Profile"))
                     .animation(.easeInOut)
                     .fullScreenCover(isPresented: $showSignInView, content: {
                         SignInView()

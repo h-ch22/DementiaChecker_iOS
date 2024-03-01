@@ -2,7 +2,7 @@
 //  WriteDiaryView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 11/2/24.
 //
 
 import SwiftUI
@@ -18,7 +18,7 @@ struct WriteDiaryView: View {
     @State private var weekDay = ""
     @State private var title = ""
     @State private var contents = ""
-    @State private var emotions = ["🥰 행복해요", "😆 최고예요", "😀 좋아요", "🙂 그저그래요", "☹️ 안좋아요", "😢 슬퍼요", "😣 혼자있고싶어요", "😡 화나요"]
+    @State private var emotions = ["🥰 Happy", "😆 Excellent", "😀 Good", "🙂 Okay", "☹️ Not Good", "😢 Sad", "😣 Want to be alone", "😡 Angry"]
     @State private var selectedIndex = 0
     @State private var showActionSheet = false
     @State private var selectedPhotos : [PhotosPickerItem] = []
@@ -37,25 +37,25 @@ struct WriteDiaryView: View {
     private func codeToWeekDay(code: Int) -> String{
         switch code{
         case 1:
-            return "일"
+            return "Sun"
             
         case 2:
-            return "월"
+            return "Mon"
             
         case 3:
-            return "화"
+            return "Tue"
             
         case 4:
-            return "수"
+            return "Wed"
             
         case 5:
-            return "목"
+            return "Thu"
             
         case 6:
-            return "금"
+            return "Fri"
             
         case 7:
-            return "토"
+            return "Sat"
             
         default:
             return ""
@@ -91,7 +91,7 @@ struct WriteDiaryView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("\(weekDay)요일")
+                                    Text("\(weekDay)")
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                 }
@@ -115,7 +115,7 @@ struct WriteDiaryView: View {
                                         Spacer().frame(width: 20)
                                     }
                                 } else{
-                                    Picker("감정 선택", selection: $selectedIndex){
+                                    Picker("Select Emotion", selection: $selectedIndex){
                                         ForEach(emotions.indices, id: \.self){
                                             Text(emotions[$0])
                                                 .font(.custom("KoreanKPNB-R", size: 12))
@@ -126,12 +126,12 @@ struct WriteDiaryView: View {
                             }
                         }
                         
-                        TextField("제목", text: $title)
+                        TextField("Title", text: $title)
                             .font(.custom("KoreanKPNB-R", size: 15))
                         
                         Spacer().frame(height : 20)
                         
-                        TextField("오늘을 기록해보세요.", text: $contents, axis: .vertical)
+                        TextField("Write about today.", text: $contents, axis: .vertical)
                             .font(.custom("KoreanKPNB-R", size: 15))
                         
                         if !imageData.isEmpty || !markUpData.isEmpty || !photoData.isEmpty{
@@ -167,18 +167,18 @@ struct WriteDiaryView: View {
                         Spacer()
                         
                     }.padding(20)
-                        .confirmationDialog("미디어 추가", isPresented: $showActionSheet){
-                            Button("사진 촬영"){
+                        .confirmationDialog("Add Media", isPresented: $showActionSheet){
+                            Button("Take Photo"){
                                 showCamera = true
                             }
-                            Button("사진 선택"){
+                            Button("Select Photo"){
                                 showPhotosPicker = true
                             }
                             
-                            Button("마크업"){
+                            Button("Markup"){
                                 showMarkUp = true
                             }
-                            Button("취소", role: .cancel){
+                            Button("Cancel", role: .cancel){
                                 self.showActionSheet = false
                             }
                         }
@@ -213,7 +213,7 @@ struct WriteDiaryView: View {
                                 }
 
                             }){
-                                Text("완료")
+                                Text("Done")
                                     .foregroundStyle(self.title != "" && self.contents != "" ? Color.accentColor : Color.gray)
                             }
                         } else{
@@ -251,9 +251,9 @@ struct WriteDiaryView: View {
                 }
                 .alert(isPresented: $showAlert, content: {
                     if isError{
-                        return Alert(title: Text("오류"), message: Text("업로드를 진행하는 중 문제가 발생하였습니다.\n정상 로그인 여부, 네트워크 상태를 확인하거나 나중에 다시 시도하십시오."), dismissButton: .default(Text("확인")))
+                        return Alert(title: Text("Error"), message: Text("There was a problem uploading. Please check your network connection or try again later."), dismissButton: .default(Text("OK")))
                     } else{
-                        return Alert(title: Text("업로드 완료"), message: Text("하루일기가 업로드되었어요!"), dismissButton: .default(Text("확인")){
+                        return Alert(title: Text("Upload Complete"), message: Text("Your diary has been uploaded!"), dismissButton: .default(Text("OK")){
                             self.dismiss()
                         })
                     }

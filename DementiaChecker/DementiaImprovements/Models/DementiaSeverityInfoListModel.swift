@@ -2,7 +2,7 @@
 //  DementiaSeverityInfoListModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -34,7 +34,7 @@ struct DementiaSeverityInfoListModel: View {
                     .font(.caption)
                     .foregroundStyle(Color.accentColor)
                 
-                Text("IQ 수준: \(data.IQLevel)")
+                Text("IQ Level: \(data.IQLevel)")
                     .font(.caption)
                     .foregroundStyle(Color.accentColor)
             }
@@ -43,5 +43,5 @@ struct DementiaSeverityInfoListModel: View {
 }
 
 #Preview {
-    DementiaSeverityInfoListModel(data: DementiaSeverityDataModel(icon: "magnifyingglass", title: "타이틀", description: "설명", IQLevel: "0"))
+    DementiaSeverityInfoListModel(data: DementiaSeverityDataModel(icon: "magnifyingglass", title: "Title", description: "Description", IQLevel: "0"))
 }

@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -23,7 +23,7 @@ struct HomeView: View {
     ]
     
     @State private var titles = [
-        "산소포화도", "심박수", "휴식기 심박수", "걷기 심박수", "수면", "걸음", "움직인 거리", "소모 칼로리", "체온", "활동 시간"
+        "Oxygen Saturation", "Heart Rate", "Resting Heart Rate", "Walking Heart Rate", "Sleep", "Steps", "Distance Walked/Run", "Activity Energy", "Temperature", "Activity Time"
     ]
     
     @State private var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -43,10 +43,10 @@ struct HomeView: View {
             return "\(String(format: "%.2f", helper.walkingHeartRate)) BPM"
             
         case 4:
-            return "\(String(format: "%.2f", helper.inBedTime)) 분"
+            return "\(String(format: "%.2f", helper.inBedTime)) mins"
             
         case 5:
-            return "\(String(format: "%.0f", helper.steps)) 걸음"
+            return "\(String(format: "%.0f", helper.steps)) steps"
             
         case 6:
             return "\(String(format: "%.2f", helper.distanceWalkingRunning)) m"
@@ -58,7 +58,7 @@ struct HomeView: View {
             return "\(String(format: "%.2f", helper.wristTemperature)) °C"
             
         case 9:
-            return "\(String(format: "%.2f", helper.activityMinute)) 분"
+            return "\(String(format: "%.2f", helper.activityMinute)) mins"
             
         default:
             return ""
@@ -72,7 +72,7 @@ struct HomeView: View {
             ScrollView{
                 VStack{
                     HStack{
-                        Text("안녕하세요,\n\(userManagement.userInfo?.name ?? "")님😆")
+                        Text("Hello,\n\(userManagement.userInfo?.name ?? "")😆")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
                         
@@ -84,7 +84,7 @@ struct HomeView: View {
                         }.buttonStyle(CircleNewMorphButtonStyle(foreground: Color.background, paddingValue: 7))
                     }.padding()
                     
-                    VStack{                        
+                    VStack{
                         LazyVGrid(columns: [GridItem(.adaptive(minimum: 150))]){
                             ForEach((0 ..< 10), id: \.self){ index in
                                 HealthListModel(symbol: symbols[index], title: titles[index], value: getLifeLogValue(index: index), color: colors[index])
@@ -98,7 +98,7 @@ struct HomeView: View {
                         
                         Spacer().frame(width: 5)
                         
-                        Text("최근 검사 결과")
+                        Text("Recent Inspection Results")
                             .font(.caption)
                             .foregroundStyle(Color.gray)
                             .fontWeight(.semibold)
@@ -108,7 +108,7 @@ struct HomeView: View {
                                         
                     VStack{
                         if !showInspectionResult{
-                            Text("최근 검사 기록이 없습니다.")
+                            Text("No recent inspection records.")
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
                         } else{

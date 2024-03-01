@@ -2,7 +2,7 @@
 //  ResetPasswordView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/14/24.
+//  Created by Changjin Ha on 2/14/24.
 //
 
 import SwiftUI
@@ -26,14 +26,14 @@ struct ResetPasswordView: View {
                 
                 Spacer().frame(height: 20)
                 
-                Text("비밀번호 재설정")
+                Text("Reset Password")
                     .font(.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.txt)
                 
                 Spacer().frame(height: 10)
 
-                Text("아래 필드에 가입한 E-Mail을 입력하십시오.")
+                Text("Please enter registered E-Mail on below field.")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                 
@@ -72,7 +72,7 @@ struct ResetPasswordView: View {
                         HStack{
                             Spacer()
 
-                            Text("비밀번호 재설정 메일 발송")
+                            Text("Send Password Reset E-Mail")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
@@ -88,10 +88,10 @@ struct ResetPasswordView: View {
             }.animation(.easeInOut)
             .padding(20)
             .alert(isPresented: $showAlert, content: {
-                if alertModel{
-                    return Alert(title: Text("발송 완료"), message: Text("입력한 E-Mail로 비밀번호 재설정 메일이 발송되었습니다."), dismissButton: .default(Text("확인")))
-                } else{
-                    return Alert(title: Text("오류"), message: Text("비밀번호 재설정 메일을 발송하는 중 문제가 발생했습니다.\n가입한 계정이 맞는지 확인하거나, 네트워크 상태를 확인한 후 다시 시도하십시오."), dismissButton: .default(Text("확인")))
+                if alertModel {
+                    return Alert(title: Text("Sent"), message: Text("A password reset email has been sent to the provided email address."), dismissButton: .default(Text("OK")))
+                } else {
+                    return Alert(title: Text("Error"), message: Text("There was an issue sending the password reset email.\nPlease make sure you have entered the correct account or check your network connection and try again."), dismissButton: .default(Text("OK")))
                 }
             })
         }

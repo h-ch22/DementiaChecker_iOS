@@ -2,7 +2,7 @@
 //  InheritanceGuardianSelectionView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/2/24.
+//  Created by Changjin Ha on 2/2/24.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct InheritanceGuardianSelectionView: View {
             Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
             
             VStack{
-                Text("유산 관리자의 E-Mail을 입력하거나, 기존의 보호자를 유산 관리자로 지정할 수 있습니다.")
+                Text("Enter the E-Mail of the inheritance guardian or select an existing guardian to be the inheritance guardian.")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                     .multilineTextAlignment(.center)
@@ -33,7 +33,7 @@ struct InheritanceGuardianSelectionView: View {
                 Spacer().frame(height: 20)
                 
                 HStack{
-                    Text("보호자 선택")
+                    Text("Select Guardian")
                         .font(.caption)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.gray)
@@ -71,7 +71,7 @@ struct InheritanceGuardianSelectionView: View {
                 Spacer().frame(height: 20)
                 
                 HStack{
-                    Text("이미 추가된 유산 관리자")
+                    Text("Inheritance Guardians Added")
                         .font(.caption)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.gray)
@@ -155,7 +155,7 @@ struct InheritanceGuardianSelectionView: View {
                         HStack{
                             Spacer()
                             
-                            Text("다음 단계로")
+                            Text("Next Step")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
@@ -168,7 +168,7 @@ struct InheritanceGuardianSelectionView: View {
 
                 
             }.padding(20)
-            .navigationTitle(Text("유산 관리자 선택하기"))
+            .navigationTitle(Text("Select Inheritance Guardian"))
             .onAppear{
                 helper.getGuardians(){ result in
                     guard let result = result else{return}

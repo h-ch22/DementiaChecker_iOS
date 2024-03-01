@@ -2,7 +2,7 @@
 //  DementiaPreventionView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/14/24.
+//  Created by Changjin Ha on 2/14/24.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("건강검진")
+                                    Text("Medical Check-ups")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -36,7 +36,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("정기적인 건강검진을 받습니다.")
+                                    Text("Get regular medical check-ups.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -44,7 +44,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("고혈압, 당뇨, 고지혈증, 비만 등은 뇌혈관질환의 주요 위험 인자들입니다. 이러한 병들은 혈관벽을 두껍게 하고, 혈관의 내부를 좁게 하여 뇌로 가는 혈류량을 감소시켜 혈관성 치매와 알츠하이머 치매의 위험성을 증가시킵니다.\n뇌혈관질환의 위험인자들은 아스피린 등의 혈소판 응집 억제제나 항응고제, 혈류순환개선제 등을 투여하여 효과적으로 관리할 수 있습니다. 따라서 정기적인 건강검진으로 뇌혈관질환의 위험인자를 조기에 발견하고 적절한 의학적 치료를 하여 악화되지 않도록 합니다.")
+                                    Text("High blood pressure, diabetes, hyperlipidemia, obesity, etc. are major risk factors for cerebrovascular disease. These diseases increase the risk of vascular dementia and Alzheimer's dementia by thickening the walls of blood vessels and narrowing the inside of blood vessels, thereby reducing the amount of blood flow to the brain.\nRisk factors for cerebrovascular disease can be effectively managed by administering platelet aggregation inhibitors such as aspirin, anticoagulants, and blood circulation improvement agents. Therefore, through regular medical checkups, we detect risk factors for cerebrovascular disease early and provide appropriate medical treatment to prevent them from worsening.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -66,7 +66,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("식습관")
+                                    Text("Eating habits")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -77,7 +77,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("과도한 음주와 흡연은 피하고, 균형 잡힌 영양을 섭취합니다.")
+                                    Text("Avoid excessive drinking and smoking, and eat balanced nutrition.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -85,7 +85,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("과도하거나 습관적인 음주는 뇌세포를 파괴하여 알코올성 치매를 일으킬 수 있습니다. 흡연을 하면 담배의 성분 중 니코틴이 뇌혈관을 수축시켜 뇌세포를 손상시킬 수 있습니다.\n또한, 비만을 피하는 식생활을 유지합니다. 일부 연구에서 비타민 C, E, 항산화제, 불포화지방산이 치매 위험성을 낮춘다고 보고되었으나, 이는 결과가 일관적이지 않아 아직 확립된 내용은 아닙니다.")
+                                    Text("Excessive or habitual drinking can destroy brain cells, causing alcoholic dementia. Smoking can damage brain cells by causing nicotine, which is an ingredient in cigarettes, to constrict blood vessels in the brain.\nAlso, it maintains a diet that avoids obesity. Some studies have reported that vitamin C, E, antioxidants, and unsaturated fatty acids lower the risk of dementia, but these are not yet established due to inconsistent results.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -107,7 +107,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("활동")
+                                    Text("Activity")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -118,7 +118,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("적절한 운동과 대인관계, 사회활동을 유지합니다.")
+                                    Text("Maintain proper exercise, interpersonal relationships, and social activities.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -126,7 +126,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("중년기 이후의 성인에서 규칙적인 운동이 알츠하이머 치매의 위험성을 낮춘다는 것이 여러 연구를 통해 알려져 있습니다. 걷기와 같은 낮은 강도의 운동만으로도 인지기능저하와 치매의 위험을 낮출 수 있습니다. 또한 운동은 고혈압, 당뇨, 고지혈증, 비만 등의 뇌혈관 질환 위험인자들에 대해서도 보호효과를 가집니다.\n나아가, 혼자 고립되어 지내는 것보다 적당한 대인관계와 사회활동을 유지하는 것이 인지기능을 유지하고 치매를 예방하는 데에 도움이 됩니다. 가족과 대화를 나누고, 모임에 나가 사회활동을 지속하는 것이 좋습니다.")
+                                    Text("Several studies have shown that regular exercise in adults after middle age can lower the risk of Alzheimer's dementia. Only low-intensity exercise such as walking can lower the risk of cognitive decline and dementia. It can also protect against risk factors for cerebrovascular diseases such as high blood pressure, diabetes, hyperlipidemia, and obesity.\n Furthermore, maintaining proper interpersonal relationships and social activities can help maintain cognitive function and prevent dementia, rather than being isolated alone. It is recommended to have conversations with your family, go to meetings, and continue social activities.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -148,7 +148,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("두뇌 사용")
+                                    Text("The use of brain")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -159,7 +159,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("활발하게 두뇌를 사용합니다.")
+                                    Text("Use your brain actively.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -167,7 +167,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("적절한 수준의 두뇌 활동을 유지하는 것이 치매 예방에 도움이 됩니다. 독서, 문화활동, 악기 연주, 정원 가꾸기, 운동, 라디오 청취, TV 시청 등 정신적인 노력이 동반되는 활동을 지속합니다. 평소 즐겨 하던 취미 생활을 지속적으로 유지하고, 나이가 들어서도 할 수 있는 즐거운 활동을 찾으십시오.")
+                                    Text("Maintaining an appropriate level of brain activity can help prevent dementia. Continue activities that involve mental effort, such as reading, cultural activities, playing musical instruments, gardening, exercising, listening to the radio, and watching TV. Maintain a hobby that you usually enjoy, and find fun activities that you can do even when you get older.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -189,7 +189,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("우울증 치료")
+                                    Text("The treatment of depression")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -200,7 +200,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("우울증을 치료합니다.")
+                                    Text("If you have depression, treat it.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -208,7 +208,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("우울증이 있을 경우 치매 발병률이 약 2~3배 높아진다는 것이 여러 연구에서 알려져 있습니다. 기전은 명확히 알려져 있지 않으나, 우울증이 있을 경우 스트레스 호르몬인 코티졸의 분비가 지속적으로 높아져 뇌에서 기억을 담당하는 해마 부위의 손상을 초래할 가능성이 있습니다.\n또한, 노인 우울증의 경우 기억력 등의 인지기능이 떨어지면서 가성 치매로 오인되기도 합니다. 따라서, 우울증이 있는 경우 방치하지 말고 적극적으로 치료해야 합니다.")
+                                    Text("It has been known in several studies that depression increases the incidence of dementia by about two to three times. The mechanism is not clearly known, but depression can lead to continuous high secretion of cortisol, a stress hormone, which can lead to damage to the hippocampus, which is responsible for memory, in the brain.\nAlso, in the case of depression in the elderly, it can be mistaken for pseudo-dementia due to poor cognitive functions such as memory. Therefore, if you have depression, you should not leave it unattended and actively treat it.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -230,7 +230,7 @@ struct DementiaPreventionView: View {
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
-                                    Text("기억력, 인지기능")
+                                    Text("Memory and cognitive function")
                                         .font(.caption)
                                         .fontWeight(.semibold)
                                         .foregroundStyle(Color.gray)
@@ -241,7 +241,7 @@ struct DementiaPreventionView: View {
                                 Spacer().frame(height: 20)
 
                                 HStack{
-                                    Text("기억력이 떨어지면 조기에 진료를 받습니다.")
+                                    Text("If you think your memory has deteriorated, seek medical attention early.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -249,7 +249,7 @@ struct DementiaPreventionView: View {
                                 }
                                 
                                 HStack{
-                                    Text("과거에 비해 기억력 및 인지기능이 떨어진다면 의료기관에서 전문가의 평가를 받습니다. 퇴행성 뇌질환 이외에도 인지기능 저하를 일으킬 수 있는 다양한 뇌질환의 가능성에 대한 평가와 치료를 위하여 중요합니다. 치매의 일부는 조기에 발견하여 치료하면 증상의 호전이나 완치를 기대할 수 있는 가역적인 원인을 가지고 있습니다.\n퇴행성 뇌질환에 의한 비가역적 치매의 경우, 현재까지 치매의 질병 경과를 바꿀 수 있는 치료법은 개발되어 있지 않지만, 인지기능개선제를 사용하면 치매의 증상을 완화시키고, 치매로 인한 심각한 장애에 이르는 기간을 상당 기간 늦추어 줄 수 있습니다.\n기억력 저하 뿐 아니라 치매에 동반되는 우울, 불안, 불면, 짜증, 분노, 의심, 배회 등의 행동심리증상의 경우 약물로 효과적인 조절이 가능합니다. 또한 치매와 수반된 가족 내의 심리적 변화나 갈등에 대한 중재, 효과적인 지역사회기반의 치료 및 돌봄을 위한 평가와 계획 수립을 위한 전문가의 진료가 필요합니다.")
+                                    Text("If memory and cognitive function are poor compared to the past, they are evaluated by experts at medical institutions. In addition to degenerative brain diseases, it is important for the evaluation and treatment of various brain diseases that can cause cognitive decline. Some dementia patients have reversible causes that, if detected and treated early, can expect improvement or cure of symptoms.\nIn the case of irreversible dementia caused by degenerative brain diseases, no treatment has been developed to change the course of dementia, but the use of cognitive improvement agents can alleviate the symptoms of dementia and delay the period leading to serious disability caused by dementia for a considerable period of time.\n In addition to poor memory, behavioral psychological symptoms such as depression, anxiety, insomnia, irritation, anger, suspicion, and wandering accompanying dementia can be effectively controlled with drugs. In addition, specialist treatment is needed to mediate psychological changes or conflicts in the family and to evaluate and plan for effective community-based treatment and care.")
                                         .font(.caption)
                                         .foregroundStyle(Color.txt)
                                     
@@ -267,12 +267,12 @@ struct DementiaPreventionView: View {
                     }.padding(20)
                         .toolbar{
                             ToolbarItem(placement: .topBarLeading, content: {
-                                Button("닫기"){
+                                Button("Close"){
                                     dismiss()
                                 }
                             })
                         }
-                        .navigationTitle(Text("치매 예방과 관련된 내용"))
+                        .navigationTitle(Text("Information on the prevention of dementia"))
                 }
             }
         }

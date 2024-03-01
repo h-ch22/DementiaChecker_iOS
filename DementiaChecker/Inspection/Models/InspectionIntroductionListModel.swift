@@ -2,7 +2,7 @@
 //  InspectionIntroductionListModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -31,5 +31,5 @@ struct InspectionIntroductionListModel: View {
 }
 
 #Preview {
-    InspectionIntroductionListModel(icon: "magnifyingglass", title: "타이틀", description: "설명")
+    InspectionIntroductionListModel(icon: "magnifyingglass", title: "Title", description: "Description")
 }

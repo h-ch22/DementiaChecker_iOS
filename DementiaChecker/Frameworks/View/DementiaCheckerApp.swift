@@ -137,25 +137,25 @@ extension Date{
     public func codeToWeekDay(code: Int) -> String{
         switch code{
         case 1:
-            return "일"
+            return "Sun"
             
         case 2:
-            return "월"
+            return "Mon"
             
         case 3:
-            return "화"
+            return "Tue"
             
         case 4:
-            return "수"
+            return "Wed"
             
         case 5:
-            return "목"
+            return "Thu"
             
         case 6:
-            return "금"
+            return "Fri"
             
         case 7:
-            return "토"
+            return "Sat"
             
         default:
             return ""

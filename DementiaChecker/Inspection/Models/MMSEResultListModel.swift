@@ -2,7 +2,7 @@
 //  MMSEResultListModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/14/24.
+//  Created by Changjin Ha on 2/14/24.
 //
 
 import SwiftUI
@@ -22,7 +22,7 @@ struct MMSEResultListModel: View {
             Spacer().frame(height: 10)
 
             Text(isCorrect)
-                .foregroundStyle(isCorrect == "정답" ? Color.blue : isCorrect == "정답 여부" ? Color.txt : Color.red)
+                .foregroundStyle(isCorrect == "Correct" ? Color.blue : isCorrect == "Correctness" ? Color.txt : Color.red)
         }
         .padding()
         .background(

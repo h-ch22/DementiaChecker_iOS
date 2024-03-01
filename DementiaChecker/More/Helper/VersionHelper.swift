@@ -2,7 +2,7 @@
 //  VersionHelper.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import Foundation
@@ -21,13 +21,13 @@ class VersionHelper: ObservableObject{
         if let info: [String: Any] = Bundle.main.infoDictionary, let currentVersion: String = info["CFBundleShortVersionString"] as? String{
             version = currentVersion
         } else{
-            version = "알 수 없음"
+            version = "Unknown"
         }
         
         if let info: [String: Any] = Bundle.main.infoDictionary, let buildNumber: String = info["CFBundleVersion"] as? String{
             build = buildNumber
         } else{
-            build = "알 수 없음"
+            build = "Unknown"
         }
     }
     

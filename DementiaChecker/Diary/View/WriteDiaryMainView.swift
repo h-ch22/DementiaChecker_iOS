@@ -2,7 +2,7 @@
 //  WriteDiaryMainView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -24,14 +24,14 @@ struct WriteDiaryMainView: View {
                         
                         VStack{
                             HStack{
-                                Text("오늘의 하루 기록하기")
+                                Text("Recording Today's Day")
                                     .foregroundStyle(Color.txt)
                                 
                                 Spacer()
                             }
 
                             HStack{
-                                Text("하루 일기를 작성해서 오늘의 당신을 기록해보세요.")
+                                Text("Write a daily diary and record who you are today.")
                                     .font(.caption)
                                     .foregroundStyle(Color.gray)
                                 
@@ -48,14 +48,14 @@ struct WriteDiaryMainView: View {
                         
                         VStack{
                             HStack{
-                                Text("돌아보기")
+                                Text("Review")
                                     .foregroundStyle(Color.txt)
                                 
                                 Spacer()
                             }
 
                             HStack{
-                                Text("꾸준히 당신의 하루를 기록하고, 당신의 하루들을 돌아보세요.")
+                                Text("Keep track of your day and look back on your days.")
                                     .font(.caption)
                                     .foregroundStyle(Color.gray)
                                 
@@ -72,14 +72,14 @@ struct WriteDiaryMainView: View {
                         
                         VStack{
                             HStack{
-                                Text("감정 상태 내보내기")
+                                Text("Export Emotional Status")
                                     .foregroundStyle(Color.txt)
                                 
                                 Spacer()
                             }
 
                             HStack{
-                                Text("전문가와 심리 상담이 필요한 경우 감정 상태를 PDF로 내보내어 상담의 참고자료로 사용할 수 있습니다.")
+                                Text("If you need a psychological consultation with a professional, you can export your emotional state as a PDF and use it as a reference for the consultation.")
                                     .font(.caption)
                                     .foregroundStyle(Color.gray)
                                 
@@ -97,7 +97,7 @@ struct WriteDiaryMainView: View {
                         HStack{
                             Spacer()
                             
-                            Text("일기 작성하기")
+                            Text("Write a diary")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName : "chevron.right")
@@ -110,10 +110,10 @@ struct WriteDiaryMainView: View {
                 .padding(20)
 
             }
-            .navigationTitle(Text("하루 일기 작성하기"))
+            .navigationTitle(Text("Write a diary"))
                 .toolbar(content: {
                     ToolbarItemGroup(placement: .topBarTrailing, content: {
-                        Button("닫기"){
+                        Button("Close"){
                             self.presentationMode.wrappedValue.dismiss()
                         }
                     })

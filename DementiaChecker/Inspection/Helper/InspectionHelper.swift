@@ -2,7 +2,7 @@
 //  InspectionHelper.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class InspectionHelper: NSObject, ObservableObject{
     @Published var scores = [Int]()
     @Published var answers = [String]()
     @Published var answerList: [String] = []
-
+    
     @Published var inspectionResult: InspectionResultDataModel = InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     @Published var mmseData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     @Published var sleepData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
@@ -200,7 +200,7 @@ class InspectionHelper: NSObject, ObservableObject{
                     completion([])
                     return
                 }
-
+                
             } else{
                 completion([])
                 return
@@ -256,80 +256,81 @@ class InspectionHelper: NSObject, ObservableObject{
     func getMMSEQuestion(id: Int) -> String{
         switch id{
         case 0:
-            return "올해가 몇 년인가요?"
+            return "What year is it?"
             
         case 1:
-            return "지금은 어떤 계절인가요?"
+            return "What season is it now?"
             
         case 2:
-            return "오늘은 며칠인가요?"
+            return "What day is it today?"
             
         case 3:
-            return "오늘은 무슨 요일인가요?"
+            return "What day of the week is it today?"
             
         case 4:
-            return "오늘은 몇 월인가요?"
+            return "What month is it today?"
             
         case 5:
-            return "당신은 지금 어느 나라에 있나요?"
+            return "Which country are you in right now?"
             
         case 6:
-            return "당신은 지금 어느 시(도 / 주)에 있나요?"
+            return "Which city/state are you in right now?"
             
         case 7:
-            return "지금 계시는 장소는 어디인가요?"
+            return "Where are you right now?"
             
         case 8:
-            return "당신은 몇 층에 있나요?"
+            return "Which floor are you on?"
             
         case 9:
-            return "당신은 어떤 일을 하나요?"
+            return "What are you doing right now?"
             
         case 10:
-            return "지금부터 불러드리는 물건의 이름 세 개를 기억하고, 다시 말해주세요."
+            return "Please remember and repeat the names of three items I will say."
             
         case 11:
-            return "100에서 7을 빼면 얼마인가요?"
+            return "What is 100 minus 7?"
             
         case 12..<16:
-            return "거기에서 7을 빼면 얼마인가요?"
+            return "What is the result when subtracting 7 from there?"
             
         case 16:
-            return "10번 문항에서 불러드린 물건 중 첫번째 물건의 이름을 말해주세요."
+            return "Please say the name of the first item you remembered from question 10."
             
         case 17:
-            return "두번째 물건의 이름을 말해주세요."
+            return "Please say the name of the second item."
             
         case 18:
-            return "세번째 물건의 이름을 말해주세요."
+            return "Please say the name of the third item."
             
         case 19, 20:
-            return "보여드리는 물건의 이름은 무엇인가요?"
+            return "What is the name of the item shown?"
             
         case 21:
-            return "들리는 말을 잘 듣고 따라해주세요."
+            return "Listen carefully and repeat the words."
             
         case 22:
-            return "이 종이를 뒤집어보세요."
+            return "Turn this paper over."
             
         case 23:
-            return "이 종이를 반으로 접어보세요."
+            return "Fold this paper in half."
             
         case 24:
-            return "이 종이를 표시된 곳으로 올려주세요."
+            return "Place this paper where indicated."
             
         case 25:
-            return "보여드리는 그림과 똑같이 그려주세요."
+            return "Draw the picture exactly as shown."
             
         case 26:
-            return "아래 문장을 큰 소리로 읽고 쓰인 대로 해보세요."
+            return "Read the sentence aloud and write it down as it is."
             
         case 27:
-            return "오늘의 날씨 또는 기분에 대해 자유롭게 작성해보세요."
+            return "Write freely about today's weather or mood."
             
         default:
             return ""
         }
+        
     }
     
     func grading(job: String, homeLatLng: String, workLatLng: String, completion: @escaping(_ result: Bool?) -> Void){
@@ -342,7 +343,7 @@ class InspectionHelper: NSObject, ObservableObject{
         let lng = String(latLng?.coordinate.longitude ?? 0.0)
         
         let altitude = Double(latLng?.altitude ?? 0.0)
-
+        
         locationHelper.reverseGeoCode(requestType: "State", lat: lat, lng: lng, completion: { state in
             guard let state = state else{return}
             
@@ -362,17 +363,17 @@ class InspectionHelper: NSObject, ObservableObject{
                         let month = Int(monthAsString) ?? 0
                         
                         if month == 12 || month == 1 || month == 2{
-                            self.scores.append(self.answerList[i] == "겨울" ? 2 : 1)
-                            self.answers.append("겨울")
+                            self.scores.append(self.answerList[i] == "Winter" ? 2 : 1)
+                            self.answers.append("Winter")
                         } else if month >= 3 && month < 6{
-                            self.scores.append(self.answerList[i] == "봄" ? 2 : 1)
-                            self.answers.append("봄")
+                            self.scores.append(self.answerList[i] == "Spring" ? 2 : 1)
+                            self.answers.append("Spring")
                         } else if month >= 6 && month < 9{
-                            self.scores.append(self.answerList[i] == "여름" ? 2 : 1)
-                            self.answers.append("여름")
+                            self.scores.append(self.answerList[i] == "Summer" ? 2 : 1)
+                            self.answers.append("Summer")
                         } else if month >= 9 && month < 12{
-                            self.scores.append(self.answerList[i] == "가을" ? 2 : 1)
-                            self.answers.append("가을")
+                            self.scores.append(self.answerList[i] == "Autumn" ? 2 : 1)
+                            self.answers.append("Autumn")
                         }
                         
                     case 2:
@@ -405,29 +406,29 @@ class InspectionHelper: NSObject, ObservableObject{
                     case 6:
                         self.answers.append(state ?? "")
                         self.scores.append(self.answerList[i] == state ? 2 : 1)
-
+                        
                     case 7:
                         let homeLatLngSplited = homeLatLng.split(separator: ", ")
-
+                        
                         let distanceToHome = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                                  .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
                         
                         let workLatLngSplited = workLatLng.split(separator: ", ")
                         
                         let distanceToWork = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                                  .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
                         
                         if distanceToHome < 10{
-                            self.answers.append("집")
+                            self.answers.append("Home")
                         } else if distanceToWork < 10{
-                            self.answers.append("회사")
+                            self.answers.append("Company")
                         } else{
                             self.answers.append(building)
                         }
-                                                
-                        if self.answerList[i] == "집"{
+                        
+                        if self.answerList[i] == "Home"{
                             self.scores.append(distanceToHome < 10 ? 2 : 1)
-                        } else if self.answerList[i] == "회사"{
+                        } else if self.answerList[i] == "Company"{
                             self.scores.append(distanceToWork < 10 ? 2 : 1)
                         } else{
                             if building != ""{
@@ -443,7 +444,7 @@ class InspectionHelper: NSObject, ObservableObject{
                         
                     case 9:
                         if job == ""{
-                            if self.answerList[i] == "" || self.answerList[i] == "무직" || self.answerList[i] == "없음"{
+                            if self.answerList[i] == "" || self.answerList[i] == "Inoccupation" || self.answerList[i] == "None" || self.answerList[i] == "Between jobs" || self.answerList[i] == "Out of work"{
                                 self.scores.append(2)
                             } else{
                                 self.scores.append(1)
@@ -455,23 +456,23 @@ class InspectionHelper: NSObject, ObservableObject{
                         self.answers.append(job)
                         
                     case 10:
-                        self.answers.append("비행기")
-                        self.answers.append("연필")
-                        self.answers.append("소나무")
-
-                        if self.answerList[i].contains("비행기"){
+                        self.answers.append("Airplane")
+                        self.answers.append("Pencil")
+                        self.answers.append("Pine tree")
+                        
+                        if self.answerList[i].contains("Airplane"){
                             self.scores.append(2)
                         } else{
                             self.scores.append(1)
                         }
                         
-                        if self.answerList[i].contains("연필"){
+                        if self.answerList[i].contains("Pencil"){
                             self.scores.append(2)
                         } else{
                             self.scores.append(1)
                         }
                         
-                        if self.answerList[i].contains("소나무"){
+                        if self.answerList[i].contains("Pine tree"){
                             self.scores.append(2)
                         } else{
                             self.scores.append(1)
@@ -480,11 +481,11 @@ class InspectionHelper: NSObject, ObservableObject{
                     case 11:
                         self.answers.append("93")
                         self.scores.append(self.answerList[i] == "93" ? 2 : 1)
-
+                        
                     case 12:
                         self.answers.append("86")
                         self.scores.append(self.answerList[i] == "86" ? 2 : 1)
-
+                        
                     case 13:
                         self.answers.append("79")
                         self.scores.append(self.answerList[i] == "79" ? 2 : 1)
@@ -499,28 +500,28 @@ class InspectionHelper: NSObject, ObservableObject{
                         self.scores.append(0)
                         
                     case 16:
-                        self.answers.append("비행기")
-                        self.scores.append(self.answerList[i] == "비행기" ? 2 : 1)
+                        self.answers.append("Airplane")
+                        self.scores.append(self.answerList[i] == "Airplane" ? 2 : 1)
                         
                     case 17:
-                        self.answers.append("연필")
-                        self.scores.append(self.answerList[i] == "연필" ? 2 : 1)
+                        self.answers.append("Pencil")
+                        self.scores.append(self.answerList[i] == "Pencil" ? 2 : 1)
                         
                     case 18:
-                        self.answers.append("소나무")
-                        self.scores.append(self.answerList[i] == "소나무" ? 2 : 1)
+                        self.answers.append("Pine tree")
+                        self.scores.append(self.answerList[i] == "Pine tree" ? 2 : 1)
                         
                     case 19:
-                        self.answers.append("비행기")
-                        self.scores.append(self.answerList[i] == "비행기" ? 2 : 1)
+                        self.answers.append("Airplane")
+                        self.scores.append(self.answerList[i] == "Airplane" ? 2 : 1)
                         
                     case 20:
-                        self.answers.append("시계")
-                        self.scores.append(self.answerList[i] == "시계" ? 2 : 1)
+                        self.answers.append("Clock")
+                        self.scores.append(self.answerList[i] == "Clock" ? 2 : 1)
                         
                     case 21:
-                        self.answers.append("백문이불여일견")
-                        self.scores.append(self.answerList[i].contains("백문이불여일견") ? 2 : 1)
+                        self.answers.append("A picture is worth a thousand words")
+                        self.scores.append(self.answerList[i].contains("A picture is worth a thousand words") ? 2 : 1)
                         
                     case 22, 23, 24, 26:
                         self.answers.append("")
@@ -555,7 +556,7 @@ class InspectionHelper: NSObject, ObservableObject{
                     completion(false)
                     return
                 }
-                                                
+                
                 let result = self.topK(scores: outputs, labels: self.labels, count: 3)
                 
                 guard result != nil else{
@@ -580,7 +581,7 @@ class InspectionHelper: NSObject, ObservableObject{
         
         healthKitHelper.updateData(start: start, end: Date(), completion: { _ in
             let usedAllCalrorie = self.healthKitHelper.activityEnergy * basalMetabolicRate
-
+            
             let module_LifeLog = self.getModule(type: .WALK)
             
             guard module_LifeLog != nil else{
@@ -594,7 +595,7 @@ class InspectionHelper: NSObject, ObservableObject{
                 completion(false)
                 return
             }
-                                                    
+            
             let result = self.topK(scores: outputs, labels: self.labels, count: 3)
             
             guard result != nil else{
@@ -646,7 +647,7 @@ class InspectionHelper: NSObject, ObservableObject{
                 max = .MCI
             }
         }
-                
+        
         self.inspectionResult = InspectionResultDataModel(type: max, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
         
         self.uploadResult(completion: { result in
@@ -666,7 +667,7 @@ class InspectionHelper: NSObject, ObservableObject{
             print(error)
             return nil
         }
-
+        
     }
     
     func saveImage(image: UIImage) -> Bool{
@@ -703,7 +704,7 @@ class InspectionHelper: NSObject, ObservableObject{
     private func compareImages() -> Double?{
         let image_original = UIImage(named: "img_draw")
         let directory = getDocumentsDirectory()?.appendingPathComponent("img_drew.png")
-
+        
         let image_drew = UIImage(contentsOfFile: (directory?.path())!) ?? nil
         
         if image_original != nil && image_drew != nil{

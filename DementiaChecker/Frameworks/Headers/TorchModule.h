@@ -2,7 +2,7 @@
 //  TorchModule.h
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/12/24.
+//  Created by Changjin Ha on 2/12/24.
 //
 
 #import <Foundation/Foundation.h>

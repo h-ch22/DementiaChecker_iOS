@@ -2,7 +2,7 @@
 //  MMSEInspectionView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -54,26 +54,26 @@ struct MMSEInspectionView: View {
             if changeView{
                 VStack{
                     if !isDone{
-                        Text(errorType == nil ? "검사 진행 중" : "검사 실패")
+                        Text(errorType == nil ? "Test in Progress" : "Test Failed")
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
                         
                         Spacer().frame(height: 10)
                         
-                        Text(errorType == nil ? "Dementia Checker에서 사용자의 인지 기능, 라이프스타일 데이터를 기반으로 치매 여부를 진단하고 있습니다.\n잠시 기다려 주십시오." : "Dementia Checker에서 사용자의 데이터를 기반으로 치매 여부를 진단하는 중 문제가 발셍했습니다.\n나중에 다시 시도하거나, 데이터를 확인하십시오.")
+                        Text(errorType == nil ? "Dementia Checker is diagnosing dementia based on the user's cognitive function and lifestyle data.\nPlease wait for a moment." : "There was a problem diagnosing dementia based on the user's data.\nPlease try again later or check the data.")
                             .font(.caption)
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Color.gray)
                     } else{
-                        Text("검사 완료")
+                        Text("Test Completed")
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
                         
                         Spacer().frame(height: 10)
                         
-                        Text("Dementia Checker에서 사용자의 데이터로부터 치매 여부 진단을 완료하였습니다.\n검사 결과 확인 버튼을 눌러 검사 결과를 확인하십시오.")
+                        Text("Dementia Checker has completed diagnosing dementia based on the user's data.\nPress the button below to check the test result.")
                             .font(.caption)
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Color.gray)
@@ -98,7 +98,7 @@ struct MMSEInspectionView: View {
                         
                         Spacer().frame(width: 10)
                         
-                        Text("인지 기능 검사")
+                        Text("Cognitive Function Test")
                             .foregroundStyle(currentInspectingType == .MMSE ? Color.txt : Color.gray)
                             .fontWeight(currentInspectingType == .MMSE ? .semibold : .regular)
                             .font(currentInspectingType == .MMSE ? .headline : .caption)
@@ -126,7 +126,7 @@ struct MMSEInspectionView: View {
 
                         Spacer().frame(width: 10)
 
-                        Text("라이프로그 데이터 검사")
+                        Text("LifeLog Data Test")
                             .foregroundStyle(currentInspectingType == .WALK ? Color.txt : Color.gray)
                             .fontWeight(currentInspectingType == .WALK ? .semibold : .regular)
                             .font(currentInspectingType == .WALK ? .headline : .caption)
@@ -154,12 +154,12 @@ struct MMSEInspectionView: View {
                         Spacer().frame(width: 10)
                         
                         if !isDone{
-                            Text("수면 패턴 데이터 검사")
+                            Text("Sleep Pattern Data Test")
                                 .foregroundStyle(currentInspectingType == .SLEEP && errorType != .WALK ? Color.txt : Color.gray)
                                 .fontWeight(currentInspectingType == .SLEEP && errorType != .WALK ? .semibold : .regular)
                                 .font(currentInspectingType == .SLEEP && errorType != .WALK ? .headline : .caption)
                         } else{
-                            Text("수면 패턴 데이터 검사")
+                            Text("Sleep Pattern Data Test")
                                 .foregroundStyle(Color.gray)
                                 .font(.caption)
                         }
@@ -174,7 +174,7 @@ struct MMSEInspectionView: View {
                             HStack{
                                 Spacer()
 
-                                Text("이전 화면으로")
+                                Text("Back to Previous Screen")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
@@ -191,7 +191,7 @@ struct MMSEInspectionView: View {
                             HStack{
                                 Spacer()
 
-                                Text("검사 결과 확인")
+                                Text("Check Test Result")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
@@ -207,7 +207,7 @@ struct MMSEInspectionView: View {
                         Button(action: {
                             dismiss()
                         }){
-                            Text("닫기")
+                            Text("Close")
                                 .foregroundStyle(Color.txt)
                         }
                     }
@@ -230,7 +230,7 @@ struct MMSEInspectionView: View {
                                 helper.predictLifeLog(tall: Double(userManagement.userInfo?.tall ?? "0.0") ?? 0.0,
                                                       weight: Double(userManagement.userInfo?.weight ?? "0.0") ?? 0.0,
                                                       age: Double(userManagement.getAge()),
-                                                      gender: userManagement.userInfo?.gender ?? "Male",
+                                                      gender: userManagement.userInfo?.gender ?? "",
                                                       completion: { lifeLogResult in
                                     guard let lifeLogResult = lifeLogResult else{return}
                                     
@@ -325,7 +325,7 @@ struct MMSEInspectionView: View {
                                 currentIndex += 1
                             }
                         }){
-                            Text("완료")
+                            Text("Complete")
                         }
                     } else if avHelper.isTTSAvailable(id: currentIndex) && !isPlayed{
                         Spacer().frame(height: 20)
@@ -336,7 +336,7 @@ struct MMSEInspectionView: View {
                         }){
                             HStack{
                                 Image(systemName: "play.fill")
-                                Text("재생")
+                                Text("Play")
                             }
                         }
                     } else if currentIndex == 24{
@@ -353,7 +353,7 @@ struct MMSEInspectionView: View {
                                 .position(CGPoint(x: 250, y: -150))
                         }
                     } else if currentIndex == 26{
-                        Text("2초 이상 눈을 감으세요.")
+                        Text("Close your eyes for more than 2 seconds.")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.red)
                             .padding(20)
@@ -370,7 +370,7 @@ struct MMSEInspectionView: View {
                             Image(systemName: "a.circle.fill")
                                 .foregroundStyle(answer == "" ? Color.gray : Color.accent)
                             
-                            TextField("정답을 입력하세요.", text: $answer)
+                            TextField("Enter your answer.", text: $answer)
                                 .keyboardType(helper.getMMSETextFieldType(id: currentIndex))
                                 .focused($IsAnswerFieldFocused)
                         }
@@ -400,7 +400,7 @@ struct MMSEInspectionView: View {
                                 Image(systemName: isRecording ? "stop.circle.fill" : "waveform")
                                     .foregroundStyle(isRecording ? Color.white : Color.txt)
                                 
-                                Text(isRecording ? "녹음 중지" : "녹음 시작")
+                                Text(isRecording ? "Stop Recording" : "Start Recording")
                                     .foregroundStyle(isRecording ? Color.white : Color.txt)
                                 
                             }
@@ -484,7 +484,7 @@ struct MMSEInspectionView: View {
                             HStack{
                                 Spacer()
                                 
-                                Text(currentIndex < 27 ? "다음 문항" : "검사 종료")
+                                Text(currentIndex < 27 ? "Next Question" : "Finish Test")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")

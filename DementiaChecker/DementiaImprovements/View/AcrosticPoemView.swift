@@ -2,7 +2,7 @@
 //  AcrosticPoemView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -47,7 +47,7 @@ struct AcrosticPoemView: View {
                             Image(systemName: "a.circle.fill")
                                 .foregroundStyle(sentence_first == "" ? Color.gray : Color.accent)
                             
-                            TextField("첫번째 문장", text: $sentence_first)
+                            TextField("First Sentence", text: $sentence_first)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -72,7 +72,7 @@ struct AcrosticPoemView: View {
                             Image(systemName: "a.circle.fill")
                                 .foregroundStyle(sentence_second == "" ? Color.gray : Color.accent)
                             
-                            TextField("두번째 문장", text: $sentence_second)
+                            TextField("Second Sentence", text: $sentence_second)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -97,7 +97,7 @@ struct AcrosticPoemView: View {
                             Image(systemName: "a.circle.fill")
                                 .foregroundStyle(sentence_third == "" ? Color.gray : Color.accent)
                             
-                            TextField("세번째 문장", text: $sentence_third)
+                            TextField("Third Sentence", text: $sentence_third)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -121,7 +121,7 @@ struct AcrosticPoemView: View {
                         HStack{
                             Spacer()
                             
-                            Text("완료")
+                            Text("Done")
                             Image(systemName: "chevron.right")
                             
                             Spacer()
@@ -134,12 +134,12 @@ struct AcrosticPoemView: View {
                         .font(.largeTitle)
                         .foregroundStyle(Color.accentColor)
                     
-                    Text("잘했어요!")
+                    Text("Well done!")
                         .font(.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.accentColor)
                     
-                    Text("하루에 한번, 삼행시를 반복해서 플레이해보세요!\n기억력과 집행 능력이 강화되어 치매 현상이 완화될 수 있습니다.")
+                    Text("Try repeating acrostic poetry once a day! It can help improve memory and executive function, potentially alleviating symptoms of dementia.")
                         .font(.caption)
                         .foregroundStyle(Color.gray)
                         .multilineTextAlignment(.center)
@@ -150,7 +150,7 @@ struct AcrosticPoemView: View {
                         HStack{
                             Spacer()
                             
-                            Text("이전 화면으로")
+                            Text("Back to Previous Screen")
                             Image(systemName: "chevron.right")
                             
                             Spacer()
@@ -159,7 +159,7 @@ struct AcrosticPoemView: View {
                 }
             }.padding(20)
                 .animation(.easeInOut)
-                .navigationTitle(Text("삼행시"))
+                .navigationTitle(Text("Acrostic Poetry"))
                 .onAppear{
                     let wordAsString = helper.getWord()
                     

@@ -2,7 +2,7 @@
 //  InfoView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -25,7 +25,7 @@ struct InfoView: View {
                     VStack(alignment: .leading){
                         TextLogoRegular()
                         
-                        Text("버전: \(helper.version == "" ? "알 수 없음" : helper.version) (빌드: \(helper.build == "" ? "알 수 없음" : helper.build))")
+                        Text("Version: \(helper.version == "" ? "Unknown" : helper.version) (Build: \(helper.build == "" ? "Unknown" : helper.build))")
                             .font(.caption)
                             .foregroundStyle(Color.txt)
                         
@@ -35,7 +35,7 @@ struct InfoView: View {
                                     .font(.caption)
                                     .foregroundStyle(Color.orange)
                                 
-                                Text("최신 버전 정보를 확인할 수 없습니다.")
+                                Text("Unable to fetch the latest version information.")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.orange)
@@ -48,7 +48,7 @@ struct InfoView: View {
                                     .font(.caption)
                                     .foregroundStyle(Color.green)
                                 
-                                Text("최신 버전입니다.")
+                                Text("Up to date.")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.green)
@@ -61,7 +61,7 @@ struct InfoView: View {
                                     .font(.caption)
                                     .foregroundStyle(Color.blue)
                                 
-                                Text("업데이트를 사용할 수 있습니다. (\(helper.latestVersion) (\(helper.latestBuild)))")
+                                Text("Update available. (\(helper.latestVersion) (\(helper.latestBuild)))")
                                     .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.blue)
@@ -86,7 +86,7 @@ struct InfoView: View {
                         Image(systemName: "doc.text.fill")
                             .foregroundStyle(Color.txt)
                         
-                        Text("최종 사용권 계약서 읽기")
+                        Text("Read End User License Agreement")
                             .foregroundStyle(Color.txt)
 
                         Spacer()
@@ -100,7 +100,7 @@ struct InfoView: View {
                         Image(systemName: "lock.doc.fill")
                             .foregroundStyle(Color.txt)
                         
-                        Text("개인정보 수집 및 처리 방침 읽기")
+                        Text("Read Privacy Policy")
                             .foregroundStyle(Color.txt)
 
                         Spacer()
@@ -114,7 +114,7 @@ struct InfoView: View {
                         Image(systemName: "person.badge.shield.checkmark.fill")
                             .foregroundStyle(Color.txt)
                         
-                        Text("민감정보 수집 및 처리 방침 읽기")
+                        Text("Read Sensitive Data Collection and Processing Policy")
                             .foregroundStyle(Color.txt)
 
                         Spacer()
@@ -134,7 +134,7 @@ struct InfoView: View {
                         guard let result = result else{return}
                     }
                 }
-                .navigationTitle(Text("정보"))
+                .navigationTitle(Text("About"))
         }
     }
 }

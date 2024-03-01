@@ -2,7 +2,7 @@
 //  MainView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ struct MainView: View {
     @EnvironmentObject var userManagement: UserManagement
     
     private let icons = ["house.fill", "map.fill", "plus", "calendar.badge.clock", "ellipsis.circle.fill"]
-    private let titles = ["홈", "병원", "진단", "기록", "더 보기"]
+    private let titles = ["Home", "Hospital", "Inspection", "History", "More"]
     
     var body: some View {
         NavigationStack{

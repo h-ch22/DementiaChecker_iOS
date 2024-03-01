@@ -2,7 +2,7 @@
 //  AVHelper.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/16/24.
+//  Created by Changjin Ha on 2/16/24.
 //
 
 import Foundation
@@ -16,7 +16,7 @@ class AVHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     private var recognitionTask: SFSpeechRecognitionTask?
     
     private let audioEngine = AVAudioEngine()
-    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     private let synthesizer = AVSpeechSynthesizer()
     
     override init(){
@@ -93,8 +93,8 @@ class AVHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     }
     
     func play(id: Int, isSample: Bool = false){
-        let utterance = AVSpeechUtterance(string: isSample ? "안녕하세요. 이 문장은 Dementia Checker에서 스피커 테스트를 위해 재생되는 문장입니다. 이 소리가 너무 크거나 작게 들리면 시스템 볼륨을 조절해주세요." : self.getTTSString(id: id))
-        utterance.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+        let utterance = AVSpeechUtterance(string: isSample ? "Hi, this sentence is playing for speaker test on Dementia Checker. If this sounds too loud or too small, please adjust the system volume." : self.getTTSString(id: id))
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = 0.2
         synthesizer.stopSpeaking(at: .immediate)
         synthesizer.speak(utterance)
@@ -114,10 +114,10 @@ class AVHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     private func getTTSString(id: Int) -> String{
         switch id{
         case 10:
-            return "비행기 연필 소나무"
+            return "Airplane Pencil Pine tree"
             
         case 21:
-            return "백문이 불여일견"
+            return "A picture is worth a thousand words"
             
         default:
             return ""

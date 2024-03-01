@@ -2,7 +2,7 @@
 //  LifeLogIncidenceRateListModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/12/24.
+//  Created by Changjin Ha on 2/12/24.
 //
 
 import SwiftUI
@@ -20,7 +20,7 @@ struct LifeLogIncidenceRateListModel: View {
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                 
-                Text(inspectionType == .WALK ? "라이프로그 분석 결과" : "수면 패턴 분석 결과")
+                Text(inspectionType == .WALK ? "Life Log Analysis Result" : "Sleep Pattern Analysis Result")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.gray)
@@ -36,7 +36,7 @@ struct LifeLogIncidenceRateListModel: View {
                     Image(systemName: "checkmark.circle.fill")
                         .foregroundStyle(Color.green)
                     
-                    Text("정상")
+                    Text("Normal")
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.green)
                     
@@ -46,7 +46,7 @@ struct LifeLogIncidenceRateListModel: View {
                 Spacer().frame(height: 10)
 
                 HStack{
-                    Text("정상 (Normal): __\(String(format: "%.2f", data.percentageOfNormal))%__")
+                    Text("Normal: __\(String(format: "%.2f", data.percentageOfNormal))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -56,7 +56,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("경도인지장애 (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
+                    Text("Mild Cognitive Impairment (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -66,7 +66,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("치매 (Dementia): __\(String(format: "%.2f", data.percentageOfDementia))%__")
+                    Text("Dementia: __\(String(format: "%.2f", data.percentageOfDementia))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -77,7 +77,7 @@ struct LifeLogIncidenceRateListModel: View {
                 
                 Spacer().frame(height: 10)
 
-                Text(inspectionType == .WALK ? "사용자의 활동 기록 등 라이프로그 분석 결과는 정상에 가깝습니다." : "사용자의 수면 패턴은 정상에 가깝습니다.")
+                Text(inspectionType == .WALK ? "User's activity logs and life log analysis data are close to normal." : "User's sleep patterns are close to normal.")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.txt)
@@ -87,7 +87,7 @@ struct LifeLogIncidenceRateListModel: View {
                     Image(systemName: "exclamationmark.circle.fill")
                         .foregroundStyle(Color.orange)
                     
-                    Text("주의 필요")
+                    Text("Caution Needed")
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.orange)
                     
@@ -97,7 +97,7 @@ struct LifeLogIncidenceRateListModel: View {
                 Spacer().frame(height: 10)
 
                 HStack{
-                    Text("정상 (Normal): __\(String(format: "%.2f", data.percentageOfNormal))%__")
+                    Text("Normal: __\(String(format: "%.2f", data.percentageOfNormal))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -107,7 +107,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("경도인지장애 (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
+                    Text("Mild Cognitive Impairment (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -117,7 +117,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("치매 (Dementia): __\(String(format: "%.2f", data.percentageOfDementia))%__")
+                    Text("Dementia: __\(String(format: "%.2f", data.percentageOfDementia))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -128,7 +128,7 @@ struct LifeLogIncidenceRateListModel: View {
                 
                 Spacer().frame(height: 10)
 
-                Text(inspectionType == .WALK ? "사용자의 활동 기록 등 라이프로그 데이터는 경도인지장애 환자의 패턴에 가깝습니다.\n평소 활동량을 늘려 생활패턴을 개선하십시오." : "사용자의 수면 분석 데이터는 경도인지장애 환자의 패턴에 가깝습니다.\n명상 등을 통해 생각을 정리하고, 일찍 잠자리에 드는 등의 방법을 통해 깊은 수면을 늘려 수면의 질을 개선하십시오.")
+                Text(inspectionType == .WALK ? "User's activity logs and life log data resemble patterns of mild cognitive impairment patients.\nIncrease daily activity and improve lifestyle patterns immediately." : "User's sleep analysis data resembles patterns of mild cognitive impairment patients.\nClear your mind through meditation and go to bed early to improve sleep quality immediately.")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.txt)
@@ -138,7 +138,7 @@ struct LifeLogIncidenceRateListModel: View {
                     Image(systemName: "exclamationmark.circle.fill")
                         .foregroundStyle(Color.red)
                     
-                    Text("위험")
+                    Text("Danger")
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.red)
                     
@@ -148,7 +148,7 @@ struct LifeLogIncidenceRateListModel: View {
                 Spacer().frame(height: 10)
 
                 HStack{
-                    Text("정상 (Normal): __\(String(format: "%.2f", data.percentageOfNormal))%__")
+                    Text("Normal: __\(String(format: "%.2f", data.percentageOfNormal))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -158,7 +158,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("경도인지장애 (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
+                    Text("Mild Cognitive Impairment (MCI): __\(String(format: "%.2f", data.percentageOfMCI))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -168,7 +168,7 @@ struct LifeLogIncidenceRateListModel: View {
                 }
                 
                 HStack{
-                    Text("치매 (Dementia): __\(String(format: "%.2f", data.percentageOfDementia))%__")
+                    Text("Dementia: __\(String(format: "%.2f", data.percentageOfDementia))%__")
                         .font(.caption)
                         .foregroundStyle(Color.txt)
                     
@@ -179,7 +179,7 @@ struct LifeLogIncidenceRateListModel: View {
                 
                 Spacer().frame(height: 10)
 
-                Text(inspectionType == .WALK ? "사용자의 활동 기록 등 라이프로그 데이터는 치매 환자의 패턴에 가깝습니다.\n활동량을 늘리고, 복식호흡 등 호흡 방법을 개선하여 치매로 발전하지 않도록 즉시 생활 패턴을 개선하십시오." : "사용자의 수면 분석 데이터는 치매 환자의 패턴에 가깝습니다.\n명상 등을 통해 생각을 정리하고, 일찍 잠자리에 드는 등의 방법을 통해 깊은 수면을 늘려 즉시 수면의 질을 개선하십시오.")
+                Text(inspectionType == .WALK ? "User's activity logs and life log data resemble patterns of dementia patients.\nIncrease activity and improve breathing methods to prevent progression into dementia immediately." : "User's sleep analysis data resembles patterns of dementia patients.\nClear your mind through meditation and go to bed early to improve sleep quality immediately.")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.txt)
@@ -193,3 +193,4 @@ struct LifeLogIncidenceRateListModel: View {
         )
     }
 }
+

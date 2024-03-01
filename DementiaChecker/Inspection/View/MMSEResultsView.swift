@@ -2,7 +2,7 @@
 //  MMSEResultsView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/13/24.
+//  Created by Changjin Ha on 2/13/24.
 //
 
 import SwiftUI
@@ -14,11 +14,11 @@ struct MMSEResultsView: View {
     @State private var scoreIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
     @State private var titles = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11-1", "11-2", "11-3", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"]
     @State private var scoreOfTime = 0
-    @State private var scoreOfLocaion = 0
+    @State private var scoreOfLocation = 0
     @State private var scoreOfMemory = 0
     @State private var scoreOfCalculate = 0
-    @State private var scoreOfremember = 0
-    @State private var scoreOflanguage = 0
+    @State private var scoreOfRemember = 0
+    @State private var scoreOfLanguage = 0
     
     let MMSEResult: [Int]
     let MMSEData: ClassInspectionResultDataModel
@@ -35,7 +35,7 @@ struct MMSEResultsView: View {
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Text("문항별 채점 결과")
+                            Text("Question-by-question Scoring Results")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -47,19 +47,18 @@ struct MMSEResultsView: View {
                         
                         ScrollView(.horizontal){
                             HStack{
-                                MMSEResultListModel(title: "문항", isCorrect: "정답 여부")
+                                MMSEResultListModel(title: "Question", isCorrect: "Correctness")
                                 
                                 ForEach(0..<29, id: \.self){ index in
-                                    MMSEResultListModel(title: titles[index], isCorrect: MMSEResult[scoreIndexes[index]] == 2 ? "정답":"오답")
+                                    MMSEResultListModel(title: titles[index], isCorrect: MMSEResult[scoreIndexes[index]] == 2 ? "Correct":"Incorrect")
                                 }
                             }
-                            
                         }
                         
                         Spacer().frame(height: 20)
                         
                         HStack{
-                            Text("영역별 채점 결과")
+                            Text("Scoring Results by Domain")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -74,7 +73,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("지남력 (시간) 채점 결과")
+                            Text("Temporal Orientation (Time) Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -106,7 +105,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("지남력 (장소) 채점 결과")
+                            Text("Spatial Orientation (Location) Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -114,7 +113,7 @@ struct MMSEResultsView: View {
                             Spacer()
                             
                             HStack(alignment: .lastTextBaseline){
-                                Text(String(scoreOfLocaion))
+                                Text(String(scoreOfLocation))
                                     .font(.title2)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.accentColor)
@@ -138,7 +137,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("기억등록 영역 채점 결과")
+                            Text("Memory Registration Domain Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -170,7 +169,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("주의집중 및 계산 영역 채점 결과")
+                            Text("Attention and Calculation Domain Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -202,7 +201,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("기억회상 영역 채점 결과")
+                            Text("Recall Domain Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -210,7 +209,7 @@ struct MMSEResultsView: View {
                             Spacer()
                             
                             HStack(alignment: .lastTextBaseline){
-                                Text(String(scoreOfremember))
+                                Text(String(scoreOfRemember))
                                     .font(.title2)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.accentColor)
@@ -234,7 +233,7 @@ struct MMSEResultsView: View {
                                 .font(.caption)
                                 .foregroundStyle(Color.gray)
                             
-                            Text("언어 및 시공간 구성 영역 채점 결과")
+                            Text("Language and Spatiotemporal Construction Domain Scoring Result")
                                 .font(.caption)
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.gray)
@@ -242,7 +241,7 @@ struct MMSEResultsView: View {
                             Spacer()
                             
                             HStack(alignment: .lastTextBaseline){
-                                Text(String(scoreOflanguage))
+                                Text(String(scoreOfLanguage))
                                     .font(.title2)
                                     .fontWeight(.semibold)
                                     .foregroundStyle(Color.accentColor)
@@ -262,7 +261,7 @@ struct MMSEResultsView: View {
                     }.padding(20)
                         .toolbar{
                             ToolbarItem(placement: .topBarLeading, content: {
-                                Button("닫기"){
+                                Button("Close"){
                                     dismiss()
                                 }
                             })
@@ -276,7 +275,7 @@ struct MMSEResultsView: View {
                             
                             for var i in 5...9{
                                 if MMSEResult[i] == 2{
-                                    scoreOfLocaion += 1
+                                    scoreOfLocation += 1
                                 }
                             }
                             
@@ -294,17 +293,17 @@ struct MMSEResultsView: View {
                             
                             for var i in 18...20{
                                 if MMSEResult[i] == 2{
-                                    scoreOfremember += 1
+                                    scoreOfRemember += 1
                                 }
                             }
                             
                             for var i in 21...29{
                                 if MMSEResult[i] == 2{
-                                    scoreOflanguage += 1
+                                    scoreOfLanguage += 1
                                 }
                             }
                         }
-                        .navigationTitle(Text("인지기능검사 결과"))
+                        .navigationTitle(Text("Cognitive Function Test Results"))
                 }
             }
         }

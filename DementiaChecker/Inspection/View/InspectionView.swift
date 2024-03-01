@@ -2,7 +2,7 @@
 //  InspectionView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -11,16 +11,16 @@ struct InspectionView: View {
     @Environment(\.dismiss) var dismiss
     @State private var introductionTexts = [
         IntroductionDataModel(icon: "magnifyingglass",
-                                        title: "딥러닝을 이용한 치매 검사",
-                                        description: "생활 패턴, 기본 검사 결과를 바탕으로 딥러닝을 이용해 사용자의 치매 상황을 확인하고 예측할 수 있습니다."),
+                              title: "Dementia Assessment Using Deep Learning",
+                              description: "By using deep learning based on lifestyle patterns and basic test results, the app can assess and predict the user's dementia condition."),
         
         IntroductionDataModel(icon: "calendar.badge.clock",
-                                        title: "검사 기록 확인",
-                                        description: "검사 기록 탭에서 사용자의 검사 기록을 일자별로 확인하고, 심각도 변화 추이를 확인할 수 있습니다."),
+                              title: "View Test Records",
+                              description: "In the test records tab, you can view the user's test records by date and track the trend of severity changes."),
         
         IntroductionDataModel(icon: "applewatch",
-                                        title: "정확한 진단을 위해 Apple Watch 착용하기",
-                                        description: "정확한 진단을 위해 Apple Watch를 착용하고 최소 2주 이상 생활하십시오.")
+                              title: "Wear an Apple Watch for Accurate Diagnosis",
+                              description: "For accurate diagnosis, wear an Apple Watch and live with it for at least 2 weeks.")
     ]
     
     @EnvironmentObject var userManagement: UserManagement
@@ -44,7 +44,7 @@ struct InspectionView: View {
                     Image(systemName: "person.badge.shield.checkmark.fill")
                         .foregroundStyle(Color.accent)
                     
-                    Text("Dementia Checker는 진단 결과의 정확성을 보증하지 않습니다.\n치매가 의심되는 경우 의료기관에 방문해 전문가와 상담을 통해 의학적 조치를 받으십시오.\n사용자는 Dementia Checker를 통해 치료상의 이익을 얻을 수 없습니다.")
+                    Text("Dementia Checker does not guarantee the accuracy of diagnostic results.\nIf dementia is suspected, visit a medical institution for consultation with experts and receive medical treatment.\nThe user cannot benefit from medical treatment through Dementia Checker.")
                         .font(.caption)
                         .foregroundStyle(Color.gray)
                         .multilineTextAlignment(.center)
@@ -55,7 +55,7 @@ struct InspectionView: View {
                         HStack{
                             Spacer()
 
-                            Text("다음 단계로")
+                            Text("Next Step")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")
@@ -66,10 +66,10 @@ struct InspectionView: View {
                         }
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }.padding(20)
-                .navigationTitle(Text("검사 시작하기"))
+                .navigationTitle(Text("Start Test"))
                 .toolbar{
                     ToolbarItem(placement: .topBarLeading, content: {
-                        Button("닫기"){
+                        Button("Close"){
                             dismiss()
                         }
                     })

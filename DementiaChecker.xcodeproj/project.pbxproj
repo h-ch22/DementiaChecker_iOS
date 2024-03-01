@@ -871,11 +871,11 @@
 			};
 			buildConfigurationList = F65956332B56BF10004896C3 /* Build configuration list for PBXProject "DementiaChecker" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ko;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
-				ko,
+				en,
 			);
 			mainGroup = F659562F2B56BF10004896C3;
 			packageReferences = (
@@ -1291,16 +1291,17 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DementiaChecker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "하루 일기 사진 촬영, ARKit 사용을 위해 카메라 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to take daily diary photos and use ARKit.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Health app access rights are required to analyze users' activities and sleep.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Health app access rights are required to analyze users' activities and sleep.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location permission is required to search the user's surrounding dementia facilities.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone permission is required for voice recognition.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1335,16 +1336,17 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DementiaChecker/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "하루 일기 사진 촬영, ARKit 사용을 위해 카메라 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 활동, 수면 분석을 위해 건강앱 접근 권한이 필요합니다.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 주변 치매 시설 검색을 위해 위치 권한이 필요합니다.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "음성인식을 위해 마이크 권한이 필요합니다.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera access is required to take daily diary photos and use ARKit.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Health app access rights are required to analyze users' activities and sleep.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Health app access rights are required to analyze users' activities and sleep.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location permission is required to search the user's surrounding dementia facilities.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone permission is required for voice recognition.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

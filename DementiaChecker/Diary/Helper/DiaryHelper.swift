@@ -2,7 +2,7 @@
 //  DiaryHelper.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import Firebase
@@ -35,28 +35,28 @@ class DiaryHelper: ObservableObject{
     
     static func convertEmotionCodeToString(code: DiaryEmotionModel?) -> String?{
         switch code{
-        case .HAPPY: return "행복해요"
-        case .GREAT: return "최고예요"
-        case .GOOD: return "좋아요"
-        case .SOSO: return "그저 그래요"
-        case .BAD: return "안좋아요"
-        case .SAD: return "슬퍼요"
-        case .STAY_ALONE: return "혼자 있고 싶어요"
-        case .ANGRY: return "화나요"
+        case .HAPPY: return "Happy"
+        case .GREAT: return "Best"
+        case .GOOD: return "Good"
+        case .SOSO: return "Soso"
+        case .BAD: return "Bad"
+        case .SAD: return "Sad"
+        case .STAY_ALONE: return "Want to be alone"
+        case .ANGRY: return "Angry"
         default: return nil
         }
     }
     
     static func convertCodeToEmoji(code: DiaryEmotionModel?) -> String?{
         switch code{
-        case .HAPPY: return "🥰 행복해요"
-        case .GREAT: return "😆 최고예요"
-        case .GOOD: return "😀 좋아요"
-        case .SOSO: return "🙂 그저 그래요"
-        case .BAD: return "☹️ 안좋아요"
-        case .SAD: return "😢 슬퍼요"
-        case .STAY_ALONE: return "😣 혼자 있고 싶어요"
-        case .ANGRY: return "😡 화나요"
+        case .HAPPY: return "🥰 Happy"
+        case .GREAT: return "😆 Best"
+        case .GOOD: return "😀 Good"
+        case .SOSO: return "🙂 Soso"
+        case .BAD: return "☹️ Bad"
+        case .SAD: return "😢 Sad"
+        case .STAY_ALONE: return "😣 Want to be alone"
+        case .ANGRY: return "😡 Angry"
         default: return nil
         }
     }

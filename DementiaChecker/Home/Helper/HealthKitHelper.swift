@@ -2,7 +2,7 @@
 //  HealthKitHelper.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/2/24.
+//  Created by Changjin Ha on 2/2/24.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  SignInView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -75,7 +75,7 @@ struct SignInView: View {
                             Image(systemName: "key.fill")
                                 .foregroundStyle(password == "" ? Color.gray : Color.accent)
                             
-                            SecureField("비밀번호", text: $password)
+                            SecureField("Password", text: $password)
                         }
                         .foregroundStyle(Color.accent)
                         .padding(20)
@@ -95,7 +95,7 @@ struct SignInView: View {
                             HStack{
                                 Spacer()
 
-                                Text("로그인")
+                                Text("Sign In")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
@@ -111,14 +111,14 @@ struct SignInView: View {
                     
                     HStack{
                         NavigationLink(destination: ResetPasswordView().environmentObject(helper)){
-                            Text("비밀번호 재설정")
+                            Text("Reset Password")
                                 .foregroundStyle(Color.txt)
                         }
                         
                         Spacer()
                         
                         NavigationLink(destination: UserTypeSelectionView()){
-                            Text("회원가입")
+                            Text("Sign Up")
                                 .foregroundStyle(Color.txt)
                         }
                     }

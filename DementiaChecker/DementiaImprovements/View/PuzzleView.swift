@@ -2,7 +2,7 @@
 //  PuzzleView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -47,11 +47,11 @@ struct PuzzleView: View {
                     
                     Spacer().frame(height: 10)
                     
-                    Text("이미지 불러오기")
+                    Text("Load Image")
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.gray)
                     
-                    Text("계속 하려면 퍼즐에 사용할 이미지를 불러오십시오.")
+                    Text("Load the image to be used for the puzzle to continue.")
                         .font(.caption)
                         .foregroundStyle(Color.gray)
                     
@@ -63,7 +63,7 @@ struct PuzzleView: View {
                         }){
                             HStack{
                                 Image(systemName: "plus")
-                                Text("이미지 불러오기")
+                                Text("Load Image")
                             }
                         }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                     } else{
@@ -80,7 +80,7 @@ struct PuzzleView: View {
                                 }
                             }
                         }
-                    }.navigationTitle(Text("퍼즐"))
+                    }.navigationTitle(Text("Puzzle"))
                         .toolbar{
                             HStack{
                                 Button(action: {

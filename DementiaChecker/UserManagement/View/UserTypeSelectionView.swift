@@ -2,7 +2,7 @@
 //  UserTypeSelectionView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/2/24.
+//  Created by Changjin Ha on 2/2/24.
 //
 
 import SwiftUI
@@ -19,12 +19,12 @@ struct UserTypeSelectionView: View {
                     .font(.largeTitle)
                     .foregroundStyle(Color.txt)
                 
-                Text("반가워요!")
+                Text("Welcome!")
                     .font(.title)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.txt)
 
-                Text("가입할 사용자의 종류를 선택해주세요.")
+                Text("Please select the type of user to sign up.")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                                 
@@ -36,7 +36,7 @@ struct UserTypeSelectionView: View {
                             Image(systemName: "figure.and.child.holdinghands")
                                 .foregroundStyle(Color.txt)
                             
-                            Text("보호자")
+                            Text("Guardian")
                                 .foregroundStyle(Color.txt)
                         }.frame(width: 120, height: 80)
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, paddingValue: 5, cornerRadius: 15))
@@ -46,7 +46,7 @@ struct UserTypeSelectionView: View {
                             Image(systemName: "figure.arms.open")
                                 .foregroundStyle(Color.txt)
 
-                            Text("환자 본인")
+                            Text("Patient")
                                 .foregroundStyle(Color.txt)
                         }.padding(20)
                             .frame(width: 120, height: 80)
@@ -57,7 +57,7 @@ struct UserTypeSelectionView: View {
             }.padding(20)
                 .animation(.easeInOut)
 
-                .navigationTitle(Text("사용자 유형 선택"))
+                .navigationTitle(Text("User Type Selection"))
         }
     }
 }

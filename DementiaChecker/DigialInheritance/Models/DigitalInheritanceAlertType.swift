@@ -2,67 +2,66 @@
 //  DigitalInheritanceAlertModel.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/3/24.
+//  Created by Changjin Ha on 2/3/24.
 //
 
 import Foundation
 
-enum DigitalInheritanceAlertType: Error, LocalizedError{
+enum DigitalInheritanceAlertType: Error, LocalizedError {
     case USER_DOES_NOT_EXISTS
     case SUCCESS
     case FAIL
     case REMOVE_SUCCESS
     case REMOVE_FAIL
     
-    var failureReason: String?{
-        switch self{
+    var failureReason: String? {
+        switch self {
         case .USER_DOES_NOT_EXISTS:
-            return "일치하는 사용자 정보가 없습니다."
+            return "No matching user information found."
             
         case .SUCCESS:
-            return "유산 관리자가 추가되었습니다."
+            return "Digital inheritance manager has been added."
             
         case .FAIL:
-            return "유산 관리자를 추가하는 중 문제가 발생했습니다."
+            return "There was a problem adding the digital inheritance manager."
             
         case .REMOVE_SUCCESS:
-            return "유산 관리자가 제거되었습니다."
+            return "Digital inheritance manager has been removed."
             
         case .REMOVE_FAIL:
-            return "유산 관리자를 제거하는 중 문제가 발생했습니다."
-
+            return "There was a problem removing the digital inheritance manager."
         }
     }
     
-    var recoverySuggestion: String?{
-        switch self{
+    var recoverySuggestion: String? {
+        switch self {
         case .USER_DOES_NOT_EXISTS:
-            return "입력한 정보를 다시 확인하십시오."
+            return "Please double-check the entered information."
             
         case .SUCCESS:
-            return "유산 관리자가 정상적으로 추가되었습니다."
+            return "Digital inheritance manager has been successfully added."
             
         case .REMOVE_SUCCESS:
-            return "유산 관리자가 정상적으로 제거되었습니다."
+            return "Digital inheritance manager has been successfully removed."
             
         case .FAIL, .REMOVE_FAIL:
-            return "네트워크 상태를 확인하거나 나중에 다시 시도하십시오."
+            return "Please check your network connection and try again later."
         }
     }
     
-    var errorDescription: String?{
-        switch self{
+    var errorDescription: String? {
+        switch self {
         case .USER_DOES_NOT_EXISTS:
-            return "일치하는 사용자 정보 없음"
+            return "No Matching User Information"
             
         case .SUCCESS:
-            return "추가 완료"
+            return "Added Successfully"
             
         case .REMOVE_SUCCESS:
-            return "제거 완료"
+            return "Removed Successfully"
             
         case .FAIL, .REMOVE_FAIL:
-            return "오류"
+            return "Error"
         }
     }
 }

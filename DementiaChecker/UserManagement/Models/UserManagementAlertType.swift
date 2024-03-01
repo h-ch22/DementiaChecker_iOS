@@ -2,7 +2,7 @@
 //  UserManagementAlertType.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import Foundation
@@ -22,96 +22,96 @@ enum UserManagementAlertType: Error, LocalizedError{
     var failureReason: String?{
         switch self{
         case .UNKNOWN_USER:
-            return "일치하는 사용자 정보가 없습니다."
+            return "No matching user information found."
             
         case .PASSWORD_MISMATCH:
-            return "비밀번호와 비밀번호 확인이 일치하지 않습니다."
+            return "Passwords do not match."
             
         case .EMAIL_ALREADY_IN_USE:
-            return "이미 사용 중인 E-Mail입니다."
+            return "Email is already in use."
             
         case .INCORRECT_EMAIL_TYPE:
-            return "올바른 형식의 E-Mail이 아닙니다."
+            return "Invalid email format."
             
         case .WEAK_PASSWORD:
-            return "안전하지 않은 비밀번호입니다."
+            return "Weak password detected."
             
         case .UNKNOWN_ERROR:
-            return "알 수 없는 오류가 발생하였습니다."
+            return "An unknown error occurred."
             
         case .PATIENT_EMAIL_DOES_NOT_FOUND:
-            return "환자 E-Mail을 찾을 수 없습니다."
+            return "Patient email not found."
             
         case .SUCCESS:
             return ""
             
         case .SIGN_OUT_FAIL:
-            return "로그아웃 중 문제가 발생하였습니다."
+            return "Failed to sign out."
             
         case .DELETE_MEMBERSHIP_FAIL:
-            return "회원탈퇴 중 문제가 발생하였습니다."
+            return "Failed to delete membership."
         }
     }
     
     var recoverySuggestion: String?{
         switch self{
         case .UNKNOWN_USER:
-            return "입력한 정보를 다시 확인하십시오."
+            return "Please check the entered information again."
             
         case .PASSWORD_MISMATCH:
-            return "입력한 비밀번호와 비밀번호 확인을 다시 확인하십시오."
+            return "Please double-check the entered password and password confirmation."
             
         case .EMAIL_ALREADY_IN_USE:
-            return "다른 E-Mail로 재시도하거나, 비밀번호 재설정을 시도하십시오."
+            return "Try again with a different email or attempt password reset."
             
         case .INCORRECT_EMAIL_TYPE:
-            return "올바른 형식의 E-Mail을 입력하십시오."
+            return "Please enter a valid email address."
             
         case .WEAK_PASSWORD:
-            return "보안을 위해 6자리 이상의 비밀번호를 입력하십시오."
+            return "For security, enter a password with at least 6 characters."
             
         case .UNKNOWN_ERROR:
-            return "네트워크 상태를 확인하거나 나중에 다시 시도하십시오."
+            return "Please check network status or try again later."
             
         case .PATIENT_EMAIL_DOES_NOT_FOUND:
-            return "환자 E-Mail을 다시 확인하십시오."
+            return "Please double-check the patient email."
             
         case .SUCCESS:
             return ""
             
         case .SIGN_OUT_FAIL, .DELETE_MEMBERSHIP_FAIL:
-            return "정상 로그인 여부, 네트워크 상태를 확인하거나 나중에 다시 시도하십시오."
+            return "Check for normal login status, network status, or try again later."
         }
     }
     
     var errorDescription: String?{
         switch self{
         case .UNKNOWN_USER:
-            return "일치하는 사용자 정보 없음"
+            return "No matching user information"
             
         case .PASSWORD_MISMATCH:
-            return "비밀번호 불일치"
+            return "Password mismatch"
             
         case .EMAIL_ALREADY_IN_USE:
-            return "이미 사용 중인 E-Mail"
+            return "Email already in use"
             
         case .INCORRECT_EMAIL_TYPE:
-            return "올바르지 않은 형식의 E-Mail"
+            return "Invalid email format"
             
         case .WEAK_PASSWORD:
-            return "안전하지 않은 비밀번호"
+            return "Weak password"
             
         case .UNKNOWN_ERROR:
-            return "오류"
+            return "Error"
             
         case .PATIENT_EMAIL_DOES_NOT_FOUND:
-            return "환자 E-Mail을 찾을 수 없음"
+            return "Patient email not found"
             
         case .SUCCESS:
             return ""
             
         case .SIGN_OUT_FAIL, .DELETE_MEMBERSHIP_FAIL:
-            return "오류"
+            return "Error"
         }
     }
 }

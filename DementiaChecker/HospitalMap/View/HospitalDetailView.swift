@@ -2,7 +2,7 @@
 //  HospitalDetailView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/2/24.
+//  Created by Changjin Ha on 2/2/24.
 //
 
 import SwiftUI
@@ -53,7 +53,7 @@ struct HospitalDetailView: View {
                                     
                                     Spacer().frame(height: 5)
                                     
-                                    Text("길 안내")
+                                    Text("Directions")
                                         .foregroundStyle(Color.white)
                                 }
                                     .frame(width: 80, height: 80)
@@ -75,7 +75,7 @@ struct HospitalDetailView: View {
                                     
                                     Spacer().frame(height: 5)
                                     
-                                    Text("전화 걸기")
+                                    Text("Call")
                                         .foregroundStyle(Color.txt)
                                 }
                                     .frame(width: 80, height: 80)
@@ -97,7 +97,7 @@ struct HospitalDetailView: View {
                                     
                                     Spacer().frame(height: 5)
                                     
-                                    Text("더 보기")
+                                    Text("More")
                                         .foregroundStyle(Color.txt)
                                 }
                                     .frame(width: 80, height: 80)
@@ -132,11 +132,11 @@ struct HospitalDetailView: View {
                         HStack{
                             Image(systemName: "person.3.fill")
                             Spacer().frame(width: 5)
-                            Text("의사")
+                            Text("Doctors")
                             
                             Spacer()
                             
-                            Text("\(data?.doctorCount ?? 0)명")
+                            Text("\(data?.doctorCount ?? 0)")
                                 .foregroundStyle(Color.accent)
 
                         }
@@ -153,11 +153,11 @@ struct HospitalDetailView: View {
                         HStack{
                             Image(systemName: "person.3.fill")
                             Spacer().frame(width: 5)
-                            Text("간호사")
+                            Text("Nurses")
                             
                             Spacer()
                             
-                            Text("\(data?.nurseCount ?? 0)명")
+                            Text("\(data?.nurseCount ?? 0)")
                                 .foregroundStyle(Color.accent)
 
                         }
@@ -174,11 +174,11 @@ struct HospitalDetailView: View {
                         HStack{
                             Image(systemName: "person.3.fill")
                             Spacer().frame(width: 5)
-                            Text("사회 복지사")
+                            Text("Social Workers")
                             
                             Spacer()
                             
-                            Text("\(data?.scrcsCount ?? 0)명")
+                            Text("\(data?.scrcsCount ?? 0)")
                                 .foregroundStyle(Color.accent)
                         }
                         .padding(20)
@@ -191,10 +191,10 @@ struct HospitalDetailView: View {
                         
                         
                     }.padding(20)
-                    .navigationTitle(Text(data?.centerName ?? "센터 정보"))
+                    .navigationTitle(Text(data?.centerName ?? "Center Information"))
                     .toolbar{
                         ToolbarItem(placement: .topBarLeading, content: {
-                            Button("닫기"){
+                            Button("Close"){
                                 self.dismiss()
                             }
                         })

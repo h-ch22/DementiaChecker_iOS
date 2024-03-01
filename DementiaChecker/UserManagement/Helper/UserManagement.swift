@@ -2,7 +2,7 @@
 //  UserManagement.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import Foundation
@@ -17,6 +17,8 @@ class UserManagement: ObservableObject{
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
     private let storage = Storage.storage()
+    private let locationHelper = LocationHelper()
+
 
     func signIn(email: String, password: String, completion: @escaping(_ result: UserManagementAlertType?) -> Void){
         auth.signIn(withEmail: email, password: password){ _, error in
@@ -35,7 +37,6 @@ class UserManagement: ObservableObject{
     }
     
     func signUp(email: String, password: String, name: String, phone: String, birthday: String, patientEmail: String, homeAddress: String, job: String, workAddress: String, tall: String, weight: String, userType: String, gender: String, completion: @escaping(_ result: UserManagementAlertType?) -> Void){
-        let locationHelper = LocationHelper()
         
         locationHelper.geoCode(address: homeAddress, completion: { homeGeocode in
             guard let homeGeocode = homeGeocode else{return}
@@ -46,7 +47,7 @@ class UserManagement: ObservableObject{
             }
             
             if workAddress != ""{
-                locationHelper.geoCode(address: workAddress, completion: { workGeocode in
+                self.locationHelper.geoCode(address: workAddress, completion: { workGeocode in
                     guard let workGeocode = workGeocode else{return}
                     
                     if workGeocode == ", "{
@@ -77,6 +78,29 @@ class UserManagement: ObservableObject{
                         })
                     }
                 })
+            } else{
+                self.auth.createUser(withEmail: email, password: password){ _, error in
+                    if error != nil{
+                        completion(.UNKNOWN_ERROR)
+                        return
+                    }
+                    
+                    self.setUserInfo(email: email, name: name, phone: phone, birthday: birthday, patientEmail: patientEmail, userType: userType, homeAddress: homeGeocode, job: job, workAddress: "", tall: tall, weight: weight, gender: gender, completion: { result in
+                        guard let result = result else{return}
+                        
+                        if result{
+                            self.getUserInfo(){ getResult in
+                                guard let getResult = getResult else{return}
+                                completion(getResult ? .SUCCESS : .UNKNOWN_ERROR)
+                            }
+                        } else{
+                            self.auth.currentUser?.delete(){_ in
+                                completion(.UNKNOWN_ERROR)
+                                return
+                            }
+                        }
+                    })
+                }
             }
         })
     }
@@ -169,30 +193,63 @@ class UserManagement: ObservableObject{
     }
     
     func changeHomeAddress(address: String, completion: @escaping(_ result: Bool?) -> Void){
-        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
-            "homeAddress": AES256Util.encrypt(string: address)
-        ]){ error in
-            if error != nil{
-                print(error?.localizedDescription)
+        locationHelper.geoCode(address: address, completion: { homeGeocode in
+            guard let homeGeocode = homeGeocode else{return}
+            
+            if homeGeocode == ", "{
+                completion(false)
+                return
             }
             
-            completion(error == nil)
-            return
-        }
+            self.db.collection("Users").document(self.auth.currentUser?.uid ?? "").updateData([
+                "homeAddress": AES256Util.encrypt(string: homeGeocode)
+            ]){ error in
+                if error != nil{
+                    print(error?.localizedDescription)
+                }
+                
+                completion(error == nil)
+                return
+            }
+        })
     }
     
     func changeWork(job: String, workAddress: String, completion: @escaping(_ result: Bool?) -> Void){
-        self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
-            "workAddress": AES256Util.encrypt(string: workAddress),
-            "job": AES256Util.encrypt(string: job)
-        ]){ error in
-            if error != nil{
-                print(error?.localizedDescription)
+        if job != ""{
+            locationHelper.geoCode(address: workAddress, completion: { workGeocode in
+                guard let workGeocode = workGeocode else{return}
+                
+                if workGeocode == ", "{
+                    completion(false)
+                    return
+                }
+                
+                self.db.collection("Users").document(self.auth.currentUser?.uid ?? "").updateData([
+                    "workAddress": AES256Util.encrypt(string: workGeocode),
+                    "job": AES256Util.encrypt(string: job)
+                ]){ error in
+                    if error != nil{
+                        print(error?.localizedDescription)
+                    }
+                    
+                    completion(error == nil)
+                    return
+                }
+            })
+        } else{
+            self.db.collection("Users").document(auth.currentUser?.uid ?? "").updateData([
+                "workAddress": AES256Util.encrypt(string: workAddress),
+                "job": AES256Util.encrypt(string: job)
+            ]){ error in
+                if error != nil{
+                    print(error?.localizedDescription)
+                }
+                
+                completion(error == nil)
+                return
             }
-            
-            completion(error == nil)
-            return
         }
+
     }
     
     func changeTall(tall: String, completion: @escaping(_ result: Bool?) -> Void){

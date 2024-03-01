@@ -2,7 +2,7 @@
 //  DiaryMarkUpView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -19,13 +19,13 @@ struct DiaryMarkUpView: View {
                 DiaryCanvasView(canvas: $canvasView)
             }.padding(20).toolbar{
                 ToolbarItemGroup(placement: .topBarLeading){
-                    Button("취소"){
+                    Button("Cancel"){
                         self.presentationMode.wrappedValue.dismiss()
                     }
                 }
                 
                 ToolbarItemGroup(placement: .topBarTrailing){
-                    Button("완료"){
+                    Button("Done"){
                         images.append(canvasView.asUIImage())
                         self.presentationMode.wrappedValue.dismiss()
                     }

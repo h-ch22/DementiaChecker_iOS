@@ -2,7 +2,7 @@
 //  MMSEInspectionMainView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -10,20 +10,20 @@ import SwiftUI
 struct MMSEInspectionMainView: View {
     @State private var introductionTexts = [
         IntroductionDataModel(icon: "magnifyingglass",
-                                        title: "검사 설명",
-                                        description: "도구나 설비가 필요하지 않은 지필식 검사를 통해 사용자의 특정 기능 장애와 뇌 영역 중 손상 영역을 확인합니다."),
+                              title: "Test Explanation",
+                              description: "Through a simple written test that does not require tools or equipment, the app identifies specific functional impairments and areas of brain damage."),
         
         IntroductionDataModel(icon: "brain.filled.head.profile",
-                                        title: "검사 내용",
-                                        description: "기억력 (언어 및 시각), 언어 기능 (유창성, 언어 이해력, 이름 말하기, 따라 말하기), 시공간능력(따라 그리기, 그림 맞추기, 시계 그리기), 전두엽 기능, 주의집중력 실행증, 정서 상태를 검사합니다."),
+                              title: "Test Contents",
+                              description: "The test assesses memory (language and visual), language function (fluency, language comprehension, naming, repetition), visuospatial abilities (copying, matching pictures, drawing a clock), frontal lobe function, attention/executive function, and emotional state."),
         
         IntroductionDataModel(icon: "iphone.gen3.radiowaves.left.and.right",
-                                        title: "기기 상태 점검하기",
-                                        description: "검사를 시작하기 전에 무음모드 해제 여부, 기기의 볼륨, 마이크 상태 및 원활한 터치 인식이 가능한 상태인지 확인해주십시오."),
+                              title: "Check Device Status",
+                              description: "Before starting the test, check whether silent mode is off, the volume of the device, the status of the microphone, and whether smooth touch recognition is possible."),
         
         IntroductionDataModel(icon: "exclamationmark.triangle.fill",
-                                        title: "주의사항",
-                                        description: "사용자는 문제를 건너뛸 수 있으며, 정확한 진단을 위해 다른 사람의 도움 없이 스스로 문제를 해결하십시오.\n검사 시간에 따른 검사 결과 상의 이익 및/또는 불이익은 없습니다.")
+                              title: "Precautions",
+                              description: "Users can skip questions and should solve problems without the help of others for accurate diagnosis.\nThere are no benefits and/or disadvantages in test results based on test time.")
     ]
     
     @State private var changeView = false
@@ -66,7 +66,7 @@ struct MMSEInspectionMainView: View {
                             Image(systemName: isRecording ? "stop.circle.fill" : "waveform")
                                 .foregroundStyle(isRecording ? Color.white : Color.txt)
                             
-                            Text(isRecording ? "녹음 중지" : "마이크 테스트")
+                            Text(isRecording ? "Stop Recording" : "Microphone Test")
                                 .foregroundStyle(isRecording ? Color.white : Color.txt)
                         }
                     }.buttonStyle(NewMorphButtonStyle(foreground: isRecording ? Color.red : Color.background, paddingValue: 20, cornerRadius: 15))
@@ -86,7 +86,7 @@ struct MMSEInspectionMainView: View {
                             Image(systemName: isPlaying ? "stop.circle.fill" : "play.fill")
                                 .foregroundStyle(isPlaying ? Color.white : Color.txt)
 
-                            Text(isPlaying ? "정지" : "스피커 테스트")
+                            Text(isPlaying ? "Stop" : "Speaker Test")
                                 .foregroundStyle(isPlaying ? Color.white : Color.txt)
 
                         }
@@ -96,7 +96,7 @@ struct MMSEInspectionMainView: View {
                 if avHelper.resultText != ""{
                     Spacer().frame(height: 10)
                     
-                    Text("인식됨: \(avHelper.resultText)")
+                    Text("Recognized: \(avHelper.resultText)")
                         .foregroundStyle(Color.accent)
                 }
                 
@@ -105,7 +105,7 @@ struct MMSEInspectionMainView: View {
                 Image(systemName: "checkmark.circle")
                     .foregroundStyle(Color.accent)
                 
-                Text("검사 준비가 완료된 경우 아래 버튼을 터치해 검사를 시작하십시오.")
+                Text("When test preparation is complete, touch the button below to start the test.")
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                     .multilineTextAlignment(.center)
@@ -116,7 +116,7 @@ struct MMSEInspectionMainView: View {
                     changeView = true
                 }){
                     HStack{
-                        Text("시작하기")
+                        Text("Start")
                             .foregroundStyle(Color.txt)
                         
                         Image(systemName: "chevron.right")
@@ -124,7 +124,7 @@ struct MMSEInspectionMainView: View {
                     }.padding([.horizontal], 80)
                 }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
             }.padding(20)
-                .navigationTitle(Text("인지기능 검사 시작하기"))
+                .navigationTitle(Text("Start Cognitive Test"))
                 .fullScreenCover(isPresented: $changeView, content: {
                     MMSEInspectionView()
                         .environmentObject(userManagement)

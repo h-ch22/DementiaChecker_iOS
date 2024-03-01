@@ -2,7 +2,7 @@
 //  DiaryView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/11/24.
+//  Created by Changjin Ha on 2/11/24.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ struct DiaryView: View {
     @State private var showError = false
     @State private var showModal = false
     @State private var currentIndex = 0
-    @State private var emotions = ["🥰 행복해요", "😆 최고예요", "😀 좋아요", "🙂 그저그래요", "☹️ 안좋아요", "😢 슬퍼요", "😣 혼자있고싶어요", "😡 화나요"]
+    @State private var emotions = ["🥰 Happy", "😆 Best", "😀 Good", "🙂 Soso", "☹️ Bad", "😢 Sad", "😣 Want to be alone", "😡 Angry"]
     @State private var showAlert = false
     
     private func getCodeByEmotion(code: DiaryEmotionModel) -> String{
@@ -70,7 +70,7 @@ struct DiaryView: View {
                         Image(systemName : "square.and.pencil")
                             .font(.title)
                         
-                        Text("오늘의 당신을 기록해보세요.")
+                        Text("Write down who you are today.")
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.gray)
                         
@@ -105,7 +105,7 @@ struct DiaryView: View {
                                             .font(.caption)
                                             .foregroundStyle(Color.gray)
                                         
-                                        Text("\(self.getStringDate().2 ?? "")요일")
+                                        Text("\(self.getStringDate().2 ?? "")")
                                             .font(.caption)
                                             .foregroundStyle(Color.gray)
                                     }
@@ -192,7 +192,7 @@ struct DiaryView: View {
                     }
                 }
             }
-            .navigationTitle(Text("하루 일기"))
+            .navigationTitle(Text("Daily Diary"))
             .toolbar(content: {
                 ToolbarItemGroup(placement: .topBarTrailing, content: {
                     if helper.diaryList.count > 0{
@@ -221,9 +221,9 @@ struct DiaryView: View {
                 WriteDiaryMainView()
             })
             .alert(isPresented: $showAlert, content: {
-                return Alert(title: Text("경고"), message: Text("하루 일기는 하루에 한번 사용자의 하루 심리 상태를 기록할 수 있도록 설계되었습니다.\n사용자는 이미 오늘 하루 일기를 기록한 것으로 추정됩니다. 계속 진행할 경우 오늘 일기가 제거되고, 새로운 일기로 대체됩니다.\n계속하시겠습니까?"), primaryButton: .default(Text("예")){
+                return Alert(title: Text("Warning"), message: Text("The daily diary is designed to record the user's daily mental state once a day.\nIt is assumed that the user has already recorded today's diary. If you proceed, today's diary will be removed and replaced with a new one.\nDo you want to continue?"), primaryButton: .default(Text("Yes")){
                     self.showModal = true
-                }, secondaryButton: .default(Text("아니오")))
+                }, secondaryButton: .default(Text("No")))
                 
             })
         }

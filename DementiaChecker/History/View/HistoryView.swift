@@ -2,7 +2,7 @@
 //  HistoryView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 1/28/24.
+//  Created by Changjin Ha on 1/28/24.
 //
 
 import SwiftUI
@@ -37,7 +37,7 @@ struct HistoryView: View {
                         
                         Spacer().frame(height: 5)
                         
-                        Text("치매 진단을 진행하면 이 페이지에서 진단 결과를 다시 확인할 수 있습니다.")
+                        Text("You can review diagnosis results on this page once dementia diagnosis is completed.")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .multilineTextAlignment(.center)
@@ -48,7 +48,7 @@ struct HistoryView: View {
                 } else{
                     ScrollView{
                         VStack{
-                            Picker("검사 날짜 선택", selection: $selectedIndex){
+                            Picker("Select Examination Date", selection: $selectedIndex){
                                 ForEach(docList.indices, id: \.self){ index in
                                     Text(docList[index])
                                 }
@@ -66,7 +66,7 @@ struct HistoryView: View {
                                         .font(.largeTitle)
                                         .foregroundStyle(Color.green)
                                     
-                                    Text("Dementia Checker에서 사용자의 데이터로부터 문제를 찾지 못했습니다.")
+                                    Text("No issues were found from the user's data by Dementia Checker.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -76,7 +76,7 @@ struct HistoryView: View {
                                 Spacer().frame(height: 10)
                                 
                                 HStack{
-                                    Text("사용자에게 경도인지장애 또는 치매의 증상이 확인되지 않습니다.\n사용자는 정상적인 상태로 추정됩니다.")
+                                    Text("No symptoms of mild cognitive impairment (MCI) or dementia were identified in the user.\nThe user is presumed to be in a normal state.")
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
@@ -89,7 +89,7 @@ struct HistoryView: View {
                                         .font(.largeTitle)
                                         .foregroundStyle(Color.orange)
                                     
-                                    Text("Dementia Checker에서 사용자에게 경도인지장애의 증상이 있음을 확인하였습니다.")
+                                    Text("Dementia Checker has identified symptoms of mild cognitive impairment (MCI) in the user.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -99,7 +99,7 @@ struct HistoryView: View {
                                 Spacer().frame(height: 10)
                                 
                                 HStack{
-                                    Text("사용자에게 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활 습관을 개선하십시오.")
+                                    Text("Symptoms of mild cognitive impairment (MCI) have been identified in the user.\nTake measures to prevent progression to dementia by improving lifestyle habits.")
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
@@ -113,7 +113,7 @@ struct HistoryView: View {
                                         .font(.largeTitle)
                                         .foregroundStyle(Color.red)
                                     
-                                    Text("Dementia Checker에서 사용자의 데이터로부터 치매 증상이 있음을 확인하였습니다.")
+                                    Text("Dementia Checker has identified symptoms of dementia in the user's data.")
                                         .foregroundStyle(Color.txt)
                                         .fontWeight(.semibold)
                                     
@@ -123,7 +123,7 @@ struct HistoryView: View {
                                 Spacer().frame(height: 10)
                                 
                                 HStack{
-                                    Text("사용자에게 치매 증상이 확인되었습니다.\n즉시 의료기관에 방문하여 정밀 검사를 의뢰하십시오.")
+                                    Text("Symptoms of dementia have been identified in the user.\nVisit a medical institution immediately for further examination.")
                                         .font(.caption)
                                         .foregroundStyle(Color.gray)
                                     
@@ -148,7 +148,7 @@ struct HistoryView: View {
                                             .font(.caption)
                                             .foregroundStyle(Color.gray)
                                         
-                                        Text("권장되는 후속조치")
+                                        Text("Recommended Follow-up Actions")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.gray)
@@ -160,19 +160,19 @@ struct HistoryView: View {
                                     
                                     switch helper.inspectionResult.type {
                                     case .NORMAL:
-                                        Text("사용자에게는 치매 또는 경도인지장애의 증상이 확인되지 않습니다.\n치매를 예방하기 위해 올바른 생활습관을 유지하십시오.")
+                                        Text("No symptoms of dementia or mild cognitive impairment (MCI) were identified in the user.\nMaintain proper lifestyle habits to prevent dementia.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
                                         
                                     case .MCI:
-                                        Text("사용자에게 경도인지장애의 증상이 확인되었습니다.\n치매로 진행되지 않도록 생활습관을 개선하고, 치매 예방을 위한 두뇌 훈련 등의 조치가 필요할 수 있습니다.")
+                                        Text("Symptoms of mild cognitive impairment (MCI) have been identified in the user.\nImprove lifestyle habits to prevent progression to dementia, and consider measures such as brain training for dementia prevention.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
                                         
                                     case .DEMENTIA:
-                                        Text("사용자에게 치매의 증상이 확인되었습니다.\n즉시 의료기관에 내원하여 정밀검사를 의뢰하고, 의학적 조치를 받으십시오.")
+                                        Text("Symptoms of dementia have been identified in the user.\nVisit a medical institution immediately for further examination and medical intervention.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
@@ -200,7 +200,7 @@ struct HistoryView: View {
                                         showMMSEResult = true
                                     }){
                                         HStack{
-                                            Text("인지기능검사 결과 확인")
+                                            Text("View Cognitive Function Test Results")
                                                 .font(.caption)
                                                 .foregroundStyle(Color.txt)
                                             
@@ -229,7 +229,7 @@ struct HistoryView: View {
                                             .font(.caption)
                                             .foregroundStyle(Color.gray)
                                         
-                                        Text("이 질환에 대하여")
+                                        Text("About This Condition")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.gray)
@@ -241,19 +241,19 @@ struct HistoryView: View {
                                     
                                     switch helper.inspectionResult.type {
                                     case .NORMAL:
-                                        Text("정상은 사용자의 인지기능을 포함한 뇌 기능, 생활습관에 문제가 없음을 의미합니다.\n경도인지장애는 동일 연령대에 비해 인지기능, 특히 기억력이 떨어져 있는 상태이며, 일상생활을 수행하는 능력은 보존되어 있어 아직은 치매가 아닌 상태를 의미합니다.\n치매는 다발성 인지기능의 장애로 기억력이 떨어진 것이 가장 중요한 증상이지만 이것 뿐 아니라, 말을 하거나 이해하는 능력이 떨어지고, 시간과 공간에 대한 감각장애, 성격변화가 생기고, 계산능력이 떨어져 일상 생활이나 사회생활을 하는데 지장을 일으키는 상태를 의미합니다.")
+                                        Text("Normal indicates that there are no issues with the user's cognitive function, brain function, or lifestyle habits.\nMild cognitive impairment (MCI) is a condition where cognitive function, especially memory, is lower than the same age group, but the ability to perform daily activities is preserved, meaning it is not yet dementia.\nDementia is a condition of multiple cognitive impairments, with decreased memory being the most important symptom, but also including impaired speech or understanding, sensory impairments in time and space, personality changes, and decreased ability to perform daily or social activities.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
                                         
                                     case .MCI:
-                                        Text("경도인지장애는 동일 연령대에 비해 인지기능, 특히 기억력이 떨어져 있는 상태이며, 일상생활을 수행하는 능력은 보존되어 있어 아직은 치매가 아닌 상태를 의미합니다.\n치매와 정상의 중간 단계로 치매로 진행할 수 있는 고위험군으로 지목됩니다. 또한 이 상태는 알츠하이머병을 가장 이른 시기에 발견할 수 있는 단계이며 치료효과를 극대화시킬 수 있다는 점에서 임상적으로 중요한 단계입니다.")
+                                        Text("Mild cognitive impairment (MCI) is a condition where cognitive function, especially memory, is lower than the same age group, but the ability to perform daily activities is preserved, meaning it is not yet dementia.\nIt is considered an intermediate stage between dementia and normal, and is identified as the highest risk group for progression to dementia. It is also a clinically important stage as it is the earliest stage to detect Alzheimer's disease and maximize treatment effects.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
                                         
                                     case .DEMENTIA:
-                                        Text("치매는 다발성 인지기능의 장애로 기억력이 떨어진 것이 가장 중요한 증상이지만 이것 뿐 아니라, 말을 하거나 이해하는 능력이 떨어지고, 시간과 공간에 대한 감각장애, 성격변화가 생기고, 계산능력이 떨어져 일상 생활이나 사회생활을 하는데 지장을 일으키는 질환입니다.")
+                                        Text("Dementia is a condition of multiple cognitive impairments, with decreased memory being the most important symptom, but also including impaired speech or understanding, sensory impairments in time and space, personality changes, and decreased ability to perform daily or social activities.")
                                             .font(.caption)
                                             .fontWeight(.semibold)
                                             .foregroundStyle(Color.txt)
@@ -272,7 +272,7 @@ struct HistoryView: View {
                                     HStack{
                                         Image(systemName: "square.and.arrow.up")
                                         
-                                        Text("검사 결과 공유")
+                                        Text("Share Diagnosis Results")
                                     }
                                 }
                                 
@@ -281,7 +281,7 @@ struct HistoryView: View {
                                 Image(systemName: "person.badge.shield.checkmark.fill")
                                     .foregroundStyle(Color.accent)
                                 
-                                Text("Dementia Checker는 진단 결과의 정확성을 보증하지 않습니다.\n치매가 의심되는 경우 의료기관에 방문해 전문가와 상담을 통해 의학적 조치를 받으십시오.\n사용자는 Dementia Checker를 통해 치료상의 이익을 얻을 수 없습니다.")
+                                Text("Dementia Checker does not guarantee the accuracy of diagnosis results.\nIf dementia is suspected, visit a medical institution for consultation with experts and medical intervention.\nUsers cannot benefit from Dementia Checker for medical treatment.")
                                     .font(.caption)
                                     .foregroundStyle(Color.gray)
                                     .multilineTextAlignment(.center)
@@ -300,12 +300,12 @@ struct HistoryView: View {
                                     showView = inspectionResult
                                 })
                             }
-                    }                            
+                    }
 
                 }
             }
         }
-        .navigationTitle(Text("검사 기록"))
+        .navigationTitle(Text("History"))
         .onAppear{
             helper.getDataList(){ result in
                 guard let result = result else{return}

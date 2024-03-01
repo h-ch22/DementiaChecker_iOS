@@ -2,7 +2,7 @@
 //  MMSEInspectionResultView.swift
 //  DementiaChecker
 //
-//  Created by 하창진 on 2/12/24.
+//  Created by Changjin Ha on 2/12/24.
 //
 
 import SwiftUI
@@ -35,7 +35,7 @@ struct MMSEInspectionResultView: View {
                     .font(.caption)
                     .foregroundStyle(Color.gray)
                 
-                Text("인지기능검사 분석 결과")
+                Text("Cognitive Function Test Analysis Result")
                     .font(.caption)
                     .fontWeight(.semibold)
                     .foregroundStyle(Color.gray)
@@ -59,7 +59,7 @@ struct MMSEInspectionResultView: View {
             Spacer().frame(height: 10)
             
             HStack{
-                Text("정상 (Normal): __\(String(format: "%.2f", MMSEData.percentageOfNormal))%__")
+                Text("Normal: __\(String(format: "%.2f", MMSEData.percentageOfNormal))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
@@ -69,7 +69,7 @@ struct MMSEInspectionResultView: View {
             }
             
             HStack{
-                Text("경도인지장애 (MCI): __\(String(format: "%.2f", MMSEData.percentageOfMCI))%__")
+                Text("Mild Cognitive Impairment (MCI): __\(String(format: "%.2f", MMSEData.percentageOfMCI))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
@@ -79,7 +79,7 @@ struct MMSEInspectionResultView: View {
             }
             
             HStack{
-                Text("치매 (Dementia): __\(String(format: "%.2f", MMSEData.percentageOfDementia))%__")
+                Text("Dementia: __\(String(format: "%.2f", MMSEData.percentageOfDementia))%__")
                     .font(.caption)
                     .foregroundStyle(Color.txt)
                 
