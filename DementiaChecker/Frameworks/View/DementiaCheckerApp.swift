@@ -162,3 +162,9 @@ extension Date{
         }
     }
 }
+
+extension Date {
+    func getDateFor(days:Int) -> Date? {
+         return Calendar.current.date(byAdding: .day, value: days, to: Date())
+    }
+}

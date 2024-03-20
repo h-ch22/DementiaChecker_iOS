@@ -16,7 +16,8 @@ class InspectionHelper: NSObject, ObservableObject{
     @Published var scores = [Int]()
     @Published var answers = [String]()
     @Published var answerList: [String] = []
-    
+    @Published var period: LifeLogPeriodTypeModel = .TWO_WEEKS
+
     @Published var inspectionResult: InspectionResultDataModel = InspectionResultDataModel(type: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     @Published var mmseData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
     @Published var sleepData: ClassInspectionResultDataModel = ClassInspectionResultDataModel(max: .NORMAL, percentageOfNormal: 0.0, percentageOfMCI: 0.0, percentageOfDementia: 0.0)
@@ -38,13 +39,16 @@ class InspectionHelper: NSObject, ObservableObject{
             
         case .WALK:
             "walk_mobile"
+            
+        case .UNIVERSAL:
+            "universal_mobile"
         }
         
         if let filePath = Bundle.main.path(forResource: resource, ofType: "ptl", inDirectory: "include"),
            let module = TorchModule(fileAtPath: filePath){
             return module
         } else{
-            print("Failed to load model : Sleep")
+            print("Failed to load model.")
             return nil
         }
     }
@@ -63,6 +67,10 @@ class InspectionHelper: NSObject, ObservableObject{
         default:
             return .NORMAL
         }
+    }
+    
+    func setPeriod(period: LifeLogPeriodTypeModel){
+        self.period = period
     }
     
     func uploadResult(completion: @escaping(_ result: Bool?) -> Void){
@@ -575,48 +583,113 @@ class InspectionHelper: NSObject, ObservableObject{
         })
     }
     
+    private func convertPeriodTypeToInteger() -> Int{
+        switch self.period {
+        case .ONE_DAY:
+            return -1
+            
+        case .ONE_WEEK:
+            return -7
+            
+        case .TWO_WEEKS:
+            return -14
+        }
+    }
+    
     func predictLifeLog(tall: Double, weight: Double, age: Double, gender: String, completion: @escaping(_ result: Bool?) -> Void){
         let basalMetabolicRate = gender == "Male" ? Double(66.47) + (13.75 * weight) + (5.0 * tall) - (6.76 * age) : Double(655.1) + (9.56 * weight) + (1.85 * tall) - (4.68 * age)
         let start = Calendar.current.startOfDay(for: Date())
         
-        healthKitHelper.updateData(start: start, end: Date(), completion: { _ in
-            let usedAllCalrorie = self.healthKitHelper.activityEnergy * basalMetabolicRate
+        healthKitHelper.getLifeLogData(start: Calendar.current.date(byAdding: .day, value: self.convertPeriodTypeToInteger(), to: Date())!, end: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, period: self.convertPeriodTypeToInteger(), completion: { result in
+            guard let result = result else {return}
+            
+            if !result{
+                completion(false)
+                return
+            }
             
             let module_LifeLog = self.getModule(type: .WALK)
-            
             guard module_LifeLog != nil else{
+                print("Module_LifeLog is nil.")
                 completion(false)
                 return
             }
             
-            var data = [self.healthKitHelper.activityEnergy, usedAllCalrorie, self.healthKitHelper.distanceWalkingRunning, self.healthKitHelper.steps, self.healthKitHelper.activityMinute]
+            var data = self.healthKitHelper.lifeLogPredictData
+            var dates = self.healthKitHelper.dateList
             
-            guard let outputs = module_LifeLog!.predict(data: UnsafeMutableRawPointer(&data), outputSize: 3) else{
+            guard let outputs = module_LifeLog!.predictLifeLog(data: UnsafeMutableRawPointer(&data), dates: UnsafeMutableRawPointer(&dates), period: abs(Int32(self.convertPeriodTypeToInteger())), outputSize: 3) else{
+                print("Outputs get nil.")
                 completion(false)
                 return
             }
             
-            let result = self.topK(scores: outputs, labels: self.labels, count: 3)
-            
-            guard result != nil else{
+            let predictResult = self.topK(scores: outputs, labels: self.labels, count: 3)
+            guard predictResult != nil else{
+                print("Preds Result is nil.")
                 completion(false)
                 return
             }
             
-            let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
-            let max = self.getMaxType(result: result!)
+            let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
+            let max = self.getMaxType(result: predictResult!)
+            
+            print("Normal: \(percentageOfNormal), MCI: \(percentageOfMCI), Dementia: \(percentageOfDementia)")
             
             self.lifeLogData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
             
             completion(true)
             return
         })
+        
+//        healthKitHelper.updateData(start: start, end: Date(), completion: { _ in
+//            let usedAllCalrorie = self.healthKitHelper.activityEnergy * basalMetabolicRate
+//            
+//            let module_LifeLog = self.getModule(type: .WALK)
+//            
+//            guard module_LifeLog != nil else{
+//                completion(false)
+//                return
+//            }
+//            
+//            var data = [self.healthKitHelper.activityEnergy, usedAllCalrorie, self.healthKitHelper.distanceWalkingRunning, self.healthKitHelper.steps, self.healthKitHelper.activityMinute]
+//            
+//            guard let outputs = module_LifeLog!.predict(data: UnsafeMutableRawPointer(&data), outputSize: 3) else{
+//                completion(false)
+//                return
+//            }
+//            
+//            let result = self.topK(scores: outputs, labels: self.labels, count: 3)
+//            
+//            guard result != nil else{
+//                completion(false)
+//                return
+//            }
+//            
+//            let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
+//            let max = self.getMaxType(result: result!)
+//            
+//            self.lifeLogData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
+//            
+//            completion(true)
+//            return
+//        })
     }
     
     func predictSleep() -> Bool{
         let module_sleep = self.getModule(type: .SLEEP)
         
         guard module_sleep != nil else{
+            return false
+        }
+        
+        return true
+    }
+    
+    func predictUniversal() -> Bool{
+        let module_universal = self.getModule(type: .UNIVERSAL)
+        
+        guard module_universal != nil else{
             return false
         }
         

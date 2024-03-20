@@ -54,6 +54,8 @@
 		F659564F2B56BF11004896C3 /* DementiaCheckerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659564E2B56BF11004896C3 /* DementiaCheckerTests.swift */; };
 		F65956592B56BF11004896C3 /* DementiaCheckerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */; };
 		F659565B2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */; };
+		F65C63D82BA92555004389B9 /* LifeLogPeriodSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65C63D72BA92555004389B9 /* LifeLogPeriodSelectionView.swift */; };
+		F65C63DA2BA9289E004389B9 /* LifeLogPeriodTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65C63D92BA9289E004389B9 /* LifeLogPeriodTypeModel.swift */; };
 		F65FD9B62B7E671500B536E3 /* AVHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FD9B52B7E671500B536E3 /* AVHelper.swift */; };
 		F65FD9B82B7E696700B536E3 /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FD9B72B7E696700B536E3 /* LocationHelper.swift */; };
 		F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F660539C2B752F1100BEF80E /* UserInfoView.swift */; };
@@ -114,6 +116,7 @@
 		F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */; };
 		F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */; };
 		F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4D2B6C875D00DCC256 /* HealthKitHelper.swift */; };
+		F6FC2A712BA953FA00614F49 /* LifeLogDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FC2A702BA953FA00614F49 /* LifeLogDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +190,8 @@
 		F65956542B56BF11004896C3 /* DementiaCheckerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DementiaCheckerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F65956582B56BF11004896C3 /* DementiaCheckerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITests.swift; sourceTree = "<group>"; };
 		F659565A2B56BF11004896C3 /* DementiaCheckerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaCheckerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F65C63D72BA92555004389B9 /* LifeLogPeriodSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeLogPeriodSelectionView.swift; sourceTree = "<group>"; };
+		F65C63D92BA9289E004389B9 /* LifeLogPeriodTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeLogPeriodTypeModel.swift; sourceTree = "<group>"; };
 		F65FD9B52B7E671500B536E3 /* AVHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVHelper.swift; sourceTree = "<group>"; };
 		F65FD9B72B7E696700B536E3 /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		F660539C2B752F1100BEF80E /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
@@ -242,6 +247,7 @@
 		F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailsMapViewController.swift; sourceTree = "<group>"; };
 		F6F4BB4D2B6C875D00DCC256 /* HealthKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitHelper.swift; sourceTree = "<group>"; };
 		F6F4BB4F2B6C89DF00DCC256 /* DementiaChecker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DementiaChecker.entitlements; sourceTree = "<group>"; };
+		F6FC2A702BA953FA00614F49 /* LifeLogDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeLogDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -697,6 +703,7 @@
 				F68BC69C2B79068C0058F929 /* ARViewContainer.swift */,
 				F68BC6A62B79CCEA0058F929 /* CheckBox.swift */,
 				F679A79F2B7BB68C00E0C768 /* MMSEResultsView.swift */,
+				F65C63D72BA92555004389B9 /* LifeLogPeriodSelectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -751,6 +758,8 @@
 				F68BC6A42B79C4450058F929 /* MMSEInspectionResultView.swift */,
 				F6C5DB332B7A0A7E0023412B /* PredictResult.swift */,
 				F67A97A42B7BE0FA00040A7D /* MMSEResultListModel.swift */,
+				F65C63D92BA9289E004389B9 /* LifeLogPeriodTypeModel.swift */,
+				F6FC2A702BA953FA00614F49 /* LifeLogDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1057,6 +1066,7 @@
 				F639482F2B6BA22700E82620 /* MapView.swift in Sources */,
 				F6BF14432B77D736007FAA35 /* DementiaImprovementMainView.swift in Sources */,
 				F68BC6A92B79D6EB0058F929 /* AddressSearchView.swift in Sources */,
+				F65C63DA2BA9289E004389B9 /* LifeLogPeriodTypeModel.swift in Sources */,
 				F6F4BB4E2B6C875D00DCC256 /* HealthKitHelper.swift in Sources */,
 				F65FD9B62B7E671500B536E3 /* AVHelper.swift in Sources */,
 				F6A6C9712B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift in Sources */,
@@ -1069,6 +1079,7 @@
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F65FD9B82B7E696700B536E3 /* LocationHelper.swift in Sources */,
+				F65C63D82BA92555004389B9 /* LifeLogPeriodSelectionView.swift in Sources */,
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F605309E2B78BB5F00141A21 /* Consts.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
@@ -1103,6 +1114,7 @@
 				F605309C2B78BB4A00141A21 /* PuzzleView.swift in Sources */,
 				F608863A2B78A351004E1AF8 /* HealthListModel.swift in Sources */,
 				F6D999682B663B0800F9E4C7 /* IntroductionDataModel.swift in Sources */,
+				F6FC2A712BA953FA00614F49 /* LifeLogDataModel.swift in Sources */,
 				F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */,
 				F60530C02B78CE7D00141A21 /* ImagePicker.swift in Sources */,
 				F6D9995B2B66367E00F9E4C7 /* InspectionView.swift in Sources */,

@@ -51,7 +51,7 @@ struct InspectionView: View {
                     
                     Spacer().frame(height: 20)
                     
-                    NavigationLink(destination: MMSEInspectionMainView().environmentObject(userManagement)){
+                    NavigationLink(destination: LifeLogPeriodSelectionView().environmentObject(userManagement)){
                         HStack{
                             Spacer()
 

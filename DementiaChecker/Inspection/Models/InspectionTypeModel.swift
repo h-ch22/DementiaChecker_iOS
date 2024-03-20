@@ -8,5 +8,5 @@
 import Foundation
 
 enum InspectionTypeModel{
-    case MMSE, SLEEP, WALK
+    case MMSE, SLEEP, WALK, UNIVERSAL
 }

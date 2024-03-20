@@ -40,7 +40,6 @@ struct SignUpView: View {
         } else{
             return (email == "" || password == "" || checkPassword == "" || name == "" || phone == "" || patientEmail == "" || tall == "" || weight == "" || (!isOutOfWork && (workAddress == "" || job == ""))) ? true : false
         }
-        
     }
     
     var body: some View {

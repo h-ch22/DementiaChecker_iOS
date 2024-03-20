@@ -267,37 +267,37 @@ struct MMSEResultsView: View {
                             })
                         }
                         .onAppear{
-                            for var i in 0...4{
+                            for i in 0...4{
                                 if MMSEResult[i] == 2{
                                     scoreOfTime += 1
                                 }
                             }
                             
-                            for var i in 5...9{
+                            for i in 5...9{
                                 if MMSEResult[i] == 2{
                                     scoreOfLocation += 1
                                 }
                             }
                             
-                            for var i in 10...12{
+                            for i in 10...12{
                                 if MMSEResult[i] == 2{
                                     scoreOfMemory += 1
                                 }
                             }
                             
-                            for var i in 13...17{
+                            for i in 13...17{
                                 if MMSEResult[i] == 2{
                                     scoreOfCalculate += 1
                                 }
                             }
                             
-                            for var i in 18...20{
+                            for i in 18...20{
                                 if MMSEResult[i] == 2{
                                     scoreOfRemember += 1
                                 }
                             }
                             
-                            for var i in 21...29{
+                            for i in 21...29{
                                 if MMSEResult[i] == 2{
                                     scoreOfLanguage += 1
                                 }

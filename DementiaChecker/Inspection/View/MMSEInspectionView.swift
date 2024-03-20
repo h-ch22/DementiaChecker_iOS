@@ -31,7 +31,7 @@ struct MMSEInspectionView: View {
     
     @FocusState private var IsAnswerFieldFocused: Bool
     
-    @StateObject private var helper = InspectionHelper()
+    @StateObject var helper: InspectionHelper
     @StateObject private var avHelper = AVHelper()
     @EnvironmentObject var userManagement: UserManagement
     
@@ -87,7 +87,7 @@ struct MMSEInspectionView: View {
                             case .MMSE:
                                 ProgressView()
                                 
-                            case .SLEEP, .WALK:
+                            case .SLEEP, .WALK, .UNIVERSAL:
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(Color.green)
                             }
@@ -115,7 +115,7 @@ struct MMSEInspectionView: View {
                             case .WALK:
                                 ProgressView()
 
-                            case .SLEEP:
+                            case .SLEEP, .UNIVERSAL:
                                 Image(systemName: "checkmark")
                                     .foregroundStyle(Color.green)
                             }
@@ -135,16 +135,17 @@ struct MMSEInspectionView: View {
                     Spacer().frame(height: 10)
                     
                     HStack{
-                        if isDone{
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(Color.green)
-                        } else if errorType != .SLEEP && errorType != .WALK{
+                        if errorType != .SLEEP && errorType != .WALK{
                             switch currentInspectingType {
                             case .MMSE, .WALK:
                                 EmptyView()
                                 
                             case .SLEEP:
                                 ProgressView()
+                                
+                            case .UNIVERSAL:
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(Color.green)
                             }
                         } else if errorType == .SLEEP{
                             Image(systemName: "exclamationmark.circle.fill")
@@ -153,13 +154,40 @@ struct MMSEInspectionView: View {
 
                         Spacer().frame(width: 10)
                         
+                        Text("Sleep Pattern Data Test")
+                            .foregroundStyle(currentInspectingType == .SLEEP ? Color.txt : Color.gray)
+                            .fontWeight(currentInspectingType == .SLEEP ? .semibold : .regular)
+                            .font(currentInspectingType == .SLEEP ? .headline : .caption)
+                    }
+                    
+                    Spacer().frame(height: 10)
+                    
+                    HStack{
+                        if isDone{
+                            Image(systemName: "checkmark")
+                                .foregroundStyle(Color.green)
+                        } else if errorType != .UNIVERSAL && errorType != .SLEEP{
+                            switch currentInspectingType {
+                            case .MMSE, .WALK, .SLEEP:
+                                EmptyView()
+                                
+                            case .UNIVERSAL:
+                                ProgressView()
+                            }
+                        } else if errorType == .UNIVERSAL{
+                            Image(systemName: "exclamationmark.circle.fill")
+                                .foregroundStyle(Color.orange)
+                        }
+
+                        Spacer().frame(width: 10)
+                        
                         if !isDone{
-                            Text("Sleep Pattern Data Test")
-                                .foregroundStyle(currentInspectingType == .SLEEP && errorType != .WALK ? Color.txt : Color.gray)
-                                .fontWeight(currentInspectingType == .SLEEP && errorType != .WALK ? .semibold : .regular)
-                                .font(currentInspectingType == .SLEEP && errorType != .WALK ? .headline : .caption)
+                            Text("Universal Test")
+                                .foregroundStyle(currentInspectingType == .UNIVERSAL && errorType != .SLEEP ? Color.txt : Color.gray)
+                                .fontWeight(currentInspectingType == .UNIVERSAL && errorType != .SLEEP ? .semibold : .regular)
+                                .font(currentInspectingType == .UNIVERSAL && errorType != .SLEEP ? .headline : .caption)
                         } else{
-                            Text("Sleep Pattern Data Test")
+                            Text("Universal Test")
                                 .foregroundStyle(Color.gray)
                                 .font(.caption)
                         }
@@ -240,16 +268,13 @@ struct MMSEInspectionView: View {
                                         let result = helper.predictSleep()
                                         
                                         if result{
-                                            helper.calculateInspectionResult(){ result in
-                                                guard let result = result else{return}
-                                                
-                                                isDone = result
-                                            }
+                                            helper.predictUniversal()
                                         } else{
                                             currentInspectingType = .SLEEP
                                             errorType = .SLEEP
                                         }
                                     } else{
+                                        print("An error occured while predicing lifelog")
                                         currentInspectingType = .WALK
                                         errorType = .WALK
                                     }
@@ -511,6 +536,6 @@ struct MMSEInspectionView: View {
 }
 
 #Preview {
-    MMSEInspectionView()
+    MMSEInspectionView(helper: InspectionHelper())
         .environmentObject(UserManagement())
 }

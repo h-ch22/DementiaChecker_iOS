@@ -30,6 +30,8 @@ struct MMSEInspectionMainView: View {
     @State private var isRecording = false
     @State private var isPlaying = false
     @StateObject private var avHelper = AVHelper()
+    @StateObject var helper: InspectionHelper
+    
     @EnvironmentObject var userManagement: UserManagement
     
     var body: some View {
@@ -126,7 +128,7 @@ struct MMSEInspectionMainView: View {
             }.padding(20)
                 .navigationTitle(Text("Start Cognitive Test"))
                 .fullScreenCover(isPresented: $changeView, content: {
-                    MMSEInspectionView()
+                    MMSEInspectionView(helper: helper)
                         .environmentObject(userManagement)
                     
                 })
@@ -136,6 +138,6 @@ struct MMSEInspectionMainView: View {
 }
 
 #Preview {
-    MMSEInspectionMainView()
+    MMSEInspectionMainView(helper: InspectionHelper())
         .environmentObject(UserManagement())
 }

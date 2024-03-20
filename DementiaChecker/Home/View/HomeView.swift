@@ -23,7 +23,7 @@ struct HomeView: View {
     ]
     
     @State private var titles = [
-        "Oxygen Saturation", "Heart Rate", "Resting Heart Rate", "Walking Heart Rate", "Sleep", "Steps", "Distance Walked/Run", "Activity Energy", "Temperature", "Activity Time"
+        "SpO2", "Heart Rate", "Resting HR", "Walking HR", "Sleep", "Steps", "Distance Walking", "Activity Energy", "Temperature", "Activity Time"
     ]
     
     @State private var columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -43,7 +43,7 @@ struct HomeView: View {
             return "\(String(format: "%.2f", helper.walkingHeartRate)) BPM"
             
         case 4:
-            return "\(String(format: "%.2f", helper.inBedTime)) mins"
+            return "\(String(format: "%.2f", helper.inBedTime)) hours"
             
         case 5:
             return "\(String(format: "%.0f", helper.steps)) steps"
@@ -121,10 +121,8 @@ struct HomeView: View {
                         helper.requestAuthorization(){result in
                             guard let result = result else{return}
                         }
-                        
-                        let start = Calendar.current.startOfDay(for: Date())
-                        
-                        helper.updateData(start: start, end: Date(), completion: { _ in
+                                                
+                        helper.updateData(completion: { _ in
                             
                         })
                         
