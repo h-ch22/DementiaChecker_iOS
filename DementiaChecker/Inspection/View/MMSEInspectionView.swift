@@ -255,24 +255,37 @@ struct MMSEInspectionView: View {
                             if MMSEResult{
                                 currentInspectingType = .WALK
                                 
-                                helper.predictLifeLog(tall: Double(userManagement.userInfo?.tall ?? "0.0") ?? 0.0,
-                                                      weight: Double(userManagement.userInfo?.weight ?? "0.0") ?? 0.0,
-                                                      age: Double(userManagement.getAge()),
-                                                      gender: userManagement.userInfo?.gender ?? "",
-                                                      completion: { lifeLogResult in
+                                helper.predictLifeLog(completion: { lifeLogResult in
                                     guard let lifeLogResult = lifeLogResult else{return}
                                     
                                     if lifeLogResult{
                                         currentInspectingType = .SLEEP
                                         
-                                        let result = helper.predictSleep()
-                                        
-                                        if result{
-                                            helper.predictUniversal()
-                                        } else{
-                                            currentInspectingType = .SLEEP
-                                            errorType = .SLEEP
+                                        helper.predictSleep(){ sleepResult in
+                                            guard let sleepResult = sleepResult else{return}
+                                            
+                                            if sleepResult{
+                                                currentInspectingType = .UNIVERSAL
+
+                                                helper.predictUniversal(){ universalResult in
+                                                    guard let universalResult = universalResult else{
+                                                        return
+                                                    }
+                                                    
+                                                    if universalResult{
+                                                        isDone = true
+                                                    } else{
+                                                        currentInspectingType = .UNIVERSAL
+                                                        errorType = .UNIVERSAL
+                                                    }
+                                                }
+                                            } else{
+                                                currentInspectingType = .SLEEP
+                                                errorType = .SLEEP
+                                            }
                                         }
+                                        
+
                                     } else{
                                         print("An error occured while predicing lifelog")
                                         currentInspectingType = .WALK

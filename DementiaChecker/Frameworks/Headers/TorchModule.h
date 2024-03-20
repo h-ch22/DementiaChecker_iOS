@@ -17,6 +17,7 @@ NS_SWIFT_NAME(init(fileAtPath:)) NS_DESIGNATED_INITIALIZER;
 - (instancetype) init NS_UNAVAILABLE;
 - (nullable NSArray<NSNumber*>*)predict:(void*)data :(int)outputSize NS_SWIFT_NAME(predict(data:outputSize:));
 - (nullable NSArray<NSNumber*>*)predictLifeLog:(void*)data : (void*)dates : (int) period : (int)outputSize NS_SWIFT_NAME(predictLifeLog(data:dates:period:outputSize:));
+- (nullable NSArray<NSNumber*>*)predictUniversal:(void*)MMSEData : (void*)LifeLogData : (void*)LifeLogDates : (void*)SleepData : (void*)SleepDates : (int)period : (int)outputSize NS_SWIFT_NAME(predictUniversal(MMSEData:LifeLogData:LifeLogDates:SleepData:SleepDates:period:outputSize:));
 
 @end /* TorchModule_h */
 
