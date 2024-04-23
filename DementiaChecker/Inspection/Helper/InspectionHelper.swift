@@ -344,6 +344,8 @@ class InspectionHelper: NSObject, ObservableObject{
     }
     
     func gradingWithCustomData(answerList: [Bool], completion: @escaping(_ result: Bool?) -> Void){
+        self.scores = [Int]()
+        
         for answer in answerList{
             self.scores.append(answer == true ? 2 : 1)
         }
@@ -379,6 +381,8 @@ class InspectionHelper: NSObject, ObservableObject{
     }
     
     func grading(job: String, homeLatLng: String, workLatLng: String, completion: @escaping(_ result: Bool?) -> Void){
+        self.scores = [Int]()
+
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
         

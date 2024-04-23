@@ -36,7 +36,7 @@ struct CreateCustomResultView: View {
                         changeView = true
                     }){
                         HStack{
-                            Text("Start")
+                            Text("Start Prediction")
                                 .foregroundStyle(Color.txt)
                             
                             Image(systemName: "chevron.right")

@@ -129,7 +129,7 @@ struct MMSEInspectionMainView: View {
                 Spacer().frame(height: 10)
                 
                 NavigationLink(destination: CreateCustomResultView(
-                    helper:InspectionHelper()
+                    helper: helper
                 ).environmentObject(userManagement), label: {
                     HStack{
                         Image(systemName: "square.and.arrow.up.on.square.fill")

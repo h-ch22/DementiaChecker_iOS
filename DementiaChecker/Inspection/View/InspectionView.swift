@@ -66,7 +66,7 @@ struct InspectionView: View {
                         }
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }.padding(20)
-                .navigationTitle(Text("Start Test"))
+                .navigationTitle(Text("Start Inspection"))
                 .toolbar{
                     ToolbarItem(placement: .topBarLeading, content: {
                         Button("Close"){

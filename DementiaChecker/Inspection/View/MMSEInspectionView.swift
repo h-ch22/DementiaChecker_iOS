@@ -69,7 +69,7 @@ struct MMSEInspectionView: View {
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Color.gray)
                     } else{
-                        Text("Test Completed")
+                        Text("Prediction Completed")
                             .font(.title2)
                             .fontWeight(.semibold)
                             .foregroundStyle(Color.txt)
@@ -222,7 +222,7 @@ struct MMSEInspectionView: View {
                             HStack{
                                 Spacer()
 
-                                Text("Check Test Result")
+                                Text("Check Result")
                                     .foregroundStyle(Color.txt)
                                 
                                 Image(systemName: "chevron.right")
