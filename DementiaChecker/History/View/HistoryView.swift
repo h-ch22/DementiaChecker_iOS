@@ -13,8 +13,10 @@ struct HistoryView: View {
     @State private var docList = [String]()
     @State private var selectedIndex = 0
     @State private var showMMSEResult = false
-
+    
+    @EnvironmentObject private var userManagement: UserManagement
     @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack{
             Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])
@@ -82,7 +84,7 @@ struct HistoryView: View {
                                     
                                     Spacer()
                                 }
-
+                                
                             case .MCI:
                                 HStack{
                                     Image(systemName: "exclamationmark.circle.fill")
@@ -105,7 +107,7 @@ struct HistoryView: View {
                                     
                                     Spacer()
                                 }
-
+                                
                                 
                             case .DEMENTIA:
                                 HStack{
@@ -129,7 +131,7 @@ struct HistoryView: View {
                                     
                                     Spacer()
                                 }
-
+                                
                                 Divider()
                             }
                             
@@ -140,7 +142,7 @@ struct HistoryView: View {
                             }
                             
                             Spacer().frame(height: 20)
-
+                            
                             Group{
                                 VStack(alignment: .leading){
                                     HStack{
@@ -178,16 +180,16 @@ struct HistoryView: View {
                                             .foregroundStyle(Color.txt)
                                     }
                                 }.padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .fill(Color.background)
-                                        .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
-                                        .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
-                                )
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(Color.background)
+                                            .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                            .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                                    )
                             }
                             
                             Spacer().frame(height: 20)
-
+                            
                             Group{
                                 MMSEInspectionResultView(MMSEResult: helper.scores, MMSEData: helper.mmseData)
                                 
@@ -212,16 +214,16 @@ struct HistoryView: View {
                                 }
                                 
                                 Spacer().frame(height: 20)
-
+                                
                                 LifeLogIncidenceRateListModel(data: helper.lifeLogData, inspectionType: .WALK)
                                 
                                 Spacer().frame(height: 20)
-
+                                
                                 LifeLogIncidenceRateListModel(data: helper.sleepData, inspectionType: .SLEEP)
                             }
                             
                             Spacer().frame(height: 20)
-
+                            
                             Group{
                                 VStack(alignment: .leading){
                                     HStack{
@@ -259,22 +261,12 @@ struct HistoryView: View {
                                             .foregroundStyle(Color.txt)
                                     }
                                 }.padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .fill(Color.background)
-                                        .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
-                                        .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
-                                )
-                                
-                                Spacer().frame(height: 20)
-
-                                Button(action: {}){
-                                    HStack{
-                                        Image(systemName: "square.and.arrow.up")
-                                        
-                                        Text("Share Diagnosis Results")
-                                    }
-                                }
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .fill(Color.background)
+                                            .shadow(color: colorScheme == .light ? Color.black.opacity(0.2) : Color.btnStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                                            .shadow(color: colorScheme == .light ? Color.white.opacity(0.7) : Color.btnEnd.opacity(0.2), radius: 10, x: -5, y: -5)
+                                    )
                                 
                                 Spacer().frame(height: 20)
                                 
@@ -287,7 +279,7 @@ struct HistoryView: View {
                                     .multilineTextAlignment(.center)
                             }
                         }.padding(20)
-
+                        
                             .sheet(isPresented: $showMMSEResult, content: {
                                 MMSEResultsView(MMSEResult: helper.scores, MMSEData: helper.mmseData)
                             })
@@ -301,7 +293,7 @@ struct HistoryView: View {
                                 })
                             }
                     }
-
+                    
                 }
             }
         }
@@ -328,4 +320,5 @@ struct HistoryView: View {
 
 #Preview {
     HistoryView()
+        .environmentObject(UserManagement())
 }

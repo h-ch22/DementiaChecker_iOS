@@ -125,10 +125,24 @@ struct MMSEInspectionMainView: View {
                             .foregroundStyle(Color.txt)
                     }.padding([.horizontal], 80)
                 }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
+                
+                Spacer().frame(height: 10)
+                
+                NavigationLink(destination: CreateCustomResultView(
+                    helper:InspectionHelper()
+                ).environmentObject(userManagement), label: {
+                    HStack{
+                        Image(systemName: "square.and.arrow.up.on.square.fill")
+                            .foregroundStyle(Color.txt)
+                        
+                        Text("Load Custom Result Data")
+                            .foregroundStyle(Color.txt)
+                    }
+                })
             }.padding(20)
                 .navigationTitle(Text("Start Cognitive Test"))
                 .fullScreenCover(isPresented: $changeView, content: {
-                    MMSEInspectionView(helper: helper)
+                    MMSEInspectionView(helper: helper, useCustomData: false, answerList: nil)
                         .environmentObject(userManagement)
                     
                 })

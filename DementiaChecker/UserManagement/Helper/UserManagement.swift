@@ -19,7 +19,6 @@ class UserManagement: ObservableObject{
     private let storage = Storage.storage()
     private let locationHelper = LocationHelper()
 
-
     func signIn(email: String, password: String, completion: @escaping(_ result: UserManagementAlertType?) -> Void){
         auth.signIn(withEmail: email, password: password){ _, error in
             if error != nil{
@@ -431,6 +430,10 @@ class UserManagement: ObservableObject{
             
             
         }
+    }
+    
+    func getUID() -> String{
+        return auth.currentUser?.uid ?? ""
     }
     
     func sendResetPasswordMail(email: String, completion: @escaping(_ result: Bool?) -> Void){

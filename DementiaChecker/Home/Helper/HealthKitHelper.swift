@@ -80,8 +80,6 @@ class HealthKitHelper: ObservableObject{
         
         group.enter()
         getAccumulateSleepData(start: start, end: end, completion: { result in
-            print(result)
-            
             self.accumulateAwakeList = result[0]
             self.accumulateBRList = result[1]
             self.accumulateDeepSleepList = result[2]
@@ -704,7 +702,6 @@ class HealthKitHelper: ObservableObject{
                     
                     baseline /= Double(dataList.count)
                     
-                    print(baseline)
                     completion(baseline)
                     return
                 }
@@ -981,7 +978,6 @@ class HealthKitHelper: ObservableObject{
             
             DispatchQueue.main.async{
                 if !resultData.isEmpty{
-                    print(resultData)
                     guard let recent: HKQuantitySample = resultData[0] as? HKQuantitySample else{return}
                     self.wristTemperature = recent.quantity.doubleValue(for: self.wristTemperatureUnit)
                     completion(resultData)
@@ -1025,7 +1021,6 @@ class HealthKitHelper: ObservableObject{
                     }
                     
                     let total = self?.calculateSpentTime(for: datas)
-                    print(total)
                     self?.inBedTime = (Double(total ?? 0.0) / 60) / 60
                 }
             }

@@ -112,6 +112,7 @@
 		F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */; };
 		F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */; };
 		F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */; };
+		F6E3CAAB2BD7427A00427D4D /* CreateCustomResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3CAAA2BD7427A00427D4D /* CreateCustomResultView.swift */; };
 		F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */; };
 		F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */; };
 		F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */; };
@@ -242,6 +243,7 @@
 		F6D9996E2B664D0700F9E4C7 /* InspectionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionHelper.swift; sourceTree = "<group>"; };
 		F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEAnswerTypeModel.swift; sourceTree = "<group>"; };
 		F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSECanvasView.swift; sourceTree = "<group>"; };
+		F6E3CAAA2BD7427A00427D4D /* CreateCustomResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomResultView.swift; sourceTree = "<group>"; };
 		F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDataModel.swift; sourceTree = "<group>"; };
 		F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailView.swift; sourceTree = "<group>"; };
 		F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailsMapViewController.swift; sourceTree = "<group>"; };
@@ -704,6 +706,7 @@
 				F68BC6A62B79CCEA0058F929 /* CheckBox.swift */,
 				F679A79F2B7BB68C00E0C768 /* MMSEResultsView.swift */,
 				F65C63D72BA92555004389B9 /* LifeLogPeriodSelectionView.swift */,
+				F6E3CAAA2BD7427A00427D4D /* CreateCustomResultView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1095,6 +1098,7 @@
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
 				F6C5DB342B7A0A7E0023412B /* PredictResult.swift in Sources */,
 				F60530BB2B78CE0D00141A21 /* DiaryEmotionModel.swift in Sources */,
+				F6E3CAAB2BD7427A00427D4D /* CreateCustomResultView.swift in Sources */,
 				F6A6C9732B7CAADB004396BA /* UpdateUserInfoView.swift in Sources */,
 				F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */,
 				F679A7A02B7BB68C00E0C768 /* MMSEResultsView.swift in Sources */,

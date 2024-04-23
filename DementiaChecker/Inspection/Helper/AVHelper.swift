@@ -31,10 +31,20 @@ class AVHelper: NSObject, ObservableObject, SFSpeechRecognizerDelegate{
     func endAudio(){
         audioEngine.stop()
         recognitionRequest?.endAudio()
+        
+        do{
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        } catch{
+            print(error.localizedDescription)
+        }
     }
     
     func startRecording(){
         audioEngine.inputNode.removeTap(onBus: 0)
+        
+        if audioEngine.isRunning{
+            endAudio()
+        }
         
         if recognitionTask != nil{
             recognitionTask?.cancel()

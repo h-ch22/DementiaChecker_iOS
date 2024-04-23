@@ -202,6 +202,8 @@ class InspectionHelper: NSObject, ObservableObject{
                         ids.append(document.documentID)
                     }
                     
+                    ids.sort(by: {$0 > $1})
+                    
                     completion(ids)
                     return
                 } else{
@@ -339,6 +341,41 @@ class InspectionHelper: NSObject, ObservableObject{
             return ""
         }
         
+    }
+    
+    func gradingWithCustomData(answerList: [Bool], completion: @escaping(_ result: Bool?) -> Void){
+        for answer in answerList{
+            self.scores.append(answer == true ? 2 : 1)
+        }
+        
+        self.scores.append(self.getTotalScore())
+        
+        let module_MMSE = self.getModule(type: .MMSE)
+        
+        guard module_MMSE != nil else{
+            completion(false)
+            return
+        }
+        
+        guard let outputs = module_MMSE!.predict(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
+            completion(false)
+            return
+        }
+                        
+        let result = self.topK(scores: outputs, labels: self.labels, count: 3)
+        
+        guard result != nil else{
+            completion(false)
+            return
+        }
+        
+        let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
+        let max = self.getMaxType(result: result!)
+        
+        self.mmseData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
+        
+        completion(true)
+        return
     }
     
     func grading(job: String, homeLatLng: String, workLatLng: String, completion: @escaping(_ result: Bool?) -> Void){
@@ -564,7 +601,7 @@ class InspectionHelper: NSObject, ObservableObject{
                     completion(false)
                     return
                 }
-                
+                                
                 let result = self.topK(scores: outputs, labels: self.labels, count: 3)
                 
                 guard result != nil else{
@@ -632,9 +669,7 @@ class InspectionHelper: NSObject, ObservableObject{
             
             let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
             let max = self.getMaxType(result: predictResult!)
-            
-            print("Normal: \(percentageOfNormal), MCI: \(percentageOfMCI), Dementia: \(percentageOfDementia)")
-            
+                        
             self.lifeLogData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
             
             completion(true)
@@ -683,9 +718,7 @@ class InspectionHelper: NSObject, ObservableObject{
             
             let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
             let max = self.getMaxType(result: predictResult!)
-            
-            print("Normal: \(percentageOfNormal), MCI: \(percentageOfMCI), Dementia: \(percentageOfDementia)")
-            
+                        
             self.sleepData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
             
             completion(true)
@@ -695,30 +728,9 @@ class InspectionHelper: NSObject, ObservableObject{
     
     func predictUniversal(completion: @escaping(_ result: Bool?) -> Void){
         let module_universal = self.getModule(type: .UNIVERSAL)
-        let module_MMSE = self.getModule(type: .MMSE)
-        let module_LifeLog = self.getModule(type: .WALK)
-        let module_Sleep = self.getModule(type: .SLEEP)
         
         guard module_universal != nil else{
             print("Module_Universal is nil.")
-            completion(false)
-            return
-        }
-        
-        guard module_MMSE != nil else{
-            print("Module_MMSE is nil.")
-            completion(false)
-            return
-        }
-        
-        guard module_LifeLog != nil else{
-            print("Module_LifeLog is nil.")
-            completion(false)
-            return
-        }
-        
-        guard module_Sleep != nil else{
-            print("Module_Sleep is nil.")
             completion(false)
             return
         }
@@ -743,9 +755,7 @@ class InspectionHelper: NSObject, ObservableObject{
         
         let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
         let max = self.getMaxType(result: predictResult!)
-        
-        print("Normal: \(percentageOfNormal), MCI: \(percentageOfMCI), Dementia: \(percentageOfDementia)")
-        
+                
         self.inspectionResult = InspectionResultDataModel(type: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
         
         self.uploadResult(completion: { result in

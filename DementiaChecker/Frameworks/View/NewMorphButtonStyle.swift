@@ -216,6 +216,72 @@ struct CircleNewMorphButtonStyle: ButtonStyle {
     }
 }
 
+struct NewMorphToggleStyle: ToggleStyle {
+    @Environment(\.colorScheme) var colorScheme
+    
+    func makeBody(configuration: Configuration) -> some View {
+        HStack{
+            configuration.label
+            
+            Spacer()
+            
+            if colorScheme == .light{
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundStyle(Color.background)
+                    .frame(width: 51, height: 31, alignment: .center)
+                    .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                    .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
+                    .overlay(
+                        Circle()
+                            .foregroundStyle(.white)
+                            .padding(.all, 3)
+                            .overlay(
+                                Image(systemName: configuration.isOn ? "circle" : "xmark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .font(Font.title.weight(.black))
+                                    .frame(width: 8, height: 8, alignment: .center)
+                                    .foregroundStyle(Color.gray)
+                            )
+                            .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
+                            .offset(x: configuration.isOn ? 11 : -11, y: 0)
+                            .animation(Animation.linear(duration: 0.1))
+                    )
+                    .onTapGesture {
+                        configuration.isOn.toggle()
+                    }
+            } else{
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundStyle(Color.background)
+                    .frame(width: 51, height: 31, alignment: .center)
+                    .shadow(color: Color.btnStart, radius: 10, x: -10, y: -10)
+                    .shadow(color: Color.btnEnd, radius: 10, x: 10, y: 10)
+                    .overlay(
+                        Circle()
+                            .foregroundStyle(.white)
+                            .padding(.all, 3)
+                            .overlay(
+                                Image(systemName: configuration.isOn ? "circle" : "xmark")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .font(Font.title.weight(.black))
+                                    .frame(width: 8, height: 8, alignment: .center)
+                                    .foregroundStyle(Color.gray)
+                            )
+                            .shadow(color: Color.btnStart, radius: 10, x: -10, y: -10)
+                            .shadow(color: Color.btnEnd, radius: 10, x: 10, y: 10)
+                            .offset(x: configuration.isOn ? 11 : -11, y: 0)
+                            .animation(Animation.linear(duration: 0.1))
+                    )
+                    .onTapGesture {
+                        configuration.isOn.toggle()
+                    }
+            }
+        }
+    }
+}
+
 #Preview{
     ZStack{
         Color.background.ignoresSafeArea(.all, edges: [.top, .bottom])

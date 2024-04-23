@@ -248,16 +248,6 @@ struct InspectionResultsView: View {
                         }.buttonStyle(NewMorphButtonStyle(foreground: Color.background, cornerRadius: 15))
                         
                         Spacer().frame(height: 20)
-
-                        Button(action: {}){
-                            HStack{
-                                Image(systemName: "square.and.arrow.up")
-                                
-                                Text("Share Results")
-                            }
-                        }
-                        
-                        Spacer().frame(height: 20)
                         
                         Image(systemName: "person.badge.shield.checkmark.fill")
                             .foregroundStyle(Color.accent)
