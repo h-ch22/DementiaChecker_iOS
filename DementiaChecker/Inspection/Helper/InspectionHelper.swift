@@ -683,7 +683,7 @@ class InspectionHelper: NSObject, ObservableObject{
             default: max = .NORMAL
             }
             
-            self.mmseData = ClassInspectionResultDataModel(max: max, percentageOfNormal: Float((result?.DIAG_NMProbability["CN"] ?? 0.0) * 100), percentageOfMCI: Float(result?.DIAG_NMProbability["MCI"] ?? 0.0 * 100), percentageOfDementia: Float(result?.DIAG_NMProbability["Dem"] ?? 0.0 * 100))
+            self.mmseData = ClassInspectionResultDataModel(max: max, percentageOfNormal: Float((result?.DIAG_NMProbability["CN"] ?? 0.0) * 100), percentageOfMCI: Float(result?.DIAG_NMProbability["MCI"] ?? 0.0) * 100.0, percentageOfDementia: Float(result?.DIAG_NMProbability["Dem"] ?? 0.0) * 100.0)
             
             return true
         } catch {
@@ -740,9 +740,9 @@ class InspectionHelper: NSObject, ObservableObject{
                 
             } else{
                 self.lifeLogData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: Int(results[0]?.DIAG_NM ?? 0)),
-                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0 * 100),
-                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0 * 100),
-                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0 * 100))
+                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0) * 100.0,
+                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0) * 100.0,
+                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0) * 100.0)
             }
             
             completion(true)
@@ -801,9 +801,9 @@ class InspectionHelper: NSObject, ObservableObject{
                 
             } else{
                 self.sleepData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: Int(results[0]?.DIAG_NM ?? 0)),
-                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0 * 100),
-                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0 * 100),
-                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0 * 100))
+                                                                percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0) * 100.0,
+                                                                percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0) * 100.0,
+                                                                percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0) * 100.0)
             }
             
             completion(true)
@@ -899,9 +899,9 @@ class InspectionHelper: NSObject, ObservableObject{
                 }
                 
                 self.inspectionResult = InspectionResultDataModel(type: max,
-                                                            percentageOfNormal: Float(results[0]?.DIAG_NMProbability["CN"] ?? 0.0 * 100),
-                                                            percentageOfMCI: Float(results[0]?.DIAG_NMProbability["MCI"] ?? 0.0 * 100),
-                                                            percentageOfDementia: Float(results[0]?.DIAG_NMProbability["Dem"] ?? 0.0 * 100))
+                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability["CN"] ?? 0.0) * 100.0,
+                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability["MCI"] ?? 0.0) * 100.0,
+                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability["Dem"] ?? 0.0) * 100.0)
             }
             
             self.uploadResult(completion: { _ in                
