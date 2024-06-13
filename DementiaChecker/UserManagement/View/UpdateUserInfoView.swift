@@ -434,7 +434,7 @@ struct UpdateUserInfoView: View {
                             return Alert(title: Text("Error"), message: Text("There was an issue updating user information.\nPlease check your network connection and try again later."), dismissButton: .default(Text("OK")))
                         }
                     })
-                    .animation(.easeInOut)
+                    .animation(Animation.easeInOut(duration: 0.5), value: true)
             }
         }
     }

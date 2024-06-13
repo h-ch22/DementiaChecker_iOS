@@ -72,7 +72,7 @@ struct NewMorphButtonStyle: ButtonStyle {
 
                 }
             )
-            .animation(.easeInOut)
+            .animation(Animation.easeInOut(duration: 0.5), value: true)
     }
 }
 
@@ -211,7 +211,7 @@ struct CircleNewMorphButtonStyle: ButtonStyle {
                     }
                 }
             )
-            .animation(.easeInOut)
+            .animation(Animation.easeInOut(duration: 0.5), value: true)
 
     }
 }
@@ -246,7 +246,7 @@ struct NewMorphToggleStyle: ToggleStyle {
                             .shadow(color: Color.shadowStart.opacity(0.2), radius: 10, x: 10, y: 10)
                             .shadow(color: Color.shadowEnd.opacity(0.7), radius: 10, x: -5, y: -5)
                             .offset(x: configuration.isOn ? 11 : -11, y: 0)
-                            .animation(Animation.linear(duration: 0.1))
+                            .animation(Animation.linear(duration: 0.5), value: true)
                     )
                     .onTapGesture {
                         configuration.isOn.toggle()
@@ -272,7 +272,7 @@ struct NewMorphToggleStyle: ToggleStyle {
                             .shadow(color: Color.btnStart, radius: 10, x: -10, y: -10)
                             .shadow(color: Color.btnEnd, radius: 10, x: 10, y: 10)
                             .offset(x: configuration.isOn ? 11 : -11, y: 0)
-                            .animation(Animation.linear(duration: 0.1))
+                            .animation(Animation.linear(duration: 0.5), value: true)
                     )
                     .onTapGesture {
                         configuration.isOn.toggle()

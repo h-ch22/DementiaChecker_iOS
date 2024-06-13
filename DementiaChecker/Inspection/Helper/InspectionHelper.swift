@@ -13,7 +13,7 @@ import Accelerate
 import CoreLocation
 
 class InspectionHelper: NSObject, ObservableObject{
-    @Published var scores = [Int]()
+    @Published var scores = [Int64]()
     @Published var answers = [String]()
     @Published var answerList: [String] = []
     @Published var period: LifeLogPeriodTypeModel = .TWO_WEEKS
@@ -28,30 +28,6 @@ class InspectionHelper: NSObject, ObservableObject{
     private let labels = ["NORMAL", "MCI", "DEMENTIA"]
     private let fileManager = FileManager.default
     private let healthKitHelper = HealthKitHelper()
-    
-    private func getModule(type: InspectionTypeModel) -> TorchModule?{
-        let resource = switch type {
-        case .MMSE:
-            "cognitive_mobile"
-            
-        case .SLEEP:
-            "sleep_mobile"
-            
-        case .WALK:
-            "walk_mobile"
-            
-        case .UNIVERSAL:
-            "universal_mobile"
-        }
-        
-        if let filePath = Bundle.main.path(forResource: resource, ofType: "ptl", inDirectory: "include"),
-           let module = TorchModule(fileAtPath: filePath){
-            return module
-        } else{
-            print("Failed to load model.")
-            return nil
-        }
-    }
     
     private func getInspectionType(type: String) -> InspectionResultTypeModel{
         switch type{
@@ -97,7 +73,7 @@ class InspectionHelper: NSObject, ObservableObject{
             "percentOfSleepDementia": sleepData.percentageOfDementia,
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion(false)
                 return
             }
@@ -110,7 +86,7 @@ class InspectionHelper: NSObject, ObservableObject{
     func getResult(id: String, completion: @escaping(_ result: Bool?) -> Void){
         db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").document(id).getDocument(){(document, error) in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion(false)
                 return
             }
@@ -122,7 +98,7 @@ class InspectionHelper: NSObject, ObservableObject{
                 let percentOfDementia = document?.get("percentOfDementia") as? Double ?? 0.0
                 
                 let MMSEType = AES256Util.decrypt(encoded: document?.get("MMSEType") as? String ?? "")
-                let MMSEScores = document?.get("MMSEScores") as? [Int] ?? []
+                let MMSEScores = document?.get("MMSEScores") as? [Int64] ?? []
                 
                 let percentOfMMSENormal = document?.get("percentOfMMSENormal") as? Double ?? 0.0
                 let percentOfMMSEMCI = document?.get("percentOfMMSEMCI") as? Double ?? 0.0
@@ -191,7 +167,7 @@ class InspectionHelper: NSObject, ObservableObject{
         
         db.collection("Users").document(auth.currentUser?.uid ?? "").collection("Results").getDocuments(){(querySnapshot, error) in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion([])
                 return
             }
@@ -215,33 +191,6 @@ class InspectionHelper: NSObject, ObservableObject{
                 completion([])
                 return
             }
-        }
-    }
-    
-    private func topK(scores: [NSNumber], labels: [String], count: Int) -> [PredictResult]?{
-        let zippedResults = zip(labels.indices, scores)
-        let sortedResults = zippedResults.sorted { $0.1.floatValue > $1.1.floatValue }.prefix(count)
-        
-        let result = sortedResults.map { PredictResult(score: $0.1.floatValue, label: labels[$0.0]) }
-        return result
-    }
-    
-    private func getMaxType(result: [PredictResult]) -> InspectionResultTypeModel?{
-        var max: Float = 0.0
-        var label = ""
-        
-        for prediction in result{
-            if prediction.score > max{
-                max = prediction.score
-                label = prediction.label
-            }
-        }
-        
-        switch label{
-        case "NORMAL": return .NORMAL
-        case "MCI": return .MCI
-        case "DEMENTIA": return .DEMENTIA
-        default: return nil
         }
     }
     
@@ -343,45 +292,107 @@ class InspectionHelper: NSObject, ObservableObject{
         
     }
     
-    func gradingWithCustomData(answerList: [Bool], completion: @escaping(_ result: Bool?) -> Void){
-        self.scores = [Int]()
+    func getCustomMMSEQuestion(id: Int) -> String {
+        switch id{
+        case 0:
+            return "What year is it?"
+            
+        case 1:
+            return "What season is it now?"
+            
+        case 2:
+            return "What day is it today?"
+            
+        case 3:
+            return "What day of the week is it today?"
+            
+        case 4:
+            return "What month is it today?"
+            
+        case 5:
+            return "Which country are you in right now?"
+            
+        case 6:
+            return "Which city/state are you in right now?"
+            
+        case 7:
+            return "Where are you right now?"
+            
+        case 8:
+            return "Which floor are you on?"
+            
+        case 9:
+            return "What are you doing right now?"
+            
+        case 10:
+            return "Please remember and repeat the first name of three items I will say."
+            
+        case 11:
+            return "Please remember and repeat the second name of three items I will say."
+            
+        case 12:
+            return "Please remember and repeat the third name of three items I will say."
+            
+        case 13:
+            return "What is 100 minus 7?"
+            
+        case 14..<18:
+            return "What is the result when subtracting 7 from there?"
+            
+        case 18:
+            return "Please say the name of the first item you remembered from question 10."
+            
+        case 19:
+            return "Please say the name of the second item."
+            
+        case 20:
+            return "Please say the name of the third item."
+            
+        case 21, 22:
+            return "What is the name of the item shown?"
+            
+        case 23:
+            return "Listen carefully and repeat the words."
+            
+        case 24:
+            return "Turn this paper over."
+            
+        case 25:
+            return "Fold this paper in half."
+            
+        case 26:
+            return "Place this paper where indicated."
+            
+        case 27:
+            return "Draw the picture exactly as shown."
+            
+        case 28:
+            return "Read the sentence aloud and write it down as it is."
+            
+        case 29:
+            return "Write freely about today's weather or mood."
+            
+        default:
+            return ""
+        }
+    }
+    
+    func gradingWithCustomData(answerList: [Bool]) -> Bool{
+        self.scores = [Int64]()
         
         for answer in answerList{
-            self.scores.append(answer == true ? 2 : 1)
+            self.scores.append(answer == true ? Int64(2) : Int64(1))
         }
         
-        self.scores.append(self.getTotalScore())
+        self.scores.append(Int64(self.getTotalScore()))
         
-        let module_MMSE = self.getModule(type: .MMSE)
+        let result = self.predict_MMSE()
         
-        guard module_MMSE != nil else{
-            completion(false)
-            return
-        }
-        
-        guard let outputs = module_MMSE!.predict(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
-            completion(false)
-            return
-        }
-                        
-        let result = self.topK(scores: outputs, labels: self.labels, count: 3)
-        
-        guard result != nil else{
-            completion(false)
-            return
-        }
-        
-        let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
-        let max = self.getMaxType(result: result!)
-        
-        self.mmseData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
-        
-        completion(true)
-        return
+        return result
     }
     
     func grading(job: String, homeLatLng: String, workLatLng: String, completion: @escaping(_ result: Bool?) -> Void){
-        self.scores = [Int]()
+        self.scores = [Int64]()
 
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ko_KR")
@@ -444,7 +455,7 @@ class InspectionHelper: NSObject, ObservableObject{
                         self.scores.append(self.answerList[i] == String(month) ? 2 : 1)
                         
                     case 5:
-                        if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.regionCode) {
+                        if let name = (Locale.current as NSLocale).displayName(forKey: .countryCode, value: Locale.current.region?.identifier ?? "South Korea") {
                             self.scores.append(self.answerList[i] == name ? 2 : 1)
                             self.answers.append(name)
                         } else {
@@ -453,19 +464,19 @@ class InspectionHelper: NSObject, ObservableObject{
                         }
                         
                     case 6:
-                        self.answers.append(state ?? "")
+                        self.answers.append(state)
                         self.scores.append(self.answerList[i] == state ? 2 : 1)
                         
                     case 7:
                         let homeLatLngSplited = homeLatLng.split(separator: ", ")
                         
                         let distanceToHome = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                            .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            .distance(from: CLLocationCoordinate2D(latitude: Double(homeLatLngSplited[0]) ?? 0.0, longitude: Double(homeLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
                         
                         let workLatLngSplited = workLatLng.split(separator: ", ")
                         
                         let distanceToWork = CLLocationCoordinate2D(latitude: latLng?.coordinate.latitude ?? 0.0, longitude: latLng?.coordinate.longitude ?? 0.0)
-                            .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0] ?? "0.0") ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
+                            .distance(from: CLLocationCoordinate2D(latitude: Double(workLatLngSplited[0]) ?? 0.0, longitude: Double(workLatLngSplited[1] as? String ?? "0.0") ?? 0.0))
                         
                         if distanceToHome < 10{
                             self.answers.append("Home")
@@ -593,31 +604,9 @@ class InspectionHelper: NSObject, ObservableObject{
                 }
                 
                 self.scores.append(self.getTotalScore())
-                
-                let module_MMSE = self.getModule(type: .MMSE)
-                
-                guard module_MMSE != nil else{
-                    completion(false)
-                    return
-                }
-                
-                guard let outputs = module_MMSE!.predict(data: UnsafeMutableRawPointer(&self.scores), outputSize: 3) else{
-                    completion(false)
-                    return
-                }
-                                
-                let result = self.topK(scores: outputs, labels: self.labels, count: 3)
-                
-                guard result != nil else{
-                    completion(false)
-                    return
-                }
-                
-                let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: result!)
-                let max = self.getMaxType(result: result!)
-                
-                self.mmseData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
-                
+
+                let _ = self.predict_MMSE()
+
                 completion(true)
                 return
             })
@@ -637,9 +626,73 @@ class InspectionHelper: NSObject, ObservableObject{
         }
     }
     
-    func predictLifeLog(completion: @escaping(_ result: Bool?) -> Void){
-        let start = Calendar.current.startOfDay(for: Date())
+    private func convertClassCodeToModel(code: Int) -> InspectionResultTypeModel{
+        switch code{
+        case 0: return .NORMAL
+        case 1: return .MCI
+        case 2: return .DEMENTIA
+        default: return .NORMAL
+        }
+    }
+    
+    private func predict_MMSE() -> Bool{
+        let model = try? MMSE(configuration: .init())
         
+        do{
+            let result = try model?.prediction(input: MMSEInput(
+                                               Q01: self.scores[0],
+                                               Q02: self.scores[1],
+                                               Q03: self.scores[2],
+                                               Q04: self.scores[3],
+                                               Q05: self.scores[4],
+                                               Q06: self.scores[5],
+                                               Q07: self.scores[6],
+                                               Q08: self.scores[7],
+                                               Q09: self.scores[8],
+                                               Q10: self.scores[9],
+                                               Q11_1: self.scores[10],
+                                               Q11_2: self.scores[11],
+                                               Q11_3: self.scores[12],
+                                               Q12_1: self.scores[13],
+                                               Q12_2: self.scores[14],
+                                               Q12_3: self.scores[15],
+                                               Q12_4: self.scores[16],
+                                               Q12_5: self.scores[17],
+                                               Q12_TOTAL: Int64(0),
+                                               Q13_1: self.scores[18],
+                                               Q13_2: self.scores[19],
+                                               Q13_3: self.scores[20],
+                                               Q14_1: self.scores[21],
+                                               Q14_2: self.scores[22],
+                                               Q15: self.scores[23],
+                                               Q16_1: self.scores[24],
+                                               Q16_2: self.scores[25],
+                                               Q16_3: self.scores[26],
+                                               Q17: self.scores[27],
+                                               Q18: self.scores[28],
+                                               Q19: self.scores[29],
+                                               TOTAL: self.scores[30])
+            )
+            
+            var max: InspectionResultTypeModel = .NORMAL
+            
+            switch result?.DIAG_NM{
+            case "Dem": max = .DEMENTIA
+            case "MCI": max = .MCI
+            case "CN": max = .NORMAL
+            default: max = .NORMAL
+            }
+            
+            self.mmseData = ClassInspectionResultDataModel(max: max, percentageOfNormal: Float((result?.DIAG_NMProbability["CN"] ?? 0.0) * 100), percentageOfMCI: Float(result?.DIAG_NMProbability["MCI"] ?? 0.0 * 100), percentageOfDementia: Float(result?.DIAG_NMProbability["Dem"] ?? 0.0 * 100))
+            
+            return true
+        } catch {
+            print("Unexpected runtime error: \(error).")
+            return false
+        }
+    }
+    
+    func predictLifeLog(completion: @escaping(_ result: Bool?) -> Void){
         healthKitHelper.getLifeLogData(start: Calendar.current.date(byAdding: .day, value: self.convertPeriodTypeToInteger(), to: Date())!, end: Calendar.current.date(byAdding: .day, value: -1, to: Date())!, period: self.convertPeriodTypeToInteger(), completion: { result in
             guard let result = result else {return}
             
@@ -648,33 +701,49 @@ class InspectionHelper: NSObject, ObservableObject{
                 return
             }
             
-            let module_LifeLog = self.getModule(type: .WALK)
-            guard module_LifeLog != nil else{
-                print("Module_LifeLog is nil.")
-                completion(false)
-                return
+            let model = try? LifeLog(configuration: .init())
+            var results = [LifeLogOutput?]()
+            
+            for input in self.healthKitHelper.lifeLogPredictData{
+                do{
+                    results.append(
+                        try model?.prediction(activity_cal_active: Int64(input[0]),
+                                         activity_cal_total: Int64(input[1]),
+                                         activity_daily_movement: Int64(input[2]),
+                                         activity_rest: Int64(input[3]),
+                                         activity_steps: Int64(input[4]),
+                                         activity_total: Int64(input[5])
+                        )
+                    )
+                } catch{
+                    print("Unexpected runtime error: \(error).")
+                    completion(false)
+                    return
+                }
             }
             
-            var data = self.healthKitHelper.lifeLogPredictData
-            var dates = self.healthKitHelper.dateList
-            
-            guard let outputs = module_LifeLog!.predictLifeLog(data: UnsafeMutableRawPointer(&data), dates: UnsafeMutableRawPointer(&dates), period: abs(Int32(self.convertPeriodTypeToInteger())), outputSize: 3) else{
-                print("Outputs get nil.")
-                completion(false)
-                return
+            if results.count > 1 {
+                var sums = [Double](repeating: 0.0, count: 3)
+                
+                for result in results{
+                    sums[0] += result?.DIAG_NMProbability[0] ?? 0.0
+                    sums[1] += result?.DIAG_NMProbability[1] ?? 0.0
+                    sums[2] += result?.DIAG_NMProbability[2] ?? 0.0
+                }
+                
+                let maxValue = sums.firstIndex(of: sums.max() ?? 0)
+                
+                self.lifeLogData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: maxValue ?? 0),
+                                                                  percentageOfNormal: Float((sums[0] * 100.0) / Double(results.count)),
+                                                                  percentageOfMCI: Float((sums[1] * 100.0) / Double(results.count)),
+                                                                  percentageOfDementia: Float((sums[2] * 100.0) / Double(results.count)))
+                
+            } else{
+                self.lifeLogData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: Int(results[0]?.DIAG_NM ?? 0)),
+                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0 * 100),
+                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0 * 100),
+                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0 * 100))
             }
-            
-            let predictResult = self.topK(scores: outputs, labels: self.labels, count: 3)
-            guard predictResult != nil else{
-                print("Preds Result is nil.")
-                completion(false)
-                return
-            }
-            
-            let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
-            let max = self.getMaxType(result: predictResult!)
-                        
-            self.lifeLogData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
             
             completion(true)
             return
@@ -682,13 +751,6 @@ class InspectionHelper: NSObject, ObservableObject{
     }
     
     func predictSleep(completion: @escaping(_ result: Bool?) -> Void){
-        let module_sleep = self.getModule(type: .SLEEP)
-        
-        guard module_sleep != nil else{
-            completion(false)
-            return
-        }
-        
         healthKitHelper.getSleepData(start: Calendar.current.date(byAdding: .day, value: self.convertPeriodTypeToInteger(), to: Date())!, end: Date(), period: self.convertPeriodTypeToInteger(), completion: { result in
             guard let result = result else {return}
 
@@ -697,33 +759,52 @@ class InspectionHelper: NSObject, ObservableObject{
                 return
             }
             
-            let module_Sleep = self.getModule(type: .SLEEP)
-            guard module_Sleep != nil else{
-                print("Module_Sleep is nil.")
-                completion(false)
-                return
+            let model = try? Sleep(configuration: .init())
+            var results = [SleepOutput?]()
+            
+            for input in self.healthKitHelper.sleepPredictData{
+                do{
+                    results.append(
+                        try model?.prediction(
+                            sleep_awake: Int64(input[0]),
+                            sleep_breath_average: input[1],
+                            sleep_deep: Int64(input[2]),
+                            sleep_hr_average: input[3],
+                            sleep_light: Int64(input[5]),
+                            sleep_rem: Int64(input[6]),
+                            sleep_score: Int64(input[4]),
+                            sleep_temperature_delta: input[7],
+                            sleep_total: Int64(input[8])
+                        )
+                    )
+                } catch {
+                    fatalError("Unexpected runtime error: \(error).")
+                }
+
             }
-            
-            var data = self.healthKitHelper.sleepPredictData
-            var dates = self.healthKitHelper.sleepDateList
-            
-            guard let outputs = module_Sleep!.predictLifeLog(data: UnsafeMutableRawPointer(&data), dates: UnsafeMutableRawPointer(&dates), period: abs(Int32(self.convertPeriodTypeToInteger())), outputSize: 3) else{
-                print("Outputs get nil.")
-                completion(false)
-                return
-            }
-            
-            let predictResult = self.topK(scores: outputs, labels: self.labels, count: 3)
-            guard predictResult != nil else{
-                print("Preds Result is nil.")
-                completion(false)
-                return
-            }
-            
-            let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
-            let max = self.getMaxType(result: predictResult!)
                         
-            self.sleepData = ClassInspectionResultDataModel(max: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
+            if results.count > 1 {
+                var sums = [Double](repeating: 0.0, count: 3)
+                
+                for result in results{
+                    sums[0] += result?.DIAG_NMProbability[0] ?? 0.0
+                    sums[1] += result?.DIAG_NMProbability[1] ?? 0.0
+                    sums[2] += result?.DIAG_NMProbability[2] ?? 0.0
+                }
+                
+                let maxValue = sums.firstIndex(of: sums.max() ?? 0)
+                
+                self.sleepData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: maxValue ?? 0),
+                                                                  percentageOfNormal: Float((sums[0] * 100.0) / Double(results.count)),
+                                                                  percentageOfMCI: Float((sums[1] * 100.0) / Double(results.count)),
+                                                                  percentageOfDementia: Float((sums[2] * 100.0) / Double(results.count)))
+                
+            } else{
+                self.sleepData = ClassInspectionResultDataModel(max: self.convertClassCodeToModel(code: Int(results[0]?.DIAG_NM ?? 0)),
+                                                                  percentageOfNormal: Float(results[0]?.DIAG_NMProbability[0] ?? 0.0 * 100),
+                                                                  percentageOfMCI: Float(results[0]?.DIAG_NMProbability[1] ?? 0.0 * 100),
+                                                                  percentageOfDementia: Float(results[0]?.DIAG_NMProbability[2] ?? 0.0 * 100))
+            }
             
             completion(true)
             return
@@ -731,90 +812,113 @@ class InspectionHelper: NSObject, ObservableObject{
     }
     
     func predictUniversal(completion: @escaping(_ result: Bool?) -> Void){
-        let module_universal = self.getModule(type: .UNIVERSAL)
+        let lifeLogData = self.healthKitHelper.lifeLogPredictData
+        let sleepData = self.healthKitHelper.sleepPredictData
         
-        guard module_universal != nil else{
-            print("Module_Universal is nil.")
-            completion(false)
-            return
-        }
+        let model = try? Universal(configuration: .init())
+        var results = [UniversalOutput?]()
         
-        var mmseData = self.scores
-        var lifeLogDates = self.healthKitHelper.dateList
-        var lifeLogData = self.healthKitHelper.lifeLogPredictData
-        var sleepDates = self.healthKitHelper.sleepDateList
-        var sleepData = self.healthKitHelper.sleepPredictData
-        guard let outputs = module_universal!.predictUniversal(MMSEData: UnsafeMutableRawPointer(&mmseData), LifeLogData: UnsafeMutableRawPointer(&lifeLogData), LifeLogDates: UnsafeMutableRawPointer(&lifeLogDates), SleepData: UnsafeMutableRawPointer(&sleepData), SleepDates: UnsafeMutableRawPointer(&sleepDates), period: abs(Int32(self.convertPeriodTypeToInteger())), outputSize: 3) else{
-            print("Outputs get nil.")
-            completion(false)
-            return
-        }
-        
-        let predictResult = self.topK(scores: outputs, labels: self.labels, count: 3)
-        guard predictResult != nil else{
-            print("Preds Result is nil.")
-            completion(false)
-            return
-        }
-        
-        let (percentageOfNormal, percentageOfMCI, percentageOfDementia) = self.getPercentageByTypes(result: predictResult!)
-        let max = self.getMaxType(result: predictResult!)
+        do{
+            for i in 0..<lifeLogData.count{
+                let result = try? model?.prediction(Q01: self.scores[0],
+                                                    Q02: self.scores[1],
+                                                    Q03: self.scores[2],
+                                                    Q04: self.scores[3],
+                                                    Q05: self.scores[4],
+                                                    Q06: self.scores[5],
+                                                    Q07: self.scores[6],
+                                                    Q08: self.scores[7],
+                                                    Q09: self.scores[8],
+                                                    Q10: self.scores[9],
+                                                    Q11_1: self.scores[10],
+                                                    Q11_2: self.scores[11],
+                                                    Q11_3: self.scores[12],
+                                                    Q12_1: self.scores[13],
+                                                    Q12_2: self.scores[14],
+                                                    Q12_3: self.scores[15],
+                                                    Q12_4: self.scores[16],
+                                                    Q12_5: self.scores[17],
+                                                    Q12_TOTAL: Int64(0),
+                                                    Q13_1: self.scores[18],
+                                                    Q13_2: self.scores[19],
+                                                    Q13_3: self.scores[20],
+                                                    Q14_1: self.scores[21],
+                                                    Q14_2: self.scores[22],
+                                                    Q15: self.scores[23],
+                                                    Q16_1: self.scores[24],
+                                                    Q16_2: self.scores[25],
+                                                    Q16_3: self.scores[26],
+                                                    Q17: self.scores[27],
+                                                    Q18: self.scores[28],
+                                                    Q19: self.scores[29],
+                                                    TOTAL: self.scores[30],
+                                                    activity_cal_active: Int64(lifeLogData[i][0]),
+                                                    activity_cal_total: Int64(lifeLogData[i][1]),
+                                                    activity_daily_movement: Int64(lifeLogData[i][2]),
+                                                    activity_rest: Int64(lifeLogData[i][3]),
+                                                    activity_steps: Int64(lifeLogData[i][4]),
+                                                    activity_total: Int64(lifeLogData[i][5]),
+                                                    sleep_awake: Int64(sleepData[i][0]),
+                                                    sleep_breath_average: sleepData[i][1],
+                                                    sleep_deep: Int64(sleepData[i][2]),
+                                                    sleep_hr_average: sleepData[i][3],
+                                                    sleep_light: Int64(sleepData[i][5]),
+                                                    sleep_rem: Int64(sleepData[i][6]),
+                                                    sleep_score: Int64(sleepData[i][4]),
+                                                    sleep_temperature_delta: sleepData[i][7],
+                                                    sleep_total: Int64(sleepData[i][8])
+                )
                 
-        self.inspectionResult = InspectionResultDataModel(type: (max == nil ? .NORMAL : max) ?? .NORMAL, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
-        
-        self.uploadResult(completion: { result in
-            guard let result = result else{return}
+                results.append(result)
+            }
             
-            completion(true)
+            if results.count > 1 {
+                var sums = [Double](repeating: 0.0, count: 3)
+                
+                for result in results{
+                    sums[0] += result?.DIAG_NMProbability["CN"] ?? 0.0
+                    sums[1] += result?.DIAG_NMProbability["MCI"] ?? 0.0
+                    sums[2] += result?.DIAG_NMProbability["Dem"] ?? 0.0
+                }
+                
+                let maxValue = sums.firstIndex(of: sums.max() ?? 0)
+                
+                self.inspectionResult = InspectionResultDataModel(type: self.convertClassCodeToModel(code: maxValue ?? 0),
+                                                                  percentageOfNormal: Float((sums[0] * 100.0) / Double(results.count)),
+                                                                  percentageOfMCI: Float((sums[1] * 100.0) / Double(results.count)),
+                                                                  percentageOfDementia: Float((sums[2] * 100.0) / Double(results.count)))
+                
+            } else{
+                var max: InspectionResultTypeModel = .NORMAL
+                
+                switch results[0]?.DIAG_NM{
+                case "Dem": max = .DEMENTIA
+                case "MCI": max = .MCI
+                case "CN": max = .NORMAL
+                default: max = .NORMAL
+                }
+                
+                self.inspectionResult = InspectionResultDataModel(type: max,
+                                                            percentageOfNormal: Float(results[0]?.DIAG_NMProbability["CN"] ?? 0.0 * 100),
+                                                            percentageOfMCI: Float(results[0]?.DIAG_NMProbability["MCI"] ?? 0.0 * 100),
+                                                            percentageOfDementia: Float(results[0]?.DIAG_NMProbability["Dem"] ?? 0.0 * 100))
+            }
+            
+            self.uploadResult(completion: { _ in                
+                completion(true)
+                return
+            })
+        } catch {
+            print("Unexpected runtime error: \(error).")
+            completion(false)
             return
-        })
-    }
-    
-    func calculateInspectionResult(completion: @escaping(_ result: Bool?) -> Void){
-        let percentageOfNormal: Float = (mmseData.percentageOfNormal * Float(0.5)) + (lifeLogData.percentageOfNormal * Float(0.25)) + (sleepData.percentageOfNormal * Float(0.25))
-        let percentageOfMCI: Float = (mmseData.percentageOfMCI * Float(0.5)) + (lifeLogData.percentageOfMCI * Float(0.25)) + (sleepData.percentageOfMCI * Float(0.25))
-        let percentageOfDementia: Float = (mmseData.percentageOfDementia * Float(0.5)) + (lifeLogData.percentageOfDementia * Float(0.25)) + (sleepData.percentageOfDementia * Float(0.25))
-        
-        var max: InspectionResultTypeModel = .NORMAL
-        
-        if percentageOfNormal > percentageOfMCI{
-            max = .NORMAL
-            
-            if percentageOfDementia > percentageOfNormal{
-                max = .DEMENTIA
-            } else{
-                max = .NORMAL
-            }
-        } else{
-            max = .MCI
-            
-            if percentageOfDementia > percentageOfMCI{
-                max = .DEMENTIA
-            } else{
-                max = .MCI
-            }
         }
-        
-        self.inspectionResult = InspectionResultDataModel(type: max, percentageOfNormal: percentageOfNormal, percentageOfMCI: percentageOfMCI, percentageOfDementia: percentageOfDementia)
-        
-        self.uploadResult(completion: { result in
-            guard let result = result else{return}
-            
-            completion(result)
-            return
-        })
     }
     
     private func getDocumentsDirectory() -> URL?{
-        do{
-            let paths = try FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            
-            return paths[0]
-        } catch{
-            print(error)
-            return nil
-        }
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         
+        return paths[0]
     }
     
     func saveImage(image: UIImage) -> Bool{
@@ -918,7 +1022,7 @@ class InspectionHelper: NSObject, ObservableObject{
         return imageData
     }
     
-    private func getTotalScore() -> Int{
+    private func getTotalScore() -> Int64{
         var total = 0
         
         for score in scores{
@@ -927,7 +1031,7 @@ class InspectionHelper: NSObject, ObservableObject{
             }
         }
         
-        return total
+        return Int64(total)
     }
     
     func getMMSETextFieldType(id: Int) -> UIKeyboardType{

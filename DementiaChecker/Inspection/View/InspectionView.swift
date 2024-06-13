@@ -24,6 +24,7 @@ struct InspectionView: View {
     ]
     
     @EnvironmentObject var userManagement: UserManagement
+    let showToolbar: Bool
     
     var body: some View {
         NavigationStack{
@@ -68,13 +69,15 @@ struct InspectionView: View {
                 }.padding(20)
                 .navigationTitle(Text("Start Inspection"))
                 .toolbar{
-                    ToolbarItem(placement: .topBarLeading, content: {
-                        Button("Close"){
-                            dismiss()
-                        }
-                    })
+                    if showToolbar{
+                        ToolbarItem(placement: .topBarLeading, content: {
+                            Button("Close"){
+                                dismiss()
+                            }
+                        })
+                    }
                 }
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
 
             }
         }
@@ -82,6 +85,6 @@ struct InspectionView: View {
 }
 
 #Preview {
-    InspectionView()
+    InspectionView(showToolbar: false)
         .environmentObject(UserManagement())
 }

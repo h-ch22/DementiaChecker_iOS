@@ -283,7 +283,7 @@ struct HistoryView: View {
                             .sheet(isPresented: $showMMSEResult, content: {
                                 MMSEResultsView(MMSEResult: helper.scores, MMSEData: helper.mmseData)
                             })
-                            .onChange(of: self.selectedIndex){ _ in
+                            .onChange(of: self.selectedIndex){ _, _ in
                                 showView = false
                                 
                                 helper.getResult(id: docList[selectedIndex], completion: { inspectionResult in
@@ -305,9 +305,7 @@ struct HistoryView: View {
                 self.docList = result
                 
                 if !result.isEmpty{
-                    helper.getResult(id: docList[selectedIndex]){ inspectionResult in
-                        guard let inspectionResult = inspectionResult else{return}
-                        
+                    helper.getResult(id: docList[selectedIndex]){ _ in                        
                         showView = true
                     }
                 } else{

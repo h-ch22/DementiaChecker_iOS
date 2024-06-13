@@ -100,7 +100,7 @@ class DiaryHelper: ObservableObject{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy. MM. dd."
         db.collection("Diary").document(auth.currentUser?.uid ?? "").setData([
-            "NO_DATA" : nil
+            "NO_DATA" : true
         ]){ _ in
             self.db.collection("Diary").document(self.auth.currentUser?.uid ?? "").collection("Diaries").document(dateFormatter.string(from: Date())).setData([
                 "title" : AES256Util.encrypt(string: title),
@@ -109,7 +109,7 @@ class DiaryHelper: ObservableObject{
                 "imgCount" : images.count + markUps.count + photos.count
             ]){ error in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription ?? "")
                     completion(false)
                     return
                 } else{
@@ -121,7 +121,7 @@ class DiaryHelper: ObservableObject{
                                 let storageRef = self.storage.reference().child("Diary/\(self.auth.currentUser?.uid ?? "")/\(dateFormatter.string(from: Date()))/\(cnt).png")
                                 storageRef.putData(image.pngData()!, metadata: nil){ (_, error) in
                                     if error != nil{
-                                        print(error?.localizedDescription)
+                                        print(error?.localizedDescription ?? "")
                                         completion(false)
                                         return
                                     }
@@ -136,7 +136,7 @@ class DiaryHelper: ObservableObject{
                                 let storageRef = self.storage.reference().child("Diary/\(self.auth.currentUser?.uid ?? "")/\(dateFormatter.string(from: Date()))/\(cnt).png")
                                 storageRef.putData(image.pngData()!, metadata: nil){ (_, error) in
                                     if error != nil{
-                                        print(error?.localizedDescription)
+                                        print(error?.localizedDescription ?? "")
                                         completion(false)
                                         return
                                     }
@@ -152,7 +152,7 @@ class DiaryHelper: ObservableObject{
                                 let storageRef = self.storage.reference().child("Diary/\(self.auth.currentUser?.uid ?? "")/\(dateFormatter.string(from: Date()))/\(cnt).png")
                                 storageRef.putData(image.pngData()!, metadata: nil){ (_, error) in
                                     if error != nil{
-                                        print(error?.localizedDescription)
+                                        print(error?.localizedDescription ?? "")
                                         completion(false)
                                         return
                                     }
@@ -179,7 +179,7 @@ class DiaryHelper: ObservableObject{
         db.collection("Diary").document(auth.currentUser?.uid ?? "")
             .collection("Diaries").getDocuments(){(querySnapshot, error) in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error?.localizedDescription ?? "")
                     completion(false)
                     return
                 } else{
@@ -222,12 +222,12 @@ class DiaryHelper: ObservableObject{
     func getEmotionList(uid: String, completion: @escaping(_ result: [EmotionDataModel]?) -> Void){
         var emotionList: [EmotionDataModel] = []
         var cnts = [Int](repeating: 0, count: 8)
-        var emotions: [DiaryEmotionModel] = [.HAPPY, .GREAT, .GOOD, .SOSO, .BAD, .SAD, .STAY_ALONE, .ANGRY]
+        let emotions: [DiaryEmotionModel] = [.HAPPY, .GREAT, .GOOD, .SOSO, .BAD, .SAD, .STAY_ALONE, .ANGRY]
         
         db.collection("Diary").document(uid)
             .collection("Diaries").getDocuments(){(querySnapshot, error) in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                 } else{
                     if querySnapshot != nil{
                         for document in querySnapshot!.documents{
@@ -281,7 +281,7 @@ class DiaryHelper: ObservableObject{
             .collection("Diaries").getDocuments(){(querySnapshot, error) in
                 
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                 } else{
                     if querySnapshot != nil{
                         for document in querySnapshot!.documents{
@@ -301,12 +301,12 @@ class DiaryHelper: ObservableObject{
         self.emotionList.removeAll()
         
         var cnts = [Int](repeating: 0, count: 8)
-        var emotions: [DiaryEmotionModel] = [.HAPPY, .GREAT, .GOOD, .SOSO, .BAD, .SAD, .STAY_ALONE, .ANGRY]
+        let emotions: [DiaryEmotionModel] = [.HAPPY, .GREAT, .GOOD, .SOSO, .BAD, .SAD, .STAY_ALONE, .ANGRY]
         
         db.collection("Diary").document(auth.currentUser?.uid ?? "")
             .collection("Diaries").getDocuments(){(querySnapshot, error) in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                     completion(false)
                     return
                 }

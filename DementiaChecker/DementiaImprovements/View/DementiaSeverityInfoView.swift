@@ -38,7 +38,7 @@ struct DementiaSeverityInfoView: View {
                         dismiss()
                     }})
                 }
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
 
             }
         }

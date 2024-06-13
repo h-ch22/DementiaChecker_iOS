@@ -189,7 +189,7 @@ struct InheritanceGuardianSelectionView: View {
             } message: {error in
                 Text(error.recoverySuggestion ?? "")
             }
-            .animation(.easeInOut)
+            .animation(Animation.easeInOut(duration: 0.5), value: true)
         }
     }
 }

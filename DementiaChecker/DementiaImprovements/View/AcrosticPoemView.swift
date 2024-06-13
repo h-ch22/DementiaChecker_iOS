@@ -158,7 +158,7 @@ struct AcrosticPoemView: View {
                     }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }
             }.padding(20)
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
                 .navigationTitle(Text("Acrostic Poetry"))
                 .onAppear{
                     let wordAsString = helper.getWord()

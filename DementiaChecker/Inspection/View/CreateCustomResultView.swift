@@ -12,7 +12,7 @@ struct CreateCustomResultView: View {
     
     @EnvironmentObject var userManagement: UserManagement
     
-    @State private var answerList = [Bool](repeating: false, count: 28)
+    @State private var answerList = [Bool](repeating: false, count: 30)
     @State private var changeView = false
     
     var body: some View {
@@ -21,10 +21,10 @@ struct CreateCustomResultView: View {
             
             ScrollView{
                 VStack{
-                    ForEach(0...27, id: \.self){idx in
+                    ForEach(0...29, id: \.self){idx in
                         HStack{
                             Toggle(isOn: $answerList[idx], label: {
-                                Text(helper.getMMSEQuestion(id: idx))
+                                Text(helper.getCustomMMSEQuestion(id: idx))
                             }).toggleStyle(NewMorphToggleStyle())
                                 .padding(5)
                         }

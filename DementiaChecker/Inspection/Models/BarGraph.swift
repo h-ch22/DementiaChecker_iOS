@@ -21,7 +21,7 @@ struct BarGraph: View {
             
             Rectangle().frame(width: min(CGFloat(value)*width, width), height: self.height)
                 .foregroundColor(color)
-                .animation(.linear)
+                .animation(Animation.linear(duration: 0.5), value: true)
         }.cornerRadius(45.0)
     }
 }

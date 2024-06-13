@@ -131,7 +131,7 @@ class UserManagement: ObservableObject{
             "userType": userType
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion(false)
                 return
             }
@@ -144,7 +144,7 @@ class UserManagement: ObservableObject{
     func changePassword(password: String, completion: @escaping(_ result: Bool?) -> Void){
         auth.currentUser?.updatePassword(to: password){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -157,7 +157,7 @@ class UserManagement: ObservableObject{
             "birthday": AES256Util.encrypt(string: birthday)
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -170,7 +170,7 @@ class UserManagement: ObservableObject{
             "name": AES256Util.encrypt(string: name)
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -183,7 +183,7 @@ class UserManagement: ObservableObject{
             "phone": AES256Util.encrypt(string: phone)
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -204,7 +204,7 @@ class UserManagement: ObservableObject{
                 "homeAddress": AES256Util.encrypt(string: homeGeocode)
             ]){ error in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                 }
                 
                 completion(error == nil)
@@ -228,7 +228,7 @@ class UserManagement: ObservableObject{
                     "job": AES256Util.encrypt(string: job)
                 ]){ error in
                     if error != nil{
-                        print(error?.localizedDescription)
+                        print(error!.localizedDescription)
                     }
                     
                     completion(error == nil)
@@ -241,7 +241,7 @@ class UserManagement: ObservableObject{
                 "job": AES256Util.encrypt(string: job)
             ]){ error in
                 if error != nil{
-                    print(error?.localizedDescription)
+                    print(error!.localizedDescription)
                 }
                 
                 completion(error == nil)
@@ -256,7 +256,7 @@ class UserManagement: ObservableObject{
             "tall": AES256Util.encrypt(string: tall)
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -269,7 +269,7 @@ class UserManagement: ObservableObject{
             "weight": AES256Util.encrypt(string: weight)
         ]){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)
@@ -280,7 +280,7 @@ class UserManagement: ObservableObject{
     private func getUserInfo(completion: @escaping(_ result: Bool?) -> Void){
         db.collection("Users").document(auth.currentUser?.uid ?? "").getDocument(){ document, error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion(false)
                 return
             }
@@ -346,7 +346,7 @@ class UserManagement: ObservableObject{
             ]
         ){error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error==nil)
@@ -360,7 +360,7 @@ class UserManagement: ObservableObject{
             ]
         ){error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error==nil)
@@ -384,12 +384,12 @@ class UserManagement: ObservableObject{
         
         db.collection("Users").document(auth.currentUser?.uid ?? "").getDocument(){(document, error) in
             if error != nil{
-                error?.localizedDescription
+                print(error!.localizedDescription)
                 completion(inheritanceGuardians)
                 return
             }
             
-            var results: [String] = document?.get("inheritanceGuardians") as? [String] ?? []
+            let results: [String] = document?.get("inheritanceGuardians") as? [String] ?? []
             
             if !results.isEmpty{
                 for result in results{
@@ -439,7 +439,7 @@ class UserManagement: ObservableObject{
     func sendResetPasswordMail(email: String, completion: @escaping(_ result: Bool?) -> Void){
         auth.sendPasswordReset(withEmail: email){ error in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
             }
             
             completion(error == nil)

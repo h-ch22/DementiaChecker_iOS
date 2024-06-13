@@ -116,10 +116,9 @@ struct HomeView: View {
                         }
                     }.padding([.horizontal], 20)
                 }
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
                     .onAppear{
-                        helper.requestAuthorization(){result in
-                            guard let result = result else{return}
+                        helper.requestAuthorization(){ _ in
                         }
                                                 
                         helper.updateData(completion: { _ in

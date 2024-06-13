@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */; };
-		E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */; };
-		F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */; };
 		F605309A2B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60530992B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift */; };
 		F605309C2B78BB4A00141A21 /* PuzzleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605309B2B78BB4A00141A21 /* PuzzleView.swift */; };
 		F605309E2B78BB5F00141A21 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F605309D2B78BB5F00141A21 /* Consts.swift */; };
@@ -66,7 +63,6 @@
 		F682DA2A2B6622BD004F1E79 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA292B6622BD004F1E79 /* SignInView.swift */; };
 		F682DA2F2B662397004F1E79 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA2E2B662397004F1E79 /* FirebaseAnalytics */; };
 		F682DA312B662397004F1E79 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA302B662397004F1E79 /* FirebaseAuth */; };
-		F682DA332B662397004F1E79 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA322B662397004F1E79 /* FirebaseFirestore */; };
 		F682DA352B662397004F1E79 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA342B662397004F1E79 /* FirebaseStorage */; };
 		F682DA382B662415004F1E79 /* AES256Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DA372B662415004F1E79 /* AES256Util.swift */; };
 		F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F682DA3A2B662437004F1E79 /* CryptoSwift */; };
@@ -86,7 +82,6 @@
 		F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA632B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift */; };
 		F68DDA672B6CFFA30029AECF /* InteritanceGuardianListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F68DDA662B6CFFA30029AECF /* InteritanceGuardianListModel.swift */; };
 		F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69830C22B694D63005A764E /* InspectionTypeModel.swift */; };
-		F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */; };
 		F69F9ABF2B6DF87C00941055 /* DigitalInheritanceAlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F9ABE2B6DF87C00941055 /* DigitalInheritanceAlertType.swift */; };
 		F6A6C9712B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A6C9702B7CAAB1004396BA /* UpdateUserInfoTypeModel.swift */; };
 		F6A6C9732B7CAADB004396BA /* UpdateUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A6C9722B7CAADB004396BA /* UpdateUserInfoView.swift */; };
@@ -95,9 +90,6 @@
 		F6BF14452B77D9B3007FAA35 /* DementiaSeverityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF14442B77D9B3007FAA35 /* DementiaSeverityInfoView.swift */; };
 		F6BF14482B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF14472B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift */; };
 		F6BF144A2B77DB22007FAA35 /* DementiaSeverityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BF14492B77DB22007FAA35 /* DementiaSeverityDataModel.swift */; };
-		F6C5DB302B79F8CD0023412B /* TorchModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = F6C5DB2F2B79F8CD0023412B /* TorchModule.mm */; };
-		F6C5DB312B79F8DF0023412B /* TorchModule.h in Sources */ = {isa = PBXBuildFile; fileRef = F6C5DB2E2B79F8CD0023412B /* TorchModule.h */; };
-		F6C5DB322B79F9030023412B /* PyTorch-Bridging-Header.h in Sources */ = {isa = PBXBuildFile; fileRef = F6C5DB2D2B79F8CD0023412B /* PyTorch-Bridging-Header.h */; };
 		F6C5DB342B7A0A7E0023412B /* PredictResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C5DB332B7A0A7E0023412B /* PredictResult.swift */; };
 		F6D9994E2B66363500F9E4C7 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D9994D2B66363500F9E4C7 /* MainView.swift */; };
 		F6D999522B66365A00F9E4C7 /* HospitalMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */; };
@@ -113,6 +105,13 @@
 		F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */; };
 		F6D999732B66614E00F9E4C7 /* MMSECanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */; };
 		F6E3CAAB2BD7427A00427D4D /* CreateCustomResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E3CAAA2BD7427A00427D4D /* CreateCustomResultView.swift */; };
+		F6E96C532C1AB54000867D9B /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = F6E96C522C1AB54000867D9B /* NMapsMap */; };
+		F6E96C562C1AB76000867D9B /* MMSE.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = F6E96C552C1AB76000867D9B /* MMSE.mlpackage */; };
+		F6E96C582C1AB76200867D9B /* LifeLog.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = F6E96C572C1AB76200867D9B /* LifeLog.mlpackage */; };
+		F6E96C5A2C1AB76400867D9B /* Sleep.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = F6E96C592C1AB76400867D9B /* Sleep.mlpackage */; };
+		F6E96C5C2C1AB76700867D9B /* Universal.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = F6E96C5B2C1AB76700867D9B /* Universal.mlpackage */; };
+		F6E96C5E2C1AC05100867D9B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F6E96C5D2C1AC05100867D9B /* FirebaseFirestore */; };
+		F6E96C602C1AC05100867D9B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F6E96C5F2C1AC05100867D9B /* FirebaseFirestoreSwift */; };
 		F6F05C412B6A97E9007DEBE3 /* AutoSignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */; };
 		F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */; };
 		F6F4BB4B2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */; };
@@ -138,15 +137,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaCheckerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker.release.xcconfig"; sourceTree = "<group>"; };
-		1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker.debug.xcconfig"; sourceTree = "<group>"; };
-		74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DementiaChecker_DementiaCheckerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaCheckerTests.release.xcconfig"; path = "Target Support Files/Pods-DementiaCheckerTests/Pods-DementiaCheckerTests.release.xcconfig"; sourceTree = "<group>"; };
-		C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; path = "Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F60530992B78B63D00141A21 /* DementiaImprovementTypeSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaImprovementTypeSelectionView.swift; sourceTree = "<group>"; };
 		F605309B2B78BB4A00141A21 /* PuzzleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleView.swift; sourceTree = "<group>"; };
 		F605309D2B78BB5F00141A21 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
@@ -226,9 +216,6 @@
 		F6BF14442B77D9B3007FAA35 /* DementiaSeverityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaSeverityInfoView.swift; sourceTree = "<group>"; };
 		F6BF14472B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaSeverityInfoListModel.swift; sourceTree = "<group>"; };
 		F6BF14492B77DB22007FAA35 /* DementiaSeverityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaSeverityDataModel.swift; sourceTree = "<group>"; };
-		F6C5DB2D2B79F8CD0023412B /* PyTorch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PyTorch-Bridging-Header.h"; sourceTree = "<group>"; };
-		F6C5DB2E2B79F8CD0023412B /* TorchModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorchModule.h; sourceTree = "<group>"; };
-		F6C5DB2F2B79F8CD0023412B /* TorchModule.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TorchModule.mm; sourceTree = "<group>"; };
 		F6C5DB332B7A0A7E0023412B /* PredictResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictResult.swift; sourceTree = "<group>"; };
 		F6D9994D2B66363500F9E4C7 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F6D999512B66365A00F9E4C7 /* HospitalMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalMapView.swift; sourceTree = "<group>"; };
@@ -244,6 +231,10 @@
 		F6D999702B66505700F9E4C7 /* MMSEAnswerTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSEAnswerTypeModel.swift; sourceTree = "<group>"; };
 		F6D999722B66614E00F9E4C7 /* MMSECanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSECanvasView.swift; sourceTree = "<group>"; };
 		F6E3CAAA2BD7427A00427D4D /* CreateCustomResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomResultView.swift; sourceTree = "<group>"; };
+		F6E96C552C1AB76000867D9B /* MMSE.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = MMSE.mlpackage; sourceTree = "<group>"; };
+		F6E96C572C1AB76200867D9B /* LifeLog.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = LifeLog.mlpackage; sourceTree = "<group>"; };
+		F6E96C592C1AB76400867D9B /* Sleep.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = Sleep.mlpackage; sourceTree = "<group>"; };
+		F6E96C5B2C1AB76700867D9B /* Universal.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = Universal.mlpackage; sourceTree = "<group>"; };
 		F6F05C402B6A97E9007DEBE3 /* AutoSignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoSignInDataModel.swift; sourceTree = "<group>"; };
 		F6F4BB482B6C7BB800DCC256 /* HospitalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailView.swift; sourceTree = "<group>"; };
 		F6F4BB4A2B6C7BCB00DCC256 /* HospitalDetailsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalDetailsMapViewController.swift; sourceTree = "<group>"; };
@@ -260,14 +251,14 @@
 				F639483F2B6BA99B00E82620 /* SwiftyJSON in Frameworks */,
 				F682DA2F2B662397004F1E79 /* FirebaseAnalytics in Frameworks */,
 				F63948392B6BA77C00E82620 /* Alamofire in Frameworks */,
+				F6E96C5E2C1AC05100867D9B /* FirebaseFirestore in Frameworks */,
 				F682DA352B662397004F1E79 /* FirebaseStorage in Frameworks */,
+				F6E96C602C1AC05100867D9B /* FirebaseFirestoreSwift in Frameworks */,
 				F63948492B6BBD9800E82620 /* SwiftUIPager in Frameworks */,
-				F69F9ABD2B6DF7C300941055 /* FirebaseFirestoreSwift in Frameworks */,
+				F6E96C532C1AB54000867D9B /* NMapsMap in Frameworks */,
 				F682DA312B662397004F1E79 /* FirebaseAuth in Frameworks */,
 				F682DA3B2B662437004F1E79 /* CryptoSwift in Frameworks */,
-				F682DA332B662397004F1E79 /* FirebaseFirestore in Frameworks */,
 				F60530A32B78BE3300141A21 /* SwiftImage in Frameworks */,
-				31EA511F4A95955DC38F0C64 /* Pods_DementiaChecker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +266,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F13689C23CB7D956C9ECA55F /* Pods_DementiaCheckerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,36 +273,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6C6DF41EC099B5D6D53F3BF /* Pods_DementiaChecker_DementiaCheckerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C6A2BA4522F373BE58BCD61 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1DEBAA233230FFEBC06D5AFD /* Pods_DementiaChecker.framework */,
-				74A726DCD0D4ECBD67FC995B /* Pods_DementiaChecker_DementiaCheckerUITests.framework */,
-				13065252E6A64D78D2BEF6EF /* Pods_DementiaCheckerTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A304D36A0E5082717BFA2886 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */,
-				1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */,
-				9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */,
-				C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */,
-				391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */,
-				B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		F60530A62B78C7DC00141A21 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,8 +399,6 @@
 				F659564D2B56BF11004896C3 /* DementiaCheckerTests */,
 				F65956572B56BF11004896C3 /* DementiaCheckerUITests */,
 				F65956392B56BF10004896C3 /* Products */,
-				A304D36A0E5082717BFA2886 /* Pods */,
-				1C6A2BA4522F373BE58BCD61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -451,6 +415,7 @@
 		F659563A2B56BF10004896C3 /* DementiaChecker */ = {
 			isa = PBXGroup;
 			children = (
+				F6E96C542C1AB75C00867D9B /* Resources */,
 				F637008B2B7C7FC900EBA7C5 /* Prevention */,
 				F60530C62B78D4C000141A21 /* fonts */,
 				F60530A92B78CDC600141A21 /* Diary */,
@@ -501,7 +466,6 @@
 		F65956672B56BF74004896C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F6C5DB272B79F6890023412B /* Headers */,
 				F62A0F7E2B7857B30040C50C /* Models */,
 				F682DA362B66240D004F1E79 /* Helper */,
 				F65956682B56BF79004896C3 /* View */,
@@ -635,16 +599,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F6C5DB272B79F6890023412B /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				F6C5DB2D2B79F8CD0023412B /* PyTorch-Bridging-Header.h */,
-				F6C5DB2E2B79F8CD0023412B /* TorchModule.h */,
-				F6C5DB2F2B79F8CD0023412B /* TorchModule.mm */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
 		F6D9994F2B66364D00F9E4C7 /* HospitalMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -776,6 +730,17 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
+		F6E96C542C1AB75C00867D9B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F6E96C552C1AB76000867D9B /* MMSE.mlpackage */,
+				F6E96C572C1AB76200867D9B /* LifeLog.mlpackage */,
+				F6E96C592C1AB76400867D9B /* Sleep.mlpackage */,
+				F6E96C5B2C1AB76700867D9B /* Universal.mlpackage */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F6F4BB4C2B6C875400DCC256 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -791,11 +756,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F659565E2B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaChecker" */;
 			buildPhases = (
-				F8BFD11122CC4288F975426C /* [CP] Check Pods Manifest.lock */,
 				F65956342B56BF10004896C3 /* Sources */,
 				F65956352B56BF10004896C3 /* Frameworks */,
 				F65956362B56BF10004896C3 /* Resources */,
-				35A87E55A9EE6AF0B99CAF93 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -805,14 +768,15 @@
 			packageProductDependencies = (
 				F682DA2E2B662397004F1E79 /* FirebaseAnalytics */,
 				F682DA302B662397004F1E79 /* FirebaseAuth */,
-				F682DA322B662397004F1E79 /* FirebaseFirestore */,
 				F682DA342B662397004F1E79 /* FirebaseStorage */,
 				F682DA3A2B662437004F1E79 /* CryptoSwift */,
 				F63948382B6BA77C00E82620 /* Alamofire */,
 				F639483E2B6BA99B00E82620 /* SwiftyJSON */,
 				F63948482B6BBD9800E82620 /* SwiftUIPager */,
-				F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */,
 				F60530A22B78BE3300141A21 /* SwiftImage */,
+				F6E96C522C1AB54000867D9B /* NMapsMap */,
+				F6E96C5D2C1AC05100867D9B /* FirebaseFirestore */,
+				F6E96C5F2C1AC05100867D9B /* FirebaseFirestoreSwift */,
 			);
 			productName = DementiaChecker;
 			productReference = F65956382B56BF10004896C3 /* DementiaChecker.app */;
@@ -822,7 +786,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F65956612B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerTests" */;
 			buildPhases = (
-				061C8C87A16D616FF1A6AE2E /* [CP] Check Pods Manifest.lock */,
 				F65956462B56BF11004896C3 /* Sources */,
 				F65956472B56BF11004896C3 /* Frameworks */,
 				F65956482B56BF11004896C3 /* Resources */,
@@ -841,11 +804,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F65956642B56BF11004896C3 /* Build configuration list for PBXNativeTarget "DementiaCheckerUITests" */;
 			buildPhases = (
-				ADF4032831EB672B2EB7B649 /* [CP] Check Pods Manifest.lock */,
 				F65956502B56BF11004896C3 /* Sources */,
 				F65956512B56BF11004896C3 /* Frameworks */,
 				F65956522B56BF11004896C3 /* Resources */,
-				3FFF499F3C35D0F50A11C0C9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -865,7 +826,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					F65956372B56BF10004896C3 = {
 						CreatedOnToolsVersion = 15.2;
@@ -897,6 +858,7 @@
 				F639483D2B6BA99B00E82620 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				F63948472B6BBD9800E82620 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				F60530A12B78BE3300141A21 /* XCRemoteSwiftPackageReference "swift-image" */,
+				F6E96C512C1AB54000867D9B /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */,
 			);
 			productRefGroup = F65956392B56BF10004896C3 /* Products */;
 			projectDirPath = "";
@@ -938,109 +900,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		061C8C87A16D616FF1A6AE2E /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DementiaCheckerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35A87E55A9EE6AF0B99CAF93 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker/Pods-DementiaChecker-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3FFF499F3C35D0F50A11C0C9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DementiaChecker-DementiaCheckerUITests/Pods-DementiaChecker-DementiaCheckerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ADF4032831EB672B2EB7B649 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DementiaChecker-DementiaCheckerUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F8BFD11122CC4288F975426C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DementiaChecker-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		F65956342B56BF10004896C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1079,6 +938,7 @@
 				F682DA472B662E91004F1E79 /* UserInfoModel.swift in Sources */,
 				F69830C32B694D63005A764E /* InspectionTypeModel.swift in Sources */,
 				F637008E2B7C7FDB00EBA7C5 /* DementiaPreventionView.swift in Sources */,
+				F6E96C582C1AB76200867D9B /* LifeLog.mlpackage in Sources */,
 				F6D999632B66369700F9E4C7 /* MoreView.swift in Sources */,
 				F63948332B6BA56E00E82620 /* HospitalMapHelper.swift in Sources */,
 				F65FD9B82B7E696700B536E3 /* LocationHelper.swift in Sources */,
@@ -1086,7 +946,7 @@
 				F6D999712B66505700F9E4C7 /* MMSEAnswerTypeModel.swift in Sources */,
 				F605309E2B78BB5F00141A21 /* Consts.swift in Sources */,
 				F6D9996A2B664A9600F9E4C7 /* MMSEInspectionMainView.swift in Sources */,
-				F6C5DB312B79F8DF0023412B /* TorchModule.h in Sources */,
+				F6E96C5A2C1AB76400867D9B /* Sleep.mlpackage in Sources */,
 				F660539D2B752F1100BEF80E /* UserInfoView.swift in Sources */,
 				F6BF14482B77DAB5007FAA35 /* DementiaSeverityInfoListModel.swift in Sources */,
 				F68DDA642B6CFEA10029AECF /* InheritanceGuardianSelectionView.swift in Sources */,
@@ -1096,8 +956,10 @@
 				F60530CC2B78E3E000141A21 /* InspectionResultsView.swift in Sources */,
 				F60530CE2B78E40200141A21 /* InspectionResultDataModel.swift in Sources */,
 				F6D9995F2B66368A00F9E4C7 /* HistoryView.swift in Sources */,
+				F6E96C5C2C1AB76700867D9B /* Universal.mlpackage in Sources */,
 				F6C5DB342B7A0A7E0023412B /* PredictResult.swift in Sources */,
 				F60530BB2B78CE0D00141A21 /* DiaryEmotionModel.swift in Sources */,
+				F6E96C562C1AB76000867D9B /* MMSE.mlpackage in Sources */,
 				F6E3CAAB2BD7427A00427D4D /* CreateCustomResultView.swift in Sources */,
 				F6A6C9732B7CAADB004396BA /* UpdateUserInfoView.swift in Sources */,
 				F6BF143F2B77C9D1007FAA35 /* NewMorphButtonStyle.swift in Sources */,
@@ -1112,7 +974,6 @@
 				F60530CA2B78E3BA00141A21 /* InspectionResultTypeModel.swift in Sources */,
 				F68BC6A32B79C2120058F929 /* LifeLogIncidenceRateListModel.swift in Sources */,
 				F6F4BB492B6C7BB800DCC256 /* HospitalDetailView.swift in Sources */,
-				F6C5DB302B79F8CD0023412B /* TorchModule.mm in Sources */,
 				F63948462B6BBB8100E82620 /* HospitalListModel.swift in Sources */,
 				F6D9996F2B664D0700F9E4C7 /* InspectionHelper.swift in Sources */,
 				F605309C2B78BB4A00141A21 /* PuzzleView.swift in Sources */,
@@ -1135,7 +996,6 @@
 				F682DA262B6621BB004F1E79 /* Logos.swift in Sources */,
 				F60530A82B78C7E800141A21 /* DementiaImprovementsHelper.swift in Sources */,
 				F6BF144A2B77DB22007FAA35 /* DementiaSeverityDataModel.swift in Sources */,
-				F6C5DB322B79F9030023412B /* PyTorch-Bridging-Header.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,6 +1092,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1287,13 +1148,13 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		F659565F2B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 507BA9B608D67FB01FFD8DC2 /* Pods-DementiaChecker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1329,7 +1190,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "DementiaChecker/Frameworks/Headers/PyTorch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1338,7 +1199,6 @@
 		};
 		F65956602B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DC90EEC09D19E81D6FFDB6F /* Pods-DementiaChecker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1374,7 +1234,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "DementiaChecker/Frameworks/Headers/PyTorch-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1382,9 +1242,7 @@
 		};
 		F65956622B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 391FECC6D807AC530C828E7B /* Pods-DementiaCheckerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1403,9 +1261,7 @@
 		};
 		F65956632B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B35E7FE5A1E5EF19691FC072 /* Pods-DementiaCheckerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1424,9 +1280,7 @@
 		};
 		F65956652B56BF11004896C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A33F5B8CBCA7CA12E434A58 /* Pods-DementiaChecker-DementiaCheckerUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
@@ -1443,9 +1297,7 @@
 		};
 		F65956662B56BF11004896C3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C441F3134B210DD1E2B75DEC /* Pods-DementiaChecker-DementiaCheckerUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JLQKH6P6PL;
@@ -1550,6 +1402,14 @@
 				minimumVersion = 1.8.1;
 			};
 		};
+		F6E96C512C1AB54000867D9B /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/NMapsMap-SwiftPM";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1583,11 +1443,6 @@
 			package = F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		F682DA322B662397004F1E79 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
 		F682DA342B662397004F1E79 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F682DA2D2B662397004F1E79 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -1598,7 +1453,16 @@
 			package = F682DA392B662437004F1E79 /* XCRemoteSwiftPackageReference "CryptoSwift" */;
 			productName = CryptoSwift;
 		};
-		F69F9ABC2B6DF7C300941055 /* FirebaseFirestoreSwift */ = {
+		F6E96C522C1AB54000867D9B /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6E96C512C1AB54000867D9B /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */;
+			productName = NMapsMap;
+		};
+		F6E96C5D2C1AC05100867D9B /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FirebaseFirestore;
+		};
+		F6E96C5F2C1AC05100867D9B /* FirebaseFirestoreSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FirebaseFirestoreSwift;
 		};

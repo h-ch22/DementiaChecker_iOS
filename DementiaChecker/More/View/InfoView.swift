@@ -130,8 +130,7 @@ struct InfoView: View {
             }.padding(20)
                 .onAppear{
                     helper.getCurrnetVersion()
-                    helper.getLatestVersion(){ result in
-                        guard let result = result else{return}
+                    helper.getLatestVersion(){ _ in
                     }
                 }
                 .navigationTitle(Text("About"))

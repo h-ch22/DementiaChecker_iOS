@@ -244,7 +244,7 @@ struct MMSEInspectionView: View {
                     }
                     
                 }.padding(20)
-                .animation(.easeInOut)
+                    .animation(Animation.easeInOut(duration: 0.5), value: true)
                 .fullScreenCover(isPresented: $showResultView, content: {
                     InspectionResultsView(data: helper.inspectionResult, mmseData: helper.mmseData, sleepData: helper.sleepData, lifeLogData: helper.lifeLogData, MMSEResult: helper.scores, MMSEAnswer: helper.answers, answerList: helper.answerList)
                 })
@@ -252,53 +252,51 @@ struct MMSEInspectionView: View {
                     DispatchQueue.global().async{
                         if useCustomData{
                             if answerList != nil && !answerList!.isEmpty{
-                                helper.gradingWithCustomData(answerList: answerList!){ MMSEResult in
-                                    guard let MMSEResult = MMSEResult else{return}
+                                let MMSEResult = helper.gradingWithCustomData(answerList: answerList!)
+                                
+                                if MMSEResult{
+                                    currentInspectingType = .WALK
                                     
-                                    if MMSEResult{
-                                        currentInspectingType = .WALK
+                                    helper.predictLifeLog(completion: { lifeLogResult in
+                                        guard let lifeLogResult = lifeLogResult else{return}
                                         
-                                        helper.predictLifeLog(completion: { lifeLogResult in
-                                            guard let lifeLogResult = lifeLogResult else{return}
+                                        if lifeLogResult{
+                                            currentInspectingType = .SLEEP
                                             
-                                            if lifeLogResult{
-                                                currentInspectingType = .SLEEP
+                                            helper.predictSleep(){ sleepResult in
+                                                guard let sleepResult = sleepResult else{return}
                                                 
-                                                helper.predictSleep(){ sleepResult in
-                                                    guard let sleepResult = sleepResult else{return}
-                                                    
-                                                    if sleepResult{
-                                                        currentInspectingType = .UNIVERSAL
+                                                if sleepResult{
+                                                    currentInspectingType = .UNIVERSAL
 
-                                                        helper.predictUniversal(){ universalResult in
-                                                            guard let universalResult = universalResult else{
-                                                                return
-                                                            }
-                                                            
-                                                            if universalResult{
-                                                                isDone = true
-                                                            } else{
-                                                                currentInspectingType = .UNIVERSAL
-                                                                errorType = .UNIVERSAL
-                                                            }
+                                                    helper.predictUniversal(){ universalResult in
+                                                        guard let universalResult = universalResult else{
+                                                            return
                                                         }
-                                                    } else{
-                                                        currentInspectingType = .SLEEP
-                                                        errorType = .SLEEP
+                                                        
+                                                        if universalResult{
+                                                            isDone = true
+                                                        } else{
+                                                            currentInspectingType = .UNIVERSAL
+                                                            errorType = .UNIVERSAL
+                                                        }
                                                     }
+                                                } else{
+                                                    currentInspectingType = .SLEEP
+                                                    errorType = .SLEEP
                                                 }
-                                                
-
-                                            } else{
-                                                print("An error occured while predicing lifelog")
-                                                currentInspectingType = .WALK
-                                                errorType = .WALK
                                             }
-                                        })
-                                    } else{
-                                        currentInspectingType = .MMSE
-                                        errorType = .MMSE
-                                    }
+                                            
+
+                                        } else{
+                                            print("An error occured while predicing lifelog")
+                                            currentInspectingType = .WALK
+                                            errorType = .WALK
+                                        }
+                                    })
+                                } else{
+                                    currentInspectingType = .MMSE
+                                    errorType = .MMSE
                                 }
                             } else{
                                 errorType = .MMSE
@@ -595,7 +593,7 @@ struct MMSEInspectionView: View {
                     }
                     
                 }.padding(20)
-                    .animation(.easeInOut)
+                    .animation(Animation.easeInOut(duration: 0.5), value: true)
                     .onAppear{
                         if useCustomData{
                             changeView = true

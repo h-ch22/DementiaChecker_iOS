@@ -17,7 +17,7 @@ struct InspectionResultsView: View {
     let mmseData: ClassInspectionResultDataModel
     let sleepData: ClassInspectionResultDataModel
     let lifeLogData: ClassInspectionResultDataModel
-    let MMSEResult: [Int]
+    let MMSEResult: [Int64]
     let MMSEAnswer: [String]
     let answerList: [String]
     

@@ -102,12 +102,12 @@ struct PuzzleView: View {
                         }
                 }
             }.photosPicker(isPresented: $showPhotoPicker, selection: $selectedItem, matching: .images, photoLibrary: .shared())
-                .onChange(of: selectedItem){ newItem in
+                .onChange(of: selectedItem){ _, newItem in
                     DispatchQueue.global(qos: .background).async{
                         Task{
                             if let data = try? await newItem?.loadTransferable(type: Data.self){
                                 let pic = SwiftImage.Image<RGBA<UInt8>>(data: data)!
-                                let picAsUIImage = UIImage(data: data)!
+                                _ = UIImage(data: data)!
                                 var img: [[UIImage]] = []
                                 
                                 for x in 0..<Consts.columns {

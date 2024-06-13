@@ -55,7 +55,7 @@ struct UserTypeSelectionView: View {
                 
                 Spacer()
             }.padding(20)
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
 
                 .navigationTitle(Text("User Type Selection"))
         }

@@ -20,7 +20,7 @@ struct MMSEResultsView: View {
     @State private var scoreOfRemember = 0
     @State private var scoreOfLanguage = 0
     
-    let MMSEResult: [Int]
+    let MMSEResult: [Int64]
     let MMSEData: ClassInspectionResultDataModel
     
     var body: some View {

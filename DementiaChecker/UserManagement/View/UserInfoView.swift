@@ -366,7 +366,7 @@ struct UserInfoView: View {
                         }
                     }
                     .navigationTitle(Text("Profile"))
-                    .animation(.easeInOut)
+                    .animation(Animation.easeInOut(duration: 0.5), value: true)
                     .fullScreenCover(isPresented: $showSignInView, content: {
                         SignInView()
                     })

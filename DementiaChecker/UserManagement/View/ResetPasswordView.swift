@@ -85,7 +85,8 @@ struct ResetPasswordView: View {
                 }
 
                 
-            }.animation(.easeInOut)
+            }
+            .animation(Animation.easeInOut(duration: 0.5), value: true)
             .padding(20)
             .alert(isPresented: $showAlert, content: {
                 if alertModel {

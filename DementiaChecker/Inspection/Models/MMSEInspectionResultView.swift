@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MMSEInspectionResultView: View {
-    let MMSEResult: [Int]
+    let MMSEResult: [Int64]
     let MMSEData: ClassInspectionResultDataModel
     
     @State private var score = 0

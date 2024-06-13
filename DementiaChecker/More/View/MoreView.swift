@@ -141,7 +141,7 @@ struct MoreView: View {
                 .sheet(isPresented: $showPreventionView, content: {
                     DementiaPreventionView()
                 })
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
 
         }
     }

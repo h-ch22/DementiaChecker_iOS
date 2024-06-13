@@ -82,7 +82,7 @@ struct DementiaImprovementMainView: View {
                 .sheet(isPresented: $showHelper, content: {
                     DementiaSeverityInfoView()
                 })
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
         }
     }
 }

@@ -95,7 +95,7 @@ struct DigitalInheritanceMainView: View {
                         }
                     })
                 }
-                .animation(.easeInOut)
+                .animation(Animation.easeInOut(duration: 0.5), value: true)
 
         }
     }

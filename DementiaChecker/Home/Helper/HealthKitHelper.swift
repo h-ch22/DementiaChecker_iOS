@@ -46,7 +46,7 @@ class HealthKitHelper: ObservableObject{
     @Published var accumulateSteps = [LifeLogDataModel]()
     @Published var accumulateTotalActivities = [LifeLogDataModel]()
     @Published var dateList = [Double]()
-    @Published var lifeLogPredictData = [Double]()
+    @Published var lifeLogPredictData = [[Double]]()
     
     @Published var sleepDateList = [Double]()
     @Published var accumulateAwakeList = [LifeLogDataModel]()
@@ -58,12 +58,12 @@ class HealthKitHelper: ObservableObject{
     @Published var accumulateREMSleepList = [LifeLogDataModel]()
     @Published var accumulateTemperatureList = [LifeLogDataModel]()
     @Published var accumulateTotalSleepList = [LifeLogDataModel]()
-    @Published var sleepPredictData = [Double]()
+    @Published var sleepPredictData = [[Double]]()
     
     func requestAuthorization(completion: @escaping(_ result: Bool?) -> Void){
         self.healthStore.requestAuthorization(toShare: nil, read: read){(success, error) in
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 completion(false)
                 return
             } else{
@@ -74,9 +74,6 @@ class HealthKitHelper: ObservableObject{
     
     func getSleepData(start: Date, end: Date, period: Int, completion: @escaping(_ result: Bool?) -> Void){
         let group = DispatchGroup()
-        var datas = [String]()
-        var values = [[Double]]()
-        var temperature = [LifeLogDataModel]()
         
         group.enter()
         getAccumulateSleepData(start: start, end: end, completion: { result in
@@ -146,7 +143,7 @@ class HealthKitHelper: ObservableObject{
                 data.append(self.accumulateTemperatureList[i].value)
                 data.append(self.accumulateTotalSleepList[i].value)
                 
-                self.sleepPredictData.append(contentsOf: data)
+                self.sleepPredictData.append(data)
             }
             
             completion(true)
@@ -156,10 +153,6 @@ class HealthKitHelper: ObservableObject{
     
     func getLifeLogData(start: Date, end: Date, period: Int, completion: @escaping(_ result: Bool?) -> Void){
         let group = DispatchGroup()
-        
-        var dates = [String]()
-        var values = [[Double]]()
-        var activeCalories = [LifeLogDataModel]()
         
         group.enter()
         getAccumulateActiveCalories(start: start, end: end, completion: { result in
@@ -232,7 +225,7 @@ class HealthKitHelper: ObservableObject{
                 data.append(self.accumulateSteps[i].value)
                 data.append(self.accumulateTotalActivities[i].value)
                 
-                self.lifeLogPredictData.append(contentsOf: data)
+                self.lifeLogPredictData.append(data)
             }
             
             completion(true)
@@ -322,7 +315,7 @@ class HealthKitHelper: ObservableObject{
         let query = HKStatisticsCollectionQuery(quantityType: activityQuantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: dateComponents)
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let calories = quantity.doubleValue(for: HKUnit.kilocalorie())
@@ -359,7 +352,7 @@ class HealthKitHelper: ObservableObject{
         let query = HKStatisticsCollectionQuery(quantityType: activityQuantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: dateComponents)
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let calories = quantity.doubleValue(for: HKUnit.kilocalorie())
@@ -396,7 +389,7 @@ class HealthKitHelper: ObservableObject{
         
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: {  statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let distance = quantity.doubleValue(for: HKUnit.meter())
@@ -433,7 +426,7 @@ class HealthKitHelper: ObservableObject{
         let query = HKStatisticsCollectionQuery(quantityType: activityQuantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: dateComponents)
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let excerciseTime = quantity.doubleValue(for: HKUnit.minute())
@@ -470,7 +463,7 @@ class HealthKitHelper: ObservableObject{
         let query = HKStatisticsCollectionQuery(quantityType: activityQuantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: dateComponents)
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let stepCount = quantity.doubleValue(for: HKUnit.count())
@@ -506,7 +499,7 @@ class HealthKitHelper: ObservableObject{
         let query = HKStatisticsCollectionQuery(quantityType: activityQuantityType, quantitySamplePredicate: nil, options: .cumulativeSum, anchorDate: anchorDate!, intervalComponents: dateComponents)
         query.initialResultsHandler = {query, results, error in
             if let results = results{
-                results.enumerateStatistics(from: start, to: end, with: { [self] statistics, stop in
+                results.enumerateStatistics(from: start, to: end, with: { statistics, stop in
                     if let quantity = statistics.sumQuantity(){
                         let date = statistics.startDate
                         let activities = quantity.doubleValue(for: HKUnit.minute())
@@ -538,13 +531,13 @@ class HealthKitHelper: ObservableObject{
         var rem = [LifeLogDataModel]()
         var total = [LifeLogDataModel]()
 
-        guard let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) else{
+        guard HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) != nil else{
             return
         }
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        let query = HKSampleQuery(sampleType: HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!, predicate: predicate, limit: 9999, sortDescriptors: [sortDescriptor]){ [weak self] (query, sleepResult, error) -> Void in
+        let query = HKSampleQuery(sampleType: HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!, predicate: predicate, limit: 9999, sortDescriptors: [sortDescriptor]){ (query, sleepResult, error) -> Void in
             if error != nil{
                 return
             }
@@ -663,7 +656,7 @@ class HealthKitHelper: ObservableObject{
     
     private func getWristTemperatureBaseline(completion: @escaping(Double) -> Void){
         guard let activityQuantityType = HKQuantityType.quantityType(forIdentifier: .appleSleepingWristTemperature) else { return }
-        var dataList = [Double]()
+        let dataList = [Double]()
         var baseline = 0.0
         
         let start = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
@@ -729,7 +722,7 @@ class HealthKitHelper: ObservableObject{
             }
             
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 return
             }
             
@@ -843,7 +836,7 @@ class HealthKitHelper: ObservableObject{
             }
             
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 return
             }
             
@@ -899,7 +892,7 @@ class HealthKitHelper: ObservableObject{
             var cal: Double = 0
             
             if error != nil{
-                print(error?.localizedDescription)
+                print(error!.localizedDescription)
                 return
             }
             
@@ -929,7 +922,6 @@ class HealthKitHelper: ObservableObject{
         
         let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictEndDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let osUnit: HKUnit = HKUnit(from: "%")
         
         let query = HKSampleQuery(sampleType: oxygenSaturationType, predicate: predicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [sortDescriptor]){(query, result, error) in
             guard error == nil else{
@@ -990,15 +982,12 @@ class HealthKitHelper: ObservableObject{
     }
     
     private func getTodaySleepTime(completion: @escaping (Double?) ->  Void){
-        let start = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-        let end = Date()
         var datas = [DateInterval]()
         
-        guard let sleepType = HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) else{
+        guard HKObjectType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis) != nil else{
             return
         }
         
-        let predicate = HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         let query = HKSampleQuery(sampleType: HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!, predicate: nil, limit: 30, sortDescriptors: [sortDescriptor]){ [weak self] (query, sleepResult, error) -> Void in
             if error != nil{

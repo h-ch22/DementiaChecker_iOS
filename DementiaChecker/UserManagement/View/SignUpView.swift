@@ -341,7 +341,7 @@ struct SignUpView: View {
                         Text(error.recoverySuggestion ?? "")
                     }
                     .padding(20)
-                    .animation(.easeInOut)
+                    .animation(Animation.easeInOut(duration: 0.5), value: true)
             }.fullScreenCover(isPresented: $changeView, content: {
                 MainView()
                     .environmentObject(helper)

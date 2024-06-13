@@ -85,8 +85,7 @@ struct DiaryView: View {
                                         if currentIndex > 0{
                                             currentIndex -= 1
                                             
-                                            helper.getURL(id: helper.diaryList[currentIndex].date, imgCount: helper.diaryList[currentIndex].imgCount){ downloadResult in
-                                                guard let downloadResult = downloadResult else{return}
+                                            helper.getURL(id: helper.diaryList[currentIndex].date, imgCount: helper.diaryList[currentIndex].imgCount){ _ in
                                             }
                                         }
                                     }){
@@ -116,8 +115,7 @@ struct DiaryView: View {
                                         if currentIndex < helper.diaryList.count-1{
                                             currentIndex += 1
                                             
-                                            helper.getURL(id: helper.diaryList[currentIndex].date, imgCount: helper.diaryList[currentIndex].imgCount){ downloadResult in
-                                                guard let downloadResult = downloadResult else{return}
+                                            helper.getURL(id: helper.diaryList[currentIndex].date, imgCount: helper.diaryList[currentIndex].imgCount){ _ in
                                             }
                                         }
                                     }){
@@ -181,8 +179,7 @@ struct DiaryView: View {
                         showProgress = false
                         
                         if helper.diaryList.count > 0{
-                            helper.getURL(id: helper.diaryList[0].date, imgCount: helper.diaryList[0].imgCount){ downloadResult in
-                                guard let downloadResult = downloadResult else{return}
+                            helper.getURL(id: helper.diaryList[0].date, imgCount: helper.diaryList[0].imgCount){ _ in
                             }
                         }
 

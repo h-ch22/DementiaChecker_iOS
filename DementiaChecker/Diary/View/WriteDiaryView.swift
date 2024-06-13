@@ -224,7 +224,7 @@ struct WriteDiaryView: View {
                 }
                 
                 .photosPicker(isPresented: $showPhotosPicker, selection: $selectedPhotos)
-                .onChange(of: selectedPhotos){ items in
+                .onChange(of: selectedPhotos){ _, items in
                     self.imageData.removeAll()
                     
                     for item in items{
