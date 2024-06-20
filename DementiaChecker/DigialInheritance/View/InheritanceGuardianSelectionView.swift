@@ -163,7 +163,7 @@ struct InheritanceGuardianSelectionView: View {
                             
                             Spacer()
                         }
-                    }.buttonStyle(NewMorphButtonStyle(foreground: email == "" ? Color.gray : Color.background))
+                    }.buttonStyle(NewMorphButtonStyle(foreground: Color.background))
                 }
 
                 
