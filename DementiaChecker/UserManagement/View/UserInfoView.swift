@@ -348,8 +348,8 @@ struct UserInfoView: View {
                     .toolbar{
                         ToolbarItem(placement: .topBarLeading,
                                     content: {
-                            Button("Close"){
-                                self.dismiss()
+                            Button(action: { dismiss() }){
+                                Image(systemName: "xmark")
                             }
                         })
                     }

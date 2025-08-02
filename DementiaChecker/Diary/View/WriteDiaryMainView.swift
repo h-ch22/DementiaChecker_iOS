@@ -113,8 +113,8 @@ struct WriteDiaryMainView: View {
             .navigationTitle(Text("Write a diary"))
                 .toolbar(content: {
                     ToolbarItemGroup(placement: .topBarTrailing, content: {
-                        Button("Close"){
-                            self.presentationMode.wrappedValue.dismiss()
+                        Button(action: { self.presentationMode.wrappedValue.dismiss() }){
+                            Image(systemName: "xmark")
                         }
                     })
                 })

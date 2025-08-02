@@ -235,11 +235,8 @@ struct MMSEInspectionView: View {
                         
                         Spacer().frame(height: 20)
                         
-                        Button(action: {
-                            dismiss()
-                        }){
-                            Text("Close")
-                                .foregroundStyle(Color.txt)
+                        Button(action: { dismiss() }){
+                            Image(systemName: "xmark")
                         }
                     }
                     

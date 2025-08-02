@@ -1398,8 +1398,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 		F6E96C512C1AB54000867D9B /* XCRemoteSwiftPackageReference "NMapsMap-SwiftPM" */ = {

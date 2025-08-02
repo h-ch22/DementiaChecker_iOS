@@ -261,8 +261,8 @@ struct MMSEResultsView: View {
                     }.padding(20)
                         .toolbar{
                             ToolbarItem(placement: .topBarLeading, content: {
-                                Button("Close"){
-                                    dismiss()
+                                Button(action: { dismiss() }){
+                                    Image(systemName: "xmark")
                                 }
                             })
                         }

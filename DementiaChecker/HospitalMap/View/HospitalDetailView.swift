@@ -194,8 +194,8 @@ struct HospitalDetailView: View {
                     .navigationTitle(Text(data?.centerName ?? "Center Information"))
                     .toolbar{
                         ToolbarItem(placement: .topBarLeading, content: {
-                            Button("Close"){
-                                self.dismiss()
+                            Button(action: { dismiss() }){
+                                Image(systemName: "xmark")
                             }
                         })
                     }

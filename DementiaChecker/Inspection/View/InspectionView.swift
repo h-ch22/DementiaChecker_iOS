@@ -71,8 +71,8 @@ struct InspectionView: View {
                 .toolbar{
                     if showToolbar{
                         ToolbarItem(placement: .topBarLeading, content: {
-                            Button("Close"){
-                                dismiss()
+                            Button(action: { dismiss() }){
+                                Image(systemName: "xmark")
                             }
                         })
                     }
