@@ -4,6 +4,94 @@
 ### Deep learning-based dementia diagnosis application using intelligence test, sleep, and lifestyle data<br>
 ⓒ 2024 Changjin Ha. All Rights Reserved.<br><br>
 
+## 🚀 Tech Stack
+
+### Client (iOS & iPadOS)
+- **SwiftUI:** Declarative UI with full iOS 18 Sidebar & iPadOS multi-column support
+- **HealthKit:** Extract Apple Watch life-log (activity & sleep) data securely
+- **Dependency Management:** Pure SPM (Swift Package Manager) - *Zero CocoaPods architecture*
+- **Speech Framework:** `SFSpeechRecognizer` & `AVAudioEngine` for elderly-friendly verbal MMSE assessments (On-device STT)
+
+### Backend (BaaS)
+- **Firebase (Auth, Firestore, Storage):** Fully integrated via SPM for user data, diary sync, and digital inheritance
+
+### AI (On-Device CoreML Multi-Modal)
+- **CoreML:** 4 On-device models (MMSE, LifeLog, Sleep, Universal)
+- **Multi-Modal Inference:** Combine cognitive questionnaire data with physical sensor data for composite assessment
+
+### External API
+- **Naver Maps API:** NMaps-based hospital locator for dementia care facilities
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    %% Data Sources
+    subgraph DataSources [📊 Data Sources]
+        Survey[MMSE Questionnaire]
+        Watch[Apple Watch / HealthKit]
+    end
+
+    %% AI Pipeline (Multi-Modal)
+    subgraph CoreMLPipeline [🧠 Multi-Modal AI Pipeline]
+        ModelMMSE[CoreML: MMSE]
+        ModelLife[CoreML: LifeLog]
+        ModelSleep[CoreML: Sleep]
+        ModelUni[CoreML: Universal Composite]
+
+        Survey --> ModelMMSE
+        Watch -->|Activity Data| ModelLife
+        Watch -->|Sleep Data| ModelSleep
+
+        ModelMMSE --> ModelUni
+        ModelLife --> ModelUni
+        ModelSleep --> ModelUni
+    end
+
+    %% Client App
+    subgraph Client [📱 iOS & iPadOS App]
+        UI[SwiftUI / iOS 18 Sidebar]
+        Features[Diary, Prevention Puzzles, Inheritance]
+        State[State Management]
+
+        ModelUni -->|Composite Assessment| State
+        UI <--> State
+        Features <--> State
+    end
+
+    %% Backend & External
+    subgraph Backend [☁️ Firebase & APIs]
+        DB[(Firestore)]
+        Storage[(Firebase Storage)]
+        Auth[Firebase Auth]
+        Map[Naver Maps API]
+    end
+
+    %% Connections
+    State <--> Auth
+    State <--> DB
+    State <--> Storage
+    State --> Map
+```
+
+## 🧱 If I were to rebuild it in 2026
+
+| Layer | Original | 2026 Pick | Reason |
+|---|---|---|---|
+| Concurrency | Completion handlers + DispatchGroup | Swift Concurrency(async/await + actors) | Eliminates callback pyramids; HealthKit has async wrappers |
+| CoreML | New instance per call | `lazy var` cached models | Prevents disk re-load on every assessment |
+| Speech | SFSpeechRecognizer (network) | SFSpeechRecognizer + `requiresOnDeviceRecognition = true` | HIPAA/GDPR alignment |
+| Crypto | CryptoSwift@main | CryptoKit | First-party, hardware-accelerated |
+| Firebase | 10.27.0 | 12.x | Current major, App Check aligned |
+| JSON | SwiftJSON | Codable | Remove dep, standard Swift |
+| MMSE questions | Giant switch statements | JSON asset + Codable structs | Localizble, editable without recompile |
+| HealthKit data | God-class with 25 @Published | Split `DailyHealthSummary` + `HistoricalHealthData` | Reduced re-render thrashing |
+
+## ✨ Core Features
+
+<details>
+<summary>Show Contents</summary>
+
 #### Home<br>
 > Check your latest inspection results, health data at a glance.<br>
 
@@ -127,3 +215,5 @@
 
  * Required iOS/iPadOS 17.0 or up. </br>
  * 1GB or higher storage required for install application.
+
+</details>
